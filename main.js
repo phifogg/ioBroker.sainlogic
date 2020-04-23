@@ -88,7 +88,7 @@ class Sainlogic extends utils.Adapter {
         webServer = http.createServer((request, response) => {
             var my_url = url.parse(request.url, true);
             var query = my_url.query;
-            var my_path = my_url.path;
+            var my_path = my_url.pathname;
             this.log.info('Received path: ' + my_path);
             this.log.info('JSON Query string: ' + JSON.stringify(query));
             response.writeHead(200, {"Content-Type": "text/html"});
