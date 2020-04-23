@@ -1,0 +1,77 @@
+{
+    "common": {
+        "name": "sainlogic",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Sainlogic Weatherstation",
+        "titleLang": {
+            "en": "Sainlogic Weatherstation",
+            "de": "Sainlogic Weatherstation",
+            "ru": "Sainlogic Weatherstation",
+            "pt": "Sainlogic Weatherstation",
+            "nl": "Sainlogic Weatherstation",
+            "fr": "Sainlogic Weatherstation",
+            "it": "Sainlogic Weatherstation",
+            "es": "Sainlogic Weatherstation",
+            "pl": "Sainlogic Weatherstation",
+            "zh-cn": "Sainlogic Weatherstation"
+        },
+        "desc": {
+            "en": "Read data from a sainlogic based weather station",
+            "de": "Read data from a sainlogic based weather station",
+            "ru": "Read data from a sainlogic based weather station",
+            "pt": "Read data from a sainlogic based weather station",
+            "nl": "Read data from a sainlogic based weather station",
+            "fr": "Read data from a sainlogic based weather station",
+            "it": "Read data from a sainlogic based weather station",
+            "es": "Read data from a sainlogic based weather station",
+            "pl": "Read data from a sainlogic based weather station",
+            "zh-cn": "Read data from a sainlogic based weather station"
+        },
+        "authors": [
+            "Fogg <foggch@gmail.com>"
+        ],
+        "keywords": [
+            "weather",
+            "sainlogic"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "sainlogic.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/phifogg/ioBroker.sainlogic/master/admin/sainlogic.png",
+        "readme": "https://github.com/phifogg/ioBroker.sainlogic/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "weather",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "push",
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=1.4.2"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
