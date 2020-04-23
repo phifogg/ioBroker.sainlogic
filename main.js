@@ -42,6 +42,7 @@ class Sainlogic extends utils.Adapter {
         // this.config:
         this.log.info('config option1: ' + this.config.option1);
         this.log.info('config option2: ' + this.config.option2);
+        this.log.info('Config IP: ' + this.config.ip);
         this.log.info('Config port: ' + this.config.port);
         this.log.info('Config path: ' + this.config.path);
 
@@ -91,7 +92,7 @@ class Sainlogic extends utils.Adapter {
             var query = my_url.query;
             var my_path = my_url.pathname;
 
-            if (my_path == this.config.path) { 
+            if (my_path == this.config.path) {  
                 this.log.info('Received path: ' + my_path);
                 this.log.info('JSON Query string: ' + JSON.stringify(query));
                 response.writeHead(200, {"Content-Type": "text/html"});
@@ -102,7 +103,7 @@ class Sainlogic extends utils.Adapter {
                 response.end();
             }
           });
-          webServer.listen(this.config.port);
+          webServer.listen(this.config.port, this.config.ip);
     }
 
     /**
