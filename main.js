@@ -43,7 +43,7 @@ class Sainlogic extends utils.Adapter {
         this.log.info('config option1: ' + this.config.option1);
         this.log.info('config option2: ' + this.config.option2);
         this.log.info('Config port: ' + this.config.port);
-        this.log.indo('Config path: ' + this.config.path);
+        this.log.info('Config path: ' + this.config.path);
 
         /*
         For every state in the system there has to be also an object of type state
