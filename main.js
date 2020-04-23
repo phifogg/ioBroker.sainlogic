@@ -43,6 +43,7 @@ class Sainlogic extends utils.Adapter {
         this.log.info('config option1: ' + this.config.option1);
         this.log.info('config option2: ' + this.config.option2);
         this.log.info('Config port: ' + this.config.port);
+        this.log.indo('Config path: ' + this.config.path);
 
         /*
         For every state in the system there has to be also an object of type state
@@ -89,10 +90,17 @@ class Sainlogic extends utils.Adapter {
             var my_url = url.parse(request.url, true);
             var query = my_url.query;
             var my_path = my_url.pathname;
-            this.log.info('Received path: ' + my_path);
-            this.log.info('JSON Query string: ' + JSON.stringify(query));
-            response.writeHead(200, {"Content-Type": "text/html"});
-            response.end();
+
+            if (my_path == this.config.path) { 
+                this.log.info('Received path: ' + my_path);
+                this.log.info('JSON Query string: ' + JSON.stringify(query));
+                response.writeHead(200, {"Content-Type": "text/html"});
+                response.end();
+            }
+            else {
+                response.writeHead(400, {"Content-Type": "text/html"});
+                response.end();
+            }
           });
           webServer.listen(this.config.port);
     }

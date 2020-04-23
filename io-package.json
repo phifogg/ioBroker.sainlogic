@@ -70,6 +70,7 @@
     },
     "native": {
         "port": 45000,
+        "path": "/weatherstation/updateweatherstation.php",
         "option1": true,
         "option2": "42"
     },
