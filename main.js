@@ -9,8 +9,8 @@
 const utils = require('@iobroker/adapter-core');
 
 // Load your modules here, e.g.:
-const url = require(’url’);
-const http = require(’http’);
+const url = require('url');
+const http = require('http');
 // const fs = require("fs");
 
 let webServer = null;
