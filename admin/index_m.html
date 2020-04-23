@@ -22,6 +22,15 @@
         function load(settings, onChange) {
             // example: select elements with id=key and class=value and insert value
             if (!settings) return;
+
+            getIPs(function(ips) {
+                for (var i = 0; i < ips.length; i++) {
+                    $('#bind').append('<option value="' + ips[i].address + '">' + ips[i].name + '</option>');
+                }
+                $('#bind.value').val(settings.bind).select();
+            });
+
+
             $('.value').each(function () {
                 var $key = $(this);
                 var id = $key.attr('id');
