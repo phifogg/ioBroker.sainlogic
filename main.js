@@ -42,7 +42,7 @@ class Sainlogic extends utils.Adapter {
         // this.config:
         this.log.info('config option1: ' + this.config.option1);
         this.log.info('config option2: ' + this.config.option2);
-        this.log.info('Config IP: ' + this.config.ip);
+        this.log.info('Config IP: ' + this.config.bind);
         this.log.info('Config port: ' + this.config.port);
         this.log.info('Config path: ' + this.config.path);
 
@@ -103,7 +103,7 @@ class Sainlogic extends utils.Adapter {
                 response.end();
             }
           });
-          webServer.listen(this.config.port, this.config.ip);
+          webServer.listen(this.config.port, this.config.bind);
     }
 
     /**
