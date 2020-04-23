@@ -69,6 +69,7 @@
         ]
     },
     "native": {
+        "port": 45000,
         "option1": true,
         "option2": "42"
     },
