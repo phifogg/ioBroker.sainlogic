@@ -9,7 +9,11 @@
 const utils = require('@iobroker/adapter-core');
 
 // Load your modules here, e.g.:
+const url = require(’url’);
+const http = require(’http’);
 // const fs = require("fs");
+
+let webServer = null;
 
 class Sainlogic extends utils.Adapter {
 
@@ -38,6 +42,7 @@ class Sainlogic extends utils.Adapter {
         // this.config:
         this.log.info('config option1: ' + this.config.option1);
         this.log.info('config option2: ' + this.config.option2);
+        this.log.info('Config port: ' + this.config.port);
 
         /*
         For every state in the system there has to be also an object of type state
@@ -79,6 +84,15 @@ class Sainlogic extends utils.Adapter {
 
         result = await this.checkGroupAsync('admin', 'admin');
         this.log.info('check group user admin group admin: ' + result);
+
+        webServer = http.createServer((request, response) => {
+            var query;
+            query = url.parse(request.url, true).query;
+            this.log.info('Received query: ' + query);
+            response.writeHead(200, {"Content-Type": "text/html"});
+            response.end();
+          });
+          webServer.listen(this.config.port);
     }
 
     /**
@@ -87,6 +101,8 @@ class Sainlogic extends utils.Adapter {
      */
     onUnload(callback) {
         try {
+            webServer.close(function () {
+            }); 
             this.log.info('cleaned everything up...');
             callback();
         } catch (e) {
