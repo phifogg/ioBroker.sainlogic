@@ -96,6 +96,20 @@
                 "def": ""
             },
             "native": {}
+        },
+        {
+            "_id": "info.softwaretype",
+            "type": "state",
+            "common": {
+                "role": "",
+                "name": "Software type and version of weather station",
+                "type": "string",
+                "read": true,
+                "write": false,
+                "def": ""
+            },
+            "native": {}
         }
+
     ]
 }
