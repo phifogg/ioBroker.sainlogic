@@ -303,6 +303,46 @@
                 },
                 "native": {}
                 }   
+        },
+        {
+            "_id": "weather.pressureabs",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "hPa",
+                "name": "Pressure (absolute)",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
+        },
+        {
+            "_id": "weather.pressurerel",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "hPa",
+                "name": "Pressure (relative)",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
         }
     ]
 }

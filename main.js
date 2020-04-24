@@ -91,9 +91,23 @@ class Sainlogic extends utils.Adapter {
 
         // wind
         this.setStateAsync('weather.windspeed', {val: this.convert_windspeed(json_response.windspeedmph), ack: true});
-        this.setStateAsync('weather.windgust', {val: this.convert_windspeed(json_response.windgustmph), ack: true});
+        this.setStateAsync('weather.windgustspeed', {val: this.convert_windspeed(json_response.windgustmph), ack: true});
         this.setStateAsync('weather.winddir', {val: json_response.winddir, ack: true});
 
+        // pressure
+        this.setStateAsync('weather.pressurerel', {val: this.convert_pressure(json_response.baromin), ack: true});
+        this.setStateAsync('weather.pressureabs', {val: this.convert_pressure(json_response.absbaromin), ack: true});
+
+
+    }
+
+
+    /**
+     * Convert a pressure from baromin to hPa
+     * @param {*} baromin
+     */
+    convert_pressure(baromin) {
+        return baromin / 0.02952998751;
     }
 
     /**
