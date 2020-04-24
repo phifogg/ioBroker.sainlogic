@@ -105,6 +105,9 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('weather.monthlyrain', {val: this.convert_rain(json_response.monthlyrainin), ack: true});
         this.setStateAsync('weather.yearlyrain', {val: this.convert_rain(json_response.yearlyrainin), ack: true});
         
+        // solar
+        this.setStateAsync('weather.solarradiation', {val: json_response.solarradiation, ack: true});
+        this.setStateAsync('weather.uvi', {val: json_response.UV, ack: true});
 
     }
 

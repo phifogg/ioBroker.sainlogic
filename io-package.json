@@ -443,6 +443,46 @@
                 },
                 "native": {}
                 }   
+        },
+        {
+            "_id": "weather.solarradiaton",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "",
+                "name": "Solar",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
+        },
+        {
+            "_id": "weather.uvi",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "",
+                "name": "UVI",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
         }
     ]
 }
