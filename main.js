@@ -87,23 +87,25 @@ class Sainlogic extends utils.Adapter {
         result = await this.checkGroupAsync('admin', 'admin');
         this.log.info('check group user admin group admin: ' + result);
 
-        webServer = http.createServer((request, response) => {
-            var my_url = url.parse(request.url, true);
-            var query = my_url.query;
-            var my_path = my_url.pathname;
+        if (this.config.listener_active == true) {
+            webServer = http.createServer((request, response) => {
+                var my_url = url.parse(request.url, true);
+                var query = my_url.query;
+                var my_path = my_url.pathname;
 
-            if (my_path == this.config.path) {  
-                this.log.info('Received path: ' + my_path);
-                this.log.info('JSON Query string: ' + JSON.stringify(query));
-                response.writeHead(200, {"Content-Type": "text/html"});
-                response.end();
-            }
-            else {
-                response.writeHead(400, {"Content-Type": "text/html"});
-                response.end();
-            }
-          });
-          webServer.listen(this.config.port, this.config.bind);
+                if (my_path == this.config.path) {  
+                    this.log.info('Received path: ' + my_path);
+                    this.log.info('JSON Query string: ' + JSON.stringify(query));
+                    response.writeHead(200, {"Content-Type": "text/html"});
+                    response.end();
+                }
+                else {
+                    response.writeHead(400, {"Content-Type": "text/html"});
+                    response.end();
+                 }
+            });
+            webServer.listen(this.config.port, this.config.bind);
+        }
     }
 
     /**
