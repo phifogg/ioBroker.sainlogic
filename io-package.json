@@ -445,7 +445,7 @@
                 }   
         },
         {
-            "_id": "weather.solarradiaton",
+            "_id": "weather.solarradiation",
             "type": "state",
             "common": {
                 "def": 0,
