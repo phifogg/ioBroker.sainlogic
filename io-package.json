@@ -243,6 +243,66 @@
                 },
             "native": {}
             }   
+        },
+        {
+            "_id": "weather.windspeed",
+            "type": "state",
+            "common": {
+              "def": 0,
+              "type": "number",
+              "read": true,
+              "write": false,
+              "min": 0,
+              "max": 1638.299999,
+              "unit": "km/h",
+              "name": "Windspeed",
+              "mobile": {
+                "admin": {
+                  "visible": true
+                }
+              },
+              "native": {}
+              }   
+        },
+        {
+            "_id": "weather.windgustspeed",
+            "type": "state",
+            "common": {
+              "def": 0,
+              "type": "number",
+              "read": true,
+              "write": false,
+              "min": 0,
+              "max": 1638.299999,
+              "unit": "km/h",
+              "name": "Windgustspeed",
+              "mobile": {
+                "admin": {
+                  "visible": true
+                }
+              },
+              "native": {}
+              }   
+        },
+        {
+            "_id": "weather.winddir",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 359,
+                "unit": "degree",
+                "name": "Wind direction",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
         }
     ]
 }

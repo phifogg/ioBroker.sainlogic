@@ -83,12 +83,25 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('weather.indoortemp', { val: this.convert_temp(json_response.indoortempf), ack: true });
         this.setStateAsync('weather.outdoortemp', {val: this.convert_temp(json_response.tempf), ack: true });
         this.setStateAsync('weather.dewpointtemp', {val: this.convert_temp(json_response.dewptf), ack: true });
-        this.setStateAsync('weather.dewpointtemp', {val: this.convert_temp(json_response.windchillf), ack: true });
+        this.setStateAsync('weather.windchilltemp', {val: this.convert_temp(json_response.windchillf), ack: true });
 
         // humidity
         this.setStateAsync('weather.indoorhumidity', {val: json_response.indoorhumidity, ack: true});
         this.setStateAsync('weather.outdoorhumidity', {val: json_response.humidity, ack: true});
 
+        // wind
+        this.setStateAsync('weather.windspeed', {val: this.convert_windspeed(json_response.windspeedmph), ack: true});
+        this.setStateAsync('weather.windgust', {val: this.convert_windspeed(json_response.windgustmph), ack: true});
+        this.setStateAsync('weather.winddir', {val: json_response.winddir, ack: true});
+
+    }
+
+    /**
+    * Converts a wind speed from mph to system settings
+    * @param {*} speedmph 
+    */
+    convert_windspeed(speedmph) {
+        return speedmph;
     }
 
     /**
