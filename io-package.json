@@ -109,7 +109,35 @@
                 "def": ""
             },
             "native": {}
+        },
+        {
+            "_id": "weather",
+            "type": "channel",
+            "common": {
+                "name": "Weather data"
+            },
+            "native": {}
+        },
+        {
+            "_id": "weather.indoortemp",
+            "type": "state",
+            "common": {
+                "name": "Indoor temperature",
+                "type": "number",
+                "unit": "°C",
+                "role": "value.temperature",
+                "def": 0,
+                "min": -40,
+                "max": 80,
+                "read": true,
+                "write": false,
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+            "native": {}
+            }
         }
-
     ]
 }

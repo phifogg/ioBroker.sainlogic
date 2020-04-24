@@ -79,6 +79,8 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
         this.setStateAsync('info.softwaretype', { val: json_response.softwaretype, ack: true });
 
+        this.setStateAsync('weather.indoortemp', { val: json_response.indoortempf, ack: true });
+
     }
 
     /**
