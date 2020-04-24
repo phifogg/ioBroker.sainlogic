@@ -79,8 +79,24 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
         this.setStateAsync('info.softwaretype', { val: json_response.softwaretype, ack: true });
 
-        this.setStateAsync('weather.indoortemp', { val: json_response.indoortempf, ack: true });
+        // temperatures
+        this.setStateAsync('weather.indoortemp', { val: this.convert_temp(json_response.indoortempf), ack: true });
+        this.setStateAsync('weather.outdoortemp', {val: this.convert_temp(json_response.tempf), ack: true });
+        this.setStateAsync('weather.dewpointtemp', {val: this.convert_temp(json_response.dewptf), ack: true });
+        this.setStateAsync('weather.dewpointtemp', {val: this.convert_temp(json_response.windchillf), ack: true });
 
+        // humidity
+        this.setStateAsync('weather.indoorhumidity', {val: json_response.indoorhumidity, ack: true});
+        this.setStateAsync('weather.outdoorhumidity', {val: json_response.humidity, ack: true});
+
+    }
+
+    /**
+     * Converts a Fahrenheit temperature to Celsius if needed
+     * @param {*} tempf 
+     */
+    convert_temp(tempf) {
+        return tempf;
     }
 
     /**
