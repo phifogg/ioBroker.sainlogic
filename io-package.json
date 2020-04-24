@@ -345,7 +345,7 @@
                 }   
         },
         {
-            "_id": "weather.rainmm",
+            "_id": "weather.rain",
             "type": "state",
             "common": {
                 "def": 0,
@@ -365,7 +365,7 @@
                 }   
         },
         {
-            "_id": "weather.dailyrainmm",
+            "_id": "weather.dailyrain",
             "type": "state",
             "common": {
                 "def": 0,
@@ -385,7 +385,7 @@
                 }   
         },
         {
-            "_id": "weather.weeklyrainmm",
+            "_id": "weather.weeklyrain",
             "type": "state",
             "common": {
                 "def": 0,
@@ -405,7 +405,7 @@
                 }   
         },
         {
-            "_id": "weather.monthlyrainmm",
+            "_id": "weather.monthlyrain",
             "type": "state",
             "common": {
                 "def": 0,
@@ -425,7 +425,7 @@
                 }   
         },
         {
-            "_id": "weather.yearlyrainmm",
+            "_id": "weather.yearlyrain",
             "type": "state",
             "common": {
                 "def": 0,
