@@ -57,6 +57,7 @@ class Sainlogic extends utils.Adapter {
                     this.log.info('JSON Query string: ' + JSON.stringify(query));
                     response.writeHead(200, {"Content-Type": "text/html"});
                     response.end();
+                    this.parse_response(query);
                 }
                 else {
                     response.writeHead(400, {"Content-Type": "text/html"});
@@ -65,6 +66,16 @@ class Sainlogic extends utils.Adapter {
             });
             webServer.listen(this.config.port, this.config.bind);
         }
+    }
+
+    /**
+     * Parses the JSON object delivered by the Query update from weather station
+     * @param {*} json_response 
+     */
+    parse_response(json_response) {
+        var dateutc = json_response.dateutc;
+        await this.setStateAsync('info.last_update', { val: dateutc, ack: true });
+
     }
 
     /**
