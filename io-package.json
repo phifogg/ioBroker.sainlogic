@@ -343,6 +343,106 @@
                 },
                 "native": {}
                 }   
+        },
+        {
+            "_id": "weather.rainmm",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "mm",
+                "name": "Rain",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
+        },
+        {
+            "_id": "weather.dailyrainmm",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "mm",
+                "name": "Rain (Day)",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
+        },
+        {
+            "_id": "weather.weeklyrainmm",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "mm",
+                "name": "Rain (Week)",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
+        },
+        {
+            "_id": "weather.monthlyrainmm",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "mm",
+                "name": "Rain (Year)",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
+        },
+        {
+            "_id": "weather.yearlyrainmm",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "mm",
+                "name": "Rain (Year)",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
         }
     ]
 }

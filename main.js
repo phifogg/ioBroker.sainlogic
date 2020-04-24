@@ -98,7 +98,22 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('weather.pressurerel', {val: this.convert_pressure(json_response.baromin), ack: true});
         this.setStateAsync('weather.pressureabs', {val: this.convert_pressure(json_response.absbaromin), ack: true});
 
+        // rain
+        this.setStateAsync('weather.rain', {val: this.convert_rain(json_response.rainin), ack: true});
+        this.setStateAsync('weather.dailyrain', {val: this.convert_rain(json_response.dailyrainin), ack: true});
+        this.setStateAsync('weather.weeklyrain', {val: this.convert_rain(json_response.weeklyrainin), ack: true});
+        this.setStateAsync('weather.monthlyrain', {val: this.convert_rain(json_response.monthlyrainin), ack: true});
+        this.setStateAsync('weather.yearlyrain', {val: this.convert_rain(json_response.yearlyrainin), ack: true});
+        
 
+    }
+
+    /**
+     * Covert rain from in to mm
+     * @param {*} rainin
+     */
+    convert_rain(rainin) {
+        return rainin * 25.4;
     }
 
 
@@ -115,7 +130,7 @@ class Sainlogic extends utils.Adapter {
     * @param {*} speedmph 
     */
     convert_windspeed(speedmph) {
-        return speedmph;
+        return speedmph * 1.60934;
     }
 
     /**
@@ -123,7 +138,7 @@ class Sainlogic extends utils.Adapter {
      * @param {*} tempf 
      */
     convert_temp(tempf) {
-        return tempf;
+        return (tempf -32) * (5/9);
     }
 
     /**
