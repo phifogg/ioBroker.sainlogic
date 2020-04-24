@@ -74,7 +74,7 @@ class Sainlogic extends utils.Adapter {
      */
     parse_response(json_response) {
         var dateutc = json_response.dateutc;
-        await this.setStateAsync('info.last_update', { val: dateutc, ack: true });
+        this.setStateAsync('info.last_update', { val: dateutc, ack: true });
 
     }
 
