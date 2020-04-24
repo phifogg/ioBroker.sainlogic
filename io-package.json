@@ -72,8 +72,7 @@
         "bind": "",
         "port": 45000,
         "path": "/weatherstation/updateweatherstation.php",
-        "listener_active": false,
-        "option2": "42"
+        "listener_active": false
     },
     "objects": [],
     "instanceObjects": [ 
