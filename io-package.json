@@ -15,7 +15,7 @@
         },
         "desc": {
             "en": "Read data from a sainlogic based weather station",
-            "de": "Read data from a sainlogic based weather station",
+            "de": "Read data from a sainlogic based weather station"
         },
         "authors": [
             "Fogg <foggch@gmail.com>"
