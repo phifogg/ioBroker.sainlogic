@@ -103,18 +103,11 @@ class Sainlogic extends utils.Adapter {
         var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
 //        var cmd = {0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x19};
 //        var cmd = '\xff\xff\x50\x03\x53';
-        var buf = new buffer(7);
-        buf.writeUInt8(0xFF,0);
-        buf.writeUInt8(0xFF, 1);
-        buf.writeUInt8(0x0B, 2);
-        buf.writeUInt8(0x00, 3);
-        buf.writeUInt8(0x06, 4);
-        buf.writeUInt8(0x04, 5);
-        buf.writeUInt8(0x19, 6);
-
+        var bytestosend = [0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x19];
+        var hexVal = new Uint8Array(bytestosend);
 
         this.log.info('Scheduler connected to weather station');
-        this.client.write(buf);
+        this.client.write(hexVal);
     }
 
     client_data_received(data) {
