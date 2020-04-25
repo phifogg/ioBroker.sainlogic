@@ -1,45 +1,21 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "news": {
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
+            "0.0.2": {
+                "en": "Adding scheduler",
+                "de": "Geplantes Pullen einbauen"
             }
         },
         "title": "Sainlogic Weatherstation",
         "titleLang": {
             "en": "Sainlogic Weatherstation",
-            "de": "Sainlogic Weatherstation",
-            "ru": "Sainlogic Weatherstation",
-            "pt": "Sainlogic Weatherstation",
-            "nl": "Sainlogic Weatherstation",
-            "fr": "Sainlogic Weatherstation",
-            "it": "Sainlogic Weatherstation",
-            "es": "Sainlogic Weatherstation",
-            "pl": "Sainlogic Weatherstation",
-            "zh-cn": "Sainlogic Weatherstation"
+            "de": "Sainlogic Weatherstation"
         },
         "desc": {
             "en": "Read data from a sainlogic based weather station",
             "de": "Read data from a sainlogic based weather station",
-            "ru": "Read data from a sainlogic based weather station",
-            "pt": "Read data from a sainlogic based weather station",
-            "nl": "Read data from a sainlogic based weather station",
-            "fr": "Read data from a sainlogic based weather station",
-            "it": "Read data from a sainlogic based weather station",
-            "es": "Read data from a sainlogic based weather station",
-            "pl": "Read data from a sainlogic based weather station",
-            "zh-cn": "Read data from a sainlogic based weather station"
         },
         "authors": [
             "Fogg <foggch@gmail.com>"
