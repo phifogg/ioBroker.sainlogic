@@ -47,7 +47,8 @@ class Sainlogic extends utils.Adapter {
 
 
         if (this.config.listener_active == true) {
-            webServer = http.createServer((request, response) => {
+            try {
+                webServer = http.createServer((request, response) => {
                 var my_url = url.parse(request.url, true);
                 var query = my_url.query;
                 var my_path = my_url.pathname;
@@ -63,9 +64,8 @@ class Sainlogic extends utils.Adapter {
                     response.writeHead(400, {"Content-Type": "text/html"});
                     response.end();
                  }
-            });
+                });
 
-            try {
                 webServer.listen(this.config.port, this.config.bind);
             }
             catch (e) {
