@@ -80,7 +80,7 @@ class Sainlogic extends utils.Adapter {
 
     server_error(e) {
         if (e.toString().includes('EACCES') && this.config.port <= 1024) {
-            this.log.error(`node.js process has no rights to start server on the port ${port}.\n` +
+            this.log.error(`node.js process has no rights to start server on the port ${this.config.port}.\n` +
                 `Do you know that on linux you need special permissions for ports under 1024?\n` +
                 `You can call in shell following scrip to allow it for node.js: "iobroker fix"`
             );
