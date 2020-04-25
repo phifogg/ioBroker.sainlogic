@@ -57,18 +57,18 @@ class Sainlogic extends utils.Adapter {
 
             var client = new net.Socket();
 
-            client.on('data', function(this, data) {
-                this.log.info('Scheduler Received: ' + data);
+            client.on('data', function(data) {
+                adapter.log.info('Scheduler Received: ' + data);
                 client.destroy(); // kill client after server's response
             });
             
-            client.on('close', function(this) {
-                this.log.info('Scheduler Connection closed');
+            client.on('close', function() {
+                adapter.log.info('Scheduler Connection closed');
             });
 
 
-            client.connect(ws_port, ws_ip, function(this) {
-        	    this.log.info('Scheduler connected to weather station');
+            client.connect(ws_port, ws_ip, function() {
+        	    adapter.log.info('Scheduler connected to weather station');
         	    client.write(cmd);
             });
 
