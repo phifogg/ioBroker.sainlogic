@@ -14,7 +14,6 @@ const http = require('http');
 // const fs = require("fs");
 
 let webServer = null;
-let log = null;
 
 class Sainlogic extends utils.Adapter {
 
@@ -32,7 +31,6 @@ class Sainlogic extends utils.Adapter {
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
 
-        log = this.log;
     }
 
     /**
@@ -43,10 +41,10 @@ class Sainlogic extends utils.Adapter {
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        log.info('Listner active: ' + this.config.listener_active);
-        log.info('Config IP: ' + this.config.bind);
-        log.info('Config port: ' + this.config.port);
-        log.info('Config path: ' + this.config.path);
+        this.log.info('Listner active: ' + this.config.listener_active);
+        this.log.info('Config IP: ' + this.config.bind);
+        this.log.info('Config port: ' + this.config.port);
+        this.log.info('Config path: ' + this.config.path);
 
 
         if (this.config.listener_active == true) {
@@ -57,8 +55,8 @@ class Sainlogic extends utils.Adapter {
                 var my_path = my_url.pathname;
 
                 if (my_path == this.config.path) {  
-                    log.info('Received path: ' + my_path);
-                    log.info('JSON Query string: ' + JSON.stringify(query));
+                    this.log.info('Received path: ' + my_path);
+                    this.log.info('JSON Query string: ' + JSON.stringify(query));
                     response.writeHead(200, {"Content-Type": "text/html"});
                     response.end();
                     this.parse_response(query);
@@ -70,24 +68,24 @@ class Sainlogic extends utils.Adapter {
                 });
 
 
-                webServer.on('error', this.server_error);
+                webServer.on('error', this.server_error.bind(this));
 
                 webServer.listen(this.config.port, this.config.bind);
             }
             catch (e) {
-                log.error('Something else went wrong on starting our Listener');
+                this.log.error('Something else went wrong on starting our Listener');
             }
         }
     }
 
     server_error(e) {
         if (e.toString().includes('EACCES') && this.config.port <= 1024) {
-            log.error(`node.js process has no rights to start server on the port ${port}.\n` +
+            this.log.error(`node.js process has no rights to start server on the port ${port}.\n` +
                 `Do you know that on linux you need special permissions for ports under 1024?\n` +
                 `You can call in shell following scrip to allow it for node.js: "iobroker fix"`
             );
         } else {
-            log.error(`Cannot start server on ${this.config.bind || '0.0.0.0'}:${this.config.port}: ${e}`);
+            this.log.error(`Cannot start server on ${this.config.bind || '0.0.0.0'}:${this.config.port}: ${e}`);
         }
     }
 
