@@ -11,6 +11,8 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 const url = require('url');
 const http = require('http');
+const net = require('net');
+
 // const fs = require("fs");
 
 let webServer = null;
@@ -46,6 +48,33 @@ class Sainlogic extends utils.Adapter {
         this.log.info('Config port: ' + this.config.port);
         this.log.info('Config path: ' + this.config.path);
 
+        if (this.config.scheduler_active == true) {
+             // Sende-Befehl {0xff, 0xff, 0x0b, 0x00, 0x06, 0x06, 0x04, 0x19}
+            var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
+            var ws_ip = this.config.ws_ip;
+            var ws_port = this.config.ws_port;
+
+
+            var client = new net.Socket();
+
+            client.on('data', function(this, data) {
+                this.log.info('Scheduler Received: ' + data);
+                client.destroy(); // kill client after server's response
+            });
+            
+            client.on('close', function(this) {
+                this.log.info('Scheduler Connection closed');
+            });
+
+
+            client.connect(ws_port, ws_ip, function(this) {
+        	    this.log.info('Scheduler connected to weather station');
+        	    client.write(cmd);
+            });
+
+
+
+        }
 
         if (this.config.listener_active == true) {
             try {
@@ -69,7 +98,6 @@ class Sainlogic extends utils.Adapter {
 
 
                 webServer.on('error', this.server_error.bind(this));
-
                 webServer.listen(this.config.port, this.config.bind);
             }
             catch (e) {
