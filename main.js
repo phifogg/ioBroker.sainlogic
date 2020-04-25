@@ -101,12 +101,12 @@ class Sainlogic extends utils.Adapter {
     client_connect() {
         var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
         this.log.info('Scheduler connected to weather station');
-        client.write(cmd);
+        this.client.write(cmd);
     }
 
     client_data_received(data) {
         this.log.info('Scheduler Received: ' + data);
-        client.destroy(); // kill client after server's response
+        this.client.destroy(); // kill client after server's response
     }
 
     client_close() {
