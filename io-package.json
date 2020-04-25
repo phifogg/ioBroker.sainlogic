@@ -49,7 +49,9 @@
         "port": 45000,
         "path": "/weatherstation/updateweatherstation.php",
         "listener_active": false,
-        "scheduler_active": false
+        "scheduler_active": false,
+        "ws_address": "",
+        "ws_port": 45000
     },
     "objects": [],
     "instanceObjects": [ 
