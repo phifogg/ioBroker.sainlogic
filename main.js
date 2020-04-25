@@ -48,13 +48,13 @@ class Sainlogic extends utils.Adapter {
         this.log.info('Config port: ' + this.config.port);
         this.log.info('Config path: ' + this.config.path);
         this.log.info('Scheduler active: ' + this.config.scheduler_active);
-        this.log.info('WS IP: ' + this.config.ws_ip);
+        this.log.info('WS IP: ' + this.config.ws_address);
         this.log.info('WS Port: ' + this.config.ws_port);
 
         if (this.config.scheduler_active == true) {
              // Sende-Befehl {0xff, 0xff, 0x0b, 0x00, 0x06, 0x06, 0x04, 0x19}
             var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
-            var ws_ip = this.config.ws_ip;
+            var ws_ip = this.config.ws_address;
             var ws_port = this.config.ws_port;
 
 
