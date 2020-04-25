@@ -14,6 +14,7 @@ const http = require('http');
 // const fs = require("fs");
 
 let webServer = null;
+let log = null;
 
 class Sainlogic extends utils.Adapter {
 
@@ -30,6 +31,8 @@ class Sainlogic extends utils.Adapter {
         this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
+
+        log = this.log;
     }
 
     /**
@@ -40,10 +43,10 @@ class Sainlogic extends utils.Adapter {
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        this.log.info('Listner active: ' + this.config.listener_active);
-        this.log.info('Config IP: ' + this.config.bind);
-        this.log.info('Config port: ' + this.config.port);
-        this.log.info('Config path: ' + this.config.path);
+        log.info('Listner active: ' + this.config.listener_active);
+        log.info('Config IP: ' + this.config.bind);
+        log.info('Config port: ' + this.config.port);
+        log.info('Config path: ' + this.config.path);
 
 
         if (this.config.listener_active == true) {
@@ -54,8 +57,8 @@ class Sainlogic extends utils.Adapter {
                 var my_path = my_url.pathname;
 
                 if (my_path == this.config.path) {  
-                    this.log.info('Received path: ' + my_path);
-                    this.log.info('JSON Query string: ' + JSON.stringify(query));
+                    log.info('Received path: ' + my_path);
+                    log.info('JSON Query string: ' + JSON.stringify(query));
                     response.writeHead(200, {"Content-Type": "text/html"});
                     response.end();
                     this.parse_response(query);
@@ -72,19 +75,19 @@ class Sainlogic extends utils.Adapter {
                 webServer.listen(this.config.port, this.config.bind);
             }
             catch (e) {
-                this.log.error('Something else went wrong on starting our Listener');
+                log.error('Something else went wrong on starting our Listener');
             }
         }
     }
 
     server_error(e) {
         if (e.toString().includes('EACCES') && this.config.port <= 1024) {
-            adapter.log.error(`node.js process has no rights to start server on the port ${port}.\n` +
+            log.error(`node.js process has no rights to start server on the port ${port}.\n` +
                 `Do you know that on linux you need special permissions for ports under 1024?\n` +
                 `You can call in shell following scrip to allow it for node.js: "iobroker fix"`
             );
         } else {
-            adapter.log.error(`Cannot start server on ${this.config.bind || '0.0.0.0'}:${this.config.port}: ${e}`);
+            log.error(`Cannot start server on ${this.config.bind || '0.0.0.0'}:${this.config.port}: ${e}`);
         }
     }
 
@@ -172,7 +175,7 @@ class Sainlogic extends utils.Adapter {
         try {
             webServer.close(function () {
             }); 
-            this.log.info('cleaned everything up...');
+            log.info('cleaned everything up...');
             callback();
         } catch (e) {
             callback();
@@ -187,10 +190,10 @@ class Sainlogic extends utils.Adapter {
     onObjectChange(id, obj) {
         if (obj) {
             // The object was changed
-            this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+            log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
         } else {
             // The object was deleted
-            this.log.info(`object ${id} deleted`);
+            log.info(`object ${id} deleted`);
         }
     }
 
@@ -202,10 +205,10 @@ class Sainlogic extends utils.Adapter {
     onStateChange(id, state) {
         if (state) {
             // The state was changed
-            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
         } else {
             // The state was deleted
-            this.log.info(`state ${id} deleted`);
+            log.info(`state ${id} deleted`);
         }
     }
 
@@ -218,7 +221,7 @@ class Sainlogic extends utils.Adapter {
     // 	if (typeof obj === 'object' && obj.message) {
     // 		if (obj.command === 'send') {
     // 			// e.g. send email or pushover or whatever
-    // 			this.log.info('send command');
+    // 			log.info('send command');
 
     // 			// Send response in callback if required
     // 			if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
