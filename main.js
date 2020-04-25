@@ -12,6 +12,7 @@ const utils = require('@iobroker/adapter-core');
 const url = require('url');
 const http = require('http');
 const net = require('net');
+const buffer = require('buffer');
 
 // const fs = require("fs");
 
@@ -99,10 +100,21 @@ class Sainlogic extends utils.Adapter {
     }
 
     client_connect() {
-//        var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
-        var cmd = '\xff\xff\x50\x03\x53';
+        var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
+//        var cmd = {0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x19};
+//        var cmd = '\xff\xff\x50\x03\x53';
+        var buf = new buffer(7);
+        buf.writeUInt8(0xFF,0);
+        buf.writeUInt8(0xFF, 1);
+        buf.writeUInt8(0x0B, 2);
+        buf.writeUInt8(0x00, 3);
+        buf.writeUInt8(0x06, 4);
+        buf.writeUInt8(0x04, 5);
+        buf.writeUInt8(0x19, 6);
+
+
         this.log.info('Scheduler connected to weather station');
-        this.client.write(cmd);
+        this.client.write(buf);
     }
 
     client_data_received(data) {
@@ -209,6 +221,7 @@ class Sainlogic extends utils.Adapter {
         try {
             webServer.close(function () {
             }); 
+            client.destroy();
             log.info('cleaned everything up...');
             callback();
         } catch (e) {
