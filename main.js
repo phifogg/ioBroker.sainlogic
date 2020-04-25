@@ -16,6 +16,7 @@ const net = require('net');
 // const fs = require("fs");
 
 let webServer = null;
+let client = null;
 
 class Sainlogic extends utils.Adapter {
 
@@ -52,34 +53,22 @@ class Sainlogic extends utils.Adapter {
         this.log.info('WS Port: ' + this.config.ws_port);
 
         if (this.config.scheduler_active == true) {
+            this.log.info('Starting Scheduler');
              // Sende-Befehl {0xff, 0xff, 0x0b, 0x00, 0x06, 0x06, 0x04, 0x19}
-            var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
             var ws_ip = this.config.ws_address;
             var ws_port = this.config.ws_port;
 
 
             var client = new net.Socket();
 
-            client.on('data', function(data) {
-                adapter.log.info('Scheduler Received: ' + data);
-                client.destroy(); // kill client after server's response
-            });
-            
-            client.on('close', function() {
-                adapter.log.info('Scheduler Connection closed');
-            });
-
-
-            client.connect(ws_port, ws_ip, function() {
-        	    adapter.log.info('Scheduler connected to weather station');
-        	    client.write(cmd);
-            });
-
-
+            client.on('data', this.client_data_received);
+            client.on('close', this.client_close);
+            client.connect(ws_port, ws_ip, this.client_connect);
 
         }
 
         if (this.config.listener_active == true) {
+            this.log.info('Starting Listener');
             try {
                 webServer = http.createServer((request, response) => {
                 var my_url = url.parse(request.url, true);
@@ -107,6 +96,21 @@ class Sainlogic extends utils.Adapter {
                 this.log.error('Something else went wrong on starting our Listener');
             }
         }
+    }
+
+    client_connect() {
+        var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
+        this.log.info('Scheduler connected to weather station');
+        client.write(cmd);
+    }
+
+    client_data_received(data) {
+        this.log.info('Scheduler Received: ' + data);
+        client.destroy(); // kill client after server's response
+    }
+
+    client_close() {
+        this.log.info('Scheduler Connection closed');
     }
 
     server_error(e) {
