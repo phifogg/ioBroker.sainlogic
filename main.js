@@ -59,11 +59,11 @@ class Sainlogic extends utils.Adapter {
             var ws_port = this.config.ws_port;
 
 
-            var client = new net.Socket();
+            client = new net.Socket();
 
-            client.on('data', this.client_data_received.bind(this, client));
+            client.on('data', this.client_data_received.bind(this));
             client.on('close', this.client_close.bind(this));
-            client.connect(ws_port, ws_ip, this.client_connect.bind(this, client));
+            client.connect(ws_port, ws_ip, this.client_connect.bind(this));
 
         }
 
