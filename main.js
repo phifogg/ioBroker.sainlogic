@@ -30,6 +30,7 @@ class Sainlogic extends utils.Adapter {
         this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
+
     }
 
     /**
@@ -47,7 +48,8 @@ class Sainlogic extends utils.Adapter {
 
 
         if (this.config.listener_active == true) {
-            webServer = http.createServer((request, response) => {
+            try {
+                webServer = http.createServer((request, response) => {
                 var my_url = url.parse(request.url, true);
                 var query = my_url.query;
                 var my_path = my_url.pathname;
@@ -63,8 +65,27 @@ class Sainlogic extends utils.Adapter {
                     response.writeHead(400, {"Content-Type": "text/html"});
                     response.end();
                  }
-            });
-            webServer.listen(this.config.port, this.config.bind);
+                });
+
+
+                webServer.on('error', this.server_error.bind(this));
+
+                webServer.listen(this.config.port, this.config.bind);
+            }
+            catch (e) {
+                this.log.error('Something else went wrong on starting our Listener');
+            }
+        }
+    }
+
+    server_error(e) {
+        if (e.toString().includes('EACCES') && this.config.port <= 1024) {
+            this.log.error(`node.js process has no rights to start server on the port ${this.config.port}.\n` +
+                `Do you know that on linux you need special permissions for ports under 1024?\n` +
+                `You can call in shell following scrip to allow it for node.js: "iobroker fix"`
+            );
+        } else {
+            this.log.error(`Cannot start server on ${this.config.bind || '0.0.0.0'}:${this.config.port}: ${e}`);
         }
     }
 
@@ -152,7 +173,7 @@ class Sainlogic extends utils.Adapter {
         try {
             webServer.close(function () {
             }); 
-            this.log.info('cleaned everything up...');
+            log.info('cleaned everything up...');
             callback();
         } catch (e) {
             callback();
@@ -167,10 +188,10 @@ class Sainlogic extends utils.Adapter {
     onObjectChange(id, obj) {
         if (obj) {
             // The object was changed
-            this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+            log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
         } else {
             // The object was deleted
-            this.log.info(`object ${id} deleted`);
+            log.info(`object ${id} deleted`);
         }
     }
 
@@ -182,10 +203,10 @@ class Sainlogic extends utils.Adapter {
     onStateChange(id, state) {
         if (state) {
             // The state was changed
-            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
         } else {
             // The state was deleted
-            this.log.info(`state ${id} deleted`);
+            log.info(`state ${id} deleted`);
         }
     }
 
@@ -198,7 +219,7 @@ class Sainlogic extends utils.Adapter {
     // 	if (typeof obj === 'object' && obj.message) {
     // 		if (obj.command === 'send') {
     // 			// e.g. send email or pushover or whatever
-    // 			this.log.info('send command');
+    // 			log.info('send command');
 
     // 			// Send response in callback if required
     // 			if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
