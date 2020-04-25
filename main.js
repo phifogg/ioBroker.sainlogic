@@ -99,7 +99,8 @@ class Sainlogic extends utils.Adapter {
     }
 
     client_connect() {
-        var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
+//        var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
+        var cmd = '\xff\xff\x50\x03\x53';
         this.log.info('Scheduler connected to weather station');
         this.client.write(cmd);
     }
