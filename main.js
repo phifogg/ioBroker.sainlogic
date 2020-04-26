@@ -11,9 +11,17 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 const url = require('url');
 const http = require('http');
+const net = require('net');
+
+//const binary = require('node-binary');
+const convert = (from, to) => str => Buffer.from(str, from).toString(to);
+const hexToUtf8 = convert('hex', 'utf8');
+
+
 // const fs = require("fs");
 
 let webServer = null;
+let client = null;
 
 class Sainlogic extends utils.Adapter {
 
@@ -45,9 +53,27 @@ class Sainlogic extends utils.Adapter {
         this.log.info('Config IP: ' + this.config.bind);
         this.log.info('Config port: ' + this.config.port);
         this.log.info('Config path: ' + this.config.path);
+        this.log.info('Scheduler active: ' + this.config.scheduler_active);
+        this.log.info('WS IP: ' + this.config.ws_address);
+        this.log.info('WS Port: ' + this.config.ws_port);
 
+        if (this.config.scheduler_active == true) {
+            this.log.info('Starting Scheduler');
+             // Sende-Befehl {0xff, 0xff, 0x0b, 0x00, 0x06, 0x06, 0x04, 0x19}
+            var ws_ip = this.config.ws_address;
+            var ws_port = this.config.ws_port;
+
+
+            this.client = new net.Socket();
+
+            this.client.on('data', this.client_data_received.bind(this));
+            this.client.on('close', this.client_close.bind(this));
+            this.client.connect(ws_port, ws_ip, this.client_connect.bind(this));
+
+        }
 
         if (this.config.listener_active == true) {
+            this.log.info('Starting Listener');
             try {
                 webServer = http.createServer((request, response) => {
                 var my_url = url.parse(request.url, true);
@@ -69,13 +95,39 @@ class Sainlogic extends utils.Adapter {
 
 
                 webServer.on('error', this.server_error.bind(this));
-
                 webServer.listen(this.config.port, this.config.bind);
             }
             catch (e) {
                 this.log.error('Something else went wrong on starting our Listener');
             }
         }
+    }
+
+    client_connect() {
+        var bytestosend = [0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x19];
+        var getfirmwarecmd = [0xff, 0xff, 0x50, 0x03, 0x53];
+        var hexVal = new Uint8Array(getfirmwarecmd);
+
+        this.log.info('Scheduler connected to weather station');
+        this.client.write(hexVal);
+    }
+
+    client_data_received(data) {
+        this.log.debug('Scheduler Received (length): ' + data.length);
+        this.log.debug('Scheduler Received (length): ' + data.byteLength);
+        this.log.debug('Scheduler Received data string: ' +  data.toString('hex'));
+        
+        var firmware = hexToUtf8(data.toString('hex'));
+        firmware = firmware.slice(5, firmware.length);
+        this.log.info('Scheduler received version: ' + firmware);
+        this.setStateAsync('info.softwaretype', { val: firmware, ack: true });
+
+
+        this.client.destroy(); // kill client after server's response
+    }
+
+    client_close() {
+        this.log.info('Scheduler Connection closed');
     }
 
     server_error(e) {
@@ -173,6 +225,7 @@ class Sainlogic extends utils.Adapter {
         try {
             webServer.close(function () {
             }); 
+            client.destroy();
             log.info('cleaned everything up...');
             callback();
         } catch (e) {
