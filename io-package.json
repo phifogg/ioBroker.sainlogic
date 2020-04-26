@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.0.3",
+        "version": "0.0.4",
         "news": {
             "0.0.4": {
                 "en": "Adding scheduler - Part 2 - Weatherinfo",
