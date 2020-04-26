@@ -16,6 +16,8 @@ const net = require('net');
 //const binary = require('node-binary');
 const convert = (from, to) => str => Buffer.from(str, from).toString(to);
 const hexToUtf8 = convert('hex', 'utf8');
+const utf8ToHex = convert('utf8', 'hex');
+
 
 
 // const fs = require("fs");
@@ -117,11 +119,15 @@ class Sainlogic extends utils.Adapter {
         this.log.debug('Scheduler Received (length): ' + data.byteLength);
         this.log.debug('Scheduler Received data string: ' +  data.toString('hex'));
         
-        var firmware = hexToUtf8(data.toString('hex'));
-        firmware = firmware.slice(5, firmware.length);
+        var utf_data = hexToUtf8(data.toString('hex'));
+        this.log.info('Scheduler received raw: ' + utf_data);
+
+/*
+        // firmware parser
+        var firmware = utf_data.slice(5, utf_data.length);
         this.log.info('Scheduler received version: ' + firmware);
         this.setStateAsync('info.softwaretype', { val: firmware, ack: true });
-
+*/
 
         this.client.destroy(); // kill client after server's response
     }
