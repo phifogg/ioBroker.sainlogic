@@ -162,7 +162,7 @@ class Sainlogic extends utils.Adapter {
         this.log.debug('Data Scheduled outdoor temp (C): ' + this.convert_temp(r));
 
         // indoor humidity
-        var ihum = hex_data.slice(48, 50);
+        var ihum = hex_data.slice(44, 46);
         this.log.debug('Data Scheduler indoor humidity raw: ' + ihum);
         var r = parseInt(ihum);
         this.log.debug('Data Scheduled indoor humidity (%): ' + r);
