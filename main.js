@@ -111,7 +111,7 @@ class Sainlogic extends utils.Adapter {
     }
 
     client_data_received(data) {
-        this.log.info('Scheduler Received: ' + data);
+        this.log.info('Scheduler Received (length): ' + data.length);
         this.client.destroy(); // kill client after server's response
     }
 
