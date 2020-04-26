@@ -23,7 +23,8 @@ const utf8ToHex = convert('utf8', 'hex');
 // const fs = require("fs");
 
 let webServer = null;
-let client = null;
+let fwClient = null;
+let dataClient = null;
 
 class Sainlogic extends utils.Adapter {
 
@@ -66,12 +67,17 @@ class Sainlogic extends utils.Adapter {
             var ws_port = this.config.ws_port;
 
 
-            this.client = new net.Socket();
+            // firmware 
+            this.fwClient = new net.Socket();
+            this.fwClient.on('data', this.fwClient_data_received.bind(this));
+            this.fwClient.on('close', this.fwClient_close.bind(this));
+            this.fwClient.connect(ws_port, ws_ip, this.fwClient_connect.bind(this));
 
-            this.client.on('data', this.client_data_received.bind(this));
-            this.client.on('close', this.client_close.bind(this));
-            this.client.connect(ws_port, ws_ip, this.client_connect.bind(this));
-
+            // weather data
+            this.dataClient = new net.Socket();
+            this.dataClient.on('data', this.dataClient_data_received.bind(this));
+            this.dataClient.on('close', this.dataClient_close.bind(this));
+            this.dataClient.connect(ws_port, ws_ip, this.dataClient_connect.bind(this));
         }
 
         if (this.config.listener_active == true) {
@@ -105,34 +111,46 @@ class Sainlogic extends utils.Adapter {
         }
     }
 
-    client_connect() {
-        var bytestosend = [0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x06, 0x04, 0x19];
+    fwClient_connect() {
         var getfirmwarecmd = [0xff, 0xff, 0x50, 0x03, 0x53];
-        var hexVal = new Uint8Array(bytestosend);
-
-        this.log.info('Scheduler connected to weather station');
-        this.client.write(hexVal);
+        var hexVal = new Uint8Array(getfirmwarecmd);
+        this.log.info('FW Scheduler connected to weather station');
+        this.fwClient.write(hexVal);
     }
 
-    client_data_received(data) {
-        this.log.debug('Scheduler Received (length): ' + data.length);
-        this.log.debug('Scheduler Received (length): ' + data.byteLength);
-        this.log.debug('Scheduler Received data string: ' +  data.toString('hex'));
+    fwClient_data_received(data) {
+        this.log.debug('FW Scheduler Received (length): ' + data.length);
+        this.log.debug('FW Scheduler Received (length): ' + data.byteLength);
+        this.log.debug('FW Scheduler Received data string: ' +  data.toString('hex'));
         
         var utf_data = hexToUtf8(data.toString('hex'));
-        this.log.info('Scheduler received raw: ' + utf_data);
-
-/*
-        // firmware parser
-        var firmware = utf_data.slice(5, utf_data.length);
-        this.log.info('Scheduler received version: ' + firmware);
-        this.setStateAsync('info.softwaretype', { val: firmware, ack: true });
-*/
-
-        this.client.destroy(); // kill client after server's response
+        this.log.info('FW Scheduler received raw: ' + utf_data);
+        this.fwClient.destroy(); // kill client after server's response
     }
 
-    client_close() {
+    dataClient_close() {
+        this.log.info('FW Scheduler Connection closed');
+    }
+
+    dataClient_connect() {
+        var getweatherdatacmd = [0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x04, 0x19];
+        var hexVal = new Uint8Array(getweatherdatacmd);
+
+        this.log.info('Data Scheduler connected to weather station');
+        this.fwClient.write(hexVal);
+    }
+
+    dataClient_data_received(data) {
+        this.log.debug('Data Scheduler Received (length): ' + data.length);
+        this.log.debug('Data Scheduler Received (length): ' + data.byteLength);
+        this.log.debug('Data Scheduler Received data string: ' +  data.toString('hex'));
+        
+        var utf_data = hexToUtf8(data.toString('hex'));
+        this.log.info('Data Scheduler received raw: ' + utf_data);
+        this.fwClient.destroy(); // kill client after server's response
+    }
+
+    fwClient_close() {
         this.log.info('Scheduler Connection closed');
     }
 
