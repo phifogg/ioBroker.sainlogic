@@ -68,16 +68,16 @@ class Sainlogic extends utils.Adapter {
 
 
             // firmware 
-            this.fwClient = new net.Socket();
-            this.fwClient.on('data', this.fwClient_data_received.bind(this));
-            this.fwClient.on('close', this.fwClient_close.bind(this));
-            this.fwClient.connect(ws_port, ws_ip, this.fwClient_connect.bind(this));
+            fwClient = new net.Socket();
+            fwClient.on('data', this.fwClient_data_received.bind(this));
+            fwClient.on('close', this.fwClient_close.bind(this));
+            fwClient.connect(ws_port, ws_ip, this.fwClient_connect.bind(this));
 
             // weather data
-            this.dataClient = new net.Socket();
-            this.dataClient.on('data', this.dataClient_data_received.bind(this));
-            this.dataClient.on('close', this.dataClient_close.bind(this));
-            this.dataClient.connect(ws_port, ws_ip, this.dataClient_connect.bind(this));
+            dataClient = new net.Socket();
+            dataClient.on('data', this.dataClient_data_received.bind(this));
+            dataClient.on('close', this.dataClient_close.bind(this));
+            dataClient.connect(ws_port, ws_ip, this.dataClient_connect.bind(this));
         }
 
         if (this.config.listener_active == true) {
@@ -115,7 +115,7 @@ class Sainlogic extends utils.Adapter {
         var getfirmwarecmd = [0xff, 0xff, 0x50, 0x03, 0x53];
         var hexVal = new Uint8Array(getfirmwarecmd);
         this.log.info('FW Scheduler connected to weather station');
-        this.fwClient.write(hexVal);
+        fwClient.write(hexVal);
     }
 
     fwClient_data_received(data) {
@@ -125,7 +125,7 @@ class Sainlogic extends utils.Adapter {
         
         var utf_data = hexToUtf8(data.toString('hex'));
         this.log.info('FW Scheduler received raw: ' + utf_data);
-        this.fwClient.destroy(); // kill client after server's response
+        fwClient.destroy(); // kill client after server's response
     }
 
     dataClient_close() {
@@ -137,7 +137,7 @@ class Sainlogic extends utils.Adapter {
         var hexVal = new Uint8Array(getweatherdatacmd);
 
         this.log.info('Data Scheduler connected to weather station');
-        this.dataClient.write(hexVal);
+        dataClient.write(hexVal);
     }
 
     dataClient_data_received(data) {
@@ -147,7 +147,7 @@ class Sainlogic extends utils.Adapter {
         
         var utf_data = hexToUtf8(data.toString('hex'));
         this.log.info('Data Scheduler received raw: ' + utf_data);
-        this.dataClient.destroy(); // kill client after server's response
+        dataClient.destroy(); // kill client after server's response
     }
 
     fwClient_close() {
