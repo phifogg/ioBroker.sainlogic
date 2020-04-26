@@ -12,7 +12,7 @@ const utils = require('@iobroker/adapter-core');
 const url = require('url');
 const http = require('http');
 const net = require('net');
-const binary = require('binary');
+const Parser = require("binary-parser").Parser;
 
 //const binary = require('node-binary');
 const convert = (from, to) => str => Buffer.from(str, from).toString(to);
@@ -173,6 +173,19 @@ class Sainlogic extends utils.Adapter {
         this.log.debug('Data Scheduler outdoor humidity raw: ' + ohum);
         var r = parseInt(ohum, 16);
         this.log.debug('Data Scheduled outdoor humidity (%): ' + r);
+
+        // now try parser
+        var wdata = new Parser()
+            .endianess("big")
+            .bit7("start")
+            .unit2("itemp")
+            .bit1("x")
+            .uint2("otemp");
+
+        var buf = Buffer.from(hex_data, "hex");
+        this.log.info(wdata.parse(buf));
+
+
 
         dataClient.destroy(); // kill client after server's response
     }
