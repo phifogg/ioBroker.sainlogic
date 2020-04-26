@@ -13,7 +13,7 @@ const url = require('url');
 const http = require('http');
 const net = require('net');
 const buffer = require('buffer');
-const binary = require('node-binary');
+//const binary = require('node-binary');
 
 
 // const fs = require("fs");
