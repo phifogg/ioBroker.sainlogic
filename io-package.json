@@ -3,9 +3,9 @@
         "name": "sainlogic",
         "version": "0.0.3",
         "news": {
-            "0.0.3": {
-                "en": "Adding scheduler",
-                "de": "Geplantes Abholen der Daten einbauen"
+            "0.0.4": {
+                "en": "Adding scheduler - Part 2 - Weatherinfo",
+                "de": "Geplantes Abholen der Daten Part 2: Wetterdaten"
             }
         },
         "title": "Sainlogic Weatherstation",

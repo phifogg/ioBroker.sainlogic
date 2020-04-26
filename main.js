@@ -106,7 +106,7 @@ class Sainlogic extends utils.Adapter {
     client_connect() {
         var bytestosend = [0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x19];
         var getfirmwarecmd = [0xff, 0xff, 0x50, 0x03, 0x53];
-        var hexVal = new Uint8Array(getfirmwarecmd);
+        var hexVal = new Uint8Array(bytestosend);
 
         this.log.info('Scheduler connected to weather station');
         this.client.write(hexVal);
