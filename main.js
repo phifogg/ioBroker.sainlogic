@@ -66,13 +66,13 @@ class Sainlogic extends utils.Adapter {
             var ws_ip = this.config.ws_address;
             var ws_port = this.config.ws_port;
 
-
+/*
             // firmware 
             fwClient = new net.Socket();
             fwClient.on('data', this.fwClient_data_received.bind(this));
             fwClient.on('close', this.fwClient_close.bind(this));
             fwClient.connect(ws_port, ws_ip, this.fwClient_connect.bind(this));
-
+*/
             // weather data
             dataClient = new net.Socket();
             dataClient.on('data', this.dataClient_data_received.bind(this));
@@ -120,10 +120,10 @@ class Sainlogic extends utils.Adapter {
 
     fwClient_data_received(data) {
         this.log.debug('FW Scheduler Received (length): ' + data.length);
-        this.log.debug('FW Scheduler Received (length): ' + data.byteLength);
         this.log.debug('FW Scheduler Received data string: ' +  data.toString('hex'));
         
         var utf_data = hexToUtf8(data.toString('hex'));
+        utf_data = utf_data.slice(5, utf_data.length);
         this.log.info('FW Scheduler received raw: ' + utf_data);
         fwClient.destroy(); // kill client after server's response
     }
@@ -142,11 +142,17 @@ class Sainlogic extends utils.Adapter {
 
     dataClient_data_received(data) {
         this.log.debug('Data Scheduler Received (length): ' + data.length);
-        this.log.debug('Data Scheduler Received (length): ' + data.byteLength);
         this.log.debug('Data Scheduler Received data string: ' +  data.toString('hex'));
         
         var utf_data = hexToUtf8(data.toString('hex'));
-        this.log.info('Data Scheduler received raw: ' + utf_data);
+        this.log.debug('Data Scheduler received raw: ' + utf_data);
+
+        // indoor temperature
+        var utf_data = hexToUtf8(data.toString('hex'));
+        utf_data = utf_data.slice(7, 9);
+        this.log.debug('Data Scheduler indoor temp raw: ' + utf_data);
+        this.log.debug('Data Scheduled indoor temp (F): ' + parseInt(utf_data, 16));
+
         dataClient.destroy(); // kill client after server's response
     }
 
