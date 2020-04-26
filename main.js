@@ -143,11 +143,11 @@ class Sainlogic extends utils.Adapter {
     dataClient_data_received(data) {
         this.log.debug('Data Scheduler Received (length): ' + data.length);
         var hex_data = data.toString('hex');
-        this.log.debug('Data Scheduler Received data string: ' +  hex_data);
+        this.log.debug('Data Scheduler Received data string: ' +  data);
         
 
         // indoor temperature
-        var itemp = hex_data.slice(7, 9);
+        var itemp = data.slice(8, 10);
         this.log.debug('Data Scheduler indoor temp raw: ' + itemp);
         this.log.debug('Data Scheduled indoor temp (F): ' + parseInt(itemp, 16));
 
