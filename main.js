@@ -104,9 +104,6 @@ class Sainlogic extends utils.Adapter {
     }
 
     client_connect() {
-        var cmd = '\xFF\xFF\x0B\x00\x06\x04\x04\x19';
-//        var cmd = {0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x19};
-//        var cmd = '\xff\xff\x50\x03\x53';
         var bytestosend = [0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x19];
         var getfirmwarecmd = [0xff, 0xff, 0x50, 0x03, 0x53];
         var hexVal = new Uint8Array(getfirmwarecmd);
@@ -116,14 +113,15 @@ class Sainlogic extends utils.Adapter {
     }
 
     client_data_received(data) {
-        this.log.info('Scheduler Received (length): ' + data.length);
-        this.log.info('Scheduler Received (length): ' + data.byteLength);
-        this.log.info('Scheduler Received data string: ' +  data.toString('hex'));
+        this.log.debug('Scheduler Received (length): ' + data.length);
+        this.log.debug('Scheduler Received (length): ' + data.byteLength);
+        this.log.debug('Scheduler Received data string: ' +  data.toString('hex'));
         
         var firmware = hexToUtf8(data.toString('hex'));
         firmware = firmware.slice(5, firmware.length);
         this.log.info('Scheduler received version: ' + firmware);
- 
+        this.setStateAsync('info.softwaretype', { val: firmware, ack: true });
+
 
         this.client.destroy(); // kill client after server's response
     }
