@@ -13,6 +13,8 @@ const url = require('url');
 const http = require('http');
 const net = require('net');
 const buffer = require('buffer');
+const binary = require('node-binary');
+
 
 // const fs = require("fs");
 
@@ -104,7 +106,8 @@ class Sainlogic extends utils.Adapter {
 //        var cmd = {0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x19};
 //        var cmd = '\xff\xff\x50\x03\x53';
         var bytestosend = [0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x19];
-        var hexVal = new Uint8Array(bytestosend);
+        var getfirmwarecmd = [0xff, 0xff, 0x50, 0x03, 0x53];
+        var hexVal = new Uint8Array(getfirmwarecmd);
 
         this.log.info('Scheduler connected to weather station');
         this.client.write(hexVal);
@@ -112,6 +115,14 @@ class Sainlogic extends utils.Adapter {
 
     client_data_received(data) {
         this.log.info('Scheduler Received (length): ' + data.length);
+
+        this.log.info('Scheduler Received (length): ' + data.byteLength);
+        var buf = buffer.from(data);
+        this.log.info('Buffer is' + buf.toString);
+ //       binary.parse(data)
+ //             .skip(4)
+//              .word17bu('version');
+
         this.client.destroy(); // kill client after server's response
     }
 
