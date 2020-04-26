@@ -117,8 +117,10 @@ class Sainlogic extends utils.Adapter {
         this.log.info('Scheduler Received (length): ' + data.length);
 
         this.log.info('Scheduler Received (length): ' + data.byteLength);
-        var buf = Buffer.from(data, 'hex');
-        this.log.info('Buffer is' + buf.toString);
+        this.log.info('Scheduler Received data string: ' +  data.toString('hex'));
+
+//        var buf = Buffer.from(data, 'hex');
+//        this.log.info('Buffer is' + buf.toString);
  //       binary.parse(data)
  //             .skip(4)
 //              .word17bu('version');
