@@ -147,9 +147,20 @@ class Sainlogic extends utils.Adapter {
         
 
         // indoor temperature
-        var itemp = data.slice(8, 10);
+        var itemp = hex_data.slice(16, 20);
         this.log.debug('Data Scheduler indoor temp raw: ' + itemp);
-        this.log.debug('Data Scheduled indoor temp (F): ' + parseInt(itemp, 16));
+        var r = parseInt(itemp.match(/../g).reverse().join(''), 16) / 10;
+
+        this.log.debug('Data Scheduled indoor temp (F): ' + r);
+        this.log.debug('Data Scheduled indoor temp (C): ' + this.convert_temp(r));
+
+        // outdoor temperature
+        var otemp = hex_data.slice(22, 26);
+        this.log.debug('Data Scheduler outdoor temp raw: ' + otemp);
+        var r = parseInt(otemp.match(/../g).reverse().join(''), 16) / 10;
+
+        this.log.debug('Data Scheduled outdoor temp (F): ' + r);
+        this.log.debug('Data Scheduled outdoor temp (C): ' + this.convert_temp(r));
 
         dataClient.destroy(); // kill client after server's response
     }
