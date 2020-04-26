@@ -13,6 +13,8 @@ const url = require('url');
 const http = require('http');
 const net = require('net');
 const buffer = require('buffer');
+const Struct = require('struct').Struct;
+
 //const binary = require('node-binary');
 
 
@@ -118,7 +120,14 @@ class Sainlogic extends utils.Adapter {
 
         this.log.info('Scheduler Received (length): ' + data.byteLength);
         this.log.info('Scheduler Received data string: ' +  data.toString('hex'));
+        var version = new Struct()
+                .('chars', 'start',  5)     // 0 or 1 for instance
+                .('chars', 'version', 17);
 
+        version._setBuff(data.toString('hex'));
+        this.log.info(version.version);
+
+//person._setBuff(buffer);
 //        var buf = Buffer.from(data, 'hex');
 //        this.log.info('Buffer is' + buf.toString);
  //       binary.parse(data)
