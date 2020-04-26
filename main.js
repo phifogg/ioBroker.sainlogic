@@ -119,23 +119,13 @@ class Sainlogic extends utils.Adapter {
 
     client_data_received(data) {
         this.log.info('Scheduler Received (length): ' + data.length);
-
         this.log.info('Scheduler Received (length): ' + data.byteLength);
         this.log.info('Scheduler Received data string: ' +  data.toString('hex'));
-        this.log.info('Scheduler received decoded: ' + hexToUtf8(data.toString('hex')));
-        var version = new Struct()
-                .('chars', 'start',  5)
-                .('chars', 'version', 17);
-
-        version._setBuff(data.toString('hex'));
-        this.log.info('Scheduler extracted version: ' + version.get('version'));
-
-//person._setBuff(buffer);
-//        var buf = Buffer.from(data, 'hex');
-//        this.log.info('Buffer is' + buf.toString);
- //       binary.parse(data)
- //             .skip(4)
-//              .word17bu('version');
+        
+        var firmware = hexToUtf8(data.toString('hex'));
+        firmware = firmware.slice(5, firmware.length);
+        this.log.info('Scheduler received version: ' + firmware);
+ 
 
         this.client.destroy(); // kill client after server's response
     }
