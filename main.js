@@ -16,6 +16,8 @@ const buffer = require('buffer');
 const Struct = require('struct').Struct;
 
 //const binary = require('node-binary');
+const convert = (from, to) => str => Buffer.from(str, from).toString(to);
+const hexToUtf8 = convert('hex', 'utf8');
 
 
 // const fs = require("fs");
@@ -120,12 +122,13 @@ class Sainlogic extends utils.Adapter {
 
         this.log.info('Scheduler Received (length): ' + data.byteLength);
         this.log.info('Scheduler Received data string: ' +  data.toString('hex'));
+        this.log.info('Scheduler received decoded: ' + hexToUtf8(data.toString('hex')));
         var version = new Struct()
-                .('chars', 'start',  5)     // 0 or 1 for instance
+                .('chars', 'start',  5)
                 .('chars', 'version', 17);
 
         version._setBuff(data.toString('hex'));
-        this.log.info(version.version);
+        this.log.info('Scheduler extracted version: ' + version.get('version'));
 
 //person._setBuff(buffer);
 //        var buf = Buffer.from(data, 'hex');
