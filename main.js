@@ -12,6 +12,7 @@ const utils = require('@iobroker/adapter-core');
 const url = require('url');
 const http = require('http');
 const net = require('net');
+const binary = require('binary');
 
 //const binary = require('node-binary');
 const convert = (from, to) => str => Buffer.from(str, from).toString(to);
