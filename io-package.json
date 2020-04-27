@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.0.8",
+        "version": "0.0.9",
         "news": {
+          "0.0.9": {
+            "en": "Adding scheduler - Part 4 - Combine Weatherdata and Firmware",
+            "de": "Geplantes Abholen der Daten Part 4: Wetterdaten und Firmware zusammen"            
+          },
            "0.0.8": {
               "en": "Adding scheduler - Part 3 - Weatherinfo completed",
               "de": "Geplantes Abholen der Daten Part 3: Wetterdaten komplett"

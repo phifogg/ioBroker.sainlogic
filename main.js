@@ -26,6 +26,7 @@ const utf8ToHex = convert('utf8', 'hex');
 let webServer = null;
 let fwClient = null;
 let dataClient = null;
+let json_response = null;
 
 class Sainlogic extends utils.Adapter {
 
@@ -67,6 +68,7 @@ class Sainlogic extends utils.Adapter {
             var ws_ip = this.config.ws_address;
             var ws_port = this.config.ws_port;
 
+            json_response = {};
 
             // firmware 
             fwClient = new net.Socket();
@@ -168,13 +170,13 @@ class Sainlogic extends utils.Adapter {
            .uint8('UV');
 
         var buf = Buffer.from(hex_data, "hex");
-        var json_response = wdata.parse(buf);
+        json_response = wdata.parse(buf);
         this.log.info(JSON.stringify(wdata.parse(buf)));
 
         json_response.softwaretype = "Just a string for a test";
-        this.setDecimals(json_response);
+        this.setDecimals();
         var datetime = new Date();
-        this.setStates(datetime, json_response);
+        this.setStates(datetime);
 
         dataClient.destroy(); // kill client after server's response
     }
@@ -185,7 +187,7 @@ class Sainlogic extends utils.Adapter {
         dataClient = new net.Socket();
         dataClient.on('data', this.dataClient_data_received.bind(this));
         dataClient.on('close', this.dataClient_close.bind(this));
-        dataClient.connect(this.config.ws_port, this.config.ws_ip, this.dataClient_connect.bind(this));
+        dataClient.connect(this.config.ws_port, this.config.ws_address, this.dataClient_connect.bind(this));
         
     }
 
@@ -202,9 +204,8 @@ class Sainlogic extends utils.Adapter {
 
     /**
      * Parses the JSON object delivered by the Query update from weather station
-     * @param {*} json_response 
      */
-    parse_response(json_response) {
+    parse_response() {
         var dateutc = json_response.dateutc;
         var date = new Date(dateutc + ' UTC');
         this.convertToMetric(json_response);
@@ -212,7 +213,7 @@ class Sainlogic extends utils.Adapter {
 
     }
 
-    setDecimals(json_response) {
+    setDecimals() {
         var divide_by_10 = [ 'indoortemp', 'temp', 'dewpt', 'windchill', 'barom', 'absbarom', 'rain', 'dailyrain', 'weeklyrain', 'monthlyrain', 'yearlyrain' ];
         
         divide_by_10.forEach(function(state) {
@@ -223,7 +224,7 @@ class Sainlogic extends utils.Adapter {
 
     }
 
-    convertToMetric(json_response) {
+    convertToMetric() {
         json_response.indoortemp = this.convert_temp(json_response.indoortempf);
         json_response.temp = this.convert_temp(json_response.tempf);
         json_response.dewpt = this.convert_temp(json_response.dewptf);
@@ -244,7 +245,7 @@ class Sainlogic extends utils.Adapter {
      * @param {Date} date
      * @param {{ softwaretype: any; indoortempf: any; tempf: any; dewptf: any; windchillf: any; indoorhumidity: any; humidity: any; windspeedmph: any; windgustmph: any; winddir: any; baromin: any; absbaromin: any; ... 6 more ...; UV: any; }} json_response
      */
-    setStates(date, json_response) {
+    setStates(date) {
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
         this.setStateAsync('info.softwaretype', { val: json_response.softwaretype, ack: true });
         // temperatures
