@@ -1,8 +1,13 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.0.7",
+        "version": "0.0.8",
         "news": {
+           "0.0.8": {
+              "en": "Adding scheduler - Part 3 - Weatherinfo completed",
+              "de": "Geplantes Abholen der Daten Part 3: Wetterdaten komplett"
+            },
+
             "0.0.4": {
                 "en": "Adding scheduler - Part 2 - Weatherinfo",
                 "de": "Geplantes Abholen der Daten Part 2: Wetterdaten"

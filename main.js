@@ -146,53 +146,38 @@ class Sainlogic extends utils.Adapter {
         var hex_data = data.toString('hex');
         this.log.debug('Data Scheduler Received data string: ' +  data);
         
-
-        // indoor temperature
-        var itemp = hex_data.slice(16, 20);
-        this.log.debug('Data Scheduler indoor temp raw: ' + itemp);
-        var r = parseInt(itemp.match(/../g).reverse().join(''), 16) / 10;
-
-        this.log.debug('Data Scheduled indoor temp (F): ' + r);
-        this.log.debug('Data Scheduled indoor temp (C): ' + this.convert_temp(r));
-
-        // outdoor temperature
-        var otemp = hex_data.slice(22, 26);
-        this.log.debug('Data Scheduler outdoor temp raw: ' + otemp);
-        var r = parseInt(otemp.match(/../g).reverse().join(''), 16) / 10;
-        this.log.debug('Data Scheduled outdoor temp (F): ' + r);
-        this.log.debug('Data Scheduled outdoor temp (C): ' + this.convert_temp(r));
-
-        // indoor humidity
-        var ihum = hex_data.slice(44, 46);
-        this.log.debug('Data Scheduler indoor humidity raw: ' + ihum);
-        var r = parseInt(ihum, 16);
-        this.log.debug('Data Scheduled indoor humidity (%): ' + r);
-
-        // outdoor humidity
-        var ohum = hex_data.slice(48, 50);
-        this.log.debug('Data Scheduler outdoor humidity raw: ' + ohum);
-        var r = parseInt(ohum, 16);
-        this.log.debug('Data Scheduled outdoor humidity (%): ' + r);
-
-        // now try parser
+        // setup parser
        var wdata = new BinaryParser()
-           .endianess("big")
-           .seek(7)
-           .uint16("itemp")
-           .seek(1)
-           .uint16("otemp")
-           .seek(1)
-           .uint16("dewpt")
-           .seek(1)
-           .uint16("windchill")
-           .seek(1)
-           .uint16be("heatindex")
-           .seek(1)
-           .uint8("in_humidity");
+           .endianess("big").seek(7)
+           .uint16("indoortemp").seek(1)
+           .uint16("temp").seek(1)
+           .uint16("dewpt").seek(1)
+           .uint16("windchill").seek(1)
+           .uint16be("heatindex").seek(1)
+           .uint8("indoorhumidity").seek(1)
+           .uint8("humidity").seek(1)
+           .uint16("absbarom").seek(1)
+           .uint16('barom').seek(1)
+           .uint16('winddir').seek(1)
+           .uint16('windspeed').seek(1)
+           .uint16('windgust').seek(1)
+           .uint32('rain').seek(1)
+           .uint32('dailyrain').seek(1)
+           .uint32('weeklyrain').seek(1)
+           .uint32('monthlyrain').seek(1)
+           .uint32('yearlyrain').seek(1)
+           .uint32('raintotal').seek(1)
+           .uint32('solarradiation').seek(1)
+           .uint32('UVraw').seek(1)
+           .uint32('UV');
 
         var buf = Buffer.from(hex_data, "hex");
         this.log.info(JSON.stringify(wdata.parse(buf)));
 
+        buf.softwaretype = "Just a string for a test";
+
+        var datetime = new Date();
+        this.setStates(datetime, buf);
 
         dataClient.destroy(); // kill client after server's response
     }
@@ -219,40 +204,59 @@ class Sainlogic extends utils.Adapter {
     parse_response(json_response) {
         var dateutc = json_response.dateutc;
         var date = new Date(dateutc + ' UTC');
-        
+        this.convertToMetric(json_response);
+        this.setStates(date, json_response);
+
+    }
+
+    convertToMetric(json_response) {
+        json_response.indoortemp = this.convert_temp(json_response.indoortempf);
+        json_response.temp = this.convert_temp(json_response.tempf);
+        json_response.dewpt = this.convert_temp(json_response.dewptf);
+        json_response.windchill = this.convert_temp(json_response.windchillf);
+        json_response.windspeed = this.convert_windspeed(json_response.windspeedmph);
+        json_response.windgust = this.convert_windspeed(json_response.windgustmph);
+        json_response.barom = this.convert_pressure(json_response.baromin);
+        json_response.absbarom = this.convert_pressure(json_response.absbaromin);
+        json_response.rain = this.convert_rain(json_response.rainin);
+        json_response.dailyrain = this.convert_rain(json_response.dailyrainin);
+        json_response.weeklyrain = this.convert_rain(json_response.weeklyrainin);
+        json_response.monthlyrain = this.convert_rain(json_response.monthlyrainin);
+        json_response.yearlyrain = this.convert_rain(json_response.yearlyrainin);
+    }
+
+
+    /**
+     * @param {Date} date
+     * @param {{ softwaretype: any; indoortempf: any; tempf: any; dewptf: any; windchillf: any; indoorhumidity: any; humidity: any; windspeedmph: any; windgustmph: any; winddir: any; baromin: any; absbaromin: any; ... 6 more ...; UV: any; }} json_response
+     */
+    setStates(date, json_response) {
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
         this.setStateAsync('info.softwaretype', { val: json_response.softwaretype, ack: true });
-
         // temperatures
-        this.setStateAsync('weather.indoortemp', { val: this.convert_temp(json_response.indoortempf), ack: true });
-        this.setStateAsync('weather.outdoortemp', {val: this.convert_temp(json_response.tempf), ack: true });
-        this.setStateAsync('weather.dewpointtemp', {val: this.convert_temp(json_response.dewptf), ack: true });
-        this.setStateAsync('weather.windchilltemp', {val: this.convert_temp(json_response.windchillf), ack: true });
-
+        this.setStateAsync('weather.indoortemp', { val: json_response.indoortemp, ack: true });
+        this.setStateAsync('weather.outdoortemp', { val: json_response.temp, ack: true });
+        this.setStateAsync('weather.dewpointtemp', { val: json_response.dewpt, ack: true });
+        this.setStateAsync('weather.windchilltemp', { val: json_response.windchill, ack: true });
         // humidity
-        this.setStateAsync('weather.indoorhumidity', {val: json_response.indoorhumidity, ack: true});
-        this.setStateAsync('weather.outdoorhumidity', {val: json_response.humidity, ack: true});
-
+        this.setStateAsync('weather.indoorhumidity', { val: json_response.indoorhumidity, ack: true });
+        this.setStateAsync('weather.outdoorhumidity', { val: json_response.humidity, ack: true });
         // wind
-        this.setStateAsync('weather.windspeed', {val: this.convert_windspeed(json_response.windspeedmph), ack: true});
-        this.setStateAsync('weather.windgustspeed', {val: this.convert_windspeed(json_response.windgustmph), ack: true});
-        this.setStateAsync('weather.winddir', {val: json_response.winddir, ack: true});
-
+        this.setStateAsync('weather.windspeed', { val: json_response.windspeed, ack: true });
+        this.setStateAsync('weather.windgustspeed', { val: json_response.windgust, ack: true });
+        this.setStateAsync('weather.winddir', { val: json_response.winddir, ack: true });
         // pressure
-        this.setStateAsync('weather.pressurerel', {val: this.convert_pressure(json_response.baromin), ack: true});
-        this.setStateAsync('weather.pressureabs', {val: this.convert_pressure(json_response.absbaromin), ack: true});
-
+        this.setStateAsync('weather.pressurerel', { val: json_response.barom, ack: true });
+        this.setStateAsync('weather.pressureabs', { val: json_response.absbarom, ack: true });
         // rain
-        this.setStateAsync('weather.rain', {val: this.convert_rain(json_response.rainin), ack: true});
-        this.setStateAsync('weather.dailyrain', {val: this.convert_rain(json_response.dailyrainin), ack: true});
-        this.setStateAsync('weather.weeklyrain', {val: this.convert_rain(json_response.weeklyrainin), ack: true});
-        this.setStateAsync('weather.monthlyrain', {val: this.convert_rain(json_response.monthlyrainin), ack: true});
-        this.setStateAsync('weather.yearlyrain', {val: this.convert_rain(json_response.yearlyrainin), ack: true});
-        
+        this.setStateAsync('weather.rain', { val: json_response.rain, ack: true });
+        this.setStateAsync('weather.dailyrain', { val: json_response.dailyrain, ack: true });
+        this.setStateAsync('weather.weeklyrain', { val: json_response.weeklyrain, ack: true });
+        this.setStateAsync('weather.monthlyrain', { val: json_response.monthlyrain, ack: true });
+        this.setStateAsync('weather.yearlyrain', { val: json_response.yearlyrain, ack: true });
         // solar
-        this.setStateAsync('weather.solarradiation', {val: json_response.solarradiation, ack: true});
-        this.setStateAsync('weather.uvi', {val: json_response.UV, ack: true});
-
+        this.setStateAsync('weather.solarradiation', { val: json_response.solarradiation, ack: true });
+        this.setStateAsync('weather.uvi', { val: json_response.UV, ack: true });
     }
 
     /**
