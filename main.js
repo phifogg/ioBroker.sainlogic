@@ -125,12 +125,7 @@ class Sainlogic extends utils.Adapter {
     }
 
     dataClient_close() {
-        this.log.info('FW Scheduler Connection closed');
-        // weather data
-        dataClient = new net.Socket();
-        dataClient.on('data', this.dataClient_data_received.bind(this));
-        dataClient.on('close', this.dataClient_close.bind(this));
-        dataClient.connect(this.config.ws_port, this.config.ws_ip, this.dataClient_connect.bind(this));
+        this.log.info('Data Scheduler Connection closed');
 
     }
 
@@ -185,7 +180,13 @@ class Sainlogic extends utils.Adapter {
     }
 
     fwClient_close() {
-        this.log.info('Scheduler Connection closed');
+        this.log.info('FW Scheduler Connection closed');
+        // weather data
+        dataClient = new net.Socket();
+        dataClient.on('data', this.dataClient_data_received.bind(this));
+        dataClient.on('close', this.dataClient_close.bind(this));
+        dataClient.connect(this.config.ws_port, this.config.ws_ip, this.dataClient_connect.bind(this));
+        
     }
 
     server_error(e) {
