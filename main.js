@@ -123,6 +123,7 @@ class Sainlogic extends utils.Adapter {
         var utf_data = hexToUtf8(data.toString('hex'));
         utf_data = utf_data.slice(5, utf_data.length);
         this.log.info('FW Scheduler received raw: ' + utf_data);
+        json_response.softwaretype = utf_data;
         fwClient.destroy(); // kill client after server's response
     }
 
@@ -170,10 +171,9 @@ class Sainlogic extends utils.Adapter {
            .uint8('UV');
 
         var buf = Buffer.from(hex_data, "hex");
-        json_response = wdata.parse(buf);
+        json_response = Object.assign(json_response, wdata.parse(buf));
         this.log.info(JSON.stringify(wdata.parse(buf)));
 
-        json_response.softwaretype = "Just a string for a test";
         this.setDecimals();
         var datetime = new Date();
         this.setStates(datetime);
