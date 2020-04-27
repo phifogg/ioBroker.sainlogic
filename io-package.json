@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "news": {
-          "0.1.0": {
+          "0.1.1": {
             "en": "Beta Release with Listener and Scheduler",
             "de": "Beta Release mit Listener und Scheduler"
           },
@@ -69,7 +69,7 @@
         "scheduler_active": false,
         "ws_address": "",
         "ws_port": 45000,
-        "ws_frew": 15
+        "ws_freq": 15
     },
     "objects": [],
     "instanceObjects": [ 
