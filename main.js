@@ -168,16 +168,17 @@ class Sainlogic extends utils.Adapter {
            .uint32('yearlyrain').seek(1)
            .uint32('raintotal').seek(1)
            .uint32('solarradiation').seek(1)
-           .uint32('UVraw').seek(1)
-           .uint32('UV');
+           .uint16('UVraw').seek(1)
+           .uint8('UV');
 
         var buf = Buffer.from(hex_data, "hex");
+        var json_response = wdata.parse(buf);
         this.log.info(JSON.stringify(wdata.parse(buf)));
 
-        buf.softwaretype = "Just a string for a test";
-
+        json_response.softwaretype = "Just a string for a test";
+        this.setDecimals(json_response);
         var datetime = new Date();
-        this.setStates(datetime, buf);
+        this.setStates(datetime, json_response);
 
         dataClient.destroy(); // kill client after server's response
     }
@@ -206,6 +207,17 @@ class Sainlogic extends utils.Adapter {
         var date = new Date(dateutc + ' UTC');
         this.convertToMetric(json_response);
         this.setStates(date, json_response);
+
+    }
+
+    setDecimals(json_response) {
+        var divide_by_10 = [ 'indoortemp', 'temp', 'dewptf', 'windchill', 'barom', 'absbarom', 'rain', 'dailyrain', 'weeklyrain', 'monthlyrain', 'yearlyrain' ];
+        
+        divide_by_10.forEach(function(state) {
+            json_response[state] = json_response[state] / 10;
+        });
+
+        json_response.solarradiation = json_response.solarradiation / 10000;
 
     }
 
