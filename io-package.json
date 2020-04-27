@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.0.10",
+        "version": "0.1.0",
         "news": {
+          "0.1.0": {
+            "en": "Beta Release with Listener and Scheduler",
+            "de": "Beta Release mit Listener und Scheduler"
+          },
           "0.0.10": {
             "en": "Added 15 second interval to scheduler",
             "de": "15 Sekunden Interval für Scheduler"
@@ -64,7 +68,8 @@
         "listener_active": false,
         "scheduler_active": false,
         "ws_address": "",
-        "ws_port": 45000
+        "ws_port": 45000,
+        "ws_frew": 15
     },
     "objects": [],
     "instanceObjects": [ 

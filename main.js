@@ -62,12 +62,11 @@ class Sainlogic extends utils.Adapter {
         this.log.info('Scheduler active: ' + this.config.scheduler_active);
         this.log.info('WS IP: ' + this.config.ws_address);
         this.log.info('WS Port: ' + this.config.ws_port);
+        this.log.info('WS Frequency: ' + this.config.wd_freq);
 
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');
-
-
-            schedule_timer = setInterval(this.startScheduler, 15000);
+            schedule_timer = setInterval(this.startScheduler.bind(this), this.config.wd_freq * 1000);
 
         }
 
