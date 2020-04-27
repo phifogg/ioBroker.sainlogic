@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.0.9",
+        "version": "0.0.10",
         "news": {
+          "0.0.10": {
+            "en": "Added 15 second interval to scheduler",
+            "de": "15 Sekunden Interval für Scheduler"
+          },
           "0.0.9": {
             "en": "Adding scheduler - Part 4 - Combine Weatherdata and Firmware",
             "de": "Geplantes Abholen der Daten Part 4: Wetterdaten und Firmware zusammen"            

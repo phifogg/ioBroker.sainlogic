@@ -27,6 +27,7 @@ let webServer = null;
 let fwClient = null;
 let dataClient = null;
 let json_response = null;
+let schedule_timer = null;
 
 class Sainlogic extends utils.Adapter {
 
@@ -64,17 +65,9 @@ class Sainlogic extends utils.Adapter {
 
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');
-             // Sende-Befehl {0xff, 0xff, 0x0b, 0x00, 0x06, 0x06, 0x04, 0x19}
-            var ws_ip = this.config.ws_address;
-            var ws_port = this.config.ws_port;
 
-            json_response = {};
 
-            // firmware 
-            fwClient = new net.Socket();
-            fwClient.on('data', this.fwClient_data_received.bind(this));
-            fwClient.on('close', this.fwClient_close.bind(this));
-            fwClient.connect(ws_port, ws_ip, this.fwClient_connect.bind(this));
+            schedule_timer = setInterval(this.startScheduler, 15000);
 
         }
 
@@ -107,6 +100,15 @@ class Sainlogic extends utils.Adapter {
                 this.log.error('Something else went wrong on starting our Listener');
             }
         }
+    }
+
+    startScheduler() {
+        json_response = {};
+        // firmware 
+        fwClient = new net.Socket();
+        fwClient.on('data', this.fwClient_data_received.bind(this));
+        fwClient.on('close', this.fwClient_close.bind(this));
+        fwClient.connect(this.config.ws_port, this.config.ws_address, this.fwClient_connect.bind(this));
     }
 
     fwClient_connect() {
@@ -313,10 +315,15 @@ class Sainlogic extends utils.Adapter {
      */
     onUnload(callback) {
         try {
-            webServer.close(function () {
-            }); 
-            client.destroy();
-            log.info('cleaned everything up...');
+            if (webServer)
+                webServer.close(); 
+            if (schedule_timer)
+                clearInterval(schedule_timer);
+            if (dataClient) 
+                dataClient.destroy();
+            if (fwClient)
+                fwClient.destroy();
+            this.log.info('cleaned everything up...');
             callback();
         } catch (e) {
             callback();
