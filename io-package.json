@@ -1,11 +1,28 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.0.3",
+        "version": "0.1.2",
         "news": {
-            "0.0.3": {
-                "en": "Adding scheduler",
-                "de": "Geplantes Abholen der Daten einbauen"
+          "0.1.2": {
+            "en": "Beta Release with Listener and Scheduler",
+            "de": "Beta Release mit Listener und Scheduler"
+          },
+          "0.0.10": {
+            "en": "Added 15 second interval to scheduler",
+            "de": "15 Sekunden Interval für Scheduler"
+          },
+          "0.0.9": {
+            "en": "Adding scheduler - Part 4 - Combine Weatherdata and Firmware",
+            "de": "Geplantes Abholen der Daten Part 4: Wetterdaten und Firmware zusammen"            
+          },
+           "0.0.8": {
+              "en": "Adding scheduler - Part 3 - Weatherinfo completed",
+              "de": "Geplantes Abholen der Daten Part 3: Wetterdaten komplett"
+            },
+
+            "0.0.4": {
+                "en": "Adding scheduler - Part 2 - Weatherinfo",
+                "de": "Geplantes Abholen der Daten Part 2: Wetterdaten"
             }
         },
         "title": "Sainlogic Weatherstation",
@@ -51,7 +68,8 @@
         "listener_active": false,
         "scheduler_active": false,
         "ws_address": "",
-        "ws_port": 45000
+        "ws_port": 45000,
+        "ws_freq": 15
     },
     "objects": [],
     "instanceObjects": [ 
