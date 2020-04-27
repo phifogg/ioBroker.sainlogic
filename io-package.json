@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "news": {
-          "0.1.1": {
+          "0.1.2": {
             "en": "Beta Release with Listener and Scheduler",
             "de": "Beta Release mit Listener und Scheduler"
           },
