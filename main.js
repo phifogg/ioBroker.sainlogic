@@ -67,18 +67,13 @@ class Sainlogic extends utils.Adapter {
             var ws_ip = this.config.ws_address;
             var ws_port = this.config.ws_port;
 
-/*
+
             // firmware 
             fwClient = new net.Socket();
             fwClient.on('data', this.fwClient_data_received.bind(this));
             fwClient.on('close', this.fwClient_close.bind(this));
             fwClient.connect(ws_port, ws_ip, this.fwClient_connect.bind(this));
-*/
-            // weather data
-            dataClient = new net.Socket();
-            dataClient.on('data', this.dataClient_data_received.bind(this));
-            dataClient.on('close', this.dataClient_close.bind(this));
-            dataClient.connect(ws_port, ws_ip, this.dataClient_connect.bind(this));
+
         }
 
         if (this.config.listener_active == true) {
@@ -131,6 +126,12 @@ class Sainlogic extends utils.Adapter {
 
     dataClient_close() {
         this.log.info('FW Scheduler Connection closed');
+        // weather data
+        dataClient = new net.Socket();
+        dataClient.on('data', this.dataClient_data_received.bind(this));
+        dataClient.on('close', this.dataClient_close.bind(this));
+        dataClient.connect(this.config.ws_port, this.config.ws_ip, this.dataClient_connect.bind(this));
+
     }
 
     dataClient_connect() {
@@ -211,7 +212,7 @@ class Sainlogic extends utils.Adapter {
     }
 
     setDecimals(json_response) {
-        var divide_by_10 = [ 'indoortemp', 'temp', 'dewptf', 'windchill', 'barom', 'absbarom', 'rain', 'dailyrain', 'weeklyrain', 'monthlyrain', 'yearlyrain' ];
+        var divide_by_10 = [ 'indoortemp', 'temp', 'dewpt', 'windchill', 'barom', 'absbarom', 'rain', 'dailyrain', 'weeklyrain', 'monthlyrain', 'yearlyrain' ];
         
         divide_by_10.forEach(function(state) {
             json_response[state] = json_response[state] / 10;
