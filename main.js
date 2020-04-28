@@ -14,14 +14,9 @@ const http = require('http');
 const net = require('net');
 const BinaryParser = require('binary-parser').Parser;
 
-//const binary = require('node-binary');
 const convert = (from, to) => str => Buffer.from(str, from).toString(to);
 const hexToUtf8 = convert('hex', 'utf8');
 const utf8ToHex = convert('utf8', 'hex');
-
-
-
-// const fs = require("fs");
 
 let webServer = null;
 let fwClient = null;
@@ -55,20 +50,22 @@ class Sainlogic extends utils.Adapter {
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        this.log.info('Listner active: ' + this.config.listener_active);
-        this.log.info('Config IP: ' + this.config.bind);
-        this.log.info('Config port: ' + this.config.port);
-        this.log.info('Config path: ' + this.config.path);
-        this.log.info('Scheduler active: ' + this.config.scheduler_active);
-        this.log.info('WS IP: ' + this.config.ws_address);
-        this.log.info('WS Port: ' + this.config.ws_port);
-        this.log.info('WS Frequency: ' + this.config.ws_freq);
+        this.log.info('Starting Sainlogic Adapter')
+        this.log.debug('=== Listener config ===');
+        this.log.debug('Listner active: ' + this.config.listener_active);
+        this.log.debug('Config IP: ' + this.config.bind);
+        this.log.debug('Config port: ' + this.config.port);
+        this.log.debug('Config path: ' + this.config.path);
+        this.log.debug('=== Scheduler config ===');
+        this.log.debug('Scheduler active: ' + this.config.scheduler_active);
+        this.log.debug('WS IP: ' + this.config.ws_address);
+        this.log.debug('WS Port: ' + this.config.ws_port);
+        this.log.debug('WS Frequency: ' + this.config.ws_freq);
         json_response = {};
 
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');
             schedule_timer = setInterval(this.startScheduler.bind(this), this.config.ws_freq * 1000);
-
         }
 
         if (this.config.listener_active == true) {
@@ -80,13 +77,13 @@ class Sainlogic extends utils.Adapter {
                 var my_path = my_url.pathname;
 
                 if (my_path == this.config.path) {  
-                    this.log.info('Received path: ' + my_path);
-                    this.log.info('JSON Query string: ' + JSON.stringify(json_response));
+                    this.log.info('Listener received update: ' + JSON.stringify(json_response));
                     response.writeHead(200, {"Content-Type": "text/html"});
                     response.end();
                     this.parse_response();
                 }
                 else {
+                    this.log.warn('Listener received illegal request: ' + request.url);
                     response.writeHead(400, {"Content-Type": "text/html"});
                     response.end();
                  }
@@ -103,6 +100,7 @@ class Sainlogic extends utils.Adapter {
     }
 
     startScheduler() {
+        this.log.info('Scheduler pulling for new data')
         // firmware 
         fwClient = new net.Socket();
         fwClient.on('data', this.fwClient_data_received.bind(this));
@@ -113,23 +111,22 @@ class Sainlogic extends utils.Adapter {
     fwClient_connect() {
         var getfirmwarecmd = [0xff, 0xff, 0x50, 0x03, 0x53];
         var hexVal = new Uint8Array(getfirmwarecmd);
-        this.log.info('FW Scheduler connected to weather station');
+        this.log.debug('FW Scheduler connected to weather station');
         fwClient.write(hexVal);
     }
 
     fwClient_data_received(data) {
-        this.log.debug('FW Scheduler Received (length): ' + data.length);
         this.log.debug('FW Scheduler Received data string: ' +  data.toString('hex'));
         
         var utf_data = hexToUtf8(data.toString('hex'));
         utf_data = utf_data.slice(5, utf_data.length);
-        this.log.info('FW Scheduler received raw: ' + utf_data);
+        this.log.debug('FW Scheduler received raw: ' + utf_data);
         json_response.softwaretype = utf_data;
         fwClient.destroy(); // kill client after server's response
     }
 
     dataClient_close() {
-        this.log.info('Data Scheduler Connection closed');
+        this.log.debug('Data Scheduler Connection closed');
 
     }
 
@@ -137,12 +134,11 @@ class Sainlogic extends utils.Adapter {
         var getweatherdatacmd = [0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x04, 0x19];
         var hexVal = new Uint8Array(getweatherdatacmd);
 
-        this.log.info('Data Scheduler connected to weather station');
+        this.log.debug('Data Scheduler connected to weather station');
         dataClient.write(hexVal);
     }
 
     dataClient_data_received(data) {
-        this.log.debug('Data Scheduler Received (length): ' + data.length);
         var hex_data = data.toString('hex');
         this.log.debug('Data Scheduler Received data string: ' +  data);
         
@@ -173,7 +169,7 @@ class Sainlogic extends utils.Adapter {
 
         var buf = Buffer.from(hex_data, "hex");
         json_response = Object.assign(json_response, wdata.parse(buf));
-        this.log.info(JSON.stringify(wdata.parse(buf)));
+        this.log.debug(JSON.stringify(wdata.parse(buf)));
 
         this.setDecimals();
         var datetime = new Date();
@@ -183,7 +179,7 @@ class Sainlogic extends utils.Adapter {
     }
 
     fwClient_close() {
-        this.log.info('FW Scheduler Connection closed');
+        this.log.debug('FW Scheduler Connection closed');
         // weather data
         dataClient = new net.Socket();
         dataClient.on('data', this.dataClient_data_received.bind(this));
@@ -225,19 +221,19 @@ class Sainlogic extends utils.Adapter {
     }
 
     convertToMetric() {
-        json_response.indoortemp = this.convert_temp(json_response.indoortempf);
-        json_response.temp = this.convert_temp(json_response.tempf);
-        json_response.dewpt = this.convert_temp(json_response.dewptf);
-        json_response.windchill = this.convert_temp(json_response.windchillf);
-        json_response.windspeed = this.convert_windspeed(json_response.windspeedmph);
-        json_response.windgust = this.convert_windspeed(json_response.windgustmph);
-        json_response.barom = this.convert_pressure(json_response.baromin);
-        json_response.absbarom = this.convert_pressure(json_response.absbaromin);
-        json_response.rain = this.convert_rain(json_response.rainin);
-        json_response.dailyrain = this.convert_rain(json_response.dailyrainin);
-        json_response.weeklyrain = this.convert_rain(json_response.weeklyrainin);
-        json_response.monthlyrain = this.convert_rain(json_response.monthlyrainin);
-        json_response.yearlyrain = this.convert_rain(json_response.yearlyrainin);
+        json_response.indoortemp = this.convert_temp(json_response.indoortempf).toFixed(1);
+        json_response.temp = this.convert_temp(json_response.tempf).toFixed(1);
+        json_response.dewpt = this.convert_temp(json_response.dewptf).toFixed(1);
+        json_response.windchill = this.convert_temp(json_response.windchillf).toFixed(1);
+        json_response.windspeed = this.convert_windspeed(json_response.windspeedmph).toFixed(1);
+        json_response.windgust = this.convert_windspeed(json_response.windgustmph).toFixed(1);
+        json_response.barom = this.convert_pressure(json_response.baromin).toFixed(1);
+        json_response.absbarom = this.convert_pressure(json_response.absbaromin).toFixed(1);
+        json_response.rain = this.convert_rain(json_response.rainin).toFixed(1);
+        json_response.dailyrain = this.convert_rain(json_response.dailyrainin).toFixed(1);
+        json_response.weeklyrain = this.convert_rain(json_response.weeklyrainin).toFixed(1);
+        json_response.monthlyrain = this.convert_rain(json_response.monthlyrainin).toFixed(1);
+        json_response.yearlyrain = this.convert_rain(json_response.yearlyrainin).toFixed(1);
     }
 
 
@@ -321,7 +317,7 @@ class Sainlogic extends utils.Adapter {
                 dataClient.destroy();
             if (fwClient)
                 fwClient.destroy();
-            this.log.info('cleaned everything up...');
+            this.log.info('Sainlogic Adapter gracefully shut down...');
             callback();
         } catch (e) {
             callback();
