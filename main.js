@@ -77,13 +77,13 @@ class Sainlogic extends utils.Adapter {
                 var my_path = my_url.pathname;
 
                 if (my_path == this.config.path) {  
-                    this.log.debug('Received path: ' + my_path);
-                    this.log.debug('JSON Query string: ' + JSON.stringify(json_response));
+                    this.log.info('Listener received update: ' + JSON.stringify(json_response));
                     response.writeHead(200, {"Content-Type": "text/html"});
                     response.end();
                     this.parse_response();
                 }
                 else {
+                    this.log.warn('Listener received illegal request: ' + request.url);
                     response.writeHead(400, {"Content-Type": "text/html"});
                     response.end();
                  }
@@ -100,6 +100,7 @@ class Sainlogic extends utils.Adapter {
     }
 
     startScheduler() {
+        this.log.info('Scheduler pulling for new data')
         // firmware 
         fwClient = new net.Socket();
         fwClient.on('data', this.fwClient_data_received.bind(this));
@@ -115,7 +116,6 @@ class Sainlogic extends utils.Adapter {
     }
 
     fwClient_data_received(data) {
-        this.log.debug('FW Scheduler Received (length): ' + data.length);
         this.log.debug('FW Scheduler Received data string: ' +  data.toString('hex'));
         
         var utf_data = hexToUtf8(data.toString('hex'));
