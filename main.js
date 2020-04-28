@@ -207,10 +207,9 @@ class Sainlogic extends utils.Adapter {
      * Parses the JSON object delivered by the Query update from weather station
      */
     parse_response() {
-        var dateutc = json_response.dateutc;
-        var date = new Date(dateutc + ' UTC');
+        var datetime = new Date();
         this.convertToMetric(json_response);
-        this.setStates(date, json_response);
+        this.setStates(datetime, json_response);
 
     }
 
