@@ -71,38 +71,7 @@ class Sainlogic extends utils.Adapter {
 
         if (this.config.listener_active == true) {
             this.listener = new WS_Listener(this.config.bind, this.config.port, this.config.path, this);
-            this.listener.start();
-            
-            /*
-            this.log.info('Starting Listener');
-            try {
-                webServer = http.createServer((request, response) => {
-                var my_url = url.parse(request.url, true);
-                json_response = my_url.query;
-                var my_path = my_url.pathname;
-
-                if (my_path == this.config.path) {  
-                    this.log.info('Listener received update: ' + JSON.stringify(json_response));
-                    response.writeHead(200, {"Content-Type": "text/html"});
-                    response.end();
-                    this.parse_response();
-                }
-                else {
-                    this.log.warn('Listener received illegal request: ' + request.url);
-                    response.writeHead(400, {"Content-Type": "text/html"});
-                    response.end();
-                 }
-                });
-
-
-                webServer.on('error', this.server_error.bind(this));
-                webServer.listen(this.config.port, this.config.bind);
-            
-            }
-            catch (e) {
-                this.log.error('Something else went wrong on starting our Listener');
-            }
-            */
+            this.listener.start();            
         }
     }
 
@@ -195,26 +164,6 @@ class Sainlogic extends utils.Adapter {
         
     }
 
-    server_error(e) {
-        if (e.toString().includes('EACCES') && this.config.port <= 1024) {
-            this.log.error(`node.js process has no rights to start server on the port ${this.config.port}.\n` +
-                `Do you know that on linux you need special permissions for ports under 1024?\n` +
-                `You can call in shell following scrip to allow it for node.js: "iobroker fix"`
-            );
-        } else {
-            this.log.error(`Cannot start server on ${this.config.bind || '0.0.0.0'}:${this.config.port}: ${e}`);
-        }
-    }
-
-    /**
-     * Parses the JSON object delivered by the Query update from weather station
-     */
-    parse_response() {
-        var datetime = new Date();
-        this.convertToMetric();
-        this.setStates(datetime, json_response);
-
-    }
 
     setDecimals() {
         var divide_by_10 = [ 'indoortemp', 'temp', 'dewpt', 'windchill', 'barom', 'absbarom', 'rain', 'dailyrain', 'weeklyrain', 'monthlyrain', 'yearlyrain' ];
@@ -225,22 +174,6 @@ class Sainlogic extends utils.Adapter {
 
         json_response.solarradiation = json_response.solarradiation / 10000;
 
-    }
-
-    convertToMetric() {
-        json_response.indoortemp = this.convert_temp(json_response.indoortempf).toFixed(1);
-        json_response.temp = this.convert_temp(json_response.tempf).toFixed(1);
-        json_response.dewpt = this.convert_temp(json_response.dewptf).toFixed(1);
-        json_response.windchill = this.convert_temp(json_response.windchillf).toFixed(1);
-        json_response.windspeed = this.convert_windspeed(json_response.windspeedmph).toFixed(1);
-        json_response.windgust = this.convert_windspeed(json_response.windgustmph).toFixed(1);
-        json_response.barom = this.convert_pressure(json_response.baromin).toFixed(1);
-        json_response.absbarom = this.convert_pressure(json_response.absbaromin).toFixed(1);
-        json_response.rain = this.convert_rain(json_response.rainin).toFixed(1);
-        json_response.dailyrain = this.convert_rain(json_response.dailyrainin).toFixed(1);
-        json_response.weeklyrain = this.convert_rain(json_response.weeklyrainin).toFixed(1);
-        json_response.monthlyrain = this.convert_rain(json_response.monthlyrainin).toFixed(1);
-        json_response.yearlyrain = this.convert_rain(json_response.yearlyrainin).toFixed(1);
     }
 
 
@@ -275,39 +208,6 @@ class Sainlogic extends utils.Adapter {
         // solar
         this.setStateAsync('weather.solarradiation', { val: obj_values.solarradiation, ack: true });
         this.setStateAsync('weather.uvi', { val: obj_values.UV, ack: true });
-    }
-
-    /**
-     * Covert rain from in to mm
-     * @param {*} rainin
-     */
-    convert_rain(rainin) {
-        return rainin * 25.4;
-    }
-
-
-    /**
-     * Convert a pressure from baromin to hPa
-     * @param {*} baromin
-     */
-    convert_pressure(baromin) {
-        return baromin / 0.02952998751;
-    }
-
-    /**
-    * Converts a wind speed from mph to system settings
-    * @param {*} speedmph 
-    */
-    convert_windspeed(speedmph) {
-        return speedmph * 1.60934;
-    }
-
-    /**
-     * Converts a Fahrenheit temperature to Celsius if needed
-     * @param {*} tempf 
-     */
-    convert_temp(tempf) {
-        return (tempf -32) * (5/9);
     }
 
     /**
