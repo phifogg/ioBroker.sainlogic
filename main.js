@@ -63,6 +63,7 @@ class Sainlogic extends utils.Adapter {
         this.log.info('WS IP: ' + this.config.ws_address);
         this.log.info('WS Port: ' + this.config.ws_port);
         this.log.info('WS Frequency: ' + this.config.ws_freq);
+        json_response = {};
 
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');
@@ -75,15 +76,15 @@ class Sainlogic extends utils.Adapter {
             try {
                 webServer = http.createServer((request, response) => {
                 var my_url = url.parse(request.url, true);
-                var query = my_url.query;
+                json_response = my_url.query;
                 var my_path = my_url.pathname;
 
                 if (my_path == this.config.path) {  
                     this.log.info('Received path: ' + my_path);
-                    this.log.info('JSON Query string: ' + JSON.stringify(query));
+                    this.log.info('JSON Query string: ' + JSON.stringify(json_response));
                     response.writeHead(200, {"Content-Type": "text/html"});
                     response.end();
-                    this.parse_response(query);
+                    this.parse_response();
                 }
                 else {
                     response.writeHead(400, {"Content-Type": "text/html"});
@@ -102,7 +103,6 @@ class Sainlogic extends utils.Adapter {
     }
 
     startScheduler() {
-        json_response = {};
         // firmware 
         fwClient = new net.Socket();
         fwClient.on('data', this.fwClient_data_received.bind(this));
