@@ -225,19 +225,19 @@ class Sainlogic extends utils.Adapter {
     }
 
     convertToMetric() {
-        json_response.indoortemp = this.convert_temp(json_response.indoortempf);
-        json_response.temp = this.convert_temp(json_response.tempf);
-        json_response.dewpt = this.convert_temp(json_response.dewptf);
-        json_response.windchill = this.convert_temp(json_response.windchillf);
-        json_response.windspeed = this.convert_windspeed(json_response.windspeedmph);
-        json_response.windgust = this.convert_windspeed(json_response.windgustmph);
-        json_response.barom = this.convert_pressure(json_response.baromin);
-        json_response.absbarom = this.convert_pressure(json_response.absbaromin);
-        json_response.rain = this.convert_rain(json_response.rainin);
-        json_response.dailyrain = this.convert_rain(json_response.dailyrainin);
-        json_response.weeklyrain = this.convert_rain(json_response.weeklyrainin);
-        json_response.monthlyrain = this.convert_rain(json_response.monthlyrainin);
-        json_response.yearlyrain = this.convert_rain(json_response.yearlyrainin);
+        json_response.indoortemp = this.convert_temp(json_response.indoortempf).toFixed(1);
+        json_response.temp = this.convert_temp(json_response.tempf).toFixed(1);
+        json_response.dewpt = this.convert_temp(json_response.dewptf).toFixed(1);
+        json_response.windchill = this.convert_temp(json_response.windchillf).toFixed(1);
+        json_response.windspeed = this.convert_windspeed(json_response.windspeedmph).toFixed(1);
+        json_response.windgust = this.convert_windspeed(json_response.windgustmph).toFixed(1);
+        json_response.barom = this.convert_pressure(json_response.baromin).toFixed(1);
+        json_response.absbarom = this.convert_pressure(json_response.absbaromin).toFixed(1);
+        json_response.rain = this.convert_rain(json_response.rainin).toFixed(1);
+        json_response.dailyrain = this.convert_rain(json_response.dailyrainin).toFixed(1);
+        json_response.weeklyrain = this.convert_rain(json_response.weeklyrainin).toFixed(1);
+        json_response.monthlyrain = this.convert_rain(json_response.monthlyrainin).toFixed(1);
+        json_response.yearlyrain = this.convert_rain(json_response.yearlyrainin).toFixed(1);
     }
 
 
