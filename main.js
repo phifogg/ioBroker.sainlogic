@@ -13,6 +13,7 @@ const url = require('url');
 const http = require('http');
 const net = require('net');
 const BinaryParser = require('binary-parser').Parser;
+const listener = require('lib/listener');
 
 const convert = (from, to) => str => Buffer.from(str, from).toString(to);
 const hexToUtf8 = convert('hex', 'utf8');
@@ -69,6 +70,10 @@ class Sainlogic extends utils.Adapter {
         }
 
         if (this.config.listener_active == true) {
+            this.listener = new listener(this.config.bind, this.config.port, this.config.path, this);
+            this.listener.start();
+            
+            /*
             this.log.info('Starting Listener');
             try {
                 webServer = http.createServer((request, response) => {
@@ -92,10 +97,12 @@ class Sainlogic extends utils.Adapter {
 
                 webServer.on('error', this.server_error.bind(this));
                 webServer.listen(this.config.port, this.config.bind);
+            
             }
             catch (e) {
                 this.log.error('Something else went wrong on starting our Listener');
             }
+            */
         }
     }
 
@@ -173,7 +180,7 @@ class Sainlogic extends utils.Adapter {
 
         this.setDecimals();
         var datetime = new Date();
-        this.setStates(datetime);
+        this.setStates(datetime, json_response);
 
         dataClient.destroy(); // kill client after server's response
     }
@@ -204,7 +211,7 @@ class Sainlogic extends utils.Adapter {
      */
     parse_response() {
         var datetime = new Date();
-        this.convertToMetric(json_response);
+        this.convertToMetric();
         this.setStates(datetime, json_response);
 
     }
@@ -241,33 +248,33 @@ class Sainlogic extends utils.Adapter {
      * @param {Date} date
      * @param {{ softwaretype: any; indoortempf: any; tempf: any; dewptf: any; windchillf: any; indoorhumidity: any; humidity: any; windspeedmph: any; windgustmph: any; winddir: any; baromin: any; absbaromin: any; ... 6 more ...; UV: any; }} json_response
      */
-    setStates(date) {
+    setStates(date, obj_values) {
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
-        this.setStateAsync('info.softwaretype', { val: json_response.softwaretype, ack: true });
+        this.setStateAsync('info.softwaretype', { val: obj_values.softwaretype, ack: true });
         // temperatures
-        this.setStateAsync('weather.indoortemp', { val: json_response.indoortemp, ack: true });
-        this.setStateAsync('weather.outdoortemp', { val: json_response.temp, ack: true });
-        this.setStateAsync('weather.dewpointtemp', { val: json_response.dewpt, ack: true });
-        this.setStateAsync('weather.windchilltemp', { val: json_response.windchill, ack: true });
+        this.setStateAsync('weather.indoortemp', { val: obj_values.indoortemp, ack: true });
+        this.setStateAsync('weather.outdoortemp', { val: obj_values.temp, ack: true });
+        this.setStateAsync('weather.dewpointtemp', { val: obj_values.dewpt, ack: true });
+        this.setStateAsync('weather.windchilltemp', { val: obj_values.windchill, ack: true });
         // humidity
-        this.setStateAsync('weather.indoorhumidity', { val: json_response.indoorhumidity, ack: true });
-        this.setStateAsync('weather.outdoorhumidity', { val: json_response.humidity, ack: true });
+        this.setStateAsync('weather.indoorhumidity', { val: obj_values.indoorhumidity, ack: true });
+        this.setStateAsync('weather.outdoorhumidity', { val: obj_values.humidity, ack: true });
         // wind
-        this.setStateAsync('weather.windspeed', { val: json_response.windspeed, ack: true });
-        this.setStateAsync('weather.windgustspeed', { val: json_response.windgust, ack: true });
-        this.setStateAsync('weather.winddir', { val: json_response.winddir, ack: true });
+        this.setStateAsync('weather.windspeed', { val: obj_values.windspeed, ack: true });
+        this.setStateAsync('weather.windgustspeed', { val: obj_values.windgust, ack: true });
+        this.setStateAsync('weather.winddir', { val: obj_values.winddir, ack: true });
         // pressure
-        this.setStateAsync('weather.pressurerel', { val: json_response.barom, ack: true });
-        this.setStateAsync('weather.pressureabs', { val: json_response.absbarom, ack: true });
+        this.setStateAsync('weather.pressurerel', { val: obj_values.barom, ack: true });
+        this.setStateAsync('weather.pressureabs', { val: obj_values.absbarom, ack: true });
         // rain
-        this.setStateAsync('weather.rain', { val: json_response.rain, ack: true });
-        this.setStateAsync('weather.dailyrain', { val: json_response.dailyrain, ack: true });
-        this.setStateAsync('weather.weeklyrain', { val: json_response.weeklyrain, ack: true });
-        this.setStateAsync('weather.monthlyrain', { val: json_response.monthlyrain, ack: true });
-        this.setStateAsync('weather.yearlyrain', { val: json_response.yearlyrain, ack: true });
+        this.setStateAsync('weather.rain', { val: obj_values.rain, ack: true });
+        this.setStateAsync('weather.dailyrain', { val: obj_values.dailyrain, ack: true });
+        this.setStateAsync('weather.weeklyrain', { val: obj_values.weeklyrain, ack: true });
+        this.setStateAsync('weather.monthlyrain', { val: obj_values.monthlyrain, ack: true });
+        this.setStateAsync('weather.yearlyrain', { val: obj_values.yearlyrain, ack: true });
         // solar
-        this.setStateAsync('weather.solarradiation', { val: json_response.solarradiation, ack: true });
-        this.setStateAsync('weather.uvi', { val: json_response.UV, ack: true });
+        this.setStateAsync('weather.solarradiation', { val: obj_values.solarradiation, ack: true });
+        this.setStateAsync('weather.uvi', { val: obj_values.UV, ack: true });
     }
 
     /**
@@ -309,6 +316,8 @@ class Sainlogic extends utils.Adapter {
      */
     onUnload(callback) {
         try {
+            if (this.listener)
+                this.listener.stop();
             if (webServer)
                 webServer.close(); 
             if (schedule_timer)
