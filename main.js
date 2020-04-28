@@ -13,7 +13,7 @@ const url = require('url');
 const http = require('http');
 const net = require('net');
 const BinaryParser = require('binary-parser').Parser;
-const listener = require('lib/listener');
+const Listener = require('./lib/listener');
 
 const convert = (from, to) => str => Buffer.from(str, from).toString(to);
 const hexToUtf8 = convert('hex', 'utf8');
@@ -70,7 +70,7 @@ class Sainlogic extends utils.Adapter {
         }
 
         if (this.config.listener_active == true) {
-            this.listener = new listener(this.config.bind, this.config.port, this.config.path, this);
+            this.listener = new WS_Listener(this.config.bind, this.config.port, this.config.path, this);
             this.listener.start();
             
             /*
