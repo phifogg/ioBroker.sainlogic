@@ -14,6 +14,7 @@ const http = require('http');
 const net = require('net');
 const BinaryParser = require('binary-parser').Parser;
 const Listener = require('./lib/listener');
+const Scheduler = require('./lib/scheduler');
 
 const convert = (from, to) => str => Buffer.from(str, from).toString(to);
 const hexToUtf8 = convert('hex', 'utf8');
@@ -66,11 +67,14 @@ class Sainlogic extends utils.Adapter {
 
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');
-            schedule_timer = setInterval(this.startScheduler.bind(this), this.config.ws_freq * 1000);
+            this.scheduler = new Scheduler(this.config.ws_address, this.config.ws_port, this.config.ws_freq, this);
+            this.scheduler.start();
+
+//            schedule_timer = setInterval(this.startScheduler.bind(this), this.config.ws_freq * 1000);
         }
 
         if (this.config.listener_active == true) {
-            this.listener = new WS_Listener(this.config.bind, this.config.port, this.config.path, this);
+            this.listener = new Listener(this.config.bind, this.config.port, this.config.path, this);
             this.listener.start();            
         }
     }
