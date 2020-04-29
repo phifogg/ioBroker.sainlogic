@@ -222,6 +222,8 @@ class Sainlogic extends utils.Adapter {
         try {
             if (this.listener)
                 this.listener.stop();
+            if (this.scheduler)
+                this.scheduler.stop();
             if (webServer)
                 webServer.close(); 
             if (schedule_timer)
