@@ -9,22 +9,8 @@
 const utils = require('@iobroker/adapter-core');
 
 // Load your modules here, e.g.:
-const url = require('url');
-const http = require('http');
-const net = require('net');
-const BinaryParser = require('binary-parser').Parser;
 const Listener = require('./lib/listener');
 const Scheduler = require('./lib/scheduler');
-
-const convert = (from, to) => str => Buffer.from(str, from).toString(to);
-const hexToUtf8 = convert('hex', 'utf8');
-const utf8ToHex = convert('utf8', 'hex');
-
-let webServer = null;
-let fwClient = null;
-let dataClient = null;
-let json_response = null;
-let schedule_timer = null;
 
 class Sainlogic extends utils.Adapter {
 
@@ -52,132 +38,17 @@ class Sainlogic extends utils.Adapter {
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        this.log.info('Starting Sainlogic Adapter')
-        this.log.debug('=== Listener config ===');
-        this.log.debug('Listner active: ' + this.config.listener_active);
-        this.log.debug('Config IP: ' + this.config.bind);
-        this.log.debug('Config port: ' + this.config.port);
-        this.log.debug('Config path: ' + this.config.path);
-        this.log.debug('=== Scheduler config ===');
-        this.log.debug('Scheduler active: ' + this.config.scheduler_active);
-        this.log.debug('WS IP: ' + this.config.ws_address);
-        this.log.debug('WS Port: ' + this.config.ws_port);
-        this.log.debug('WS Frequency: ' + this.config.ws_freq);
-        json_response = {};
 
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');
             this.scheduler = new Scheduler(this.config.ws_address, this.config.ws_port, this.config.ws_freq, this);
             this.scheduler.start();
-
-//            schedule_timer = setInterval(this.startScheduler.bind(this), this.config.ws_freq * 1000);
         }
 
         if (this.config.listener_active == true) {
             this.listener = new Listener(this.config.bind, this.config.port, this.config.path, this);
             this.listener.start();            
         }
-    }
-
-    startScheduler() {
-        this.log.info('Scheduler pulling for new data')
-        // firmware 
-        fwClient = new net.Socket();
-        fwClient.on('data', this.fwClient_data_received.bind(this));
-        fwClient.on('close', this.fwClient_close.bind(this));
-        fwClient.connect(this.config.ws_port, this.config.ws_address, this.fwClient_connect.bind(this));
-    }
-
-    fwClient_connect() {
-        var getfirmwarecmd = [0xff, 0xff, 0x50, 0x03, 0x53];
-        var hexVal = new Uint8Array(getfirmwarecmd);
-        this.log.debug('FW Scheduler connected to weather station');
-        fwClient.write(hexVal);
-    }
-
-    fwClient_data_received(data) {
-        this.log.debug('FW Scheduler Received data string: ' +  data.toString('hex'));
-        
-        var utf_data = hexToUtf8(data.toString('hex'));
-        utf_data = utf_data.slice(5, utf_data.length);
-        this.log.debug('FW Scheduler received raw: ' + utf_data);
-        json_response.softwaretype = utf_data;
-        fwClient.destroy(); // kill client after server's response
-    }
-
-    dataClient_close() {
-        this.log.debug('Data Scheduler Connection closed');
-
-    }
-
-    dataClient_connect() {
-        var getweatherdatacmd = [0xFF, 0xFF, 0x0B, 0x00, 0x06, 0x04, 0x04, 0x19];
-        var hexVal = new Uint8Array(getweatherdatacmd);
-
-        this.log.debug('Data Scheduler connected to weather station');
-        dataClient.write(hexVal);
-    }
-
-    dataClient_data_received(data) {
-        var hex_data = data.toString('hex');
-        this.log.debug('Data Scheduler Received data string: ' +  data);
-        
-        // setup parser
-       var wdata = new BinaryParser()
-           .endianess("big").seek(7)
-           .uint16("indoortemp").seek(1)
-           .uint16("temp").seek(1)
-           .uint16("dewpt").seek(1)
-           .uint16("windchill").seek(1)
-           .uint16be("heatindex").seek(1)
-           .uint8("indoorhumidity").seek(1)
-           .uint8("humidity").seek(1)
-           .uint16("absbarom").seek(1)
-           .uint16('barom').seek(1)
-           .uint16('winddir').seek(1)
-           .uint16('windspeed').seek(1)
-           .uint16('windgust').seek(1)
-           .uint32('rain').seek(1)
-           .uint32('dailyrain').seek(1)
-           .uint32('weeklyrain').seek(1)
-           .uint32('monthlyrain').seek(1)
-           .uint32('yearlyrain').seek(1)
-           .uint32('raintotal').seek(1)
-           .uint32('solarradiation').seek(1)
-           .uint16('UVraw').seek(1)
-           .uint8('UV');
-
-        var buf = Buffer.from(hex_data, "hex");
-        json_response = Object.assign(json_response, wdata.parse(buf));
-        this.log.debug(JSON.stringify(wdata.parse(buf)));
-
-        this.setDecimals();
-        var datetime = new Date();
-        this.setStates(datetime, json_response);
-
-        dataClient.destroy(); // kill client after server's response
-    }
-
-    fwClient_close() {
-        this.log.debug('FW Scheduler Connection closed');
-        // weather data
-        dataClient = new net.Socket();
-        dataClient.on('data', this.dataClient_data_received.bind(this));
-        dataClient.on('close', this.dataClient_close.bind(this));
-        dataClient.connect(this.config.ws_port, this.config.ws_address, this.dataClient_connect.bind(this));
-        
-    }
-
-
-    setDecimals() {
-        var divide_by_10 = [ 'indoortemp', 'temp', 'dewpt', 'windchill', 'barom', 'absbarom', 'rain', 'dailyrain', 'weeklyrain', 'monthlyrain', 'yearlyrain' ];
-        
-        divide_by_10.forEach(function(state) {
-            json_response[state] = json_response[state] / 10;
-        });
-
-        json_response.solarradiation = json_response.solarradiation / 10000;
-
     }
 
 
@@ -224,14 +95,6 @@ class Sainlogic extends utils.Adapter {
                 this.listener.stop();
             if (this.scheduler)
                 this.scheduler.stop();
-            if (webServer)
-                webServer.close(); 
-            if (schedule_timer)
-                clearInterval(schedule_timer);
-            if (dataClient) 
-                dataClient.destroy();
-            if (fwClient)
-                fwClient.destroy();
             this.log.info('Sainlogic Adapter gracefully shut down...');
             callback();
         } catch (e) {
