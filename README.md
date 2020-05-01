@@ -29,7 +29,7 @@ The adapter supports two modes to showw data of your weather station.
 ### Listener mode:
 With latest firmware releases the weather station supports sending data to a custom server. The adapter will act as such a server. The setup needs two steps:
 
-1. Configure Weather station
+#### Configure Weather station
 Use the 'WS View'app on your mobile device to configure the weatherstation. Configure the following settings for customized server settings:
 - Server: IP/Hostname of your IOBroker server
 - Path: anything, just remember it for the adapter configuration
@@ -39,7 +39,7 @@ Use the 'WS View'app on your mobile device to configure the weatherstation. Conf
 - Protocol Type: WeatherUnderground
 - Upload Interval: anyting supported by your weather station
 
-1. Configure the Listener
+#### Configure the Listener
 In the instance configuration choose the tab 'Listener' and set the following:
 - Active: true
 - IP: choose the IP of your IOBroker which the weatherstation will be able to connect to (default is 0.0.0.0 to allow all IPs), this is mainly relevant if you have multiple networks, otherwise the default will do
@@ -52,7 +52,7 @@ The listener will start and wait on incoming connections. Based on your interval
 ### Scheduler mode:
 If your weather station supports pulling for data you can configure the scheduler to do so. The protocol used is based on [WS980 documentation](https://github.com/RrPt/WS980).
 
-1. Configure the scheduler
+#### Configure the scheduler
 In the instance configuration choose the tab 'Scheduler' and set the following:
 - Active: true
 - IP: choose the IP of your weather station, you should make sure that the IP is fixed and does not change
