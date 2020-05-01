@@ -20,7 +20,8 @@ Basically any device working with the sainlogic hardware, the firmware usually r
 
 Known working devices:
 1. ELV WS980Wifi
-1.  Eurochron EFWS2900  (Listener mode only)
+1. Eurochron EFWS2900  (Listener mode only)
+1. Froggit WH400SE
 
 ## Usage
 
