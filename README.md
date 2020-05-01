@@ -14,76 +14,83 @@
 
 Read data from a sainlogic based weather station
 
-## Developer manual
-This section is intended for the developer. It can be deleted later
+## Supported devices
 
-### Getting started
+Basically any device working with the sainlogic hardware, the firmware usually reports as 'EasyWeather Vx.x.x)'.
 
-You are almost done, only a few steps left:
-1. Create a new repository on GitHub with the name `ioBroker.sainlogic`
-1. Initialize the current folder as a new git repository:  
-    ```bash
-    git init
-    git add .
-    git commit -m "Initial commit"
-    ```
-1. Link your local repository with the one on GitHub:  
-    ```bash
-    git remote add origin https://github.com/phifogg/ioBroker.sainlogic
-    ```
+Known working devices:
+1. ELV WS980Wifi
+1.  Eurochron EFWS2900  (Listener mode only)
 
-1. Push all files to the GitHub repo:  
-    ```bash
-    git push origin master
-    ```
-1. Head over to [main.js](main.js) and start programming!
+## Usage
 
-### Best Practices
-We've collected some [best practices](https://github.com/ioBroker/ioBroker.repositories#development-and-coding-best-practices) regarding ioBroker development and coding in general. If you're new to ioBroker or Node.js, you should
-check them out. If you're already experienced, you should also take a look at them - you might learn something new :)
+The adapter supports two modes to showw data of your weather station.
 
-### Scripts in `package.json`
-Several npm scripts are predefined for your convenience. You can run them using `npm run <scriptname>`
-| Script name | Description                                              |
-|-------------|----------------------------------------------------------|
-| `test:js`   | Executes the tests you defined in `*.test.js` files.     |
-| `test:package`    | Ensures your `package.json` and `io-package.json` are valid. |
-| `test` | Performs a minimal test run on package files and your tests. |
-| `lint` | Runs `ESLint` to check your code for formatting errors and potential bugs. |
+### Listener mode:
+With latest firmware releases the weather station supports sending data to a custom server. The adapter will act as such a server. The setup needs two steps:
 
-### Writing tests
-When done right, testing code is invaluable, because it gives you the 
-confidence to change your code while knowing exactly if and when 
-something breaks. A good read on the topic of test-driven development 
-is https://hackernoon.com/introduction-to-test-driven-development-tdd-61a13bc92d92. 
-Although writing tests before the code might seem strange at first, but it has very 
-clear upsides.
+1. Configure Weather station
+Use the 'WS View'app on your mobile device to configure the weatherstation. Configure the following settings for customized server settings:
+- Server: IP/Hostname of your IOBroker server
+- Path: anything, just remember it for the adapter configuration
+- Port: any number between 1024 and 65000 (default is 45000), needs to be unique and free on your IOBroker system
+- Station ID: not used
+- Station Key: not used
+- Protocol Type: WeatherUnderground
+- Upload Interval: anyting supported by your weather station
 
-The template provides you with basic tests for the adapter startup and package files.
-It is recommended that you add your own tests into the mix.
+1. Configure the Listener
+In the instance configuration choose the tab 'Listener' and set the following:
+- Active: true
+- IP: choose the IP of your IOBroker which the weatherstation will be able to connect to (default is 0.0.0.0 to allow all IPs), this is mainly relevant if you have multiple networks, otherwise the default will do
+- Port: Enter the same port as in the WS View app
+- Path: Enter the same path as in the WS View app
 
-### Publishing the adapter
-To get your adapter released in ioBroker, please refer to the documentation 
-of [ioBroker.repositories](https://github.com/ioBroker/ioBroker.repositories#requirements-for-adapter-to-get-added-to-the-latest-repository).
+Save.
+The listener will start and wait on incoming connections. Based on your interval you should see in the log a message ' Listener received update: ...' with the data.
 
-### Test the adapter manually on a local ioBroker installation
-In order to install the adapter locally without publishing, the following steps are recommended:
-1. Create a tarball from your dev directory:  
-    ```bash
-    npm pack
-    ```
-1. Upload the resulting file to your ioBroker host
-1. Install it locally (The paths are different on Windows):
-    ```bash
-    cd /opt/iobroker
-    npm i /path/to/tarball.tgz
-    ```
+### Scheduler mode:
+If your weather station supports pulling for data you can configure the scheduler to do so. The protocol used is based on [WS980 documentation](https://github.com/RrPt/WS980).
 
-For later updates, the above procedure is not necessary. Just do the following:
-1. Overwrite the changed files in the adapter directory (`/opt/iobroker/node_modules/iobroker.sainlogic`)
-1. Execute `iobroker upload sainlogic` on the ioBroker host
+1. Configure the scheduler
+In the instance configuration choose the tab 'Scheduler' and set the following:
+- Active: true
+- IP: choose the IP of your weather station, you should make sure that the IP is fixed and does not change
+- Port: Enter the port to connect to (default is 45000)
+- Interval: Enter an interval in seconds (I would recommend at minimum 10 seconds to not overload the system or network)
+
+Save.
+
+The schheduler will start and connect to the weather station after the first interval time. You should see message in the log like 'Scheduler pulling for new data'. If you set the log mode to debug you will also see the data strings received.
+
+
+
 
 ## Changelog
+
+### 0.2.2
+ * (Fogg) Bugfix
+
+### 0.2.1
+ * (Fogg) Schedule parallel calls
+
+### 0.2.0
+ * (Fogg) Refactoring
+
+### 0.1.2
+ * (Fogg) Beta Release with Listener and Scheduler
+
+### 0.0.10
+ * (Fogg) Added 15 second interval to scheduler
+
+### 0.0.9
+ * (Fogg) Adding scheduler - Part 4 - Combine Weatherdata and Firmware
+
+### 0.0.8
+ * (Fogg) Adding scheduler - Part 3 - Weatherinfo completed
+
+### 0.0.4
+Adding scheduler - Part 2 - Weatherinfo
 
 ### 0.0.1
 * (Fogg) initial release
