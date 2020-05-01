@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.2.1",
+        "version": "0.2.2",
         "news": {
+          "0.2.2": {
+            "en": "Bugfix",
+            "de": "bugfix"
+          },
           "0.2.1": {
             "en": "Schedule parallel calls",
             "de": "Scheduler parallelisieren"
