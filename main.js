@@ -40,8 +40,7 @@ class Sainlogic extends utils.Adapter {
 
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');
-            this.scheduler = new Scheduler(this.config.ws_address, this.config.ws_port, this.config.ws_freq, this);
-            this.scheduler.setCalls(this.config.ws_getfirmware, this.config.ws_getcurrent, this.config.ws_getmax);
+            this.scheduler = new Scheduler(this.config, this);
             this.scheduler.start();
         }
 
