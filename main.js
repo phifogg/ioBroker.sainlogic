@@ -19,7 +19,6 @@ class Sainlogic extends utils.Adapter {
      */
     constructor(options) {
         super({
-            ...options,
             name: 'sainlogic',
         });
         this.on('ready', this.onReady.bind(this));
@@ -136,10 +135,10 @@ class Sainlogic extends utils.Adapter {
     onObjectChange(id, obj) {
         if (obj) {
             // The object was changed
-            log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+            this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
         } else {
             // The object was deleted
-            log.info(`object ${id} deleted`);
+            this.log.info(`object ${id} deleted`);
         }
     }
 
@@ -151,10 +150,10 @@ class Sainlogic extends utils.Adapter {
     onStateChange(id, state) {
         if (state) {
             // The state was changed
-            log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
         } else {
             // The state was deleted
-            log.info(`state ${id} deleted`);
+            this.log.info(`state ${id} deleted`);
         }
     }
 
