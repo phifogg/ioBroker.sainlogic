@@ -65,36 +65,6 @@ The schheduler will start and connect to the weather station after the first int
 
 
 
-
-## Changelog
-
-### 0.2.2
- * (Fogg) Bugfix
-
-### 0.2.1
- * (Fogg) Schedule parallel calls
-
-### 0.2.0
- * (Fogg) Refactoring
-
-### 0.1.2
- * (Fogg) Beta Release with Listener and Scheduler
-
-### 0.0.10
- * (Fogg) Added 15 second interval to scheduler
-
-### 0.0.9
- * (Fogg) Adding scheduler - Part 4 - Combine Weatherdata and Firmware
-
-### 0.0.8
- * (Fogg) Adding scheduler - Part 3 - Weatherinfo completed
-
-### 0.0.4
-Adding scheduler - Part 2 - Weatherinfo
-
-### 0.0.1
-* (Fogg) initial release
-
 ## License
 MIT License
 
