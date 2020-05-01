@@ -19,7 +19,6 @@ class Sainlogic extends utils.Adapter {
      */
     constructor(options) {
         super({
-            ...options,
             name: 'sainlogic',
         });
         this.on('ready', this.onReady.bind(this));
@@ -41,7 +40,7 @@ class Sainlogic extends utils.Adapter {
 
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');
-            this.scheduler = new Scheduler(this.config.ws_address, this.config.ws_port, this.config.ws_freq, this);
+            this.scheduler = new Scheduler(this.config, this);
             this.scheduler.start();
         }
 
@@ -83,6 +82,31 @@ class Sainlogic extends utils.Adapter {
         // solar
         this.setStateAsync('weather.solarradiation', { val: obj_values.solarradiation, ack: true });
         this.setStateAsync('weather.uvi', { val: obj_values.UV, ack: true });
+
+        // max. temperatures
+        this.setStateAsync('weather.maxvalues.indoortempmax', { val: obj_values.indoortempmax, ack: true });
+        this.setStateAsync('weather.maxvalues.outdoortempmax', { val: obj_values.tempmax, ack: true });
+        this.setStateAsync('weather.maxvalues.dewpointtempmax', { val: obj_values.dewptmax, ack: true });
+        this.setStateAsync('weather.maxvalues.windchilltempmax', { val: obj_values.windchillmax, ack: true });
+        // humidity
+        this.setStateAsync('weather.maxvalues.indoorhumiditymax', { val: obj_values.indoorhumiditymax, ack: true });
+        this.setStateAsync('weather.maxvalues.outdoorhumiditymax', { val: obj_values.humiditymax, ack: true });
+        // wind
+        this.setStateAsync('weather.maxvalues.windspeedmax', { val: obj_values.windspeedmax, ack: true });
+        this.setStateAsync('weather.maxvalues.windgustspeedmax', { val: obj_values.windgustmax, ack: true });
+        // pressure
+        this.setStateAsync('weather.maxvalues.pressurerelmax', { val: obj_values.barommax, ack: true });
+        this.setStateAsync('weather.maxvalues.pressureabsmax', { val: obj_values.absbarommax, ack: true });
+        // rain
+        this.setStateAsync('weather.maxvalues.rainmax', { val: obj_values.rainmax, ack: true });
+        this.setStateAsync('weather.maxvalues.dailyrainmax', { val: obj_values.dailyrainmax, ack: true });
+        this.setStateAsync('weather.maxvalues.weeklyrainmax', { val: obj_values.weeklyrainmax, ack: true });
+        this.setStateAsync('weather.maxvalues.monthlyrainmax', { val: obj_values.monthlyrainmax, ack: true });
+        this.setStateAsync('weather.maxvalues.yearlyrainmax', { val: obj_values.yearlyrainmax, ack: true });
+        // solar
+        this.setStateAsync('weather.maxvalues.solarradiationmax', { val: obj_values.solarradiationmax, ack: true });
+        this.setStateAsync('weather.maxvalues.uvimax', { val: obj_values.UVmax, ack: true });
+
     }
 
     /**
@@ -110,10 +134,10 @@ class Sainlogic extends utils.Adapter {
     onObjectChange(id, obj) {
         if (obj) {
             // The object was changed
-            log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+            this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
         } else {
             // The object was deleted
-            log.info(`object ${id} deleted`);
+            this.log.info(`object ${id} deleted`);
         }
     }
 
@@ -125,10 +149,10 @@ class Sainlogic extends utils.Adapter {
     onStateChange(id, state) {
         if (state) {
             // The state was changed
-            log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
         } else {
             // The state was deleted
-            log.info(`state ${id} deleted`);
+            this.log.info(`state ${id} deleted`);
         }
     }
 
