@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.2.2",
+        "version": "0.3.0",
         "news": {
+          "0.3.0": {
+            "en": "Added Max Values",
+            "de": "Max Werte abfragen"
+          },
           "0.2.2": {
             "en": "Bugfix",
             "de": "bugfix"
