@@ -1,4 +1,4 @@
-![Logo](admin/sainlogic.jpg)
+![Logo](admin/sainlogic.png)
 # ioBroker.sainlogic
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.sainlogic.svg)](https://www.npmjs.com/package/iobroker.sainlogic)
