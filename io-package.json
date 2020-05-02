@@ -952,7 +952,7 @@
             }   
         },
         {
-            "_id": "weather.mainvalues.outdoorhumiditymin",
+            "_id": "weather.minvalues.outdoorhumiditymin",
             "type": "state",
             "common": {
                 "def": 0,
