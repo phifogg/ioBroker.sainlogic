@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.3.0",
+        "version": "0.4.0",
         "news": {
+          "0.4.0": {
+            "en": "Added Min Values",
+            "de": "Min Werte abfragen"
+          },
           "0.3.0": {
             "en": "Added Max Values",
             "de": "Max Werte abfragen"
@@ -88,7 +92,8 @@
         "ws_freq": 15,
         "ws_getfirmware": true,
         "ws_getcurrent": true,
-        "ws_getmax": false
+        "ws_getmax": false,
+        "ws_getmin": false
     },
     "objects": [],
     "instanceObjects": [ 
@@ -825,6 +830,180 @@
                 "max": 1500,
                 "unit": "",
                 "name": "Max. UVI",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
+        },
+        {
+            "_id": "weather.minvalues",
+            "type": "channel",
+            "common": {
+                "name": "Min values of Weather data"
+            },
+            "native": {}
+        },
+        {
+            "_id": "weather.minvalues.indoortempmin",
+            "type": "state",
+            "common": {
+                "name": "Min. Indoor temperature",
+                "type": "number",
+                "unit": "°C",
+                "role": "value.temperature",
+                "def": 0,
+                "min": -40,
+                "max": 80,
+                "read": true,
+                "write": false,
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+            "native": {}
+            }
+        },
+        {
+            "_id": "weather.minvalues.outdoortempmin",
+            "type": "state",
+            "common": {
+                "name": "Min. Outdoor temperature",
+                "type": "number",
+                "unit": "°C",
+                "role": "value.temperature",
+                "def": 0,
+                "min": -40,
+                "max": 80,
+                "read": true,
+                "write": false,
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+            "native": {}
+            }
+        },
+        {
+            "_id": "weather.minvalues.dewpointtempmin",
+            "type": "state",
+            "common": {
+                "name": "Min. Dewpoint temperature",
+                "type": "number",
+                "unit": "°C",
+                "role": "value.temperature",
+                "def": 0,
+                "min": -40,
+                "max": 80,
+                "read": true,
+                "write": false,
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+            "native": {}
+            }
+        },
+        {
+            "_id": "weather.minvalues.windchillmin",
+            "type": "state",
+            "common": {
+                "name": "Min. Windchill temperature",
+                "type": "number",
+                "unit": "°C",
+                "role": "value.temperature",
+                "def": 0,
+                "min": -40,
+                "max": 80,
+                "read": true,
+                "write": false,
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+            "native": {}
+            }
+        },
+        {
+            "_id": "weather.minvalues.indoorhumiditymin",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 99,
+                "unit": "%",
+                "role": "value.humidity",
+                "name": "Min. Indoor Humidity",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+            "native": {}
+            }   
+        },
+        {
+            "_id": "weather.mainvalues.outdoorhumiditymin",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 99,
+                "unit": "%",
+                "role": "value.humidity",
+                "name": "Min. Outdoor Humidity",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+            "native": {}
+            }   
+        },
+        {
+            "_id": "weather.minvalues.pressureabsmin",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "hPa",
+                "name": "Min. Pressure (absolute)",
+                "mobile": {
+                  "admin": {
+                    "visible": true
+                  }
+                },
+                "native": {}
+                }   
+        },
+        {
+            "_id": "weather.minvalues.pressurerelmin",
+            "type": "state",
+            "common": {
+                "def": 0,
+                "type": "number",
+                "read": true,
+                "write": false,
+                "min": 0,
+                "max": 1500,
+                "unit": "hPa",
+                "name": "Min. Pressure (relative)",
                 "mobile": {
                   "admin": {
                     "visible": true
