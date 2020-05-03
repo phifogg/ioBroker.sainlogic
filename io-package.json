@@ -7,6 +7,10 @@
             "en": "Added daily min/max values",
             "de": "Tagesmin-/max-Werte hinzugefügt"
           },
+          "0.4.1": {
+            "en": "Fix for max wind speeds",
+            "de": "Max Windwerte korrigiert"
+          },
           "0.4.0": {
             "en": "Added Min Values",
             "de": "Min Werte abfragen"
