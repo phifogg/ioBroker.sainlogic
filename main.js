@@ -84,41 +84,41 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('weather.solarradiation', { val: obj_values.solarradiation, ack: true });
         this.setStateAsync('weather.uvi', { val: obj_values.UV, ack: true });
 
-        // ----- max. data
-        this.setStateAsync('weather.maxvalues.indoortempmax', { val: obj_values.indoortempmax, ack: true });
-        this.setStateAsync('weather.maxvalues.outdoortempmax', { val: obj_values.tempmax, ack: true });
-        this.setStateAsync('weather.maxvalues.dewpointtempmax', { val: obj_values.dewptmax, ack: true });
-        this.setStateAsync('weather.maxvalues.windchilltempmax', { val: obj_values.windchillmax, ack: true });
+        // ----- Absolut max. data
+        this.setStateAsync('weather.maxvalues.absolut.indoortempmax', { val: obj_values.indoortempmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.outdoortempmax', { val: obj_values.tempmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.dewpointtempmax', { val: obj_values.dewptmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.windchilltempmax', { val: obj_values.windchillmax, ack: true });
         // humidity
-        this.setStateAsync('weather.maxvalues.indoorhumiditymax', { val: obj_values.indoorhumiditymax, ack: true });
-        this.setStateAsync('weather.maxvalues.outdoorhumiditymax', { val: obj_values.humiditymax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.indoorhumiditymax', { val: obj_values.indoorhumiditymax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.outdoorhumiditymax', { val: obj_values.humiditymax, ack: true });
         // wind
-        this.setStateAsync('weather.maxvalues.windspeedmax', { val: obj_values.windspeedmax, ack: true });
-        this.setStateAsync('weather.maxvalues.windgustspeedmax', { val: obj_values.windgustmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.windspeedmax', { val: obj_values.windspeedmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.windgustspeedmax', { val: obj_values.windgustmax, ack: true });
         // pressure
-        this.setStateAsync('weather.maxvalues.pressurerelmax', { val: obj_values.barommax, ack: true });
-        this.setStateAsync('weather.maxvalues.pressureabsmax', { val: obj_values.absbarommax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.pressurerelmax', { val: obj_values.barommax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.pressureabsmax', { val: obj_values.absbarommax, ack: true });
         // rain
-        this.setStateAsync('weather.maxvalues.rainmax', { val: obj_values.rainmax, ack: true });
-        this.setStateAsync('weather.maxvalues.dailyrainmax', { val: obj_values.dailyrainmax, ack: true });
-        this.setStateAsync('weather.maxvalues.weeklyrainmax', { val: obj_values.weeklyrainmax, ack: true });
-        this.setStateAsync('weather.maxvalues.monthlyrainmax', { val: obj_values.monthlyrainmax, ack: true });
-        this.setStateAsync('weather.maxvalues.yearlyrainmax', { val: obj_values.yearlyrainmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.rainmax', { val: obj_values.rainmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.dailyrainmax', { val: obj_values.dailyrainmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.weeklyrainmax', { val: obj_values.weeklyrainmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.monthlyrainmax', { val: obj_values.monthlyrainmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.yearlyrainmax', { val: obj_values.yearlyrainmax, ack: true });
         // solar
-        this.setStateAsync('weather.maxvalues.solarradiationmax', { val: obj_values.solarradiationmax, ack: true });
-        this.setStateAsync('weather.maxvalues.uvimax', { val: obj_values.UVmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.solarradiationmax', { val: obj_values.solarradiationmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.uvimax', { val: obj_values.UVmax, ack: true });
 
-        // ----- min. data
-        this.setStateAsync('weather.minvalues.indoortempmin', { val: obj_values.indoortempmin, ack: true });
-        this.setStateAsync('weather.minvalues.outdoortempmin', { val: obj_values.tempmin, ack: true });
-        this.setStateAsync('weather.minvalues.dewpointtempmin', { val: obj_values.dewptmin, ack: true });
-        this.setStateAsync('weather.minvalues.windchilltempmin', { val: obj_values.windchillmin, ack: true });
+        // ----- Absolut min. data
+        this.setStateAsync('weather.minvalues.absolut.indoortempmin', { val: obj_values.indoortempmin, ack: true });
+        this.setStateAsync('weather.minvalues.absolut.outdoortempmin', { val: obj_values.tempmin, ack: true });
+        this.setStateAsync('weather.minvalues.absolut.dewpointtempmin', { val: obj_values.dewptmin, ack: true });
+        this.setStateAsync('weather.minvalues.absolut.windchilltempmin', { val: obj_values.windchillmin, ack: true });
         // humidity
-        this.setStateAsync('weather.minvalues.indoorhumiditymin', { val: obj_values.indoorhumiditymin, ack: true });
-        this.setStateAsync('weather.minvalues.outdoorhumiditymin', { val: obj_values.humiditymin, ack: true });
+        this.setStateAsync('weather.minvalues.absolut.indoorhumiditymin', { val: obj_values.indoorhumiditymin, ack: true });
+        this.setStateAsync('weather.minvalues.absolut.outdoorhumiditymin', { val: obj_values.humiditymin, ack: true });
         // pressure
-        this.setStateAsync('weather.minvalues.pressurerelmin', { val: obj_values.barommin, ack: true });
-        this.setStateAsync('weather.minvalues.pressureabsmin', { val: obj_values.absbarommin, ack: true });
+        this.setStateAsync('weather.minvalues.absolut.pressurerelmin', { val: obj_values.barommin, ack: true });
+        this.setStateAsync('weather.minvalues.absolut.pressureabsmin', { val: obj_values.absbarommin, ack: true });
 
 
     }

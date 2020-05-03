@@ -93,7 +93,9 @@
         "ws_getfirmware": true,
         "ws_getcurrent": true,
         "ws_getmax": false,
-        "ws_getmin": false
+        "ws_getmin": false,
+        "ws_getmaxdaily": false,
+        "ws_getmindaily": false
     },
     "objects": [],
     "instanceObjects": [ 
@@ -514,7 +516,15 @@
             "native": {}
         },
         {
-            "_id": "weather.maxvalues.indoortempmax",
+            "_id": "weather.maxvalues.absolut",
+            "type": "channel",
+            "common": {
+                "name": "Max values of Weather data"
+            },
+            "native": {}
+        },
+        {
+            "_id": "weather.maxvalues.absolut.indoortempmax",
             "type": "state",
             "common": {
                 "name": "Max. Indoor temperature",
@@ -535,7 +545,7 @@
             }
         },
         {
-            "_id": "weather.maxvalues.outdoortempmax",
+            "_id": "weather.maxvalues.absolut.outdoortempmax",
             "type": "state",
             "common": {
                 "name": "Max. Outdoor temperature",
@@ -556,7 +566,7 @@
             }
         },
         {
-            "_id": "weather.maxvalues.dewpointtempmax",
+            "_id": "weather.maxvalues.absolut.dewpointtempmax",
             "type": "state",
             "common": {
                 "name": "Max. Dewpoint temperature",
@@ -577,7 +587,7 @@
             }
         },
         {
-            "_id": "weather.maxvalues.indoorhumiditymax",
+            "_id": "weather.maxvalues.absolut.indoorhumiditymax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -598,7 +608,7 @@
             }   
         },
         {
-            "_id": "weather.maxvalues.outdoorhumiditymax",
+            "_id": "weather.maxvalues.absolut.outdoorhumiditymax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -619,7 +629,7 @@
             }   
         },
         {
-            "_id": "weather.maxvalues.windspeedmax",
+            "_id": "weather.maxvalues.absolut.windspeedmax",
             "type": "state",
             "common": {
               "def": 0,
@@ -639,7 +649,7 @@
               }   
         },
         {
-            "_id": "weather.maxvalues.windgustspeedmax",
+            "_id": "weather.maxvalues.absolut.windgustspeedmax",
             "type": "state",
             "common": {
               "def": 0,
@@ -659,7 +669,7 @@
               }   
         },
         {
-            "_id": "weather.maxvalues.pressureabsmax",
+            "_id": "weather.maxvalues.absolut.pressureabsmax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -679,7 +689,7 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.pressurerelmax",
+            "_id": "weather.maxvalues.absolut.pressurerelmax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -699,7 +709,7 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.rainmax",
+            "_id": "weather.maxvalues.absolut.rainmax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -719,7 +729,7 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.dailyrainmax",
+            "_id": "weather.maxvalues.absolut.dailyrainmax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -739,7 +749,7 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.weeklyrainmax",
+            "_id": "weather.maxvalues.absolut.weeklyrainmax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -759,7 +769,7 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.monthlyrainmax",
+            "_id": "weather.maxvalues.absolut.monthlyrainmax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -779,7 +789,7 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.yearlyrainmax",
+            "_id": "weather.maxvalues.absolut.yearlyrainmax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -799,7 +809,7 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.solarradiationmax",
+            "_id": "weather.maxvalues.absolut.solarradiationmax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -819,7 +829,7 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.uvimax",
+            "_id": "weather.maxvalues.absolut.uvimax",
             "type": "state",
             "common": {
                 "def": 0,
@@ -839,7 +849,7 @@
                 }   
         },
         {
-            "_id": "weather.minvalues",
+            "_id": "weather.minvalues.absolut",
             "type": "channel",
             "common": {
                 "name": "Min values of Weather data"
@@ -847,7 +857,7 @@
             "native": {}
         },
         {
-            "_id": "weather.minvalues.indoortempmin",
+            "_id": "weather.minvalues.absolut.indoortempmin",
             "type": "state",
             "common": {
                 "name": "Min. Indoor temperature",
@@ -868,7 +878,7 @@
             }
         },
         {
-            "_id": "weather.minvalues.outdoortempmin",
+            "_id": "weather.minvalues.absolut.outdoortempmin",
             "type": "state",
             "common": {
                 "name": "Min. Outdoor temperature",
@@ -889,7 +899,7 @@
             }
         },
         {
-            "_id": "weather.minvalues.dewpointtempmin",
+            "_id": "weather.minvalues.absolut.dewpointtempmin",
             "type": "state",
             "common": {
                 "name": "Min. Dewpoint temperature",
@@ -910,7 +920,7 @@
             }
         },
         {
-            "_id": "weather.minvalues.windchillmin",
+            "_id": "weather.minvalues.absolut.windchillmin",
             "type": "state",
             "common": {
                 "name": "Min. Windchill temperature",
@@ -931,7 +941,7 @@
             }
         },
         {
-            "_id": "weather.minvalues.indoorhumiditymin",
+            "_id": "weather.minvalues.absolut.indoorhumiditymin",
             "type": "state",
             "common": {
                 "def": 0,
@@ -952,7 +962,7 @@
             }   
         },
         {
-            "_id": "weather.minvalues.outdoorhumiditymin",
+            "_id": "weather.minvalues.absolut.outdoorhumiditymin",
             "type": "state",
             "common": {
                 "def": 0,
@@ -973,7 +983,7 @@
             }   
         },
         {
-            "_id": "weather.minvalues.pressureabsmin",
+            "_id": "weather.minvalues.absolut.pressureabsmin",
             "type": "state",
             "common": {
                 "def": 0,
@@ -993,7 +1003,7 @@
                 }   
         },
         {
-            "_id": "weather.minvalues.pressurerelmin",
+            "_id": "weather.minvalues.absolut.pressurerelmin",
             "type": "state",
             "common": {
                 "def": 0,
@@ -1011,6 +1021,14 @@
                 },
                 "native": {}
                 }   
+        },
+        {
+            "_id": "weather.maxvalues.daily",
+            "type": "channel",
+            "common": {
+                "name": "Daily Max values of Weather data"
+            },
+            "native": {}
         }
     ]
 }
