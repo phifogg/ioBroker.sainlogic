@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.4.0",
+        "version": "0.4.1",
         "news": {
+          "0.4.1": {
+            "en": "Fix for max wind speeds",
+            "de": "Max Windwerte korrigiert"
+          },
           "0.4.0": {
             "en": "Added Min Values",
             "de": "Min Werte abfragen"
