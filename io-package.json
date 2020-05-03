@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.5.1",
+        "version": "0.5.2",
         "news": {
+          "0.5.2": {
+            "en": "bugix",
+            "de": "Bugfix"
+          },
           "0.5.1": {
             "en": "bugix",
             "de": "Bugfix"
@@ -496,8 +500,8 @@
                 "read": true,
                 "write": false,
                 "min": 0,
-                "max": 1500,
-                "unit": "",
+                "max": 2000,
+                "unit": "lux",
                 "name": "Solar",
                 "mobile": {
                   "admin": {
@@ -837,8 +841,8 @@
                 "read": true,
                 "write": false,
                 "min": 0,
-                "max": 1500,
-                "unit": "",
+                "max": 2000,
+                "unit": "lux",
                 "name": "Max. Solar",
                 "mobile": {
                   "admin": {
@@ -1284,8 +1288,8 @@
                 "read": true,
                 "write": false,
                 "min": 0,
-                "max": 1500,
-                "unit": "",
+                "max": 2000,
+                "unit": "lux",
                 "name": "Max. Daily Solar",
                 "mobile": {
                   "admin": {
