@@ -454,7 +454,7 @@
                 "min": 0,
                 "max": 1500,
                 "unit": "mm",
-                "name": "Rain (Year)",
+                "name": "Rain (Month)",
                 "mobile": {
                   "admin": {
                     "visible": true
