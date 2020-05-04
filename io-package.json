@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.5.4",
+        "version": "0.5.5",
         "news": {
+          "0.5.5": {
+            "en": "Add UVraw",
+            "de": "UVraw hinzugefügt"
+          },
           "0.5.4": {
             "en": "bugix",
             "de": "Bugfix"
@@ -520,6 +524,26 @@
                 }   
         },
         {
+          "_id": "weather.current.UVraw",
+          "type": "state",
+          "common": {
+              "def": 0,
+              "type": "number",
+              "read": true,
+              "write": false,
+              "min": 0,
+              "max": 2000,
+              "unit": "mW/m2",
+              "name": "UVraw",
+              "mobile": {
+                "admin": {
+                  "visible": true
+                }
+              },
+              "native": {}
+              }   
+      },
+      {
             "_id": "weather.current.uvi",
             "type": "state",
             "common": {
@@ -849,7 +873,7 @@
                 "read": true,
                 "write": false,
                 "min": 0,
-                "max": 2000,
+                "max": 500000,
                 "unit": "lux",
                 "name": "Max. Solar",
                 "mobile": {
@@ -861,6 +885,26 @@
                 }   
         },
         {
+          "_id": "weather.maxvalues.absolut.UVrawmax",
+          "type": "state",
+          "common": {
+              "def": 0,
+              "type": "number",
+              "read": true,
+              "write": false,
+              "min": 0,
+              "max": 10000,
+              "unit": "mW/m2",
+              "name": "Max. UVraw",
+              "mobile": {
+                "admin": {
+                  "visible": true
+                }
+              },
+              "native": {}
+              }   
+      },
+      {
             "_id": "weather.maxvalues.absolut.uvimax",
             "type": "state",
             "common": {
@@ -1268,26 +1312,6 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.daily.dailyrainmax",
-            "type": "state",
-            "common": {
-                "def": 0,
-                "type": "number",
-                "read": true,
-                "write": false,
-                "min": 0,
-                "max": 1500,
-                "unit": "mm",
-                "name": "Daily Max Rain",
-                "mobile": {
-                  "admin": {
-                    "visible": true
-                  }
-                },
-                "native": {}
-                }   
-        },
-        {
             "_id": "weather.maxvalues.daily.solarradiationmax",
             "type": "state",
             "common": {
@@ -1308,6 +1332,26 @@
                 }   
         },
         {
+          "_id": "weather.maxvalues.daily.UVrawmax",
+          "type": "state",
+          "common": {
+              "def": 0,
+              "type": "number",
+              "read": true,
+              "write": false,
+              "min": 0,
+              "max": 2000,
+              "unit": "mW/m2",
+              "name": "Max. Daily Solar",
+              "mobile": {
+                "admin": {
+                  "visible": true
+                }
+              },
+              "native": {}
+              }   
+      },
+      {
             "_id": "weather.maxvalues.daily.uvimax",
             "type": "state",
             "common": {
