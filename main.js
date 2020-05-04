@@ -140,7 +140,7 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('weather.maxvalues.daily.rainmax', { val: obj_values.raindailymax, ack: true });
         // solar
         this.setStateAsync('weather.maxvalues.daily.solarradiationmax', { val: obj_values.solarradiationdailymax, ack: true });
-        this.setStateAsync('weather.maxvalues.daily.solarradiationmax', { val: obj_values.UVdailymax, ack: true });
+        this.setStateAsync('weather.maxvalues.daily.UVrawmax', { val: obj_values.UVrawdailymax, ack: true });
         this.setStateAsync('weather.maxvalues.daily.uvimax', { val: obj_values.UVdailymax, ack: true });
 
         // ----- Daily min. data

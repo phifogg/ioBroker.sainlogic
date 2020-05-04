@@ -533,7 +533,7 @@
               "write": false,
               "min": 0,
               "max": 2000,
-              "unit": "W/m2",
+              "unit": "mW/m2",
               "name": "UVraw",
               "mobile": {
                 "admin": {
@@ -894,7 +894,7 @@
               "write": false,
               "min": 0,
               "max": 10000,
-              "unit": "W/m2",
+              "unit": "mW/m2",
               "name": "Max. UVraw",
               "mobile": {
                 "admin": {
@@ -1312,26 +1312,6 @@
                 }   
         },
         {
-            "_id": "weather.maxvalues.daily.dailyrainmax",
-            "type": "state",
-            "common": {
-                "def": 0,
-                "type": "number",
-                "read": true,
-                "write": false,
-                "min": 0,
-                "max": 1500,
-                "unit": "mm",
-                "name": "Daily Max Rain",
-                "mobile": {
-                  "admin": {
-                    "visible": true
-                  }
-                },
-                "native": {}
-                }   
-        },
-        {
             "_id": "weather.maxvalues.daily.solarradiationmax",
             "type": "state",
             "common": {
@@ -1361,7 +1341,7 @@
               "write": false,
               "min": 0,
               "max": 2000,
-              "unit": "lux",
+              "unit": "mW/m2",
               "name": "Max. Daily Solar",
               "mobile": {
                 "admin": {
