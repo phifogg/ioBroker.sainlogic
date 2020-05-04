@@ -81,6 +81,7 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('weather.current.monthlyrain', { val: obj_values.monthlyrain, ack: true });
         this.setStateAsync('weather.current.yearlyrain', { val: obj_values.yearlyrain, ack: true });
         // solar
+        this.setStateAsync('weather.current.UVraw', { val: obj_values.UVraw, ack:true });
         this.setStateAsync('weather.current.solarradiation', { val: obj_values.solarradiation, ack: true });
         this.setStateAsync('weather.current.uvi', { val: obj_values.UV, ack: true });
 
@@ -106,6 +107,7 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('weather.maxvalues.absolut.yearlyrainmax', { val: obj_values.yearlyrainmax, ack: true });
         // solar
         this.setStateAsync('weather.maxvalues.absolut.solarradiationmax', { val: obj_values.solarradiationmax, ack: true });
+        this.setStateAsync('weather.maxvalues.absolut.UVrawmax', { val: obj_values.UVrawmax, ack:true });
         this.setStateAsync('weather.maxvalues.absolut.uvimax', { val: obj_values.UVmax, ack: true });
 
         // ----- Absolut min. data
@@ -138,6 +140,7 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('weather.maxvalues.daily.rainmax', { val: obj_values.raindailymax, ack: true });
         // solar
         this.setStateAsync('weather.maxvalues.daily.solarradiationmax', { val: obj_values.solarradiationdailymax, ack: true });
+        this.setStateAsync('weather.maxvalues.daily.solarradiationmax', { val: obj_values.UVdailymax, ack: true });
         this.setStateAsync('weather.maxvalues.daily.uvimax', { val: obj_values.UVdailymax, ack: true });
 
         // ----- Daily min. data
