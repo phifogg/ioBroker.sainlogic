@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.5.3",
+        "version": "0.5.4",
         "news": {
+          "0.5.4": {
+            "en": "bugix",
+            "de": "Bugfix"
+          },
           "0.5.3": {
             "en": "bugix",
             "de": "Bugfix"
