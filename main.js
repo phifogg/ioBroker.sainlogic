@@ -112,7 +112,7 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('weather.minvalues.absolut.indoortempmin', { val: obj_values.indoortempmin, ack: true });
         this.setStateAsync('weather.minvalues.absolut.outdoortempmin', { val: obj_values.tempmin, ack: true });
         this.setStateAsync('weather.minvalues.absolut.dewpointtempmin', { val: obj_values.dewptmin, ack: true });
-        this.setStateAsync('weather.minvalues.absolut.windchilltempmin', { val: obj_values.windchillmin, ack: true });
+        this.setStateAsync('weather.minvalues.absolut.windchillmin', { val: obj_values.windchillmin, ack: true });
         // humidity
         this.setStateAsync('weather.minvalues.absolut.indoorhumiditymin', { val: obj_values.indoorhumiditymin, ack: true });
         this.setStateAsync('weather.minvalues.absolut.outdoorhumiditymin', { val: obj_values.humiditymin, ack: true });
