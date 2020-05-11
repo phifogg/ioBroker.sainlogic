@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.5.6",
+        "version": "0.6.0",
         "news": {
+          "0.6.0": {
+            "en": "Add Ecowitt support",
+            "de": "Ecowitt für Listener hinzugefügt"
+          },
           "0.5.6": {
             "en": "UVraw conversion fix",
             "de": "UVraw korrigiert"
@@ -118,6 +122,7 @@
         "port": 45000,
         "path": "/weatherstation/updateweatherstation.php",
         "listener_active": false,
+        "listener_protocol": "wunderground",
         "scheduler_active": false,
         "ws_address": "",
         "ws_port": 45000,

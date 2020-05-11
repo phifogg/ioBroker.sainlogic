@@ -23,6 +23,14 @@
             // example: select elements with id=key and class=value and insert value
             if (!settings) return;
 
+
+            getProtocols(function() {
+                $('#listener_protocol').append('<option value="wunderground">Wunderground</option>');
+                $('#listener_protocol').append('<option value="wunderground">Ecowitt</option>');
+                $('#listener_protocol.value').val(settings.listener_protocol).select();
+            });
+
+
             getIPs(function(ips) {
                 for (var i = 0; i < ips.length; i++) {
                     $('#bind').append('<option value="' + ips[i].address + '">' + ips[i].name + '</option>');
@@ -112,6 +120,12 @@
                     <div class="col s6 input-field">
                         <input type="text" class="value" id="path" />
                         <label for="path" class="translate">path</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6 input-field">
+                        <input type="text" class="value" id="listener_protocol" />
+                        <label for="listener_protocol" class="translate">Protocol:</label>
                     </div>
                 </div>
            </div>
