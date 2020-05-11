@@ -3,6 +3,10 @@
         "name": "sainlogic",
         "version": "0.5.5",
         "news": {
+          "0.5.6": {
+            "en": "UVraw conversion fix",
+            "de": "UVraw korrigiert"
+          },
           "0.5.5": {
             "en": "Add UVraw",
             "de": "UVraw hinzugefügt"
@@ -533,7 +537,7 @@
               "write": false,
               "min": 0,
               "max": 2000,
-              "unit": "mW/m2",
+              "unit": "µW/m²",
               "name": "UVraw",
               "mobile": {
                 "admin": {
@@ -894,7 +898,7 @@
               "write": false,
               "min": 0,
               "max": 10000,
-              "unit": "mW/m2",
+              "unit": "µW/m²",
               "name": "Max. UVraw",
               "mobile": {
                 "admin": {
@@ -1341,7 +1345,7 @@
               "write": false,
               "min": 0,
               "max": 2000,
-              "unit": "mW/m2",
+              "unit": "µW/m²",
               "name": "Max. Daily Solar",
               "mobile": {
                 "admin": {
