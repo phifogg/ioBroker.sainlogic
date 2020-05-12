@@ -11,6 +11,8 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 const Listener = require('./lib/listener');
 const Scheduler = require('./lib/scheduler');
+const { DATAFIELDS } = require('./lib/constants');
+
 
 class Sainlogic extends utils.Adapter {
 
@@ -56,6 +58,16 @@ class Sainlogic extends utils.Adapter {
      * @param {{ softwaretype: any; indoortempf: any; tempf: any; dewptf: any; windchillf: any; indoorhumidity: any; humidity: any; windspeedmph: any; windgustmph: any; winddir: any; baromin: any; absbaromin: any; ... 6 more ...; UV: any; }} json_response
      */
     setStates(date, obj_values) {
+
+        // new version
+        for (const attr in obj_values) {
+            // check if this has a mapping to the current protocol
+            this.log.debug(`Setting value from data for ${attr} to ${obj_values[attr]}`);
+
+            this.setStateAsync(attr, { val: obj_values[attr], ack: true });
+        }
+
+/**
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
         this.setStateAsync('info.softwaretype', { val: obj_values.softwaretype, ack: true });
         
@@ -154,7 +166,7 @@ class Sainlogic extends utils.Adapter {
         // pressure
         this.setStateAsync('weather.minvalues.daily.pressurerelmin', { val: obj_values.baromdailymin, ack: true });
         this.setStateAsync('weather.minvalues.daily.pressureabsmin', { val: obj_values.absbaromdailymin, ack: true });
-
+ */
 
     }
 
