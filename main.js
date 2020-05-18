@@ -27,7 +27,13 @@ class Sainlogic extends utils.Adapter {
         this.on('objectChange', this.onObjectChange.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
-        this.on('unload', this.onUnload.bind(this));
+//        this.subscribeObjects('unit_rain', this.onObjectChange.bind(this));
+    }
+
+
+    checkUnit(err, state) {
+        this.log.info('${state.common.name} current unit is: ' + (state.common.unit));
+
 
     }
 
@@ -38,7 +44,18 @@ class Sainlogic extends utils.Adapter {
         // Initialize your adapter here
 
         // try changing a data state object:
-        // this.deleteState('weather.current.dailyrain');
+        for (const attr in DATAFIELDS) {
+            // check if this has a mapping to the current protocol
+
+            const uconf = DATAFIELDS[attr]['unit_config'];
+
+            if (uconf != null) {
+                this.getObject(DATAFIELDS[attr]['name'], this.checkUnit.bind(this));
+
+            }
+        }
+
+
 
         await this.setObjectAsync('weather.current.dailyrain', {
             type: 'state',
