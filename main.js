@@ -37,6 +37,22 @@ class Sainlogic extends utils.Adapter {
     async onReady() {
         // Initialize your adapter here
 
+        // try changing a data state object:
+        // this.deleteState('weather.current.dailyrain');
+
+        await this.setObjectAsync('weather.current.dailyrain', {
+            type: 'state',
+            common: {
+                name: 'dailyrain',
+                type: 'number',
+                unit: 'in',
+                role: 'indicator',
+                read: true,
+                write: true,
+            },
+            native: {},
+        });
+
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
 
