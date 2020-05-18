@@ -134,7 +134,7 @@
         "ws_getmin": false,
         "ws_getmaxdaily": false,
         "ws_getmindaily": false,
-        "rain_unit": "mm"
+        "unit_rain": "mm"
     },
     "objects": [],
     "instanceObjects": [ 

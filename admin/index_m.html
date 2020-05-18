@@ -24,7 +24,7 @@
             if (!settings) return;
 
 
-            getIPs(function(ips) {
+            getIPs(function (ips) {
                 for (var i = 0; i < ips.length; i++) {
                     $('#bind').append('<option value="' + ips[i].address + '">' + ips[i].name + '</option>');
                 }
@@ -93,7 +93,7 @@
 
             <!-- LISTENER TAB -->
             <div id="tab-listener" class="col s12 page">
-    
+
                 <div class="row">
                     <div class="col s6 input-field">
                         <input type="checkbox" class="value" id="listener_active" />
@@ -106,7 +106,7 @@
                         <label class="translate" for="bind">IP:</label>
                     </div>
                     <div class="col s12 m4 l1 no-if-extend">
-                        <input class="value" id="port" size="5" maxlength="5" type="number"/>
+                        <input class="value" id="port" size="5" maxlength="5" type="number" />
                         <label class="translate" for="port">Port:</label>
                     </div>
                 </div>
@@ -121,87 +121,87 @@
                         <select class="value" id="listener_protocol">
                             <option value="wunderground" class="translate">Wunderground</option>
                             <option value="ecowitt" class="translate">Ecowitt</option>
-                        </select>   
+                        </select>
                         <label for="listener_protocol" class="translate">Protocol:</label>
                     </div>
                 </div>
-           </div>
-
-           <!---  SCHEDULER TAB -->
-           <div id="tab-scheduler" class="col s12 page">
-            <div class="row">
-                <div class="col s6 input-field">
-                    <input type="checkbox" class="value" id="scheduler_active" />
-                    <label for="scheduler_active" class="translate">Active</label>
-                </div>
             </div>
-            <div class="row">
-                <div class="col s12 m8 l5 no-if-extend">
-                    <input type="text" class="value" id="ws_address"/>
-                    <label class="translate" for="ws_address">Weatherstation IP:</label>
-                </div>
-                <div class="col s12 m4 l1 no-if-extend">
-                    <input class="value" id="ws_port" size="5" maxlength="5" type="number"/>
-                    <label class="translate" for="ws_port">Weatherstation Port:</label>
-                </div>
 
-            </div>
+            <!---  SCHEDULER TAB -->
+            <div id="tab-scheduler" class="col s12 page">
+                <div class="row">
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="scheduler_active" />
+                        <label for="scheduler_active" class="translate">Active</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m8 l5 no-if-extend">
+                        <input type="text" class="value" id="ws_address" />
+                        <label class="translate" for="ws_address">Weatherstation IP:</label>
+                    </div>
+                    <div class="col s12 m4 l1 no-if-extend">
+                        <input class="value" id="ws_port" size="5" maxlength="5" type="number" />
+                        <label class="translate" for="ws_port">Weatherstation Port:</label>
+                    </div>
+
+                </div>
                 <div class="row">
                     <div class="col s12 m4 l1 no-if-extend">
-                    <input class="value" id="ws_freq" size="5" maxlength="5" type="number"/>
-                    <label class="translate" for="ws_freq">Intervall:</label>
+                        <input class="value" id="ws_freq" size="5" maxlength="5" type="number" />
+                        <label class="translate" for="ws_freq">Intervall:</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col s6 input-field">
-                    <input type="checkbox" class="value" id="ws_getfirmware" />
-                    <label for="ws_getfirmware" class="translate">Get Firmware</label>
+                <div class="row">
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="ws_getfirmware" />
+                        <label for="ws_getfirmware" class="translate">Get Firmware</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s6 input-field">
-                    <input type="checkbox" class="value" id="ws_getcurrent" />
-                    <label for="ws_getcurrent" class="translate">Get Current Data</label>
+                <div class="row">
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="ws_getcurrent" />
+                        <label for="ws_getcurrent" class="translate">Get Current Data</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s6 input-field">
-                    <input type="checkbox" class="value" id="ws_getmax" />
-                    <label for="ws_getmax" class="translate">Get Max Data</label>
+                <div class="row">
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="ws_getmax" />
+                        <label for="ws_getmax" class="translate">Get Max Data</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s6 input-field">
-                    <input type="checkbox" class="value" id="ws_getmin" />
-                    <label for="ws_getmin" class="translate">Get Min Data</label>
+                <div class="row">
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="ws_getmin" />
+                        <label for="ws_getmin" class="translate">Get Min Data</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s6 input-field">
-                    <input type="checkbox" class="value" id="ws_getmaxdaily" />
-                    <label for="ws_getmaxdaily" class="translate">Get Daily Max Data</label>
+                <div class="row">
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="ws_getmaxdaily" />
+                        <label for="ws_getmaxdaily" class="translate">Get Daily Max Data</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s6 input-field">
-                    <input type="checkbox" class="value" id="ws_getmindaily" />
-                    <label for="ws_getmindaily" class="translate">Get Daily Min Data</label>
+                <div class="row">
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="ws_getmindaily" />
+                        <label for="ws_getmindaily" class="translate">Get Daily Min Data</label>
+                    </div>
                 </div>
-            </div>
 
+            </div>
             <!-- UNITS TAB -->
             <div id="tab-units" class="col s12 page">
                 <div class="col s6 input-field">
                     <select class="value" id="unit_rain">
                         <option value="mm" class="translate">mm</option>
                         <option value="in" class="translate">in</option>
-                    </select>   
+                    </select>
                     <label for="unit_rain" class="translate">Rainfall:</label>
                 </div>
             </div>
         </div>
-    </div>
 
 </body>
 
