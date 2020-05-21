@@ -33,27 +33,22 @@ class Sainlogic extends utils.Adapter {
     }
 
 
-    async checkUnit(err, state) {
-        // get attribute id without instance prefix
-        const c_id = state._id.substring(this.namespace.length + 1);
+    checkUnit(attrdef, obj) {
 
-        // filter constants array for this attribute
-        const my_constant = DATAFIELDS.filter(function (attr) {
-            return attr.name == c_id;
-        });
+        const c_id =  attrdef.channel + '.' + attrdef.id;
+        const target_unit = this.config[attrdef.unit_config];
 
-        const target_unit = this.config[my_constant[0].unit_config];
-
-        if (target_unit != state.common.unit) {
+        this.log.info(`Unit check for ${attrdef.id} from ${obj.common.unit} to ${target_unit}`);
+        if (target_unit != obj.common.unit) {
             // change and convert unit
-            this.log.info(`Unit changed for ${c_id} from ${state.common.unit} to ${target_unit}, updating data point`);
+            this.log.info(`Unit changed for ${attrdef.id} from ${obj.common.unit} to ${target_unit}, updating data point`);
 
-            const my_target_unit = my_constant[0].units.filter(function (unit) {
+            const my_target_unit = attrdef.units.filter(function (unit) {
                 return unit.display_name == target_unit;
             });
 
-            const my_source_unit = my_constant[0].units.filter(function (unit) {
-                return unit.display_name ==state.common.unit;
+            const my_source_unit = attrdef.units.filter(function (unit) {
+                return unit.display_name ==obj.common.unit;
             });
 
             const conversion_rule_back = my_source_unit[0].main_unit_conversion;
@@ -61,12 +56,12 @@ class Sainlogic extends utils.Adapter {
 
 
             this.setObjectAsync(c_id, {
-                type: state.type,
+                type: obj.type,
                 common: {
-                    name: state.common.name,
-                    type: state.common.type,
+                    name: obj.common.name,
+                    type: obj.common.type,
                     unit: target_unit,
-                    role: state.common.role
+                    role: obj.common.role
                 },
                 native: {},
             });
@@ -106,14 +101,30 @@ class Sainlogic extends utils.Adapter {
 
         // try changing a data state object:
         for (const attr in DATAFIELDS) {
-            // check if this has a mapping to the current protocol
 
+            // check object for existence and update if needed
+            const obj_id = DATAFIELDS[attr].channel + '.' + DATAFIELDS[attr].id;
+            const that = this;
+            this.getObject(obj_id,  function(err, obj) {
+                if (err) {
+                    that.log.error('Error on retrieving object: ' + err);
+                } else {
+                    that.log.info('Checking obj: ' + obj_id);
+                    if (DATAFIELDS[attr].unit_config != null) {
+                        that.checkUnit(DATAFIELDS[attr], obj);
+                    }
+                }
+
+            }.bind(that));
+
+            /** 
             const uconf = DATAFIELDS[attr]['unit_config'];
 
             if (uconf != null) {
-                this.getObject(DATAFIELDS[attr]['name'], this.checkUnit.bind(this));
-
+                this.getObject(DATAFIELDS[attr]['id'], this.checkUnit.bind(this));
             }
+
+            */
         }
 
 
