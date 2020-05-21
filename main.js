@@ -37,7 +37,6 @@ class Sainlogic extends utils.Adapter {
 
         const c_id = attrdef.channel + '.' + attrdef.id;
         const target_unit = this.config[attrdef.unit_config];
-        this.log.info(`Unit check for ${attrdef.id} from ${obj.common.unit} to ${target_unit}`);
 
         if (target_unit != obj.common.unit) {
             // change and convert unit
@@ -54,14 +53,12 @@ class Sainlogic extends utils.Adapter {
             const conversion_rule_back = my_source_unit[0].main_unit_conversion;
             const conversion_rule_forward = my_target_unit[0].display_conversion;
 
-
             this.setObjectAsync(c_id, {
                 type: obj.type,
                 common: {
-                    name: obj.common.name,
-                    type: obj.common.type,
+                    name: attrdef.display_name,
+                    type: attrdef.type,
                     unit: target_unit,
-                    role: obj.common.role
                 },
                 native: {},
             });
@@ -108,8 +105,28 @@ class Sainlogic extends utils.Adapter {
             this.getObject(obj_id, function (err, obj) {
                 if (err || obj == null) {
                     that.log.error('Error on retrieving object: ' + obj_id + ', err: ' + err);
+                    that.setObjectAsync(obj_id, {
+                        type: 'state',
+                        common: {
+                            name: DATAFIELDS[attr].name,
+                            type: DATAFIELDS[attr].type,
+                            unit: DATAFIELDS[attr].unit,
+                            role: DATAFIELDS[attr].role,
+                            min: DATAFIELDS[attr].min,
+                            max: DATAFIELDS[attr].max,
+                            def: 0,
+                            read: true,
+                            write: false,
+                            mobile: {
+                                admin: {
+                                    visible: true
+                                }
+                            },      
+                        },
+                        native: {},
+                    });
+        
                 } else {
-                    that.log.info('Checking obj: ' + obj_id);
                     if (DATAFIELDS[attr].unit_config != null) {
                         that.checkUnit(DATAFIELDS[attr], obj);
                     }
