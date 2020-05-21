@@ -35,10 +35,10 @@ class Sainlogic extends utils.Adapter {
 
     checkUnit(attrdef, obj) {
 
-        const c_id =  attrdef.channel + '.' + attrdef.id;
+        const c_id = attrdef.channel + '.' + attrdef.id;
         const target_unit = this.config[attrdef.unit_config];
-
         this.log.info(`Unit check for ${attrdef.id} from ${obj.common.unit} to ${target_unit}`);
+
         if (target_unit != obj.common.unit) {
             // change and convert unit
             this.log.info(`Unit changed for ${attrdef.id} from ${obj.common.unit} to ${target_unit}, updating data point`);
@@ -48,11 +48,11 @@ class Sainlogic extends utils.Adapter {
             });
 
             const my_source_unit = attrdef.units.filter(function (unit) {
-                return unit.display_name ==obj.common.unit;
+                return unit.display_name == obj.common.unit;
             });
 
             const conversion_rule_back = my_source_unit[0].main_unit_conversion;
-            const conversion_rule_forward =  my_target_unit[0].display_conversion;
+            const conversion_rule_forward = my_target_unit[0].display_conversion;
 
 
             this.setObjectAsync(c_id, {
@@ -77,14 +77,14 @@ class Sainlogic extends utils.Adapter {
                 // convert back if required
                 if (conversion_rule_back != null) {
                     const exp = parser.parse(conversion_rule_back);
-                    new_value = exp.evaluate({ x: new_value });    
+                    new_value = exp.evaluate({ x: new_value });
                 }
 
                 // convert forward if required
                 if (conversion_rule_forward != null) {
                     const exp = parser.parse(conversion_rule_forward);
                     new_value = exp.evaluate({ x: new_value });
-    
+
                 }
                 that.setState(c_id, { val: new_value, ack: true });
 
@@ -105,9 +105,9 @@ class Sainlogic extends utils.Adapter {
             // check object for existence and update if needed
             const obj_id = DATAFIELDS[attr].channel + '.' + DATAFIELDS[attr].id;
             const that = this;
-            this.getObject(obj_id,  function(err, obj) {
-                if (err) {
-                    that.log.error('Error on retrieving object: ' + err);
+            this.getObject(obj_id, function (err, obj) {
+                if (err || obj == null) {
+                    that.log.error('Error on retrieving object: ' + obj_id + ', err: ' + err);
                 } else {
                     that.log.info('Checking obj: ' + obj_id);
                     if (DATAFIELDS[attr].unit_config != null) {
@@ -116,15 +116,6 @@ class Sainlogic extends utils.Adapter {
                 }
 
             }.bind(that));
-
-            /** 
-            const uconf = DATAFIELDS[attr]['unit_config'];
-
-            if (uconf != null) {
-                this.getObject(DATAFIELDS[attr]['id'], this.checkUnit.bind(this));
-            }
-
-            */
         }
 
 
@@ -150,114 +141,12 @@ class Sainlogic extends utils.Adapter {
      */
     setStates(date, obj_values) {
 
-        // new version
         for (const attr in obj_values) {
             // check if this has a mapping to the current protocol
             this.log.debug(`Setting value from data for ${attr} to ${obj_values[attr]}`);
 
             this.setStateAsync(attr, { val: obj_values[attr], ack: true });
         }
-
-        /**
-                this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
-                this.setStateAsync('info.softwaretype', { val: obj_values.softwaretype, ack: true });
-                
-                // ---- current data
-                this.setStateAsync('weather.current.indoortemp', { val: obj_values.indoortemp, ack: true });
-                this.setStateAsync('weather.current.outdoortemp', { val: obj_values.temp, ack: true });
-                this.setStateAsync('weather.current.dewpointtemp', { val: obj_values.dewpt, ack: true });
-                this.setStateAsync('weather.current.windchilltemp', { val: obj_values.windchill, ack: true });
-                // humidity
-                this.setStateAsync('weather.current.indoorhumidity', { val: obj_values.indoorhumidity, ack: true });
-                this.setStateAsync('weather.current.outdoorhumidity', { val: obj_values.humidity, ack: true });
-                // wind
-                this.setStateAsync('weather.current.windspeed', { val: obj_values.windspeed, ack: true });
-                this.setStateAsync('weather.current.windgustspeed', { val: obj_values.windgust, ack: true });
-                this.setStateAsync('weather.current.winddir', { val: obj_values.winddir, ack: true });
-                // pressure
-                this.setStateAsync('weather.current.pressurerel', { val: obj_values.barom, ack: true });
-                this.setStateAsync('weather.current.pressureabs', { val: obj_values.absbarom, ack: true });
-                // rain
-                this.setStateAsync('weather.current.rain', { val: obj_values.rain, ack: true });
-                this.setStateAsync('weather.current.dailyrain', { val: obj_values.dailyrain, ack: true });
-                this.setStateAsync('weather.current.weeklyrain', { val: obj_values.weeklyrain, ack: true });
-                this.setStateAsync('weather.current.monthlyrain', { val: obj_values.monthlyrain, ack: true });
-                this.setStateAsync('weather.current.yearlyrain', { val: obj_values.yearlyrain, ack: true });
-                // solar
-                this.setStateAsync('weather.current.UVraw', { val: obj_values.UVraw, ack:true });
-                this.setStateAsync('weather.current.solarradiation', { val: obj_values.solarradiation, ack: true });
-                this.setStateAsync('weather.current.uvi', { val: obj_values.UV, ack: true });
-        
-                // ----- Absolut max. data
-                this.setStateAsync('weather.maxvalues.absolut.indoortempmax', { val: obj_values.indoortempmax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.outdoortempmax', { val: obj_values.tempmax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.dewpointtempmax', { val: obj_values.dewptmax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.windchilltempmax', { val: obj_values.windchillmax, ack: true });
-                // humidity
-                this.setStateAsync('weather.maxvalues.absolut.indoorhumiditymax', { val: obj_values.indoorhumiditymax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.outdoorhumiditymax', { val: obj_values.humiditymax, ack: true });
-                // wind
-                this.setStateAsync('weather.maxvalues.absolut.windspeedmax', { val: obj_values.windspeedmax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.windgustspeedmax', { val: obj_values.windgustmax, ack: true });
-                // pressure
-                this.setStateAsync('weather.maxvalues.absolut.pressurerelmax', { val: obj_values.barommax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.pressureabsmax', { val: obj_values.absbarommax, ack: true });
-                // rain
-                this.setStateAsync('weather.maxvalues.absolut.rainmax', { val: obj_values.rainmax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.dailyrainmax', { val: obj_values.dailyrainmax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.weeklyrainmax', { val: obj_values.weeklyrainmax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.monthlyrainmax', { val: obj_values.monthlyrainmax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.yearlyrainmax', { val: obj_values.yearlyrainmax, ack: true });
-                // solar
-                this.setStateAsync('weather.maxvalues.absolut.solarradiationmax', { val: obj_values.solarradiationmax, ack: true });
-                this.setStateAsync('weather.maxvalues.absolut.UVrawmax', { val: obj_values.UVrawmax, ack:true });
-                this.setStateAsync('weather.maxvalues.absolut.uvimax', { val: obj_values.UVmax, ack: true });
-        
-                // ----- Absolut min. data
-                this.setStateAsync('weather.minvalues.absolut.indoortempmin', { val: obj_values.indoortempmin, ack: true });
-                this.setStateAsync('weather.minvalues.absolut.outdoortempmin', { val: obj_values.tempmin, ack: true });
-                this.setStateAsync('weather.minvalues.absolut.dewpointtempmin', { val: obj_values.dewptmin, ack: true });
-                this.setStateAsync('weather.minvalues.absolut.windchillmin', { val: obj_values.windchillmin, ack: true });
-                // humidity
-                this.setStateAsync('weather.minvalues.absolut.indoorhumiditymin', { val: obj_values.indoorhumiditymin, ack: true });
-                this.setStateAsync('weather.minvalues.absolut.outdoorhumiditymin', { val: obj_values.humiditymin, ack: true });
-                // pressure
-                this.setStateAsync('weather.minvalues.absolut.pressurerelmin', { val: obj_values.barommin, ack: true });
-                this.setStateAsync('weather.minvalues.absolut.pressureabsmin', { val: obj_values.absbarommin, ack: true });
-        
-                // ----- Daily max. data
-                this.setStateAsync('weather.maxvalues.daily.indoortempmax', { val: obj_values.indoortempdailymax, ack: true });
-                this.setStateAsync('weather.maxvalues.daily.outdoortempmax', { val: obj_values.tempdailymax, ack: true });
-                this.setStateAsync('weather.maxvalues.daily.dewpointtempmax', { val: obj_values.dewptdailymax, ack: true });
-                this.setStateAsync('weather.maxvalues.daily.windchilltempmax', { val: obj_values.windchilldailymax, ack: true });
-                // humidity
-                this.setStateAsync('weather.maxvalues.daily.indoorhumiditymax', { val: obj_values.indoorhumiditydailymax, ack: true });
-                this.setStateAsync('weather.maxvalues.daily.outdoorhumiditymax', { val: obj_values.humiditydailymax, ack: true });
-                // wind
-                this.setStateAsync('weather.maxvalues.daily.windspeedmax', { val: obj_values.windspeeddailymax, ack: true });
-                this.setStateAsync('weather.maxvalues.daily.windgustspeedmax', { val: obj_values.windspeeddailymax, ack: true });
-                // pressure
-                this.setStateAsync('weather.maxvalues.daily.pressurerelmax', { val: obj_values.baromdailymax, ack: true });
-                this.setStateAsync('weather.maxvalues.daily.pressureabsmax', { val: obj_values.absbaromdailymax, ack: true });
-                // rain
-                this.setStateAsync('weather.maxvalues.daily.rainmax', { val: obj_values.raindailymax, ack: true });
-                // solar
-                this.setStateAsync('weather.maxvalues.daily.solarradiationmax', { val: obj_values.solarradiationdailymax, ack: true });
-                this.setStateAsync('weather.maxvalues.daily.UVrawmax', { val: obj_values.UVrawdailymax, ack: true });
-                this.setStateAsync('weather.maxvalues.daily.uvimax', { val: obj_values.UVdailymax, ack: true });
-        
-                // ----- Daily min. data
-                this.setStateAsync('weather.minvalues.daily.indoortempmin', { val: obj_values.indoortempdailymin, ack: true });
-                this.setStateAsync('weather.minvalues.daily.outdoortempmin', { val: obj_values.tempdailymin, ack: true });
-                this.setStateAsync('weather.minvalues.daily.dewpointtempmin', { val: obj_values.dewptdailymin, ack: true });
-                this.setStateAsync('weather.minvalues.daily.windchillmin', { val: obj_values.windchilldailymin, ack: true });
-                // humidity
-                this.setStateAsync('weather.minvalues.daily.indoorhumiditymin', { val: obj_values.indoorhumiditydailymin, ack: true });
-                this.setStateAsync('weather.minvalues.daily.outdoorhumiditymin', { val: obj_values.humiditydailymin, ack: true });
-                // pressure
-                this.setStateAsync('weather.minvalues.daily.pressurerelmin', { val: obj_values.baromdailymin, ack: true });
-                this.setStateAsync('weather.minvalues.daily.pressureabsmin', { val: obj_values.absbaromdailymin, ack: true });
-         */
 
     }
 

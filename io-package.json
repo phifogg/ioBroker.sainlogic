@@ -135,7 +135,8 @@
         "ws_getmaxdaily": false,
         "ws_getmindaily": false,
         "unit_rain": "mm",
-        "unit_temperature": "°C"
+        "unit_temperature": "°C",
+        "unit_pressure": "hPa"
     },
     "objects": [],
     "instanceObjects": [ 
