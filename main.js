@@ -35,12 +35,12 @@ class Sainlogic extends utils.Adapter {
 
     checkUnit(attrdef, obj) {
 
-        const c_id = attrdef.channel + '.' + attrdef.id;
+        const c_id = obj._id;
         const target_unit = this.config[attrdef.unit_config];
 
         if (target_unit != obj.common.unit) {
             // change and convert unit
-            this.log.info(`Unit changed for ${attrdef.id} from ${obj.common.unit} to ${target_unit}, updating data point`);
+            this.log.info(`Unit changed for ${c_id} from ${obj.common.unit} to ${target_unit}, updating data point`);
 
             const my_target_unit = attrdef.units.filter(function (unit) {
                 return unit.display_name == target_unit;
@@ -58,6 +58,7 @@ class Sainlogic extends utils.Adapter {
                 common: {
                     name: attrdef.display_name,
                     type: attrdef.type,
+                    role: attrdef.role,
                     unit: target_unit,
                 },
                 native: {},
@@ -86,7 +87,6 @@ class Sainlogic extends utils.Adapter {
                 that.setState(c_id, { val: new_value, ack: true });
 
             }.bind(that));
-
         }
     }
 
