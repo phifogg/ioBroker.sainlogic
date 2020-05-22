@@ -41,18 +41,6 @@ class Sainlogic extends utils.Adapter {
         if (target_unit != obj.common.unit) {
             // change and convert unit
             this.log.info(`Unit changed for ${c_id} from ${obj.common.unit} to ${target_unit}, updating data point`);
-
-            const my_target_unit = attrdef.units.filter(function (unit) {
-                return unit.display_name == target_unit;
-            });
-
-            const my_source_unit = attrdef.units.filter(function (unit) {
-                return unit.display_name == obj.common.unit;
-            });
-
-            const conversion_rule_back = my_source_unit[0].main_unit_conversion;
-            const conversion_rule_forward = my_target_unit[0].display_conversion;
-
             this.setObjectAsync(c_id, {
                 type: obj.type,
                 common: {
@@ -64,6 +52,17 @@ class Sainlogic extends utils.Adapter {
                 native: {},
             });
 
+
+            const my_target_unit = attrdef.units.filter(function (unit) {
+                return unit.display_name == target_unit;
+            });
+
+            const my_source_unit = attrdef.units.filter(function (unit) {
+                return unit.display_name == obj.common.unit;
+            });
+
+            const conversion_rule_back = my_source_unit[0].main_unit_conversion;
+            const conversion_rule_forward = my_target_unit[0].display_conversion;
 
             const that = this;
             this.getState(c_id, function (err, st) {
