@@ -53,16 +53,11 @@ class Sainlogic extends utils.Adapter {
             });
 
 
-            const my_target_unit = attrdef.units.filter(function (unit) {
-                return unit.display_name == target_unit;
-            });
-
             const my_source_unit = attrdef.units.filter(function (unit) {
                 return unit.display_name == obj.common.unit;
             });
 
             const conversion_rule_back = my_source_unit[0].main_unit_conversion;
-            const conversion_rule_forward = my_target_unit[0].display_conversion;
 
             const that = this;
             this.getState(c_id, function (err, st) {
@@ -77,16 +72,34 @@ class Sainlogic extends utils.Adapter {
                     new_value = exp.evaluate({ x: new_value });
                 }
 
-                // convert forward if required
-                if (conversion_rule_forward != null) {
-                    const exp = parser.parse(conversion_rule_forward);
-                    new_value = exp.evaluate({ x: new_value });
-
-                }
+                new_value = that.toDisplayUnit(attrdef, new_value);
                 that.setState(c_id, { val: new_value, ack: true });
 
             }.bind(that));
         }
+    }
+
+    /** Converts the given value to the target unit for given attribute definition */
+    toDisplayUnit(attrdef, value) {
+        const parser = new Parser();
+
+        const target_unit = this.config[attrdef.unit_config];
+        const my_target_unit = attrdef.units.filter(function (unit) {
+            return unit.display_name == target_unit;
+        });
+
+        const conversion_rule_forward = my_target_unit[0].display_conversion;
+        this.log.debug('Target for ' + attrdef.id + ' unit is set: ' + target_unit + ', using conversion: ' + conversion_rule_forward);
+
+        let new_value = value;
+
+        // convert forward if required
+        if (conversion_rule_forward != null) {
+            const exp = parser.parse(conversion_rule_forward);
+            new_value = exp.evaluate({ x: value });
+        }
+
+        return new_value;
     }
 
     /**
@@ -161,10 +174,20 @@ class Sainlogic extends utils.Adapter {
     setStates(date, obj_values) {
 
         for (const attr in obj_values) {
+            // extract attribute id w/o channel
+            const c_id = attr.split('.').pop();
+
             // check if this has a mapping to the current protocol
             this.log.debug(`Setting value from data for ${attr} to ${obj_values[attr]}`);
-
-            this.setStateAsync(attr, { val: obj_values[attr], ack: true });
+            const my_attr_def = DATAFIELDS.filter(function (def) {
+                return def.id == c_id;
+            });
+    
+            let display_val = obj_values[attr];
+            if (my_attr_def[0].unit_config) {
+                display_val = this.toDisplayUnit(my_attr_def[0], display_val);
+            }
+            this.setStateAsync(attr, { val: display_val, ack: true });
         }
 
     }
