@@ -118,7 +118,7 @@ class Sainlogic extends utils.Adapter {
                 const that = this;
                 this.getObject(obj_id, function (err, obj) {
                     if (err || obj == null) {
-                        that.log.error('Error on retrieving object: ' + obj_id + ', err: ' + err);
+                        that.log.info('Creating new data point: ' + obj_id );
                         that.setObjectAsync(obj_id, {
                             type: 'state',
                             common: {
