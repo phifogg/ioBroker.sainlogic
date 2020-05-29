@@ -190,6 +190,10 @@ class Sainlogic extends utils.Adapter {
                 display_val = this.toDisplayUnit(my_attr_def[0], display_val);
             }
             this.setStateAsync(attr, { val: display_val, ack: true });
+
+            if (c_id == 'winddir') {
+                this.setStateAsync('weather.current.windheading', { val: this.getHeading(display_val, 16), ack: true });
+            }
         }
 
     }
@@ -264,9 +268,6 @@ class Sainlogic extends utils.Adapter {
         if (state) {
             // The state was changed
             this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-            if (id == 'weather.current.winddir') {
-                this.setStateAsync('current.windheading', { val: this.getHeading(state.val, 16), ack: true });
-            }
         } else {
             // The state was deleted
             this.log.info(`state ${id} deleted`);

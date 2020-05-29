@@ -3,6 +3,10 @@
         "name": "sainlogic",
         "version": "0.6.0",
         "news": {
+          "0.6.1": {
+            "en": "Add Wind Heading",
+            "de": "Windrichtung auf der Windrose hinzugefügt"
+          },
           "0.6.0": {
             "en": "Add Ecowitt support",
             "de": "Ecowitt für Listener hinzugefügt"
