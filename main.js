@@ -118,7 +118,7 @@ class Sainlogic extends utils.Adapter {
                 const that = this;
                 this.getObject(obj_id, function (err, obj) {
                     if (err || obj == null) {
-                        that.log.info('Creating new data point: ' + obj_id );
+                        that.log.info('Creating new data point: ' + obj_id);
                         that.setObjectAsync(obj_id, {
                             type: 'state',
                             common: {
@@ -173,6 +173,8 @@ class Sainlogic extends utils.Adapter {
      */
     setStates(date, obj_values) {
 
+        this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
+
         for (const attr in obj_values) {
             // extract attribute id w/o channel
             const c_id = attr.split('.').pop();
@@ -182,16 +184,49 @@ class Sainlogic extends utils.Adapter {
             const my_attr_def = DATAFIELDS.filter(function (def) {
                 return def.id == c_id;
             });
-    
+
             let display_val = obj_values[attr];
             if (my_attr_def[0].unit_config) {
                 display_val = this.toDisplayUnit(my_attr_def[0], display_val);
             }
             this.setStateAsync(attr, { val: display_val, ack: true });
+
+            if (c_id == 'winddir') {
+                this.setStateAsync('weather.current.windheading', { val: this.getHeading(display_val, 16), ack: true });
+            }
         }
 
     }
 
+    getHeading(degrees, precision) {
+        precision = precision || 16;
+        let directions = [],
+            direction = 0;
+        const step = 360 / precision;
+        let i = step / 2;
+
+        switch (precision) {
+            case 4: directions = 'N O S W'.split(' '); break;
+            case 8: directions = 'N NO O SO S SW W NW'.split(' '); break;
+            case 16: directions = ('N NNO NO ONO O OSO SO ' +
+                'SSO S SSW SW WSW W WNW NW NNW').split(' ');
+                break;
+            case 32: directions = ('N NzO NNO NOzN NO NOzO ONO OzN O OzS OSO ' +
+                'SOzO SO SOzS SSO SzO S SzW SSW SWzS SW SWzW WSW WzS W WzN ' +
+                'WNW NWzW NW NWzN NNW NzW').split(' ');
+                break;
+            default: throw ('Invalid precision argument.');
+        }
+
+        if (degrees < 0 || degrees > 360) throw ('Invalid degrees argument.');
+        if (degrees <= i || degrees >= 360 - i) return 'N';
+        while (i <= degrees) {
+            direction++;
+            i += step;
+        }
+        return directions[direction];
+
+    }
     /**
      * Is called when adapter shuts down - callback has to be called under any circumstances!
      * @param {() => void} callback
