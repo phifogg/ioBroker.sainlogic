@@ -64,6 +64,13 @@ Save.
 
 The schheduler will start and connect to the weather station after the first interval time. You should see message in the log like 'Scheduler pulling for new data'. If you set the log mode to debug you will also see the data strings received.
 
+## Changelog
+
+Latest version
+
+#### 0.6.1 Added win heading
+
+For detailed change log or previous versions check io-package.json
 
 
 ## License
