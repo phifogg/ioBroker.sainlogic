@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.6.0",
+        "version": "0.6.1",
         "news": {
           "0.6.1": {
             "en": "Add Wind Heading",
