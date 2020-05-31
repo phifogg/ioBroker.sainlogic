@@ -72,6 +72,12 @@ Latest version
 
 For detailed change log or previous versions check io-package.json
 
+## Credits
+
+Credits go to:
+lemuba, StrathCole, Glasfaser, Latzi: for relentless testing of my bugs :)
+Lisa for her [code to translate wind degrees in a heading](https://www.programmieraufgaben.ch/aufgabe/windrichtung-bestimmen/ibbn2e7d)
+
 
 ## License
 MIT License
