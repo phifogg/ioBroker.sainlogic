@@ -198,6 +198,7 @@ class Sainlogic extends utils.Adapter {
 
     }
 
+    // taken from https://www.programmieraufgaben.ch/aufgabe/windrichtung-bestimmen/ibbn2e7d
     getHeading(degrees, precision) {
         precision = precision || 16;
         let directions = [],
