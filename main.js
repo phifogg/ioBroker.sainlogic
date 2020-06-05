@@ -161,7 +161,7 @@ class Sainlogic extends utils.Adapter {
         }
 
         if (this.config.listener_active == true) {
-            this.listener = new Listener(this.config.bind, this.config.port, this.config.path, this.config.listener_protocol, this);
+            this.listener = new Listener(this.config.bind, this.config.port, this.config.path, this.config.listener_protocol, this.config.listener_forward_url, this);
             this.listener.start();
         }
     }

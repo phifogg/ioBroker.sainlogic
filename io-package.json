@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.6.1",
+        "version": "0.6.2",
         "news": {
+          "0.6.2": {
+            "en": "Add Forwarding capability",
+            "de": "Möglichkeit Werte die per Listener ankommen weiterzuleiten"
+          },
           "0.6.1": {
             "en": "Add Wind Heading",
             "de": "Windrichtung auf der Windrose hinzugefügt"
@@ -127,6 +131,7 @@
         "path": "/weatherstation/updateweatherstation.php",
         "listener_active": false,
         "listener_protocol": "wunderground",
+        "listener_forward_url": "",
         "scheduler_active": false,
         "ws_address": "",
         "ws_port": 45000,
