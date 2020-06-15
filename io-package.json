@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.6.2",
+        "version": "0.6.3",
         "news": {
+          "0.6.3": {
+            "en": "Added battery status",
+            "de": "Batteriestatus hinzugefügt"
+          },
           "0.6.2": {
             "en": "Add Forwarding capability and additional sensors",
             "de": "Möglichkeit Werte die per Listener ankommen weiterzuleiten und zusätzliche Sensoren auszuwerten"
