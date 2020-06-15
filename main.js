@@ -116,38 +116,7 @@ class Sainlogic extends utils.Adapter {
                 // check object for existence and update if needed
                 const obj_id = DATAFIELDS[attr].channels[ch].channel + '.' + DATAFIELDS[attr].id;
                 const that = this;
-                this.getObject(obj_id, function (err, obj) {
-                    if (err || obj == null) {
-                        that.log.info('Creating new data point: ' + obj_id);
-                        that.setObjectAsync(obj_id, {
-                            type: 'state',
-                            common: {
-                                name: DATAFIELDS[attr].channels[ch].name,
-                                type: DATAFIELDS[attr].type,
-                                unit: DATAFIELDS[attr].unit,
-                                role: DATAFIELDS[attr].role,
-                                min: DATAFIELDS[attr].min,
-                                max: DATAFIELDS[attr].max,
-                                def: 0,
-                                read: true,
-                                write: false,
-                                mobile: {
-                                    admin: {
-                                        visible: true
-                                    }
-                                },
-                            },
-                            native: {},
-                        });
-
-                    } else {
-                        if (DATAFIELDS[attr].unit_config != null) {
-                            that.checkUnit(DATAFIELDS[attr], obj);
-                        }
-                    }
-
-
-                }.bind(that));
+                this.verify_datapoint(obj_id, that, DATAFIELDS[attr], DATAFIELDS[attr].channels[ch].name);
             }
         }
 
@@ -161,11 +130,44 @@ class Sainlogic extends utils.Adapter {
         }
 
         if (this.config.listener_active == true) {
-            this.listener = new Listener(this.config.bind, this.config.port, this.config.path, this.config.listener_protocol, this);
+            this.listener = new Listener(this.config.bind, this.config.port, this.config.path, this.config.listener_protocol, this.config.listener_forward_url, this);
             this.listener.start();
         }
     }
 
+
+    verify_datapoint(obj_id, that, attrdef, attrname) {
+        this.getObject(obj_id, function (err, obj) {
+            if (err || obj == null) {
+                that.log.info('Creating new data point: ' + obj_id);
+                that.setObjectAsync(obj_id, {
+                    type: 'state',
+                    common: {
+                        name: attrname,
+                        type: attrdef.type,
+                        unit: attrdef.unit,
+                        role: attrdef.role,
+                        min: attrdef.min,
+                        max: attrdef.max,
+                        def: 0,
+                        read: true,
+                        write: false,
+                        mobile: {
+                            admin: {
+                                visible: true
+                            }
+                        },
+                    },
+                    native: {},
+                });
+            }
+            else {
+                if (attrdef.unit_config != null) {
+                    that.checkUnit(attrdef, obj);
+                }
+            }
+        }.bind(that));
+    }
 
     /**
      * @param {Date} date
@@ -189,6 +191,9 @@ class Sainlogic extends utils.Adapter {
             if (my_attr_def[0].unit_config) {
                 display_val = this.toDisplayUnit(my_attr_def[0], display_val);
             }
+
+            this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name); // allways channel 0 as primary attribute name
+
             this.setStateAsync(attr, { val: display_val, ack: true });
 
             if (c_id == 'winddir') {

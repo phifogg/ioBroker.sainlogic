@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.6.1",
+        "version": "0.6.2",
         "news": {
+          "0.6.2": {
+            "en": "Add Forwarding capability and additional sensors",
+            "de": "Möglichkeit Werte die per Listener ankommen weiterzuleiten und zusätzliche Sensoren auszuwerten"
+          },
           "0.6.1": {
             "en": "Add Wind Heading",
             "de": "Windrichtung auf der Windrose hinzugefügt"
@@ -66,24 +70,7 @@
           "0.1.2": {
             "en": "Beta Release with Listener and Scheduler",
             "de": "Beta Release mit Listener und Scheduler"
-          },
-          "0.0.10": {
-            "en": "Added 15 second interval to scheduler",
-            "de": "15 Sekunden Interval für Scheduler"
-          },
-          "0.0.9": {
-            "en": "Adding scheduler - Part 4 - Combine Weatherdata and Firmware",
-            "de": "Geplantes Abholen der Daten Part 4: Wetterdaten und Firmware zusammen"            
-          },
-           "0.0.8": {
-              "en": "Adding scheduler - Part 3 - Weatherinfo completed",
-              "de": "Geplantes Abholen der Daten Part 3: Wetterdaten komplett"
-            },
-
-            "0.0.4": {
-                "en": "Adding scheduler - Part 2 - Weatherinfo",
-                "de": "Geplantes Abholen der Daten Part 2: Wetterdaten"
-            }
+          }
         },
         "title": "Sainlogic Weatherstation",
         "titleLang": {
@@ -127,6 +114,7 @@
         "path": "/weatherstation/updateweatherstation.php",
         "listener_active": false,
         "listener_protocol": "wunderground",
+        "listener_forward_url": "",
         "scheduler_active": false,
         "ws_address": "",
         "ws_port": 45000,
