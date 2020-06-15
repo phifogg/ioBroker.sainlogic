@@ -25,7 +25,9 @@ Known working devices:
 
 ## Usage
 
-The adapter supports two modes to showw data of your weather station.
+The adapter supports two modes to show data of your weather station.
+
+In Listener mode the adapter does support additional sensor if delivered from your weather station. Currently supported are temperature and humidity. If you have another additional sensor please raise a github issue and post your data string as this helps me to extend the functionality.
 
 ### Listener mode:
 With latest firmware releases the weather station supports sending data to a custom server. The adapter will act as such a server. The setup needs two steps:
@@ -46,6 +48,7 @@ In the instance configuration choose the tab 'Listener' and set the following:
 - IP: choose the IP of your IOBroker which the weatherstation will be able to connect to (default is 0.0.0.0 to allow all IPs), this is mainly relevant if you have multiple networks, otherwise the default will do
 - Port: Enter the same port as in the WS View app
 - Path: Enter the same path as in the WS View app
+- Forward URL: If you want to forward the received data to another consumer you can specify an additional adress. E.g. you may receive data in WU format and still want to forward this to WeatherUnderground.
 
 Save.
 The listener will start and wait on incoming connections. Based on your interval you should see in the log a message ' Listener received update: ...' with the data.
@@ -68,7 +71,7 @@ The schheduler will start and connect to the weather station after the first int
 
 Latest version
 
-#### 0.6.1 Added win heading
+#### 0.6.2 Added additional sensor support
 
 For detailed change log or previous versions check io-package.json
 

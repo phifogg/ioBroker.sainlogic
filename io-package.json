@@ -4,8 +4,8 @@
         "version": "0.6.2",
         "news": {
           "0.6.2": {
-            "en": "Add Forwarding capability",
-            "de": "Möglichkeit Werte die per Listener ankommen weiterzuleiten"
+            "en": "Add Forwarding capability and additional sensors",
+            "de": "Möglichkeit Werte die per Listener ankommen weiterzuleiten und zusätzliche Sensoren auszuwerten"
           },
           "0.6.1": {
             "en": "Add Wind Heading",
