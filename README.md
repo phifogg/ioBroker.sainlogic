@@ -71,9 +71,11 @@ The schheduler will start and connect to the weather station after the first int
 
 Latest version
 
+
 #### 0.6.3 Fixed outdoor humidity
 
 #### 0.6.2 Added additional sensor support
+
 
 For detailed change log or previous versions check io-package.json
 
