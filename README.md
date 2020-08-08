@@ -71,6 +71,7 @@ The schheduler will start and connect to the weather station after the first int
 
 Latest version
 
+#### 0.6.4 For WH2650: Adding model name and weather station communication frequency datapoint
 
 #### 0.6.3 Fixed outdoor humidity
 
