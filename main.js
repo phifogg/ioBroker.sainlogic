@@ -13,7 +13,7 @@ const Parser = require('expr-eval').Parser;
 // Load your modules here, e.g.:
 const Listener = require('./lib/listener');
 const Scheduler = require('./lib/scheduler');
-const { DATAFIELDS } = require('./lib/constants');
+const { PROT_WU, PROT_EW, DATAFIELDS } = require('./lib/constants');
 //const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function');
 
 
@@ -139,27 +139,42 @@ class Sainlogic extends utils.Adapter {
     verify_datapoint(obj_id, that, attrdef, attrname) {
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
-                that.log.info('Creating new data point: ' + obj_id);
-                that.setObjectAsync(obj_id, {
-                    type: 'state',
-                    common: {
-                        name: attrname,
-                        type: attrdef.type,
-                        unit: attrdef.unit,
-                        role: attrdef.role,
-                        min: attrdef.min,
-                        max: attrdef.max,
-                        def: 0,
-                        read: true,
-                        write: false,
-                        mobile: {
-                            admin: {
-                                visible: true
-                            }
+                let existing = 0;
+
+                if ((that.config.scheduler_active == true) && (attrdef.scheduler != null)) { existing++ }
+                if (that.config.listener_active == true) {
+                    switch (that.config.listener_protocol) {
+                        case PROT_WU:
+                            if(attrdef.wunderground != null) { existing++ }
+                            break;
+                        case PROT_EW:
+                            if(attrdef.ecowitt != null) { existing++ }
+                            break;
+                    }               
+                }
+                if(existing) {
+                    that.log.info('Creating new data point: ' + obj_id);
+                    that.setObjectAsync(obj_id, {
+                        type: 'state',
+                        common: {
+                            name: attrname,
+                            type: attrdef.type,
+                            unit: attrdef.unit,
+                            role: attrdef.role,
+                            min: attrdef.min,
+                            max: attrdef.max,
+                            def: 0,
+                            read: true,
+                            write: false,
+                            mobile: {
+                                admin: {
+                                    visible: true
+                                }
+                            },
                         },
-                    },
-                    native: {},
-                });
+                        native: {},
+                    });
+                }
             }
             else {
                 if (attrdef.unit_config != null) {
