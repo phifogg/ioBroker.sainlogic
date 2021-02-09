@@ -41,7 +41,7 @@ class Sainlogic extends utils.Adapter {
         if (target_unit != obj.common.unit) {
             // change and convert unit
             this.log.info(`Unit changed for ${c_id} from ${obj.common.unit} to ${target_unit}, updating data point`);
-            this.setObjectAsync(c_id, {
+            this.setObjectNotExists(c_id, {
                 type: obj.type,
                 common: {
                     name: attrdef.display_name,
@@ -139,6 +139,7 @@ class Sainlogic extends utils.Adapter {
     verify_datapoint(obj_id, that, attrdef, attrname) {
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
+
                 let existing = 0;
 
                 if ((that.config.scheduler_active == true) && (attrdef.scheduler != null)) { existing++ }
@@ -154,7 +155,7 @@ class Sainlogic extends utils.Adapter {
                 }
                 if(existing) {
                     that.log.info('Creating new data point: ' + obj_id);
-                    that.setObjectAsync(obj_id, {
+                    that.setObjectNotExists(obj_id, {
                         type: 'state',
                         common: {
                             name: attrname,
@@ -265,52 +266,6 @@ class Sainlogic extends utils.Adapter {
         }
     }
 
-    /**
-     * Is called if a subscribed object changes
-     * @param {string} id
-     * @param {ioBroker.Object | null | undefined} obj
-     */
-    onObjectChange(id, obj) {
-        if (obj) {
-            // The object was changed
-            this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-        } else {
-            // The object was deleted
-            this.log.info(`object ${id} deleted`);
-        }
-    }
-
-    /**
-     * Is called if a subscribed state changes
-     * @param {string} id
-     * @param {ioBroker.State | null | undefined} state
-     */
-    onStateChange(id, state) {
-        if (state) {
-            // The state was changed
-            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-        } else {
-            // The state was deleted
-            this.log.info(`state ${id} deleted`);
-        }
-    }
-
-    // /**
-    //  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-    //  * Using this method requires "common.message" property to be set to true in io-package.json
-    //  * @param {ioBroker.Message} obj
-    //  */
-    // onMessage(obj) {
-    // 	if (typeof obj === 'object' && obj.message) {
-    // 		if (obj.command === 'send') {
-    // 			// e.g. send email or pushover or whatever
-    // 			log.info('send command');
-
-    // 			// Send response in callback if required
-    // 			if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
-    // 		}
-    // 	}
-    // }
 
 }
 
