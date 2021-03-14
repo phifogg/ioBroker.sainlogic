@@ -176,6 +176,9 @@ class Sainlogic extends utils.Adapter {
                             },
                         },
                         native: {},
+                    }, function (err, obj) {
+                        // now update the value
+                        that.setStateAsync(obj_id, value);
                     });
                 }
             }
@@ -183,10 +186,10 @@ class Sainlogic extends utils.Adapter {
                 if (attrdef.unit_config != null) {
                     that.checkUnit(attrdef, obj);
                 }
+                // now update the value
+                that.setStateAsync(obj_id, value);
             }
 
-            // now update the value
-            that.setStateAsync(obj_id, value);
 
         }.bind(that));
     }
