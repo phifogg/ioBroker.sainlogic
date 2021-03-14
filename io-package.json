@@ -58,34 +58,6 @@
           "0.5.0": {
             "en": "Added daily min/max values",
             "de": "Tagesmin-/max-Werte hinzugefügt"
-          },
-          "0.4.1": {
-            "en": "Fix for max wind speeds",
-            "de": "Max Windwerte korrigiert"
-          },
-          "0.4.0": {
-            "en": "Added Min Values",
-            "de": "Min Werte abfragen"
-          },
-          "0.3.0": {
-            "en": "Added Max Values",
-            "de": "Max Werte abfragen"
-          },
-          "0.2.2": {
-            "en": "Bugfix",
-            "de": "bugfix"
-          },
-          "0.2.1": {
-            "en": "Schedule parallel calls",
-            "de": "Scheduler parallelisieren"
-          },
-          "0.2.0": {
-            "en": "Refactoring",
-            "de": "Codeumau"
-          },
-          "0.1.2": {
-            "en": "Beta Release with Listener and Scheduler",
-            "de": "Beta Release mit Listener und Scheduler"
           }
         },
         "title": "Sainlogic Weatherstation",
