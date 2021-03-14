@@ -201,10 +201,11 @@
         },
         {
           "_id": "weather.current.windheading",
-          "type": "string",
+          "type": "state",
           "common": {
             "name": "Wind Heading",
-            "role": "indicator.direction"
+            "role": "indicator.direction",
+            "type": "string"
           },
           "native": {}
         },
