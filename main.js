@@ -138,7 +138,7 @@ class Sainlogic extends utils.Adapter {
     }
 
 
-    verify_datapoint(obj_id, that, attrdef, attrname) {
+    verify_datapoint(obj_id, that, attrdef, attrname, value) {
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
 
@@ -184,6 +184,10 @@ class Sainlogic extends utils.Adapter {
                     that.checkUnit(attrdef, obj);
                 }
             }
+
+            // now update the value
+            that.setStateAsync(obj_id, value);
+
         }.bind(that));
     }
 
@@ -210,9 +214,7 @@ class Sainlogic extends utils.Adapter {
                 display_val = this.toDisplayUnit(my_attr_def[0], display_val);
             }
 
-            this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name); // allways channel 0 as primary attribute name
-
-            this.setStateAsync(attr, { val: display_val, ack: true });
+            this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name, { val: display_val, ack: true }); // allways channel 0 as primary attribute name
 
             if (c_id == 'winddir') {
                 this.setStateAsync('weather.current.windheading', { val: this.getHeading(display_val, 16), ack: true });

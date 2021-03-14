@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.6.5",
+        "version": "0.6.6",
         "news": {
+          "0.6.6": {
+            "en": "Adressed github issue #53 - warning on non existing object",
+            "de": "github issue #53 - warning on non existing object"
+          },
           "0.6.5": {
             "en": "Removed unneeded events",
             "de": "Nicht benötigte Events entfernt"
