@@ -71,9 +71,9 @@ The schheduler will start and connect to the weather station after the first int
 
 Latest version
 
-### 0.6.6 Adressed github issue #53 - warning on non existing object
+#### 0.6.6 Adressed github issue #53 - warning on non existing object
 
-### 0.6.5 Removed unneeded events
+#### 0.6.5 Removed unneeded events
 
 #### 0.6.4 For WH2650: Adding model name and weather station communication frequency datapoint
 
