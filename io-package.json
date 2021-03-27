@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.6.6",
+        "version": "0.7.0",
         "news": {
+          "0.7.0": {
+            "en": "Support for Soil Moisture devices like attached to DP1500",
+            "de": "Unterstützung für Bodenfeuchtigkeitssensoren angeschlossen an DP1500"
+          },
           "0.6.6": {
             "en": "Adressed github issue #53 - warning on non existing object",
             "de": "github issue #53 - warning on non existing object"
