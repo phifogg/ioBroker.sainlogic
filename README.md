@@ -24,6 +24,8 @@ Known working devices:
 1. Froggit WH400SE
 1. Froggit DP1500
 1. Sainlogic WS3500 (Listener mode only)
+1. Froggit WH51
+1. GW1000
 
 ## Usage
 
