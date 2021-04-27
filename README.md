@@ -75,6 +75,10 @@ The schheduler will start and connect to the weather station after the first int
 
 Latest version
 
+#### 0.7.1 Fixes mapping for soilbat values
+
+#### 0.7.0 #64 added soilmoisture devices
+
 #### 0.6.6 Adressed github issue #53 - warning on non existing object
 
 #### 0.6.5 Removed unneeded events
