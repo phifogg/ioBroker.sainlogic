@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.7.0",
+        "version": "0.7.1",
         "news": {
+          "0.7.1": {
+            "en": "Fix Soilbatt mapping",
+            "de": "Korrektur für Batterielevel der Bodenfeuchtigkeitssensoren"
+          },
           "0.7.0": {
             "en": "Support for Soil Moisture devices like attached to DP1500",
             "de": "Unterstützung für Bodenfeuchtigkeitssensoren angeschlossen an DP1500"
