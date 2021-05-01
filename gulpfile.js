@@ -2,6 +2,8 @@
  * ioBroker gulpfile
  * Date: 2019-01-28
  */
+/* jshint node: true */
+
 'use strict';
 
 const gulp = require('gulp');
