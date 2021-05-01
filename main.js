@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict';
 
 /*
@@ -144,14 +145,14 @@ class Sainlogic extends utils.Adapter {
 
                 let existing = 0;
 
-                if ((that.config.scheduler_active == true) && (attrdef.scheduler != null)) { existing++ }
+                if ((that.config.scheduler_active == true) && (attrdef.scheduler != null)) { existing++; }
                 if (that.config.listener_active == true) {
                     switch (that.config.listener_protocol) {
                         case PROT_WU:
-                            if(attrdef.wunderground != null) { existing++ }
+                            if(attrdef.wunderground != null) { existing++; }
                             break;
                         case PROT_EW:
-                            if(attrdef.ecowitt != null) { existing++ }
+                            if(attrdef.ecowitt != null) { existing++; }
                             break;
                     }               
                 }
