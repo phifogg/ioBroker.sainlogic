@@ -1,3 +1,5 @@
+/* jshint node: true */
+// @ts-nocheck
 'use strict';
 
 /*
@@ -7,7 +9,7 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
-const util = require('util');
+//const util = require('util');
 const Parser = require('expr-eval').Parser;
 
 // Load your modules here, e.g.:
@@ -22,6 +24,7 @@ class Sainlogic extends utils.Adapter {
     /**
      * @param {Partial<ioBroker.AdapterOptions>} [options={}]
      */
+    // eslint-disable-next-line no-unused-vars
     constructor(options) {
         super({
             name: 'sainlogic',
@@ -139,19 +142,25 @@ class Sainlogic extends utils.Adapter {
 
 
     verify_datapoint(obj_id, that, attrdef, attrname, value) {
+
+        // check target type and type-cast if needed
+        if (attrdef.type == 'number') {
+            value = parseFloat(value);
+        }
+
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
 
                 let existing = 0;
 
-                if ((that.config.scheduler_active == true) && (attrdef.scheduler != null)) { existing++ }
+                if ((that.config.scheduler_active == true) && (attrdef.scheduler != null)) { existing++; }
                 if (that.config.listener_active == true) {
                     switch (that.config.listener_protocol) {
                         case PROT_WU:
-                            if(attrdef.wunderground != null) { existing++ }
+                            if(attrdef.wunderground != null) { existing++; }
                             break;
                         case PROT_EW:
-                            if(attrdef.ecowitt != null) { existing++ }
+                            if(attrdef.ecowitt != null) { existing++; }
                             break;
                     }               
                 }
@@ -176,6 +185,7 @@ class Sainlogic extends utils.Adapter {
                             },
                         },
                         native: {},
+                    // eslint-disable-next-line no-unused-vars
                     }, function (err, obj) {
                         // now update the value
                         that.setStateAsync(obj_id, value);

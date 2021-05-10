@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.7.1",
+        "version": "0.7.2",
         "news": {
+          "0.7.2": {
+            "en": "Security fixes in dependencies",
+            "de": "Update von Abhängigkeiten wegen möglichen Sicherheitsmeldungen"
+          },
           "0.7.1": {
             "en": "Fix Soilbatt mapping",
             "de": "Korrektur für Batterielevel der Bodenfeuchtigkeitssensoren"

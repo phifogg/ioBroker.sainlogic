@@ -1,6 +1,6 @@
 {
   "name": "iobroker.sainlogic",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Read data from a sainlogic based weather station",
   "author": {
     "name": "Fogg",
@@ -25,7 +25,10 @@
     "@iobroker/adapter-core": "^2.3.1",
     "binary-parser": "^1.6.0",
     "expr-eval": "^2.0.2",
-    "got": "^11.3.0"
+    "got": "^11.3.0",
+    "hosted-git-info": "^4.0.2",
+    "jshint": "^2.12.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@iobroker/testing": "^2.2.0",
