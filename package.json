@@ -26,7 +26,8 @@
     "binary-parser": "^1.6.0",
     "expr-eval": "^2.0.2",
     "got": "^11.3.0",
-    "jshint": "^2.12.0"
+    "jshint": "^2.12.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@iobroker/testing": "^2.2.0",
