@@ -148,6 +148,8 @@ class Sainlogic extends utils.Adapter {
             value = parseFloat(value);
         }
 
+        const val_obj =  { val: value, ack: true };
+
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
 
@@ -188,7 +190,7 @@ class Sainlogic extends utils.Adapter {
                     // eslint-disable-next-line no-unused-vars
                     }, function (err, obj) {
                         // now update the value
-                        that.setStateAsync(obj_id, value);
+                        that.setStateAsync(obj_id, val_obj);
                     });
                 }
             }
@@ -197,7 +199,7 @@ class Sainlogic extends utils.Adapter {
                     that.checkUnit(attrdef, obj);
                 }
                 // now update the value
-                that.setStateAsync(obj_id, value);
+                that.setStateAsync(obj_id, val_obj);
             }
 
 
@@ -227,7 +229,7 @@ class Sainlogic extends utils.Adapter {
                 display_val = this.toDisplayUnit(my_attr_def[0], display_val);
             }
 
-            this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name, { val: display_val, ack: true }); // allways channel 0 as primary attribute name
+            this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name, display_val ); // allways channel 0 as primary attribute name
 
             if (c_id == 'winddir') {
                 this.setStateAsync('weather.current.windheading', { val: this.getHeading(display_val, 16), ack: true });
