@@ -289,17 +289,5 @@ systemDictionary = {
         'es': 'Radiación solar:',
         'pl': 'Promieniowania słonecznego:',
         'zh-cn': '太阳辐射：'
-    },
-    '': {
-        'en': '',
-        'de': '',
-        'ru': '',
-        'pt': '',
-        'nl': '',
-        'fr': '',
-        'it': '',
-        'es': '',
-        'pl': '',
-        'zh-cn': ''
-    }    
+    }  
 };
