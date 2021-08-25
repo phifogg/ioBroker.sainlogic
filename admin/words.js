@@ -76,13 +76,13 @@ systemDictionary = {
     },
     'Port:': {
         'en': 'Port:',
-        'de': 'Hafen:',
+        'de': 'Port:',
         'ru': 'Порт:',
-        'pt': 'Porta:',
-        'nl': 'Haven:',
+        'pt': 'Port:',
+        'nl': 'Port:',
         'fr': 'Port:',
-        'it': 'Porta:',
-        'es': 'Puerto:',
+        'it': 'Port:',
+        'es': 'Port:',
         'pl': 'Port:',
         'zh-cn': '港口：'
     },
@@ -208,7 +208,7 @@ systemDictionary = {
     },
     'Get Daily Max Data': {
         'en': 'Get Daily Max Data',
-        'de': 'Holen Sie sich tägliche maximale Daten',
+        'de': 'Tägliche maximale Daten abrufen',
         'ru': 'Получить максимальное количество данных за день',
         'pt': 'Obtenha dados máximos diários',
         'nl': 'Maximale dagelijkse gegevens ophalen',
@@ -220,7 +220,7 @@ systemDictionary = {
     },
     'Get Daily Min Data': {
         'en': 'Get Daily Min Data',
-        'de': 'Holen Sie sich tägliche Min-Daten',
+        'de': 'Tägliche Min-Daten abrufen',
         'ru': 'Получить ежедневные минимальные данные',
         'pt': 'Obtenha dados mínimos diários',
         'nl': 'Dagelijkse min. gegevens ophalen',
