@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.7.2",
+        "version": "0.7.3",
         "news": {
+          "0.7.3": {
+            "en": "Security fixes in dependencies, Travis pipeline update",
+            "de": "Update von Abhängigkeiten wegen möglichen Sicherheitsmeldungen, Travis Pipeline aktualisiert"
+          },
           "0.7.2": {
             "en": "Security fixes in dependencies",
             "de": "Update von Abhängigkeiten wegen möglichen Sicherheitsmeldungen"
