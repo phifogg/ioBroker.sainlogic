@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.8.0",
+        "version": "0.8.1",
         "news": {
+          "0.8.1": {
+            "en": "Small bugfix for timestamps (prefix with 0, remove NaN)",
+            "de": "Kleiner bugfix für Zeitstempel (führende 0, NaN entfernt)"
+          },
           "0.8.0": {
             "en": "Extract time stamps of daily min/max values",
             "de": "Zeitstempel der Tagesmin- und maxwerte auslesen"
