@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.8.1",
+        "version": "0.8.2",
         "news": {
+          "0.8.2": {
+            "en": "Increase UVraw max value for summer values",
+            "de": "Max. Wert für UVraw angepasst auf 4000 "
+          },
           "0.8.1": {
             "en": "Small bugfix for timestamps (prefix with 0, remove NaN)",
             "de": "Kleiner bugfix für Zeitstempel (führende 0, NaN entfernt)"
