@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.8.1",
+        "version": "0.8.2",
         "news": {
+          "0.8.2": {
+            "en": "Increase UVraw max value for summer values",
+            "de": "Max. Wert für UVraw angepasst auf 4000 "
+          },
           "0.8.1": {
             "en": "Small bugfix for timestamps (prefix with 0, remove NaN)",
             "de": "Kleiner bugfix für Zeitstempel (führende 0, NaN entfernt)"
@@ -54,34 +58,6 @@
           "0.6.0": {
             "en": "Add Ecowitt support",
             "de": "Ecowitt für Listener hinzugefügt"
-          },
-          "0.5.6": {
-            "en": "UVraw conversion fix",
-            "de": "UVraw korrigiert"
-          },
-          "0.5.5": {
-            "en": "Add UVraw",
-            "de": "UVraw hinzugefügt"
-          },
-          "0.5.4": {
-            "en": "bugix",
-            "de": "Bugfix"
-          },
-          "0.5.3": {
-            "en": "bugix",
-            "de": "Bugfix"
-          },
-          "0.5.2": {
-            "en": "bugix",
-            "de": "Bugfix"
-          },
-          "0.5.1": {
-            "en": "bugix",
-            "de": "Bugfix"
-          },
-          "0.5.0": {
-            "en": "Added daily min/max values",
-            "de": "Tagesmin-/max-Werte hinzugefügt"
           }
         },
         "title": "Sainlogic Weatherstation",
