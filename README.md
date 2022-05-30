@@ -22,7 +22,7 @@ Known working devices:
 1. ELV WS980Wifi
 1. Eurochron EFWS2900  (Listener mode only)
 1. Froggit WH400SE
-1. Froggit DP1500
+1. Froggit DP1500 (Ecowitt protocol only)
 1. Sainlogic WS3500 (Listener mode only)
 1. WH51 Moisture sensor
 1. Ecowitt GW1000
@@ -71,6 +71,21 @@ Save.
 
 The schheduler will start and connect to the weather station after the first interval time. You should see message in the log like 'Scheduler pulling for new data'. If you set the log mode to debug you will also see the data strings received.
 
+## Station specific infos
+
+### Froggit DP1500 
+
+It seems this station does not send any data when WeatherUnderground is selected as protocol. It works correctly with Ecowitt.
+
+### Eurochron EFWS290
+
+Station does not answer to scheduler commands, so only listener mode is supported.
+
+### Sainlogic WS3500
+
+Station does not answer to scheduler commands, so only listener mode is supported.
+
+
 ## Changelog
 
 Latest version
@@ -112,7 +127,7 @@ Lisa for her [code to translate wind degrees in a heading](https://www.programmi
 ## License
 MIT License
 
-Copyright (c) 2020 - 2021 Fogg <foggch@gmail.com>
+Copyright (c) 2022 Fogg <foggch@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
