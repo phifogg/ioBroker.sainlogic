@@ -40,9 +40,12 @@ With latest firmware releases the weather station supports sending data to a cus
 Use the 'WS View'app on your mobile device to configure the weatherstation. Configure the following settings for customized server settings:
 - Server: IP/Hostname of your IOBroker server
 - Path: anything, just remember it for the adapter configuration
+*Note:* on some stations it has been proven success to add a question mark at the end of the path. Some others work without it. Best is to try both.
 - Port: any number between 1024 and 65000 (default is 45000), needs to be unique and free on your IOBroker system
 - Station ID: not used
+*Note:* some station still require any value to be set
 - Station Key: not used
+*Note:* some station still require any value to be set
 - Protocol Type: WeatherUnderground
 - Upload Interval: anyting supported by your weather station
 
