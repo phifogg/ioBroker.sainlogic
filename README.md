@@ -26,6 +26,7 @@ Known working devices:
 1. Sainlogic WS3500 (Listener mode only)
 1. WH51 Moisture sensor
 1. Ecowitt GW1000
+1. Froggit WH3000SE (Listener mode only)
 
 ## Usage
 
