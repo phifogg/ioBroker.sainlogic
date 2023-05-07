@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.10.0",
+        "version": "0.10.1",
         "news": {
+          "0.10.1": {
+            "en": "Bugfixes and new datapoints of battery level of some sensors",
+            "de": "Fehlerbehebungen und neue Datenpunkte für Batterieslevels von ein paar Sensoren"
+          },
           "0.10.0": {
             "en": "Added new external sensors for lightning (DP60), Co2 sensor (DP250), GW200A Piezo elements and minor fixes",
             "de": "Neue Datenpunkte für Blitz (DP60), CO2 (DP250) und Piezo Regensensoren (GW200A), kleinere Updates"

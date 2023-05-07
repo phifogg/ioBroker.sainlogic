@@ -46,7 +46,7 @@ class Sainlogic extends utils.Adapter {
         if (target_unit != obj.common.unit) {
             // change and convert unit
             this.log.info(`Unit changed for ${c_id} from ${obj.common.unit} to ${target_unit}, updating data point`);
-            this.setObjectNotExists(c_id, {
+            this.extendObject(c_id, {
                 type: obj.type,
                 common: {
                     name: attrdef.display_name,
@@ -144,11 +144,14 @@ class Sainlogic extends utils.Adapter {
     verify_datapoint(obj_id, that, attrdef, attrname, value) {
 
         // check target type and type-cast if needed
-        if (attrdef.type == 'number') {
-            value = parseFloat(value);
+        let val_obj =  { val: '', ack: true };
+        if (value != null) {
+            if (attrdef.type == 'number') {
+                value = parseFloat(value);
+            }
+    
+            val_obj =  { val: value, ack: true };
         }
-
-        const val_obj =  { val: value, ack: true };
 
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
