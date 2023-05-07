@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.10.1",
+        "version": "0.10.2",
         "news": {
           "0.10.2": {
             "en": "Bugfixes and new datapoints of battery level of some sensors",
