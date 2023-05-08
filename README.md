@@ -94,6 +94,8 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 Latest version
 
+#### 0.10.3 Bugfixes
+
 #### 0.10.2 Bugfixes
 
 #### 0.10.0 Added new sensors for Lightning, Piezo elements, DP250 and minor fixes

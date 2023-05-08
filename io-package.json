@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.10.2",
+        "version": "0.10.3",
         "news": {
+          "0.10.3": {
+            "en": "Bugfixes last listener update at Ecowitt and forwarder",
+            "de": "Fehlerbehebungen last listener update und forwarder bei Ecowitt"
+          },
           "0.10.2": {
             "en": "Bugfixes and new datapoints of battery level of some sensors",
             "de": "Fehlerbehebungen und neue Datenpunkte für Batterieslevels von ein paar Sensoren"
