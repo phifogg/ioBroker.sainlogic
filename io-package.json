@@ -3,6 +3,10 @@
         "name": "sainlogic",
         "version": "0.10.3",
         "news": {
+          "0.10.4": {
+            "en": "Bugfix for lightning count, new battery states for additional sensors",
+            "de": "Fehlerbehebung für Lightning Count, neue Batterie-Datenpunkte für weitere Sensoren"
+          },
           "0.10.3": {
             "en": "Bugfixes last listener update at Ecowitt and forwarder",
             "de": "Fehlerbehebungen last listener update und forwarder bei Ecowitt"
