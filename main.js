@@ -182,7 +182,7 @@ class Sainlogic extends utils.Adapter {
                             role: attrdef.role,
                             min: attrdef.min,
                             max: attrdef.max,
-                            def: 0,
+                            def: val_obj.val,
                             read: true,
                             write: false,
                             mobile: {
