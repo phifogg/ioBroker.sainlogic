@@ -132,22 +132,19 @@ class Sainlogic extends utils.Adapter {
     verify_datapoint(obj_id, that, attrdef, attrname, value) {
 
         // check target type and type-cast if needed
-        let val_obj =  { val: '', ack: true };
-
+        let default_value = '';
         if (attrdef.type == 'number'){
             if (value != null) {
                 value = parseFloat(value);
             } else {
                 value = 0;
+                default_value = 0;
             }
         }
-        val_obj =  { val: value, ack: true };
         
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
 
-    
-    
                 that.log.info('Creating new data point: ' + obj_id);
                 that.setObjectNotExists(obj_id, {
                     type: 'state',
@@ -158,7 +155,7 @@ class Sainlogic extends utils.Adapter {
                         role: attrdef.role,
                         min: attrdef.min,
                         max: attrdef.max,
-                        def: val_obj.val,
+                        def: default_value,
                         read: true,
                         write: false,
                         mobile: {
@@ -171,7 +168,7 @@ class Sainlogic extends utils.Adapter {
                 // eslint-disable-next-line no-unused-vars
                 }, function (err, obj) {
                     // now update the value
-                    that.setStateAsync(obj_id, val_obj);
+                    that.setStateAsync(obj_id, { val: value, ack: true });
                 });
             }
             else {
@@ -179,7 +176,7 @@ class Sainlogic extends utils.Adapter {
                     that.checkUnit(attrdef, obj);
                 }
                 // now update the value
-                that.setStateAsync(obj_id, val_obj);
+                that.setStateAsync(obj_id, { val: value, ack: true });
             }
 
 
