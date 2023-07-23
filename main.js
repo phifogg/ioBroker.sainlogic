@@ -147,17 +147,14 @@ class Sainlogic extends utils.Adapter {
         let val_obj =  { val: '', ack: true };
 
         if (attrdef.type == 'number'){
-                if (value != null) {
-                    value = parseFloat(value);
-                } else {
-                    value = 0;
-                }
-    
-                val_obj =  { val: value, ack: true };
+            if (value != null) {
+                value = parseFloat(value);
+            } else {
+                value = 0;
             }
-
+            val_obj =  { val: value, ack: true };
         }
- 
+        
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
 
