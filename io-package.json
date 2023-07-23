@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.10.5",
+        "version": "0.11.1",
         "news": {
+          "0.11.1": {
+            "en": "Removed unneccessary state creation at startup, will create states dynamically as data comes in",
+            "de": "Unnötiges Anlegen von Sates beim Start entfernt, States werden nur noch generiert wenn Daten ankommen"
+          },
           "0.10.5": {
             "en": "Bugfix for state initialization, removed log messages for forwarding",
             "de": "Fehlerbehebung für Initialisierung der States, Log für Forwarding auf Debug umgestellt"
@@ -154,6 +158,19 @@
             "native": {}
         },
         {
+          "_id": "info.last_listener_update",
+          "type": "state",
+          "common": {
+              "role": "",
+              "name": "Content of last update recieved",
+              "type": "string",
+              "read": true,
+              "write": false,
+              "def": ""
+          },
+          "native": {}
+      },
+      {
             "_id": "info.last_update",
             "type": "state",
             "common": {

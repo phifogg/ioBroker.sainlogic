@@ -113,19 +113,6 @@ class Sainlogic extends utils.Adapter {
     async onReady() {
         // Initialize your adapter here
 
-        // try changing a data state object:
-        for (const attr in DATAFIELDS) {
-
-            // add logic to only create at start if needed...
-            for (const ch in DATAFIELDS[attr].channels) {
-
-                // check object for existence and update if needed
-                const obj_id = DATAFIELDS[attr].channels[ch].channel + '.' + DATAFIELDS[attr].id;
-                const that = this;
-                this.verify_datapoint(obj_id, that, DATAFIELDS[attr], DATAFIELDS[attr].channels[ch].name);
-            }
-        }
-
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
 
