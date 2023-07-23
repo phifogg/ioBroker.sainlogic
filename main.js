@@ -206,6 +206,7 @@ class Sainlogic extends utils.Adapter {
     setStates(date, obj_values) {
 
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
+        this.setStateAsync('info.last_listener_update', {val: obj_values['last_listener_update'].display_val, ack:true });
 
         for (const attr in obj_values) {
             // extract attribute id w/o channel
@@ -252,7 +253,7 @@ class Sainlogic extends utils.Adapter {
             default: throw ('Invalid precision argument.');
         }
 
-        if (degrees < 0 || degrees > 360) throw ('Invalid degrees argument.');
+        if (degrees < 0 || degrees > 360) return '';
         if (degrees <= i || degrees >= 360 - i) return 'N';
         while (i <= degrees) {
             direction++;
