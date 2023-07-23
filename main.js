@@ -146,46 +146,33 @@ class Sainlogic extends utils.Adapter {
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
 
-                let existing = 0;
-
-                if ((that.config.scheduler_active == true) && (attrdef.scheduler != null)) { existing++; }
-                if (that.config.listener_active == true) {
-                    switch (that.config.listener_protocol) {
-                        case PROT_WU:
-                            if(attrdef.wunderground != null) { existing++; }
-                            break;
-                        case PROT_EW:
-                            if(attrdef.ecowitt != null) { existing++; }
-                            break;
-                    }               
-                }
-                if(existing) {
-                    that.log.info('Creating new data point: ' + obj_id);
-                    that.setObjectNotExists(obj_id, {
-                        type: 'state',
-                        common: {
-                            name: attrname,
-                            type: attrdef.type,
-                            unit: attrdef.unit,
-                            role: attrdef.role,
-                            min: attrdef.min,
-                            max: attrdef.max,
-                            def: val_obj.val,
-                            read: true,
-                            write: false,
-                            mobile: {
-                                admin: {
-                                    visible: true
-                                }
-                            },
+    
+    
+                that.log.info('Creating new data point: ' + obj_id);
+                that.setObjectNotExists(obj_id, {
+                    type: 'state',
+                    common: {
+                        name: attrname,
+                        type: attrdef.type,
+                        unit: attrdef.unit,
+                        role: attrdef.role,
+                        min: attrdef.min,
+                        max: attrdef.max,
+                        def: val_obj.val,
+                        read: true,
+                        write: false,
+                        mobile: {
+                            admin: {
+                                visible: true
+                            }
                         },
-                        native: {},
-                    // eslint-disable-next-line no-unused-vars
-                    }, function (err, obj) {
-                        // now update the value
-                        that.setStateAsync(obj_id, val_obj);
-                    });
-                }
+                    },
+                    native: {},
+                // eslint-disable-next-line no-unused-vars
+                }, function (err, obj) {
+                    // now update the value
+                    that.setStateAsync(obj_id, val_obj);
+                });
             }
             else {
                 if (attrdef.unit_config != null) {
