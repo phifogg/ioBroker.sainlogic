@@ -116,6 +116,7 @@ class Sainlogic extends utils.Adapter {
         // try changing a data state object:
         for (const attr in DATAFIELDS) {
 
+            // add logic to only create at start if needed...
             for (const ch in DATAFIELDS[attr].channels) {
 
                 // check object for existence and update if needed
