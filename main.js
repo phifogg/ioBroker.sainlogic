@@ -218,7 +218,6 @@ class Sainlogic extends utils.Adapter {
                 });
 
                 this.verify_datapoint('weather.current.windheading', this, winddir_attrdef[0], winddir_attrdef[0].channels[0].name, this.getHeading(display_val, 16) );
-                // this.setStateAsync('weather.current.windheading', { val: this.getHeading(display_val, 16), ack: true });
             }
         }
 
@@ -226,6 +225,7 @@ class Sainlogic extends utils.Adapter {
 
     // taken from https://www.programmieraufgaben.ch/aufgabe/windrichtung-bestimmen/ibbn2e7d
     getHeading(degrees, precision) {
+        this.log.debug('Determining wind heading for ' + degrees + ' and precision ' + precision);
         precision = precision || 16;
         let directions = [],
             direction = 0;
@@ -242,15 +242,22 @@ class Sainlogic extends utils.Adapter {
                 'SOzO SO SOzS SSO SzO S SzW SSW SWzS SW SWzW WSW WzS W WzN ' +
                 'WNW NWzW NW NWzN NNW NzW').split(' ');
                 break;
-            default: throw ('Invalid precision argument.');
+            default: 
+                this.log.error('Wind heading could not be determined: invalid precision');
+                return '';
         }
 
-        if (degrees < 0 || degrees > 360) return '';
+        if (degrees < 0 || degrees > 360) {
+            this.log.error('Wind heading could not be determined: wind direction outside boundary');
+            return '';
+        }
         if (degrees <= i || degrees >= 360 - i) return 'N';
         while (i <= degrees) {
             direction++;
             i += step;
         }
+
+        this.log.debug('GetHeading returning: ' + directions[direction]);
         return directions[direction];
 
     }
