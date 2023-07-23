@@ -230,7 +230,7 @@ class Sainlogic extends utils.Adapter {
                     return def.id == 'windheading';
                 });
 
-                this.verify_datapoint('weather.current.windheading', this, winddir_attrdef, winddir_attrdef.channels[0].name, this.getHeading(display_val, 16) );
+                this.verify_datapoint('weather.current.windheading', this, winddir_attrdef[0], winddir_attrdef[0].channels[0].name, this.getHeading(display_val, 16) );
                 // this.setStateAsync('weather.current.windheading', { val: this.getHeading(display_val, 16), ack: true });
             }
         }
