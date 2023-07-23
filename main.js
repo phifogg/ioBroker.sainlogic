@@ -226,7 +226,12 @@ class Sainlogic extends utils.Adapter {
             this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name, display_val ); // allways channel 0 as primary attribute name
 
             if (c_id == 'winddir') {
-                this.setStateAsync('weather.current.windheading', { val: this.getHeading(display_val, 16), ack: true });
+                const winddir_attrdef = DATAFIELDS.filter(function (def) {
+                    return def.id == 'windheading';
+                });
+
+                this.verify_datapoint('weather.current.windheading', this, winddir_attrdef, winddir_attrdef.channels[0].name, this.getHeading(display_val, 16) );
+                // this.setStateAsync('weather.current.windheading', { val: this.getHeading(display_val, 16), ack: true });
             }
         }
 
