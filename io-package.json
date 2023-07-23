@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.10.4",
+        "version": "0.10.5",
         "news": {
+          "0.10.5": {
+            "en": "Bugfix for state initialization, removed log messages for forwarding",
+            "de": "Fehlerbehebung für Initialisierung der States, Log für Forwarding auf Debug umgestellt"
+          },
           "0.10.4": {
             "en": "Bugfix for lightning count, new battery states for additional sensors",
             "de": "Fehlerbehebung für Lightning Count, neue Batterie-Datenpunkte für weitere Sensoren"

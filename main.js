@@ -145,14 +145,16 @@ class Sainlogic extends utils.Adapter {
 
         // check target type and type-cast if needed
         let val_obj =  { val: '', ack: true };
-        if (value != null) {
-            if (attrdef.type == 'number') {
+
+        if (attrdef.type == 'number'){
+            if (value != null) {
                 value = parseFloat(value);
+            } else {
+                value = 0;
             }
-    
             val_obj =  { val: value, ack: true };
         }
-
+        
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
 
@@ -180,7 +182,7 @@ class Sainlogic extends utils.Adapter {
                             role: attrdef.role,
                             min: attrdef.min,
                             max: attrdef.max,
-                            def: 0,
+                            def: val_obj.val,
                             read: true,
                             write: false,
                             mobile: {
