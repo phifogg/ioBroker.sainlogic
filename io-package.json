@@ -213,16 +213,6 @@
             "native": {}
         },
         {
-          "_id": "weather.current.windheading",
-          "type": "state",
-          "common": {
-            "name": "Wind Heading",
-            "role": "indicator.direction",
-            "type": "string"
-          },
-          "native": {}
-        },
-        {
             "_id": "weather.maxvalues",
             "type": "channel",
             "common": {
