@@ -140,8 +140,8 @@ class Sainlogic extends utils.Adapter {
             } else {
                 value = 0;
             }
-            val_obj =  { val: value, ack: true };
         }
+        val_obj =  { val: value, ack: true };
         
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
