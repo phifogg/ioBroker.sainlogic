@@ -113,18 +113,6 @@ class Sainlogic extends utils.Adapter {
     async onReady() {
         // Initialize your adapter here
 
-        // try changing a data state object:
-        for (const attr in DATAFIELDS) {
-
-            for (const ch in DATAFIELDS[attr].channels) {
-
-                // check object for existence and update if needed
-                const obj_id = DATAFIELDS[attr].channels[ch].channel + '.' + DATAFIELDS[attr].id;
-                const that = this;
-                this.verify_datapoint(obj_id, that, DATAFIELDS[attr], DATAFIELDS[attr].channels[ch].name);
-            }
-        }
-
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
 
@@ -144,67 +132,51 @@ class Sainlogic extends utils.Adapter {
     verify_datapoint(obj_id, that, attrdef, attrname, value) {
 
         // check target type and type-cast if needed
-        let val_obj =  { val: '', ack: true };
-
+        let default_value = '';
         if (attrdef.type == 'number'){
             if (value != null) {
                 value = parseFloat(value);
             } else {
                 value = 0;
+                default_value = 0;
             }
-            val_obj =  { val: value, ack: true };
         }
         
         this.getObject(obj_id, function (err, obj) {
             if (err || obj == null) {
 
-                let existing = 0;
-
-                if ((that.config.scheduler_active == true) && (attrdef.scheduler != null)) { existing++; }
-                if (that.config.listener_active == true) {
-                    switch (that.config.listener_protocol) {
-                        case PROT_WU:
-                            if(attrdef.wunderground != null) { existing++; }
-                            break;
-                        case PROT_EW:
-                            if(attrdef.ecowitt != null) { existing++; }
-                            break;
-                    }               
-                }
-                if(existing) {
-                    that.log.info('Creating new data point: ' + obj_id);
-                    that.setObjectNotExists(obj_id, {
-                        type: 'state',
-                        common: {
-                            name: attrname,
-                            type: attrdef.type,
-                            unit: attrdef.unit,
-                            role: attrdef.role,
-                            min: attrdef.min,
-                            max: attrdef.max,
-                            def: val_obj.val,
-                            read: true,
-                            write: false,
-                            mobile: {
-                                admin: {
-                                    visible: true
-                                }
-                            },
+                that.log.info('Creating new data point: ' + obj_id);
+                that.setObjectNotExists(obj_id, {
+                    type: 'state',
+                    common: {
+                        name: attrname,
+                        type: attrdef.type,
+                        unit: attrdef.unit,
+                        role: attrdef.role,
+                        min: attrdef.min,
+                        max: attrdef.max,
+                        def: default_value,
+                        read: true,
+                        write: false,
+                        mobile: {
+                            admin: {
+                                visible: true
+                            }
                         },
-                        native: {},
-                    // eslint-disable-next-line no-unused-vars
-                    }, function (err, obj) {
-                        // now update the value
-                        that.setStateAsync(obj_id, val_obj);
-                    });
-                }
+                    },
+                    native: {},
+                // eslint-disable-next-line no-unused-vars
+                }, function (err, obj) {
+                    // now update the value
+                    that.setStateAsync(obj_id, { val: value, ack: true });
+                });
             }
             else {
                 if (attrdef.unit_config != null) {
                     that.checkUnit(attrdef, obj);
                 }
                 // now update the value
-                that.setStateAsync(obj_id, val_obj);
+                that.setStateAsync(obj_id, { val: value, ack: true });
             }
 
 
@@ -218,6 +190,7 @@ class Sainlogic extends utils.Adapter {
     setStates(date, obj_values) {
 
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
+        this.setStateAsync('info.last_listener_update', {val: obj_values['last_listener_update'], ack:true });
 
         for (const attr in obj_values) {
             // extract attribute id w/o channel
@@ -237,7 +210,11 @@ class Sainlogic extends utils.Adapter {
             this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name, display_val ); // allways channel 0 as primary attribute name
 
             if (c_id == 'winddir') {
-                this.setStateAsync('weather.current.windheading', { val: this.getHeading(display_val, 16), ack: true });
+                const winddir_attrdef = DATAFIELDS.filter(function (def) {
+                    return def.id == 'windheading';
+                });
+
+                this.verify_datapoint('weather.current.windheading', this, winddir_attrdef[0], winddir_attrdef[0].channels[0].name, this.getHeading(display_val, 16) );
             }
         }
 
@@ -245,6 +222,7 @@ class Sainlogic extends utils.Adapter {
 
     // taken from https://www.programmieraufgaben.ch/aufgabe/windrichtung-bestimmen/ibbn2e7d
     getHeading(degrees, precision) {
+        this.log.debug('Determining wind heading for ' + degrees + ' and precision ' + precision);
         precision = precision || 16;
         let directions = [],
             direction = 0;
@@ -261,15 +239,22 @@ class Sainlogic extends utils.Adapter {
                 'SOzO SO SOzS SSO SzO S SzW SSW SWzS SW SWzW WSW WzS W WzN ' +
                 'WNW NWzW NW NWzN NNW NzW').split(' ');
                 break;
-            default: throw ('Invalid precision argument.');
+            default: 
+                this.log.error('Wind heading could not be determined: invalid precision');
+                return '';
         }
 
-        if (degrees < 0 || degrees > 360) throw ('Invalid degrees argument.');
+        if (degrees < 0 || degrees > 360) {
+            this.log.error('Wind heading could not be determined: wind direction outside boundary');
+            return '';
+        }
         if (degrees <= i || degrees >= 360 - i) return 'N';
         while (i <= degrees) {
             direction++;
             i += step;
         }
+
+        this.log.debug('GetHeading returning: ' + directions[direction]);
         return directions[direction];
 
     }
