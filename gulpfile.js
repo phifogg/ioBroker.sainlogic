@@ -14,15 +14,7 @@ const EMPTY = "";
 const translate = require("./lib/tools.js").translateText;
 const languages = {
     en: {},
-    de: {},
-    ru: {},
-    pt: {},
-    nl: {},
-    fr: {},
-    it: {},
-    es: {},
-    pl: {},
-    "zh-cn": {}
+    de: {}
 };
 
 function lang2data(lang, isFlat) {

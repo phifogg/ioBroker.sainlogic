@@ -58,34 +58,6 @@
           "0.7.0": {
             "en": "Support for Soil Moisture devices like attached to DP1500",
             "de": "Unterstützung für Bodenfeuchtigkeitssensoren angeschlossen an DP1500"
-          },
-          "0.6.6": {
-            "en": "Adressed github issue #53 - warning on non existing object",
-            "de": "github issue #53 - warning on non existing object"
-          },
-          "0.6.5": {
-            "en": "Removed unneeded events",
-            "de": "Nicht benötigte Events entfernt"
-          },
-          "0.6.4": {
-            "en": "For WH2650: Adding model name and weather station communication frequency datapoint",
-            "de": "Für WH2650: Modelname und Kommunikationsfrequenz hinzugefügt"
-          },
-          "0.6.3": {
-            "en": "Fix outdoor humidity",
-            "de": "Outdoor Humidity repariert"
-          },
-          "0.6.2": {
-            "en": "Add Forwarding capability and additional sensors",
-            "de": "Möglichkeit Werte die per Listener ankommen weiterzuleiten und zusätzliche Sensoren auszuwerten"
-          },
-          "0.6.1": {
-            "en": "Add Wind Heading",
-            "de": "Windrichtung auf der Windrose hinzugefügt"
-          },
-          "0.6.0": {
-            "en": "Add Ecowitt support",
-            "de": "Ecowitt für Listener hinzugefügt"
           }
         },
         "title": "Sainlogic Weatherstation",
