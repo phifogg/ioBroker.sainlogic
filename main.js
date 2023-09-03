@@ -192,6 +192,7 @@ class Sainlogic extends utils.Adapter {
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
         this.log.debug(`Setting value of info.last_listener_update to ${obj_values['last_listener_update']}`);
         this.setStateAsync('info.last_listener_update', {val: obj_values['last_listener_update'], ack:true });
+        this.log.debug(`obj_values.last_listener_update = "${obj_values.last_listener_update}"`);
 
         for (const attr in obj_values) {
             // extract attribute id w/o channel
