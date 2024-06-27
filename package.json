@@ -1,6 +1,6 @@
 {
   "name": "iobroker.sainlogic",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "description": "Read data from a sainlogic based weather station",
   "author": {
     "name": "Daniel Draes",
