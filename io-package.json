@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.11.1",
+        "version": "0.11.2",
         "news": {
+          "0.11.2": {
+            "en": "Bump libraries, add new sensors, remove node.js 16",
+            "de": "Update von Abhängigkeiten, neue Sensoren und node.js 16 entfernt"
+          },
           "0.11.1": {
             "en": "Removed unneccessary state creation at startup, will create states dynamically as data comes in",
             "de": "Unnötiges Anlegen von Sates beim Start entfernt, States werden nur noch generiert wenn Daten ankommen"
