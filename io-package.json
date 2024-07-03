@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.11.3",
+        "version": "0.11.4",
         "news": {
+          "0.11.4": {
+            "en": "Fix yearlyrain max value and mapping for CO2 sensors",
+            "de": "Max. Wert für Yearlyrain korrigiert, CO2 Sensorenmapping korrigiert"
+          },
           "0.11.3": {
             "en": "Bump libraries, add new sensors, remove node.js 16",
             "de": "Update von Abhängigkeiten, neue Sensoren und node.js 16 entfernt"
