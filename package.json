@@ -2,6 +2,9 @@
   "name": "iobroker.sainlogic",
   "version": "0.11.4",
   "description": "Read data from a sainlogic based weather station",
+  "engines": {
+    "node": "18"
+  },
   "author": {
     "name": "Daniel Draes",
     "email": "foggch@gmail.com"
@@ -14,6 +17,7 @@
   "homepage": "https://github.com/phifogg/ioBroker.sainlogic",
   "license": "MIT",
   "keywords": [
+    "ioBroker",
     "weather",
     "sainlogic"
   ],
@@ -22,7 +26,7 @@
     "url": "https://github.com/phifogg/ioBroker.sainlogic"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.6.6",
+    "@iobroker/adapter-core": "^3.1.6",
     "binary-parser": "^2.2.1",
     "expr-eval": "^2.0.2",
     "@esm2cjs/got": "^12.5.0",
@@ -31,7 +35,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@iobroker/testing": "^4.1.0",
+    "@iobroker/testing": "^4.1.3",
     "@types/chai": "^4.3.3",
     "@types/chai-as-promised": "^7.1.5",
     "@types/gulp": "^4.0.9",
