@@ -15,10 +15,6 @@
             "en": "bad publish",
             "de": "Unkompletter publish vorgang"
           },
-          "0.11.1": {
-            "en": "Removed unneccessary state creation at startup, will create states dynamically as data comes in",
-            "de": "Unnötiges Anlegen von Sates beim Start entfernt, States werden nur noch generiert wenn Daten ankommen"
-          },
           "0.10.5": {
             "en": "Bugfix for state initialization, removed log messages for forwarding",
             "de": "Fehlerbehebung für Initialisierung der States, Log für Forwarding auf Debug umgestellt"
@@ -34,45 +30,9 @@
           "0.10.2": {
             "en": "Bugfixes and new datapoints of battery level of some sensors",
             "de": "Fehlerbehebungen und neue Datenpunkte für Batterieslevels von ein paar Sensoren"
-          },
-          "0.10.0": {
-            "en": "Added new external sensors for lightning (DP60), Co2 sensor (DP250), GW200A Piezo elements and minor fixes",
-            "de": "Neue Datenpunkte für Blitz (DP60), CO2 (DP250) und Piezo Regensensoren (GW200A), kleinere Updates"
-          },
-          "0.9.0": {
-            "en": "Added new external sensors, minor fixes",
-            "de": "Neue Datenpunkte für externe Sensoren, kleinere Updates"
-          },
-          "0.8.2": {
-            "en": "Increase UVraw max value for summer values",
-            "de": "Max. Wert für UVraw angepasst auf 4000 "
-          },
-          "0.8.1": {
-            "en": "Small bugfix for timestamps (prefix with 0, remove NaN)",
-            "de": "Kleiner bugfix für Zeitstempel (führende 0, NaN entfernt)"
-          },
-          "0.8.0": {
-            "en": "Extract time stamps of daily min/max values",
-            "de": "Zeitstempel der Tagesmin- und maxwerte auslesen"
-          },
-          "0.7.3": {
-            "en": "Security fixes in dependencies, Travis pipeline update",
-            "de": "Update von Abhängigkeiten wegen möglichen Sicherheitsmeldungen, Travis Pipeline aktualisiert"
-          },
-          "0.7.2": {
-            "en": "Security fixes in dependencies",
-            "de": "Update von Abhängigkeiten wegen möglichen Sicherheitsmeldungen"
-          },
-          "0.7.1": {
-            "en": "Fix Soilbatt mapping",
-            "de": "Korrektur für Batterielevel der Bodenfeuchtigkeitssensoren"
-          },
-          "0.7.0": {
-            "en": "Support for Soil Moisture devices like attached to DP1500",
-            "de": "Unterstützung für Bodenfeuchtigkeitssensoren angeschlossen an DP1500"
           }
         },
-        "title": "Sainlogic Weatherstation",
+        "tier": 3,
         "titleLang": {
             "en": "Sainlogic Weatherstation",
             "de": "Sainlogic Weatherstation"
@@ -88,9 +48,8 @@
             "weather",
             "sainlogic"
         ],
-        "license": "MIT",
+        "licenseInformation": "MIT",
         "platform": "Javascript/Node.js",
-        "main": "main.js",
         "icon": "sainlogic.png",
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/phifogg/ioBroker.sainlogic/master/admin/sainlogic.png",
@@ -101,10 +60,9 @@
         "compact": true,
         "connectionType": "local",
         "dataSource": "push",
-        "materialize": true,
         "dependencies": [
             {
-                "js-controller": ">=2.0.0"
+                "js-controller": ">=5.0.19"
             }
         ]
     },
