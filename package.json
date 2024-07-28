@@ -3,7 +3,7 @@
   "version": "0.11.4",
   "description": "Read data from a sainlogic based weather station",
   "engines": {
-    "node": "18"
+    "node": ">=18"
   },
   "author": {
     "name": "Daniel Draes",
@@ -15,7 +15,10 @@
     }
   ],
   "homepage": "https://github.com/phifogg/ioBroker.sainlogic",
-  "license": "MIT",
+  "licenseInformation": {
+          "type": "free",
+          "license": "MIT"
+        },
   "keywords": [
     "ioBroker",
     "weather",

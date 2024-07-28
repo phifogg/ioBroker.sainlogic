@@ -48,7 +48,10 @@
             "weather",
             "sainlogic"
         ],
-        "licenseInformation": "MIT",
+        "licenseInformation": {
+          "type": "free",
+          "license": "MIT"
+        },
         "platform": "Javascript/Node.js",
         "icon": "sainlogic.png",
         "enabled": true,
