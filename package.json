@@ -15,10 +15,7 @@
     }
   ],
   "homepage": "https://github.com/phifogg/ioBroker.sainlogic",
-  "licenseInformation": {
-          "type": "free",
-          "license": "MIT"
-        },
+  "license": "MIT",
   "keywords": [
     "ioBroker",
     "weather",
