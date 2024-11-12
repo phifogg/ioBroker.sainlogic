@@ -94,6 +94,8 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 Latest version
 
+#### 0.11.5 ECOWITT forwarding fixed
+
 #### 0.11.4 Fix yearlyrain max value and mapping for CO2 sensors
 
 #### 0.10.5 Bugfix for state initialization, removed log messages for forwarding
