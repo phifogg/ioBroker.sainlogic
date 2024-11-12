@@ -29,7 +29,7 @@
     "url": "https://github.com/phifogg/ioBroker.sainlogic"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.1.6",
+    "@iobroker/adapter-core": "^3.2.2",
     "binary-parser": "^2.2.1",
     "expr-eval": "^2.0.2",
     "@esm2cjs/got": "^12.5.0",
