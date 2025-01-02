@@ -67,6 +67,9 @@
         "compact": true,
         "connectionType": "local",
         "dataSource": "push",
+        "adminUI": {
+            "config": "materialize"
+        },
         "dependencies": [
             {
                 "js-controller": ">=5.0.19"
