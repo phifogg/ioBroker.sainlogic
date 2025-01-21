@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.11.5",
+        "version": "0.11.6",
         "news": {
             "0.11.6": {
                 "en": "Responsinve design checked, added translations, dependencies updated",
