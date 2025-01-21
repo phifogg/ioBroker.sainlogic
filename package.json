@@ -1,6 +1,6 @@
 {
   "name": "iobroker.sainlogic",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "description": "Read data from a sainlogic based weather station",
   "engines": {
     "node": ">=18"
@@ -26,15 +26,16 @@
     "url": "https://github.com/phifogg/ioBroker.sainlogic"
   },
   "dependencies": {
+    "@esm2cjs/got": "^12.5.0",
     "@iobroker/adapter-core": "^3.2.2",
     "binary-parser": "^2.2.1",
     "expr-eval": "^2.0.2",
-    "@esm2cjs/got": "^12.5.0",
     "hosted-git-info": "^5.1.0",
     "jshint": "^2.13.5",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@iobroker/adapter-dev": "^1.3.0",
     "@iobroker/testing": "^4.1.3",
     "@types/chai": "^4.3.3",
     "@types/chai-as-promised": "^7.1.5",
@@ -60,7 +61,8 @@
     "test:package": "mocha test/package --exit",
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package",
-    "lint": "eslint"
+    "lint": "eslint",
+    "translate": "translate-adapter"
   },
   "bugs": {
     "url": "https://github.com/phifogg/ioBroker.sainlogic/issues"
