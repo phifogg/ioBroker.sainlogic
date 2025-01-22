@@ -3,6 +3,10 @@
         "name": "sainlogic",
         "version": "0.11.6",
         "news": {
+            "1.0.0": {
+                "en": "Added support for WFC01",
+                "de": "Unterstützung für WFC01"
+            },
             "0.11.6": {
                 "en": "Responsinve design checked, added translations, dependencies updated",
                 "de": "Responsinve design überprüft, Übersetzungen, Abhängigkeiten"
