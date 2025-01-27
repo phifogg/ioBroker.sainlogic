@@ -1,6 +1,6 @@
 {
   "name": "iobroker.sainlogic",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Read data from a sainlogic based weather station",
   "engines": {
     "node": ">=18"
