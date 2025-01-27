@@ -15,7 +15,7 @@ const Parser = require('expr-eval').Parser;
 // Load your modules here, e.g.:
 const Listener = require('./lib/listener');
 const Scheduler = require('./lib/scheduler');
-const { PROT_WU, PROT_EW, DATAFIELDS } = require('./lib/constants');
+const { DATAFIELDS } = require('./lib/constants');
 //const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function');
 
 
