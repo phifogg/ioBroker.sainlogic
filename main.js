@@ -135,6 +135,7 @@ class Sainlogic extends utils.Adapter {
         let default_value = '';
         if (attrdef.type == 'number'){
             if (value != null) {
+                default_value = 0;
                 value = parseFloat(value);
             } else {
                 value = 0;
