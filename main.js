@@ -141,6 +141,8 @@ class Sainlogic extends utils.Adapter {
                 value = 0;
                 default_value = 0;
             }
+        } else if (attrdef.type == 'string') {
+            value = value + '';
         }
         
         this.getObject(obj_id, function (err, obj) {
