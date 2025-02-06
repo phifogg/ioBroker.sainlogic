@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "0.11.6",
+        "version": "0.12.1",
         "news": {
+            "0.12.1": {
+                "en": "Added Laser Distance sensor (LDS) Objects",
+                "de": "Attribute für Laser Distance Sensor (LDS) hinzugefügt"
+            },
             "0.11.6": {
                 "en": "Responsinve design checked, added translations, dependencies updated",
                 "de": "Responsinve design überprüft, Übersetzungen, Abhängigkeiten"
