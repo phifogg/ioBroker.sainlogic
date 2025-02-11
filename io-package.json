@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "1.0.8",
+        "version": "1.0.9",
         "news": {
-            "1.0.8": {
+            "1.0.9": {
                 "en": "Added support for WFC01",
                 "de": "Unterstützung für WFC01"
             },
