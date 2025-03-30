@@ -31,13 +31,16 @@ class Sainlogic extends utils.Adapter {
         });
         this.on('ready', this.onReady.bind(this));
         // this.on('objectChange', this.onObjectChange.bind(this));
-        //this.on('stateChange', this.onStateChange.bind(this));
+        this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
 
     }
 
-
+    onStateChange(id, state) {
+        this.adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
+    }
+    
     checkUnit(attrdef, obj) {
 
         const c_id = obj._id;
@@ -173,6 +176,7 @@ class Sainlogic extends utils.Adapter {
                 }, function (err, obj) {
                     // now update the value
                     that.setStateAsync(obj_id, { val: value, ack: true });
+                    that.subscribeStates(obj_id); 
                 });
             }
             else {
