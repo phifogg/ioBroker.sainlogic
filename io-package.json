@@ -66,11 +66,14 @@
         "adminUI": {
             "config": "materialize"
         },
-        "globalDependencies": [],
+        "globalDependencies": [                
+            {
+                "admin": ">=7.4.10"
+            }
+    ],
         "dependencies": [
             {
-                "js-controller": ">=5.0.19",
-                "admin": ">=7.4.10"
+                "js-controller": ">=5.0.19"
             }
         ]
     },
