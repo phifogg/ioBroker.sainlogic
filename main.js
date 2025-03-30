@@ -15,7 +15,7 @@ const Parser = require('expr-eval').Parser;
 // Load your modules here, e.g.:
 const Listener = require('./lib/listener');
 const Scheduler = require('./lib/scheduler');
-const { PROT_WU, PROT_EW, DATAFIELDS } = require('./lib/constants');
+const { DATAFIELDS } = require('./lib/constants');
 //const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function');
 
 
@@ -135,11 +135,14 @@ class Sainlogic extends utils.Adapter {
         let default_value = '';
         if (attrdef.type == 'number'){
             if (value != null) {
+                default_value = 0;
                 value = parseFloat(value);
             } else {
                 value = 0;
                 default_value = 0;
             }
+        } else if (attrdef.type == 'string') {
+            value = value + '';
         }
         
         this.getObject(obj_id, function (err, obj) {
@@ -155,6 +158,7 @@ class Sainlogic extends utils.Adapter {
                         role: attrdef.role,
                         min: attrdef.min,
                         max: attrdef.max,
+                        states: attrdef.states,
                         def: default_value,
                         read: true,
                         write: false,
