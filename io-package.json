@@ -7,7 +7,7 @@
                 "en": "Added support for WFC01",
                 "de": "Unterstützung für WFC01"
             },
-            "0.12.2": {
+            "0.12.1": {
                 "en": "Added Laser Distance sensor (LDS) Objects",
                 "de": "Attribute für Laser Distance Sensor (LDS) hinzugefügt"
             },
