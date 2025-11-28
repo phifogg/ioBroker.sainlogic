@@ -98,6 +98,8 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 Latest version
 
+#### 1.0.13 Updates for repositrory checker
+
 #### 1.0.12 Support for WFC01 - Smart Water Timer fixes
 
 #### 1.0.0 Support for WFC01 - Smart Water Timer

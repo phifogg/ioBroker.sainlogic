@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "1.0.12",
+        "version": "1.0.13",
         "news": {
+            "1.0.13": {
+                "en": "Repository checker updates",
+                "de": "Aktualisierungen basierend auf dem Repository Checker"
+            },
             "1.0.12": {
                 "en": "Added support for WFC01",
                 "de": "Unterstützung für WFC01"
@@ -26,10 +30,6 @@
           "0.11.3": {
             "en": "Bump libraries, add new sensors, remove node.js 16",
             "de": "Update von Abhängigkeiten, neue Sensoren und node.js 16 entfernt"
-          },
-          "0.11.2": {
-            "en": "bad publish",
-            "de": "Unkompletter publish vorgang"
           }
         },
         "tier": 3,
