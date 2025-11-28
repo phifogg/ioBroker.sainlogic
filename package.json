@@ -1,6 +1,6 @@
 {
   "name": "iobroker.sainlogic",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Read data from a sainlogic based weather station",
   "engines": {
     "node": ">=20"
@@ -31,9 +31,9 @@
     "binary-parser": "^2.2.1",
     "expr-eval": "^2.0.2",
     "hosted-git-info": "^5.1.0",
+    "iobroker": "^4.0.3",
     "jshint": "^2.13.5",
-    "lodash": "^4.17.21",
-    "admin": "^7.7.0"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@iobroker/adapter-dev": "^1.5.0",
