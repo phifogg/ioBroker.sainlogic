@@ -19,10 +19,11 @@ const { DATAFIELDS } = require('./lib/constants');
 
 class Sainlogic extends utils.Adapter {
     /**
-     * @param {Partial<ioBroker.AdapterOptions>} [options] Adapter options
+     * @param  [options] Adapter options
      */
     constructor(options) {
         super({
+            ...options,
             name: 'sainlogic',
         });
         this.on('ready', this.onReady.bind(this));
@@ -56,24 +57,20 @@ class Sainlogic extends utils.Adapter {
 
             const conversion_rule_back = my_source_unit[0].main_unit_conversion;
 
-            const that = this;
-            this.getState(
-                c_id,
-                function (err, st) {
-                    const parser = new Parser();
+            this.getState(c_id, (err, st) => {
+                const parser = new Parser();
 
-                    let new_value = st.val;
+                let new_value = st.val;
 
-                    // convert back if required
-                    if (conversion_rule_back != null) {
-                        const exp = parser.parse(conversion_rule_back);
-                        new_value = exp.evaluate({ x: new_value });
-                    }
+                // convert back if required
+                if (conversion_rule_back != null) {
+                    const exp = parser.parse(conversion_rule_back);
+                    new_value = exp.evaluate({ x: new_value });
+                }
 
-                    new_value = that.toDisplayUnit(attrdef, new_value);
-                    that.setState(c_id, { val: new_value, ack: true });
-                }.bind(that),
-            );
+                new_value = this.toDisplayUnit(attrdef, new_value);
+                this.setState(c_id, { val: new_value, ack: true });
+            });
         }
     }
 
@@ -181,7 +178,11 @@ class Sainlogic extends utils.Adapter {
                         },
                         function (err, obj) {
                             // now update the value
-                            that.setStateAsync(obj_id, { val: value, ack: true });
+                            if (err || obj == null) {
+                                that.log.error(`Error creating object ${obj_id}: ${err}`);
+                            } else {
+                                that.setStateAsync(obj_id, { val: value, ack: true });
+                            }
                         },
                     );
                 } else {
