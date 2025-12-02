@@ -35,3 +35,7 @@ maintenance/**
 
 # ioBroker dev-server
 .dev-server/
+
+# eslint
+eslint.config.mjs
+prettier.config.mjs
