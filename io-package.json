@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "1.0.15",
+        "version": "1.0.16",
         "news": {
+            "1.0.16": {
+                "en": "Typo fixed in io-package.json",
+                "de": "Tippfehler in io-package.json behoben",
+                "ru": "Исправлена опечатка в io-package.json",
+                "pt": "Erro de digitação corrigido em io-package.json",
+                "nl": "Typfout in io-package.json gecorrigeerd",
+                "fr": "Fautes de frappe corrigées dans io-package.json",
+                "it": "Corretto errore di battitura in io-package.json",
+                "es": "Error tipográfico corregido en io-package.json",
+                "pl": "Poprawiono literówkę w io-package.json",
+                "uk": "Виправлено опечатку в io-package.json",
+                "zh-cn": "修正 io-package.json 中的拼写错误"
+            },
             "1.0.15": {
                 "en": "Translations and Adapter checker fixes",
                 "de": "Übersetzungen und Adapter Checker Korrekturen",
@@ -93,19 +106,6 @@
                 "pl": "Naprawiono maksymalną wartość rocznych opadów i mapowanie dla czujników CO2",
                 "uk": "Виправлено максимальне значення річного опаду та відображення для датчиків CO2",
                 "zh-cn": "修复年度降雨最大值和 CO2 传感器映射"
-            },
-            "0.11.3": {
-                "en": "Bump libraries, add new sensors, remove node.js 16",
-                "de": "Update von Abhängigkeiten, neue Sensoren und node.js 16 entfernt",
-                "ru": "Обновлены библиотеки, добавлены новые датчики, удалён Node.js 16",
-                "pt": "Atualizadas bibliotecas, adicionados novos sensores, removido Node.js 16",
-                "nl": "Bibliotheken geüpdatet, nieuwe sensoren toegevoegd, node.js 16 verwijderd",
-                "fr": "Mise à jour des bibliothèques, ajout de nouveaux capteurs, suppression de node.js 16",
-                "it": "Aggiornate librerie, aggiunti nuovi sensori, rimosso node.js 16",
-                "es": "Actualizadas bibliotecas, añadidos nuevos sensores, eliminado node.js 16",
-                "pl": "Zaktualizowano biblioteki, dodano nowe czujniki, usunięto node.js 16",
-                "uk": "Оновлено бібліотеки, додано нові датчики, видалено Node.js 16",
-                "zh-cn": "更新库，添加新传感器，移除 Node.js 16"
             }
         },
         "tier": 3,
