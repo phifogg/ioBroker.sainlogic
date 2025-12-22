@@ -4,9 +4,9 @@
 
 Move changelog to extra file
 
-### 1.0.15 (2025-12-22)
+### 1.0.16 Typo in io-package.json
 
-Translated and adapter checker updates
+### 1.0.15 (2025-12-22) Translated and adapter checker updates
 
 #### 1.0.14 Updates for Repository checker
 
