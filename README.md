@@ -104,8 +104,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 ## Changelog
 
 Latest version
-
-### **WORK IN PROGRESS**
+### 1.0.15 (2025-12-22)
 
 Translated and adapter checker updates
 

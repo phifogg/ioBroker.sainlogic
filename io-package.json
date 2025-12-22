@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sainlogic",
-        "version": "1.0.14",
+        "version": "1.0.15",
         "news": {
+            "1.0.15": {
+                "en": "Translations and Adapter checker fixes",
+                "de": "Übersetzungen und Adapter Checker Korrekturen",
+                "ru": "Переводы и исправления адаптера Checker",
+                "pt": "Traduções e correções do verificador de adaptadores",
+                "nl": "Vertalingen en Adapter Checker-fixes",
+                "fr": "Traductions et corrections du vérificateur d'adaptateur",
+                "it": "Traduzioni e correzioni di Adapter Checker",
+                "es": "Traducciones y correcciones del verificador de adaptadores",
+                "pl": "Tłumaczenia i poprawki Adapter Checker",
+                "uk": "Переклади та виправлення перевірки адаптера",
+                "zh-cn": "翻译和适配器检查程序修复"
+            }
             "1.0.14": {
                 "en": "Repository checker updates",
                 "de": "Aktualisierungen basierend auf dem Repository Checker",
