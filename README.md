@@ -101,12 +101,6 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 Station does not answer to scheduler commands, so only listener mode is supported.
 
-## Changelog
-
-Latest version
-
-### 1.0.16 Typo in io-package.json
-
 ## Credits
 
 Credits go to:
