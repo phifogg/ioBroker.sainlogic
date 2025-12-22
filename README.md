@@ -105,7 +105,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 Latest version
 
-## **WORK IN PROGRESS** - 2020 Doomsday release
+## **WORK IN PROGRESS**
 
 Translated and adapter checker updates
 
