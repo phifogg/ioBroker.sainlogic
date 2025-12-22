@@ -2,99 +2,99 @@
     "common": {
         "name": "sainlogic",
         "version": "1.0.14",
-                "news": {
-                        "1.0.14": {
-                                "en": "Repository checker updates",
-                                "de": "Aktualisierungen basierend auf dem Repository Checker",
-                                "ru": "Обновления проверки репозитория",
-                                "pt": "Atualizações do verificador de repositório",
-                                "nl": "Updates voor repository-checker",
-                                "fr": "Mises à jour du vérificateur de dépôt",
-                                "it": "Aggiornamenti del verificatore del repository",
-                                "es": "Actualizaciones del comprobador de repositorios",
-                                "pl": "Aktualizacje sprawdzacza repozytorium",
-                                "uk": "Оновлення перевірки репозиторію",
-                                "zh-cn": "仓库检查器更新"
-                        },
-                        "1.0.13": {
-                                "en": "Added support for WFC01, Repository checker updates",
-                                "de": "WFC01 Unterstützung eingebaut, Aktualisierungen basierend auf dem Repository Checker",
-                                "ru": "Добавлена поддержка WFC01, обновления проверки репозитория",
-                                "pt": "Adicionado suporte para WFC01, atualizações do verificador de repositório",
-                                "nl": "Ondersteuning toegevoegd voor WFC01, updates voor repository-checker",
-                                "fr": "Ajout du support pour WFC01, mises à jour du vérificateur de dépôt",
-                                "it": "Aggiunto supporto per WFC01, aggiornamenti del verificatore del repository",
-                                "es": "Agregado soporte para WFC01, actualizaciones del comprobador de repositorios",
-                                "pl": "Dodano obsługę WFC01, aktualizacje sprawdzacza repozytorium",
-                                "uk": "Додано підтримку WFC01, оновлення перевірки репозиторію",
-                                "zh-cn": "添加对 WFC01 的支持，仓库检查器更新"
-                        },
-                        "0.12.1": {
-                                "en": "Added Laser Distance sensor (LDS) Objects",
-                                "de": "Attribute für Laser Distance Sensor (LDS) hinzugefügt",
-                                "ru": "Добавлены объекты датчика лазерного расстояния (LDS)",
-                                "pt": "Adicionados objetos do sensor de distância a laser (LDS)",
-                                "nl": "Laserafstandssensor (LDS)-objecten toegevoegd",
-                                "fr": "Ajout d'objets du capteur de distance laser (LDS)",
-                                "it": "Aggiunti oggetti sensore distanza laser (LDS)",
-                                "es": "Agregados objetos del sensor de distancia láser (LDS)",
-                                "pl": "Dodano obiekty czujnika odległości laserowej (LDS)",
-                                "uk": "Додано об'єкти лазерного датчика відстані (LDS)",
-                                "zh-cn": "添加了激光测距传感器 (LDS) 对象"
-                        },
-                        "0.11.6": {
-                                "en": "Responsinve design checked, added translations, dependencies updated",
-                                "de": "Responsinve design überprüft, Übersetzungen, Abhängigkeiten",
-                                "ru": "Проверен адаптивный дизайн, добавлены переводы, обновлены зависимости",
-                                "pt": "Design responsivo verificado, traduções adicionadas, dependências atualizadas",
-                                "nl": "Responsief ontwerp gecontroleerd, vertalingen toegevoegd, afhankelijkheden bijgewerkt",
-                                "fr": "Design réactif vérifié, traductions ajoutées, dépendances mises à jour",
-                                "it": "Design reattivo controllato, traduzioni aggiunte, dipendenze aggiornate",
-                                "es": "Diseño adaptable comprobado, traducciones añadidas, dependencias actualizadas",
-                                "pl": "Sprawdzono responsywny wygląd, dodano tłumaczenia, zaktualizowano zależności",
-                                "uk": "Перевірено адаптивний дизайн, додано переклади, оновлено залежності",
-                                "zh-cn": "检查了响应式设计，添加了翻译，更新了依赖项"
-                        },
-                        "0.11.5": {
-                            "en": "Fix forwarding ECOWITT protocoll",
-                                "de": "Ecowitt Forwarding korrigiert",
-                                "ru": "Исправлена пересылка протокола ECOWITT",
-                                "pt": "Corrigido encaminhamento do protocolo ECOWITT",
-                                "nl": "Doorsturen van ECOWITT-protocol gerepareerd",
-                                "fr": "Correction du transfert du protocole ECOWITT",
-                                "it": "Corretto inoltro del protocollo ECOWITT",
-                                "es": "Corregido reenvío del protocolo ECOWITT",
-                                "pl": "Naprawiono przekazywanie protokołu ECOWITT",
-                                "uk": "Виправлено пересилання протоколу ECOWITT",
-                                "zh-cn": "修复 ECOWITT 协议转发"
-                    },
-                    "0.11.4": {
-                        "en": "Fix yearlyrain max value and mapping for CO2 sensors",
-                        "de": "Max. Wert für Yearlyrain korrigiert, CO2 Sensorenmapping korrigiert",
-                        "ru": "Исправлен максимальный годовой уровень осадков и сопоставление для датчиков CO2",
-                        "pt": "Corrigido valor máximo de chuva anual e mapeamento para sensores de CO2",
-                        "nl": "Jaarlijkse regen maximumwaarde en mapping voor CO2-sensoren gecorrigeerd",
-                        "fr": "Correction de la valeur max de pluie annuelle et du mappage pour les capteurs CO2",
-                        "it": "Corretto il valore massimo di pioggia annua e il mapping per i sensori CO2",
-                        "es": "Corregido el valor máximo de lluvia anual y el mapeo para sensores de CO2",
-                        "pl": "Naprawiono maksymalną wartość rocznych opadów i mapowanie dla czujników CO2",
-                        "uk": "Виправлено максимальне значення річного опаду та відображення для датчиків CO2",
-                        "zh-cn": "修复年度降雨最大值和 CO2 传感器映射"
-                    },
-                    "0.11.3": {
-                        "en": "Bump libraries, add new sensors, remove node.js 16",
-                        "de": "Update von Abhängigkeiten, neue Sensoren und node.js 16 entfernt",
-                        "ru": "Обновлены библиотеки, добавлены новые датчики, удалён Node.js 16",
-                        "pt": "Atualizadas bibliotecas, adicionados novos sensores, removido Node.js 16",
-                        "nl": "Bibliotheken geüpdatet, nieuwe sensoren toegevoegd, node.js 16 verwijderd",
-                        "fr": "Mise à jour des bibliothèques, ajout de nouveaux capteurs, suppression de node.js 16",
-                        "it": "Aggiornate librerie, aggiunti nuovi sensori, rimosso node.js 16",
-                        "es": "Actualizadas bibliotecas, añadidos nuevos sensores, eliminado node.js 16",
-                        "pl": "Zaktualizowano biblioteki, dodano nowe czujniki, usunięto node.js 16",
-                        "uk": "Оновлено бібліотеки, додано нові датчики, видалено Node.js 16",
-                        "zh-cn": "更新库，添加新传感器，移除 Node.js 16"
-                    }
-                },
+        "news": {
+            "1.0.14": {
+                "en": "Repository checker updates",
+                "de": "Aktualisierungen basierend auf dem Repository Checker",
+                "ru": "Обновления проверки репозитория",
+                "pt": "Atualizações do verificador de repositório",
+                "nl": "Updates voor repository-checker",
+                "fr": "Mises à jour du vérificateur de dépôt",
+                "it": "Aggiornamenti del verificatore del repository",
+                "es": "Actualizaciones del comprobador de repositorios",
+                "pl": "Aktualizacje sprawdzacza repozytorium",
+                "uk": "Оновлення перевірки репозиторію",
+                "zh-cn": "仓库检查器更新"
+            },
+            "1.0.13": {
+                "en": "Added support for WFC01, Repository checker updates",
+                "de": "WFC01 Unterstützung eingebaut, Aktualisierungen basierend auf dem Repository Checker",
+                "ru": "Добавлена поддержка WFC01, обновления проверки репозитория",
+                "pt": "Adicionado suporte para WFC01, atualizações do verificador de repositório",
+                "nl": "Ondersteuning toegevoegd voor WFC01, updates voor repository-checker",
+                "fr": "Ajout du support pour WFC01, mises à jour du vérificateur de dépôt",
+                "it": "Aggiunto supporto per WFC01, aggiornamenti del verificatore del repository",
+                "es": "Agregado soporte para WFC01, actualizaciones del comprobador de repositorios",
+                "pl": "Dodano obsługę WFC01, aktualizacje sprawdzacza repozytorium",
+                "uk": "Додано підтримку WFC01, оновлення перевірки репозиторію",
+                "zh-cn": "添加对 WFC01 的支持，仓库检查器更新"
+            },
+            "0.12.1": {
+                "en": "Added Laser Distance sensor (LDS) Objects",
+                "de": "Attribute für Laser Distance Sensor (LDS) hinzugefügt",
+                "ru": "Добавлены объекты датчика лазерного расстояния (LDS)",
+                "pt": "Adicionados objetos do sensor de distância a laser (LDS)",
+                "nl": "Laserafstandssensor (LDS)-objecten toegevoegd",
+                "fr": "Ajout d'objets du capteur de distance laser (LDS)",
+                "it": "Aggiunti oggetti sensore distanza laser (LDS)",
+                "es": "Agregados objetos del sensor de distancia láser (LDS)",
+                "pl": "Dodano obiekty czujnika odległości laserowej (LDS)",
+                "uk": "Додано об'єкти лазерного датчика відстані (LDS)",
+                "zh-cn": "添加了激光测距传感器 (LDS) 对象"
+            },
+            "0.11.6": {
+                "en": "Responsinve design checked, added translations, dependencies updated",
+                "de": "Responsinve design überprüft, Übersetzungen, Abhängigkeiten",
+                "ru": "Проверен адаптивный дизайн, добавлены переводы, обновлены зависимости",
+                "pt": "Design responsivo verificado, traduções adicionadas, dependências atualizadas",
+                "nl": "Responsief ontwerp gecontroleerd, vertalingen toegevoegd, afhankelijkheden bijgewerkt",
+                "fr": "Design réactif vérifié, traductions ajoutées, dépendances mises à jour",
+                "it": "Design reattivo controllato, traduzioni aggiunte, dipendenze aggiornate",
+                "es": "Diseño adaptable comprobado, traducciones añadidas, dependencias actualizadas",
+                "pl": "Sprawdzono responsywny wygląd, dodano tłumaczenia, zaktualizowano zależności",
+                "uk": "Перевірено адаптивний дизайн, додано переклади, оновлено залежності",
+                "zh-cn": "检查了响应式设计，添加了翻译，更新了依赖项"
+            },
+            "0.11.5": {
+                "en": "Fix forwarding ECOWITT protocoll",
+                "de": "Ecowitt Forwarding korrigiert",
+                "ru": "Исправлена пересылка протокола ECOWITT",
+                "pt": "Corrigido encaminhamento do protocolo ECOWITT",
+                "nl": "Doorsturen van ECOWITT-protocol gerepareerd",
+                "fr": "Correction du transfert du protocole ECOWITT",
+                "it": "Corretto inoltro del protocollo ECOWITT",
+                "es": "Corregido reenvío del protocolo ECOWITT",
+                "pl": "Naprawiono przekazywanie protokołu ECOWITT",
+                "uk": "Виправлено пересилання протоколу ECOWITT",
+                "zh-cn": "修复 ECOWITT 协议转发"
+            },
+            "0.11.4": {
+                "en": "Fix yearlyrain max value and mapping for CO2 sensors",
+                "de": "Max. Wert für Yearlyrain korrigiert, CO2 Sensorenmapping korrigiert",
+                "ru": "Исправлен максимальный годовой уровень осадков и сопоставление для датчиков CO2",
+                "pt": "Corrigido valor máximo de chuva anual e mapeamento para sensores de CO2",
+                "nl": "Jaarlijkse regen maximumwaarde en mapping voor CO2-sensoren gecorrigeerd",
+                "fr": "Correction de la valeur max de pluie annuelle et du mappage pour les capteurs CO2",
+                "it": "Corretto il valore massimo di pioggia annua e il mapping per i sensori CO2",
+                "es": "Corregido el valor máximo de lluvia anual y el mapeo para sensores de CO2",
+                "pl": "Naprawiono maksymalną wartość rocznych opadów i mapowanie dla czujników CO2",
+                "uk": "Виправлено максимальне значення річного опаду та відображення для датчиків CO2",
+                "zh-cn": "修复年度降雨最大值和 CO2 传感器映射"
+            },
+            "0.11.3": {
+                "en": "Bump libraries, add new sensors, remove node.js 16",
+                "de": "Update von Abhängigkeiten, neue Sensoren und node.js 16 entfernt",
+                "ru": "Обновлены библиотеки, добавлены новые датчики, удалён Node.js 16",
+                "pt": "Atualizadas bibliotecas, adicionados novos sensores, removido Node.js 16",
+                "nl": "Bibliotheken geüpdatet, nieuwe sensoren toegevoegd, node.js 16 verwijderd",
+                "fr": "Mise à jour des bibliothèques, ajout de nouveaux capteurs, suppression de node.js 16",
+                "it": "Aggiornate librerie, aggiunti nuovi sensori, rimosso node.js 16",
+                "es": "Actualizadas bibliotecas, añadidos nuevos sensores, eliminado node.js 16",
+                "pl": "Zaktualizowano biblioteki, dodano nowe czujniki, usunięto node.js 16",
+                "uk": "Оновлено бібліотеки, додано нові датчики, видалено Node.js 16",
+                "zh-cn": "更新库，添加新传感器，移除 Node.js 16"
+            }
+        },
         "tier": 3,
         "titleLang": {
             "en": "Sainlogic Weatherstation",
@@ -122,16 +122,11 @@
             "uk": "Читання даних з метеостанції Sainlogic",
             "zh-cn": "从 Sainlogic 气象站读取数据"
         },
-        "authors": [
-            "Fogg <foggch@gmail.com>"
-        ],
-        "keywords": [
-            "weather",
-            "sainlogic"
-        ],
+        "authors": ["Fogg <foggch@gmail.com>"],
+        "keywords": ["weather", "sainlogic"],
         "licenseInformation": {
-          "type": "free",
-          "license": "MIT"
+            "type": "free",
+            "license": "MIT"
         },
         "platform": "Javascript/Node.js",
         "icon": "sainlogic.png",
@@ -147,7 +142,7 @@
         "adminUI": {
             "config": "materialize"
         },
-        "globalDependencies": [                
+        "globalDependencies": [
             {
                 "admin": ">=7.6.17"
             }
@@ -182,7 +177,7 @@
         "unit_solar": "lx"
     },
     "objects": [],
-    "instanceObjects": [ 
+    "instanceObjects": [
         {
             "_id": "info",
             "type": "channel",
@@ -192,19 +187,19 @@
             "native": {}
         },
         {
-          "_id": "info.last_listener_update",
-          "type": "state",
-          "common": {
-              "role": "",
-              "name": "Content of last update recieved",
-              "type": "string",
-              "read": true,
-              "write": false,
-              "def": ""
-          },
-          "native": {}
-      },
-      {
+            "_id": "info.last_listener_update",
+            "type": "state",
+            "common": {
+                "role": "",
+                "name": "Content of last update recieved",
+                "type": "string",
+                "read": true,
+                "write": false,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
             "_id": "info.last_update",
             "type": "state",
             "common": {
@@ -285,6 +280,6 @@
                 "name": "Min daily values of Weather data"
             },
             "native": {}
-        } 
+        }
     ]
 }
