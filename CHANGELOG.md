@@ -1,4 +1,8 @@
-## C### 1.0.15 (2025-12-22)
+# Changelog
+
+## **WORK IN PROGRESS**
+
+### 1.0.15 (2025-12-22)
 
 Translated and adapter checker updates
 
