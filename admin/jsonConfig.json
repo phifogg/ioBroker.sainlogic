@@ -10,7 +10,7 @@
             "type": "panel",
             "label": "Listener Settings",
             "items": {
-                "listener_enable": {
+                "listener_active": {
                     "type": "checkbox",
                     "label": "Enable Listener",
                     "xs": 12,
@@ -39,6 +39,40 @@
                     "md": 4,
                     "lg": 1,
                     "xl": 1
+                },
+                "path": {
+                    "type": "text",
+                    "label": "Listener Path",
+                    "default": "/weatherstation/updateweatherstation.php",
+                    "xs": 6,
+                    "sm": 6,
+                    "md": 6,
+                    "lg": 5,
+                    "xl": 5
+                },
+                "listener_protocol": {
+                    "type": "select",
+                    "options": [
+                        { "label": "Wunderground", "value": "wunderground" },
+                        { "label": "Ecowitt", "value": "ecowitt" }
+                    ],
+                    "label": "Listener Protocol",
+                    "xs": 6,
+                    "sm": 6,
+                    "md": 6,
+                    "lg": 5,
+                    "xl": 5
+                },
+                "listener_forward_url": {
+                    "newLine": true,
+                    "type": "text",
+                    "label": "Forward URL (optional)",
+                    "default": "",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 10,
+                    "xl": 10
                 }
             }
         },
