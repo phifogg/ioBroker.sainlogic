@@ -22,6 +22,7 @@
                 "listener_ip": {
                     "newLine": true,
                     "type": "ip",
+                    "listenOnAllPorts": true,
                     "label": "Listener IP Address",
                     "default": "listenOnAllPorts",
                     "xs": 12,
@@ -41,6 +42,7 @@
                     "xl": 1
                 },
                 "path": {
+                    "newLine": true,
                     "type": "text",
                     "label": "Listener Path",
                     "default": "/weatherstation/updateweatherstation.php",
@@ -80,7 +82,7 @@
             "type": "panel",
             "label": "Scheduler Settings",
             "items": {
-                "scheduler_enable": {
+                "scheduler_active": {
                     "type": "checkbox",
                     "label": "Enable Scheduler",
                     "xs": 12,
@@ -89,7 +91,8 @@
                     "lg": 4,
                     "xl": 4
                 },
-                "scheduler_interval": {
+                "ws_freq": {
+                    "newLine": true,
                     "type": "number",
                     "label": "Scheduler Interval (minutes)",
                     "default": 15,
@@ -100,6 +103,98 @@
                     "md": 4,
                     "lg": 4,
                     "xl": 4
+                },
+                "ws_address": {
+                    "newLine": true,
+                    "type": "text",
+                    "label": "Weather Station IP Address",
+                    "default": "",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 8,
+                    "lg": 5,
+                    "xl": 5
+                },
+                "ws_port": {
+                    "type": "number",
+                    "label": "Weather Station Port",
+                    "default": 45000,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 1,
+                    "xl": 1
+                },
+                "ws_getfirmware": {
+                    "newLine": true,
+                    "type": "checkbox",
+                    "label": "Get Firmware Version",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "ws_getcurrent": {
+                    "newLine": true,
+                    "type": "checkbox",
+                    "label": "Get Current Weather Data",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "ws_getmax": {
+                    "newLine": true,
+                    "type": "checkbox",
+                    "label": "Get Max Values",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "ws_getmin": {
+                    "newLine": true,
+                    "type": "checkbox",
+                    "label": "Get Min Values",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "ws_getmaxdaily": {
+                    "newLine": true,
+                    "type": "checkbox",
+                    "label": "Get Daily Max Values",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "ws_getmindaily": {
+                    "newLine": true,
+                    "type": "checkbox",
+                    "label": "Get Daily Min Values",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "gw_address": {
+                    "newLine": true,
+                    "type": "text",
+                    "label": "Gateway IP Address",
+                    "default": "",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 8,
+                    "lg": 5,
+                    "xl": 5
                 }
             }
         },
