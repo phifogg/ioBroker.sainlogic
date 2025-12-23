@@ -18,6 +18,27 @@
                     "md": 4,
                     "lg": 4,
                     "xl": 4
+                },
+                "listener_ip": {
+                    "newLine": true,
+                    "type": "ip",
+                    "label": "Listener IP Address",
+                    "default": "listenOnAllPorts",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 8,
+                    "lg": 5,
+                    "xl": 5
+                },
+                "listener_port": {
+                    "type": "number",
+                    "label": "Listener Port",
+                    "default": 45000,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 1,
+                    "xl": 1
                 }
             }
         },
