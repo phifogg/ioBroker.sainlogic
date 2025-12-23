@@ -107,9 +107,9 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 Updates for releasescript changelog logic
 
-## 1.0.17 (2025-12-22)
+### 1.0.16
 
-Move changelog to extra file
+Typo in io-package.json
 
 ## Credits
 
