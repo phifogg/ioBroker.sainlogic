@@ -103,10 +103,9 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 ## Changelog
 
-<!--
-  Placeholder for the next version (at the beginning of the line):
-  ### **WORK IN PROGRESS**
--->
+### **WORK IN PROGRESS**
+
+Updates for releasescript changelog logic
 
 ## 1.0.17 (2025-12-22)
 
