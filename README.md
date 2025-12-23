@@ -101,6 +101,17 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 Station does not answer to scheduler commands, so only listener mode is supported.
 
+## Changelog
+
+<!--
+  Placeholder for the next version (at the beginning of the line):
+  ### **WORK IN PROGRESS**
+-->
+
+## 1.0.17 (2025-12-22)
+
+Move changelog to extra file
+
 ## Credits
 
 Credits go to:
