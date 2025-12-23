@@ -105,10 +105,10 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 <!--
     Placeholder for the next version (at the beginning of the line):
-    ## **WORK IN PROGRESS**
+    ### **WORK IN PROGRESS**
 -->
 
-## **WORK IN PROGRESS**
+### **WORK IN PROGRESS**
 
 Added deploy job for release script
 Changed to Admin UI to jsonConfig
