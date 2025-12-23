@@ -102,8 +102,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 Station does not answer to scheduler commands, so only listener mode is supported.
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 1.0.17 (2025-12-23)
 
 Updates for releasescript changelog logic
 
