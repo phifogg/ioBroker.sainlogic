@@ -1,0 +1,71 @@
+{
+    "i18n": true,
+    "type": "tabs",
+    "tabsStyle": {
+        "width": "calc(100% - 100px)"
+    },
+    "iconPosition": "top",
+    "items": {
+        "listener": {
+            "type": "panel",
+            "label": "Listener Settings",
+            "items": {
+                "listener_enable": {
+                    "type": "checkbox",
+                    "label": "Enable Listener",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                }
+            }
+        },
+        "scheduler": {
+            "type": "panel",
+            "label": "Scheduler Settings",
+            "items": {
+                "scheduler_enable": {
+                    "type": "checkbox",
+                    "label": "Enable Scheduler",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "scheduler_interval": {
+                    "type": "number",
+                    "label": "Scheduler Interval (minutes)",
+                    "default": 15,
+                    "unit": "min",
+                    "min": 1,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                }
+            }
+        },
+        "units": {
+            "type": "panel",
+            "label": "Unit Settings",
+            "items": {
+                "rainfall": {
+                    "type": "select",
+                    "options": [
+                        { "label": "mm", "value": "mm" },
+                        { "label": "in", "value": "in" }
+                    ],
+                    "label": "Rain Fall Unit",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                }
+            }
+        }
+    }
+}

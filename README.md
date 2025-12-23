@@ -110,6 +110,9 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 ## **WORK IN PROGRESS**
 
+Added deploy job for release script
+Changed to Admin UI to jsonConfig
+
 ### 1.0.17 (2025-12-23)
 
 Updates for releasescript changelog logic
