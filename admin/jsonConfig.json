@@ -202,19 +202,78 @@
             "type": "panel",
             "label": "Unit Settings",
             "items": {
-                "rainfall": {
+                "unit_rain": {
                     "type": "select",
                     "options": [
                         { "label": "mm", "value": "mm" },
                         { "label": "in", "value": "in" }
                     ],
+                    "default": "mm",
                     "label": "Rain Fall Unit",
                     "xs": 12,
                     "sm": 12,
                     "md": 4,
                     "lg": 4,
                     "xl": 4
-                }
+                },
+                "unit_temperature": {
+                    "type": "select",
+                    "options": [
+                        { "label": "°C", "value": "°C" },
+                        { "label": "°F", "value": "°F" }
+                    ],
+                    "default": "°C",
+                    "label": "Temperature Unit",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "unit_pressure": {
+                    "type": "select",
+                    "options": [
+                        { "label": "hPa", "value": "hPa" },
+                        { "label": "inHg", "value": "inHg" }
+                    ],
+                    "default": "hPa",
+                    "label": "Pressure Unit",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "unit_windspeed": {
+                    "type": "select",
+                    "options": [
+                        { "label": "km/h", "value": "km/h" },
+                        { "label": "mph", "value": "mph" },
+                        { "label": "m/s", "value": "m/s" },
+                        { "label": "knots", "value": "knots" },
+                        { "label": "fpm", "value": "fpm" }
+                    ],
+                    "default": "km/h",
+                    "label": "Wind Speed Unit",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "unit_solar": {
+                    "type": "select",
+                    "options": [
+                        { "label": "lx", "value": "lx" },
+                        { "label": "W/m²", "value": "W/m²" }
+                    ],
+                    "default": "lx",
+                    "label": "Solar Radiation Unit",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "xl": 4
             }
         }
     }
