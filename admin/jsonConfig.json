@@ -217,6 +217,7 @@
                     "xl": 4
                 },
                 "unit_temperature": {
+                    "newLine": true,
                     "type": "select",
                     "options": [
                         { "label": "°C", "value": "°C" },
@@ -231,6 +232,7 @@
                     "xl": 4
                 },
                 "unit_pressure": {
+                    "newLine": true,
                     "type": "select",
                     "options": [
                         { "label": "hPa", "value": "hPa" },
@@ -245,6 +247,7 @@
                     "xl": 4
                 },
                 "unit_windspeed": {
+                    "newLine": true,
                     "type": "select",
                     "options": [
                         { "label": "km/h", "value": "km/h" },
@@ -262,6 +265,7 @@
                     "xl": 4
                 },
                 "unit_solar": {
+                    "newLine": true,
                     "type": "select",
                     "options": [
                         { "label": "lx", "value": "lx" },
