@@ -107,8 +107,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.1.0 (2025-12-24)
 
 Added deploy job for release script
 Changed to Admin UI to jsonConfig
