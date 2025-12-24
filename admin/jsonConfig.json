@@ -46,7 +46,7 @@
                     "type": "text",
                     "label": "Listener Path",
                     "default": "/weatherstation/updateweatherstation.php",
-                    "xs": 6,
+                    "xs": 12,
                     "sm": 6,
                     "md": 6,
                     "lg": 5,
@@ -59,7 +59,7 @@
                         { "label": "Ecowitt", "value": "ecowitt" }
                     ],
                     "label": "Listener Protocol",
-                    "xs": 6,
+                    "xs": 12,
                     "sm": 6,
                     "md": 6,
                     "lg": 5,
