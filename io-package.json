@@ -1,259 +1,277 @@
 {
-    "common": {
-        "name": "sainlogic",
-        "version": "1.1.0",
-        "news": {
-            "1.1.0": {
-                "en": "Added deploy job for release script\nChanged to Admin UI to jsonConfig",
-                "de": "Stellenangebot für Release Skript hinzugefügt\nZu Admin UI zu jsonConfig geändert",
-                "ru": "Добавлена работа развертывания для сценария выпуска\nИзменить пользовательский интерфейс на jsonConfig",
-                "pt": "Adicionado trabalho de implantação para o script de lançamento\nAlterado para Administração de UI para jsonConfig",
-                "nl": "Inzettaak toegevoegd voor releasescript\nVeranderd naar Admin UI naar jsonConfig",
-                "fr": "Ajout de la tâche de déploiement pour le script de sortie\nChanged to Admin UI to jsonConfig",
-                "it": "Aggiunto lavoro di distribuzione per lo script di rilascio\nModificato su Admin UI a jsonConfig",
-                "es": "Añadido trabajo de despliegue para script de liberación\nCambiar a Admin UI a jsonConfig",
-                "pl": "Dodano zadanie wdrożenia skryptu wydania\nZmieniono na Admin UI na jsonConfig",
-                "uk": "Додано розгортання роботи для сценарію релізу\nЗмінено: Admin UI до jsonConfig",
-                "zh-cn": "为发布脚本添加了部署任务\n已更改为管理员 UI 到 jsonConfig"
-            },
-            "1.0.16": {
-                "en": "Typo fixed in io-package.json",
-                "de": "Tippfehler in io-package.json behoben",
-                "ru": "Исправлена опечатка в io-package.json",
-                "pt": "Erro de digitação corrigido em io-package.json",
-                "nl": "Typfout in io-package.json gecorrigeerd",
-                "fr": "Fautes de frappe corrigées dans io-package.json",
-                "it": "Corretto errore di battitura in io-package.json",
-                "es": "Error tipográfico corregido en io-package.json",
-                "pl": "Poprawiono literówkę w io-package.json",
-                "uk": "Виправлено опечатку в io-package.json",
-                "zh-cn": "修正 io-package.json 中的拼写错误"
-            },
-            "1.0.15": {
-                "en": "Translations and Adapter checker fixes",
-                "de": "Übersetzungen und Adapter Checker Korrekturen",
-                "ru": "Переводы и исправления адаптера Checker",
-                "pt": "Traduções e correções do verificador de adaptadores",
-                "nl": "Vertalingen en Adapter Checker-fixes",
-                "fr": "Traductions et corrections du vérificateur d'adaptateur",
-                "it": "Traduzioni e correzioni di Adapter Checker",
-                "es": "Traducciones y correcciones del verificador de adaptadores",
-                "pl": "Tłumaczenia i poprawki Adapter Checker",
-                "uk": "Переклади та виправлення перевірки адаптера",
-                "zh-cn": "翻译和适配器检查程序修复"
-            },
-            "1.0.14": {
-                "en": "Repository checker updates",
-                "de": "Aktualisierungen basierend auf dem Repository Checker",
-                "ru": "Обновления проверки репозитория",
-                "pt": "Atualizações do verificador de repositório",
-                "nl": "Updates voor repository-checker",
-                "fr": "Mises à jour du vérificateur de dépôt",
-                "it": "Aggiornamenti del verificatore del repository",
-                "es": "Actualizaciones del comprobador de repositorios",
-                "pl": "Aktualizacje sprawdzacza repozytorium",
-                "uk": "Оновлення перевірки репозиторію",
-                "zh-cn": "仓库检查器更新"
-            },
-            "1.0.13": {
-                "en": "Added support for WFC01, Repository checker updates",
-                "de": "WFC01 Unterstützung eingebaut, Aktualisierungen basierend auf dem Repository Checker",
-                "ru": "Добавлена поддержка WFC01, обновления проверки репозитория",
-                "pt": "Adicionado suporte para WFC01, atualizações do verificador de repositório",
-                "nl": "Ondersteuning toegevoegd voor WFC01, updates voor repository-checker",
-                "fr": "Ajout du support pour WFC01, mises à jour du vérificateur de dépôt",
-                "it": "Aggiunto supporto per WFC01, aggiornamenti del verificatore del repository",
-                "es": "Agregado soporte para WFC01, actualizaciones del comprobador de repositorios",
-                "pl": "Dodano obsługę WFC01, aktualizacje sprawdzacza repozytorium",
-                "uk": "Додано підтримку WFC01, оновлення перевірки репозиторію",
-                "zh-cn": "添加对 WFC01 的支持，仓库检查器更新"
-            }
-        },
-        "tier": 3,
-        "titleLang": {
-            "en": "Sainlogic Weatherstation",
-            "de": "Sainlogic Wetterstation",
-            "ru": "Метеостанция Sainlogic",
-            "pt": "Estação Meteorológica Sainlogic",
-            "nl": "Sainlogic Weerstation",
-            "fr": "Station Météo Sainlogic",
-            "it": "Stazione Meteorologica Sainlogic",
-            "es": "Estación Meteorológica Sainlogic",
-            "pl": "Stacja Pogodowa Sainlogic",
-            "uk": "Метеостанція Sainlogic",
-            "zh-cn": "Sainlogic 气象站"
-        },
-        "desc": {
-            "en": "Read data from a sainlogic based weather station",
-            "de": "Liest Daten von einer Sainlogic basierten Wetterstation",
-            "ru": "Чтение данных с погодной станции Sainlogic",
-            "pt": "Ler dados de uma estação meteorológica Sainlogic",
-            "nl": "Gegevens lezen van een Sainlogic-weerstation",
-            "fr": "Lire les données d'une station météo Sainlogic",
-            "it": "Legge i dati da una stazione meteorologica Sainlogic",
-            "es": "Leer datos de una estación meteorológica Sainlogic",
-            "pl": "Odczyt danych ze stacji pogodowej Sainlogic",
-            "uk": "Читання даних з метеостанції Sainlogic",
-            "zh-cn": "从 Sainlogic 气象站读取数据"
-        },
-        "authors": ["Fogg <foggch@gmail.com>"],
-        "keywords": ["weather", "sainlogic"],
-        "licenseInformation": {
-            "type": "free",
-            "license": "MIT"
-        },
-        "platform": "Javascript/Node.js",
-        "icon": "sainlogic.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/phifogg/ioBroker.sainlogic/master/admin/sainlogic.png",
-        "readme": "https://github.com/phifogg/ioBroker.sainlogic/blob/master/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "weather",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "push",
-        "adminUI": {
-            "config": "json"
-        },
-        "globalDependencies": [
-            {
-                "admin": ">=7.6.17"
-            }
-        ],
-        "dependencies": [
-            {
-                "js-controller": ">=6.0.11"
-            }
-        ]
+  "common": {
+    "name": "sainlogic",
+    "version": "1.1.1",
+    "news": {
+      "1.1.1": {
+        "en": "Changed max values for distance sensore (#262)",
+        "de": "Geänderte Maximalwerte für Entfernungssensor (#262)",
+        "ru": "Измененные максимальные значения для датчика расстояния (#262)",
+        "pt": "Valores máximos alterados para o sensor de distância (# 262)",
+        "nl": "Gewijzigde maximumwaarden voor afstandssensore (#262)",
+        "fr": "Valeurs maximales modifiées pour le capteur de distance (#262)",
+        "it": "Valori max cambiati per sensore di distanza (#262)",
+        "es": "Valores máximos cambiados para sensor de distancia (#262)",
+        "pl": "Zmienione wartości maksymalne dla odległości sensore (# 262)",
+        "uk": "Змінено максимальні значення для дистанційного керування (#262)",
+        "zh-cn": "距离传感器的最大值变化(# 262)"
+      },
+      "1.1.0": {
+        "en": "Added deploy job for release script\nChanged to Admin UI to jsonConfig",
+        "de": "Stellenangebot für Release Skript hinzugefügt\nZu Admin UI zu jsonConfig geändert",
+        "ru": "Добавлена работа развертывания для сценария выпуска\nИзменить пользовательский интерфейс на jsonConfig",
+        "pt": "Adicionado trabalho de implantação para o script de lançamento\nAlterado para Administração de UI para jsonConfig",
+        "nl": "Inzettaak toegevoegd voor releasescript\nVeranderd naar Admin UI naar jsonConfig",
+        "fr": "Ajout de la tâche de déploiement pour le script de sortie\nChanged to Admin UI to jsonConfig",
+        "it": "Aggiunto lavoro di distribuzione per lo script di rilascio\nModificato su Admin UI a jsonConfig",
+        "es": "Añadido trabajo de despliegue para script de liberación\nCambiar a Admin UI a jsonConfig",
+        "pl": "Dodano zadanie wdrożenia skryptu wydania\nZmieniono na Admin UI na jsonConfig",
+        "uk": "Додано розгортання роботи для сценарію релізу\nЗмінено: Admin UI до jsonConfig",
+        "zh-cn": "为发布脚本添加了部署任务\n已更改为管理员 UI 到 jsonConfig"
+      },
+      "1.0.16": {
+        "en": "Typo fixed in io-package.json",
+        "de": "Tippfehler in io-package.json behoben",
+        "ru": "Исправлена опечатка в io-package.json",
+        "pt": "Erro de digitação corrigido em io-package.json",
+        "nl": "Typfout in io-package.json gecorrigeerd",
+        "fr": "Fautes de frappe corrigées dans io-package.json",
+        "it": "Corretto errore di battitura in io-package.json",
+        "es": "Error tipográfico corregido en io-package.json",
+        "pl": "Poprawiono literówkę w io-package.json",
+        "uk": "Виправлено опечатку в io-package.json",
+        "zh-cn": "修正 io-package.json 中的拼写错误"
+      },
+      "1.0.15": {
+        "en": "Translations and Adapter checker fixes",
+        "de": "Übersetzungen und Adapter Checker Korrekturen",
+        "ru": "Переводы и исправления адаптера Checker",
+        "pt": "Traduções e correções do verificador de adaptadores",
+        "nl": "Vertalingen en Adapter Checker-fixes",
+        "fr": "Traductions et corrections du vérificateur d'adaptateur",
+        "it": "Traduzioni e correzioni di Adapter Checker",
+        "es": "Traducciones y correcciones del verificador de adaptadores",
+        "pl": "Tłumaczenia i poprawki Adapter Checker",
+        "uk": "Переклади та виправлення перевірки адаптера",
+        "zh-cn": "翻译和适配器检查程序修复"
+      },
+      "1.0.14": {
+        "en": "Repository checker updates",
+        "de": "Aktualisierungen basierend auf dem Repository Checker",
+        "ru": "Обновления проверки репозитория",
+        "pt": "Atualizações do verificador de repositório",
+        "nl": "Updates voor repository-checker",
+        "fr": "Mises à jour du vérificateur de dépôt",
+        "it": "Aggiornamenti del verificatore del repository",
+        "es": "Actualizaciones del comprobador de repositorios",
+        "pl": "Aktualizacje sprawdzacza repozytorium",
+        "uk": "Оновлення перевірки репозиторію",
+        "zh-cn": "仓库检查器更新"
+      },
+      "1.0.13": {
+        "en": "Added support for WFC01, Repository checker updates",
+        "de": "WFC01 Unterstützung eingebaut, Aktualisierungen basierend auf dem Repository Checker",
+        "ru": "Добавлена поддержка WFC01, обновления проверки репозитория",
+        "pt": "Adicionado suporte para WFC01, atualizações do verificador de repositório",
+        "nl": "Ondersteuning toegevoegd voor WFC01, updates voor repository-checker",
+        "fr": "Ajout du support pour WFC01, mises à jour du vérificateur de dépôt",
+        "it": "Aggiunto supporto per WFC01, aggiornamenti del verificatore del repository",
+        "es": "Agregado soporte para WFC01, actualizaciones del comprobador de repositorios",
+        "pl": "Dodano obsługę WFC01, aktualizacje sprawdzacza repozytorium",
+        "uk": "Додано підтримку WFC01, оновлення перевірки репозиторію",
+        "zh-cn": "添加对 WFC01 的支持，仓库检查器更新"
+      }
     },
-    "native": {
-        "listener_ip": "",
-        "listener_port": 45000,
-        "path": "/weatherstation/updateweatherstation.php",
-        "listener_active": false,
-        "listener_protocol": "wunderground",
-        "listener_forward_url": "",
-        "scheduler_active": false,
-        "ws_address": "",
-        "ws_port": 45000,
-        "ws_freq": 15,
-        "ws_getfirmware": true,
-        "ws_getcurrent": true,
-        "ws_getmax": false,
-        "ws_getmin": false,
-        "ws_getmaxdaily": false,
-        "ws_getmindaily": false,
-        "unit_rain": "mm",
-        "unit_temperature": "°C",
-        "unit_pressure": "hPa",
-        "unit_windspeed": "km/h",
-        "unit_solar": "lx"
+    "tier": 3,
+    "titleLang": {
+      "en": "Sainlogic Weatherstation",
+      "de": "Sainlogic Wetterstation",
+      "ru": "Метеостанция Sainlogic",
+      "pt": "Estação Meteorológica Sainlogic",
+      "nl": "Sainlogic Weerstation",
+      "fr": "Station Météo Sainlogic",
+      "it": "Stazione Meteorologica Sainlogic",
+      "es": "Estación Meteorológica Sainlogic",
+      "pl": "Stacja Pogodowa Sainlogic",
+      "uk": "Метеостанція Sainlogic",
+      "zh-cn": "Sainlogic 气象站"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.last_listener_update",
-            "type": "state",
-            "common": {
-                "role": "",
-                "name": "Content of last update recieved",
-                "type": "string",
-                "read": true,
-                "write": false,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.last_update",
-            "type": "state",
-            "common": {
-                "role": "",
-                "name": "Timestamp of last update received from weather station",
-                "type": "string",
-                "read": true,
-                "write": false,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.softwaretype",
-            "type": "state",
-            "common": {
-                "role": "",
-                "name": "Software type and version of weather station",
-                "type": "string",
-                "read": true,
-                "write": false,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather",
-            "type": "channel",
-            "common": {
-                "name": "Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.current",
-            "type": "channel",
-            "common": {
-                "name": "Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.maxvalues",
-            "type": "channel",
-            "common": {
-                "name": "Max values of Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.maxvalues.absolut",
-            "type": "channel",
-            "common": {
-                "name": "Max values of Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.minvalues.absolut",
-            "type": "channel",
-            "common": {
-                "name": "Min values of Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.maxvalues.daily",
-            "type": "channel",
-            "common": {
-                "name": "Daily Min values of Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.minvalues.daily",
-            "type": "channel",
-            "common": {
-                "name": "Min daily values of Weather data"
-            },
-            "native": {}
-        }
+    "desc": {
+      "en": "Read data from a sainlogic based weather station",
+      "de": "Liest Daten von einer Sainlogic basierten Wetterstation",
+      "ru": "Чтение данных с погодной станции Sainlogic",
+      "pt": "Ler dados de uma estação meteorológica Sainlogic",
+      "nl": "Gegevens lezen van een Sainlogic-weerstation",
+      "fr": "Lire les données d'une station météo Sainlogic",
+      "it": "Legge i dati da una stazione meteorologica Sainlogic",
+      "es": "Leer datos de una estación meteorológica Sainlogic",
+      "pl": "Odczyt danych ze stacji pogodowej Sainlogic",
+      "uk": "Читання даних з метеостанції Sainlogic",
+      "zh-cn": "从 Sainlogic 气象站读取数据"
+    },
+    "authors": [
+      "Fogg <foggch@gmail.com>"
+    ],
+    "keywords": [
+      "weather",
+      "sainlogic"
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "icon": "sainlogic.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/phifogg/ioBroker.sainlogic/master/admin/sainlogic.png",
+    "readme": "https://github.com/phifogg/ioBroker.sainlogic/blob/master/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "weather",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "json"
+    },
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.17"
+      }
+    ],
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
     ]
+  },
+  "native": {
+    "listener_ip": "",
+    "listener_port": 45000,
+    "path": "/weatherstation/updateweatherstation.php",
+    "listener_active": false,
+    "listener_protocol": "wunderground",
+    "listener_forward_url": "",
+    "scheduler_active": false,
+    "ws_address": "",
+    "ws_port": 45000,
+    "ws_freq": 15,
+    "ws_getfirmware": true,
+    "ws_getcurrent": true,
+    "ws_getmax": false,
+    "ws_getmin": false,
+    "ws_getmaxdaily": false,
+    "ws_getmindaily": false,
+    "unit_rain": "mm",
+    "unit_temperature": "°C",
+    "unit_pressure": "hPa",
+    "unit_windspeed": "km/h",
+    "unit_solar": "lx"
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.last_listener_update",
+      "type": "state",
+      "common": {
+        "role": "",
+        "name": "Content of last update recieved",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.last_update",
+      "type": "state",
+      "common": {
+        "role": "",
+        "name": "Timestamp of last update received from weather station",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.softwaretype",
+      "type": "state",
+      "common": {
+        "role": "",
+        "name": "Software type and version of weather station",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather",
+      "type": "channel",
+      "common": {
+        "name": "Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.current",
+      "type": "channel",
+      "common": {
+        "name": "Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.maxvalues",
+      "type": "channel",
+      "common": {
+        "name": "Max values of Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.maxvalues.absolut",
+      "type": "channel",
+      "common": {
+        "name": "Max values of Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.minvalues.absolut",
+      "type": "channel",
+      "common": {
+        "name": "Min values of Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.maxvalues.daily",
+      "type": "channel",
+      "common": {
+        "name": "Daily Min values of Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.minvalues.daily",
+      "type": "channel",
+      "common": {
+        "name": "Min daily values of Weather data"
+      },
+      "native": {}
+    }
+  ]
 }
