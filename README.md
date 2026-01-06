@@ -139,7 +139,7 @@ Lisa for her [code to translate wind degrees in a heading](https://www.programmi
 
 MIT License
 
-Copyright (c) 2025 Fogg <foggch@gmail.com>
+Copyright (c) 2025-2026 Fogg <foggch@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
