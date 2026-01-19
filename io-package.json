@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "news": {
+      "1.1.2": {
+        "en": "npm dependency updates\nfix admin page: scheduler reported interval in minutes instead of seconds",
+        "de": "npm abhängigkeitsaktualisierung\nadmin-seite reparieren: scheduler berichtet intervall in minuten anstelle von sekunden",
+        "ru": "обновления npm зависимостей\nисправить страницу администратора: планировщик сообщил интервал в минутах вместо секунд",
+        "pt": "atualizações de dependência do npm\ncorrigir página de administrador: agendador relatou intervalo em minutos em vez de segundos",
+        "nl": "npm afhankelijkheidsupdates\nfix admin pagina: scheduler gemeld interval in minuten in plaats van seconden",
+        "fr": "npm mises à jour de la dépendance\ncorriger la page d'administration: l'intervalle de temps signalé en minutes au lieu de secondes",
+        "it": "npm aggiornamenti di dipendenza\ncorrezione pagina admin: scheduler intervallo segnalato in minuti invece di secondi",
+        "es": "actualizaciones de dependencia\nfijar página de administración: programador reportó intervalo en minutos en lugar de segundos",
+        "pl": "aktualizacje zależności npm\nfix strona admin: terminarz zgłoszonych przerw w minutach zamiast sekund",
+        "uk": "npm оновлення залежності\nвиправлено сторінку адміністратора: розкладний звіт за хвилину замість секунд",
+        "zh-cn": "npm 依赖性更新\n固定管理页面:调度器报告间隔为分钟而不是秒"
+      },
       "1.1.1": {
         "en": "Changed max values for distance sensore (#262)",
         "de": "Geänderte Maximalwerte für Entfernungssensor (#262)",
