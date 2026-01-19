@@ -94,9 +94,9 @@
                 "ws_freq": {
                     "newLine": true,
                     "type": "number",
-                    "label": "Scheduler Interval (minutes)",
+                    "label": "Scheduler Interval (seconds)",
                     "default": 15,
-                    "unit": "min",
+                    "unit": "sec",
                     "min": 1,
                     "xs": 12,
                     "sm": 12,
