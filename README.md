@@ -111,6 +111,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 ### **WORK IN PROGRESS**
 
 npm dependency updates
+fix admin page: scheduler reported interval in minutes instead of seconds
 
 ### 1.1.1 (2025-12-29)
 
