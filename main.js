@@ -27,7 +27,7 @@ class Sainlogic extends utils.Adapter {
             name: 'sainlogic',
         });
         this.on('ready', this.onReady.bind(this));
-        this.on('objectChange', this.onObjectChange.bind(this));
+        //this.on('objectChange', this.onObjectChange.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
@@ -105,20 +105,19 @@ class Sainlogic extends utils.Adapter {
         return new_value;
     }
 
-    async onObjectChange(id, obj) {
-        if (obj) {
-            // The object was changed
-            this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-        } else {
-            // The object was deleted
-            this.log.info(`object ${id} deleted`);
-        }
-    }
-
     async onStateChange(id, state) {
         if (state) {
             // The state was changed
             this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+
+            // react to user changes (ack === false) on our choicelist
+            if (id && id.endsWith('.control.choicelist') && state.ack === false) {
+                try {
+                    this.handleChoiceChange(id, state);
+                } catch (e) {
+                    this.log.error(`Error handling choicelist change: ${e}`);
+                }
+            }
         } else {
             // The state was deleted
             this.log.info(`state ${id} deleted`);
@@ -150,6 +149,78 @@ class Sainlogic extends utils.Adapter {
                 this,
             );
             this.listener.start();
+        }
+
+        // Create a choicelist state the user can change in the admin UI
+        // Keys are strings (0,1,2) mapping to visible labels
+        this.setObjectNotExists(
+            'control.choicelist',
+            {
+                type: 'state',
+                common: {
+                    name: 'Choice list',
+                    type: 'number',
+                    role: 'state',
+                    read: true,
+                    write: true,
+                    def: 0,
+                    states: {
+                        0: 'Off',
+                        1: 'On',
+                        2: 'Auto',
+                    },
+                },
+                native: {},
+            },
+            err => {
+                if (err) {
+                    this.log.error(`Error creating control.choicelist: ${err}`);
+                } else {
+                    this.log.debug('control.choicelist object ensured');
+                }
+            },
+        );
+
+        // Subscribe to changes so onStateChange is called for the choicelist
+        this.subscribeStates('control.choicelist');
+    }
+
+    /**
+     * Handle user changes to the choicelist state.
+     * Only called for user-initiated changes (ack === false).
+     * @param {string} id full state id
+     * @param {{val: any, ack: boolean}} state state object
+     */
+    handleChoiceChange(id, state) {
+        this.log.info(`User changed choicelist (${id}) -> ${state.val}`);
+        // Execute the action associated with this choice
+        this.executeChoiceAction(state.val, state);
+        // Acknowledge the state so the adapter shows the value as processed
+        this.setState(id, { val: state.val, ack: true });
+    }
+
+    /**
+     * Perform the action for a given choice value.
+     * Replace or extend the switch body with the desired behavior.
+     * @param {string|number} value selected choice value
+     * @param {{val: any, ack: boolean}} _state state object (unused)
+     */
+    executeChoiceAction(value, _state) {
+        switch (String(value)) {
+            case '0':
+                this.log.info('Choice action: Off selected');
+                // TODO: implement Off behavior
+                break;
+            case '1':
+                this.log.info('Choice action: On selected');
+                // TODO: implement On behavior
+                break;
+            case '2':
+                this.log.info('Choice action: Auto selected');
+                // TODO: implement Auto behavior
+                break;
+            default:
+                this.log.warn(`Unknown choice value: ${value}`);
         }
     }
 
