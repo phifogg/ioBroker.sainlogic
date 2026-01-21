@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.0-alpha.0",
+    "version": "1.2.0-alpha.1",
     "news": {
+      "1.2.0-alpha.1": {
+        "en": "Change water_action to button with choicelist and add listener to it",
+        "de": "Wasser_Aktion auf Knopf mit Auswahlliste ändern und den Zuhörer dazu hinzufügen",
+        "ru": "Изменить действие water_action на кнопку со списком выбора и добавить в него слушателя",
+        "pt": "Altere o botão water_action com a lista de opções e adicione o ouvinte a ele",
+        "nl": "Water_actie wijzigen naar knop met keuzelijst en luisteraar toevoegen",
+        "fr": "Changez water_action en bouton avec la liste de choix et ajoutez-la à l'auditeur",
+        "it": "Cambiare water_action a pulsante con la lista di scelta e aggiungere l'ascoltatore a esso",
+        "es": "Cambiar el agua_acción al botón con la lista de opciones y añadir el oyente a él",
+        "pl": "Zmienić water _ action na przycisk z choiceller i dodać słuchacza do niego",
+        "uk": "Зміна води_дії на кнопку з вибором та додаванням слухача",
+        "zh-cn": "将 water_ action 修改为带有选择列表的按钮, 并添加听众到其中"
+      },
       "1.2.0-alpha.0": {
         "en": "testing change triggers",
         "de": "prüfwechselauslöser",
@@ -80,19 +93,6 @@
         "pl": "Tłumaczenia i poprawki Adapter Checker",
         "uk": "Переклади та виправлення перевірки адаптера",
         "zh-cn": "翻译和适配器检查程序修复"
-      },
-      "1.0.14": {
-        "en": "Repository checker updates",
-        "de": "Aktualisierungen basierend auf dem Repository Checker",
-        "ru": "Обновления проверки репозитория",
-        "pt": "Atualizações do verificador de repositório",
-        "nl": "Updates voor repository-checker",
-        "fr": "Mises à jour du vérificateur de dépôt",
-        "it": "Aggiornamenti del verificatore del repository",
-        "es": "Actualizaciones del comprobador de repositorios",
-        "pl": "Aktualizacje sprawdzacza repozytorium",
-        "uk": "Оновлення перевірки репозиторію",
-        "zh-cn": "仓库检查器更新"
       }
     },
     "tier": 3,

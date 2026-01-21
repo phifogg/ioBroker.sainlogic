@@ -96,6 +96,10 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.0.17 (2025-12-23)
+
+Updates for releasescript changelog logic
+
 ## 1.0.16
 
 Typo in io-package.json
