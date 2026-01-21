@@ -177,7 +177,7 @@ class Sainlogic extends utils.Adapter {
                                 states: attrdef.states,
                                 def: default_value,
                                 read: true,
-                                write: false,
+                                write: true,
                                 mobile: {
                                     admin: {
                                         visible: true,
