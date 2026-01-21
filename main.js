@@ -28,7 +28,7 @@ class Sainlogic extends utils.Adapter {
         });
         this.on('ready', this.onReady.bind(this));
         // this.on('objectChange', this.onObjectChange.bind(this));
-        //this.on('stateChange', this.onStateChange.bind(this));
+        this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
@@ -103,6 +103,16 @@ class Sainlogic extends utils.Adapter {
         }
 
         return new_value;
+    }
+
+    async onStateChange(id, state) {
+        if (state) {
+            // The state was changed
+            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+        } else {
+            // The state was deleted
+            this.log.info(`state ${id} deleted`);
+        }
     }
 
     /**
