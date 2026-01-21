@@ -60,16 +60,18 @@ class Sainlogic extends utils.Adapter {
             this.getState(c_id, (err, st) => {
                 const parser = new Parser();
 
-                let new_value = st.val;
+                if (st) {
+                    let new_value = st.val;
 
-                // convert back if required
-                if (conversion_rule_back != null) {
-                    const exp = parser.parse(conversion_rule_back);
-                    new_value = exp.evaluate({ x: new_value });
+                    // convert back if required
+                    if (conversion_rule_back != null) {
+                        const exp = parser.parse(conversion_rule_back);
+                        new_value = exp.evaluate({ x: new_value });
+                    }
+
+                    new_value = this.toDisplayUnit(attrdef, new_value);
+                    this.setState(c_id, { val: new_value, ack: true });
                 }
-
-                new_value = this.toDisplayUnit(attrdef, new_value);
-                this.setState(c_id, { val: new_value, ack: true });
             });
         }
     }
@@ -111,7 +113,7 @@ class Sainlogic extends utils.Adapter {
             this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
             // react to user changes (ack === false) on our choicelist
-            if (id && id.endsWith('.control.choicelist') && state.ack === false) {
+            if (id && state.ack === false) {
                 try {
                     this.handleChoiceChange(id, state);
                 } catch (e) {
@@ -150,51 +152,20 @@ class Sainlogic extends utils.Adapter {
             );
             this.listener.start();
         }
-
-        // Create a choicelist state the user can change in the admin UI
-        // Keys are strings (0,1,2) mapping to visible labels
-        this.setObjectNotExists(
-            'control.choicelist',
-            {
-                type: 'state',
-                common: {
-                    name: 'Choice list',
-                    type: 'number',
-                    role: 'state',
-                    read: true,
-                    write: true,
-                    def: 0,
-                    states: {
-                        0: 'Off',
-                        1: 'On',
-                        2: 'Auto',
-                    },
-                },
-                native: {},
-            },
-            err => {
-                if (err) {
-                    this.log.error(`Error creating control.choicelist: ${err}`);
-                } else {
-                    this.log.debug('control.choicelist object ensured');
-                }
-            },
-        );
-
-        // Subscribe to changes so onStateChange is called for the choicelist
-        this.subscribeStates('control.choicelist');
     }
 
     /**
      * Handle user changes to the choicelist state.
      * Only called for user-initiated changes (ack === false).
+     *
      * @param {string} id full state id
      * @param {{val: any, ack: boolean}} state state object
      */
     handleChoiceChange(id, state) {
-        this.log.info(`User changed choicelist (${id}) -> ${state.val}`);
+        this.log.info(`User changed state (${id}) -> ${state.val}`);
         // Execute the action associated with this choice
-        this.executeChoiceAction(state.val, state);
+        // TODO add flexible action handling here
+        //   this.executeChoiceAction(state.val, state);
         // Acknowledge the state so the adapter shows the value as processed
         this.setState(id, { val: state.val, ack: true });
     }
@@ -202,6 +173,7 @@ class Sainlogic extends utils.Adapter {
     /**
      * Perform the action for a given choice value.
      * Replace or extend the switch body with the desired behavior.
+     *
      * @param {string|number} value selected choice value
      * @param {{val: any, ack: boolean}} _state state object (unused)
      */
@@ -258,7 +230,7 @@ class Sainlogic extends utils.Adapter {
                                 states: attrdef.states,
                                 def: default_value,
                                 read: true,
-                                write: true,
+                                write: attrdef.writeable ? true : false,
                                 mobile: {
                                     admin: {
                                         visible: true,
@@ -276,6 +248,11 @@ class Sainlogic extends utils.Adapter {
                             }
                         },
                     );
+
+                    // add listener for relevant state changes
+                    if (attrdef.subscribe) {
+                        that.subscribeStates(obj_id);
+                    }
                 } else {
                     if (attrdef.unit_config != null) {
                         that.checkUnit(attrdef, obj);

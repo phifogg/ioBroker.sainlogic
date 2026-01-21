@@ -107,6 +107,10 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+Change water_action to button with choicelist and add listener to it
+
 ### 1.2.0-alpha.0 (2026-01-21)
 testing change triggers
 
