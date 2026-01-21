@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.1.2",
+    "version": "1.2.0-alpha.0",
     "news": {
+      "1.2.0-alpha.0": {
+        "en": "testing change triggers",
+        "de": "prüfwechselauslöser",
+        "ru": "тестирование триггеров изменений",
+        "pt": "teste de mudança de gatilhos",
+        "nl": "testen van change triggers",
+        "fr": "test des déclencheurs de changement",
+        "it": "trigger di cambiamento di prova",
+        "es": "los desencadenantes del cambio de pruebas",
+        "pl": "wyzwalacze zmian testowych",
+        "uk": "тестування генераторів змін",
+        "zh-cn": "测试更改触发器"
+      },
       "1.1.2": {
         "en": "npm dependency updates\nfix admin page: scheduler reported interval in minutes instead of seconds",
         "de": "npm abhängigkeitsaktualisierung\nadmin-seite reparieren: scheduler berichtet intervall in minuten anstelle von sekunden",
@@ -80,19 +93,6 @@
         "pl": "Aktualizacje sprawdzacza repozytorium",
         "uk": "Оновлення перевірки репозиторію",
         "zh-cn": "仓库检查器更新"
-      },
-      "1.0.13": {
-        "en": "Added support for WFC01, Repository checker updates",
-        "de": "WFC01 Unterstützung eingebaut, Aktualisierungen basierend auf dem Repository Checker",
-        "ru": "Добавлена поддержка WFC01, обновления проверки репозитория",
-        "pt": "Adicionado suporte para WFC01, atualizações do verificador de repositório",
-        "nl": "Ondersteuning toegevoegd voor WFC01, updates voor repository-checker",
-        "fr": "Ajout du support pour WFC01, mises à jour du vérificateur de dépôt",
-        "it": "Aggiunto supporto per WFC01, aggiornamenti del verificatore del repository",
-        "es": "Agregado soporte para WFC01, actualizaciones del comprobador de repositorios",
-        "pl": "Dodano obsługę WFC01, aktualizacje sprawdzacza repozytorium",
-        "uk": "Додано підтримку WFC01, оновлення перевірки репозиторію",
-        "zh-cn": "添加对 WFC01 的支持，仓库检查器更新"
       }
     },
     "tier": 3,

@@ -96,3 +96,6 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.0.16
+
+Typo in io-package.json
