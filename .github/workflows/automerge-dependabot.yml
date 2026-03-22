@@ -3,6 +3,8 @@
 # Dependabot PRs based on the rules defined in .github/auto-merge.yml
 
 name: Auto-Merge Dependabot PRs
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
   # Trigger when a PR is opened or updated
