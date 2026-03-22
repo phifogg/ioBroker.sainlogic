@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.0-alpha.1",
+    "version": "1.1.2",
     "news": {
       "1.1.2": {
         "en": "npm dependency updates\nfix admin page: scheduler reported interval in minutes instead of seconds",
@@ -123,7 +123,7 @@
     },
     "globalDependencies": [
       {
-        "admin": ">=7.6.17"
+        "admin": ">=7.6.20"
       }
     ],
     "dependencies": [
