@@ -26,7 +26,7 @@
     "url": "https://github.com/phifogg/ioBroker.sainlogic"
   },
   "dependencies": {
-    "@esm2cjs/got": "^12.5.0",
+    "@esm2cjs/got": "^13.0.0",
     "@iobroker/adapter-core": "^3.3.2",
     "binary-parser": "^2.2.1",
     "expr-eval": "^2.0.2"
