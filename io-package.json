@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "news": {
+      "1.2.0": {
+        "en": "npm dependency updates\nautomatic dependency updates added",
+        "de": "npm abhängigkeitsaktualisierung\nautomatische abhängigkeitsaktualisierungen hinzugefügt",
+        "ru": "обновления npm зависимостей\nдобавлены автоматические обновления зависимостей",
+        "pt": "atualizações de dependência do npm\natualizações de dependência automática adicionadas",
+        "nl": "npm afhankelijkheidsupdates\nautomatische afhankelijkheidsupdates toegevoegd",
+        "fr": "npm mises à jour de la dépendance\nmises à jour de dépendance automatique ajoutées",
+        "it": "npm aggiornamenti di dipendenza\naggiornamenti automatici di dipendenza aggiunti",
+        "es": "actualizaciones de dependencia\nactualizaciones automáticas de dependencia",
+        "pl": "aktualizacje zależności npm\nautomatyczne aktualizacje zależności",
+        "uk": "npm оновлення залежності\nдодано автоматичні оновлення залежності",
+        "zh-cn": "npm 依赖性更新\n添加了自动依赖性更新"
+      },
       "1.1.2": {
         "en": "npm dependency updates\nfix admin page: scheduler reported interval in minutes instead of seconds",
         "de": "npm abhängigkeitsaktualisierung\nadmin-seite reparieren: scheduler berichtet intervall in minuten anstelle von sekunden",
