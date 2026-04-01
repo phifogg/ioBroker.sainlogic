@@ -91,6 +91,13 @@ class Sainlogic extends utils.Adapter {
             return unit.display_name == target_unit;
         });
 
+        if (!my_target_unit) {
+            this.log.warn(
+                `No unit definition found for ${attrdef.id} and target unit '${target_unit}', using raw value`,
+            );
+            return value;
+        }
+        
         const conversion_rule_forward = my_target_unit[0].display_conversion;
         this.log.debug(
             `Target for ${attrdef.id} unit is set: ${target_unit}, using conversion: ${conversion_rule_forward}`,
