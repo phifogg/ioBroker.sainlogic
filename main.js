@@ -97,7 +97,7 @@ class Sainlogic extends utils.Adapter {
             );
             return value;
         }
-        
+
         const conversion_rule_forward = my_target_unit[0].display_conversion;
         this.log.debug(
             `Target for ${attrdef.id} unit is set: ${target_unit}, using conversion: ${conversion_rule_forward}`,
