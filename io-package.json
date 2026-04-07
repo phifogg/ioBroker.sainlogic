@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "news": {
+      "1.2.1": {
+        "en": "Issue #229: Adding additional parameters for humidity sensors, up to 20 now\nIssue #277: Display conversion issue fix (thanks to ManuelBu96)\nnpm updates\nAdapter Checker updates",
+        "de": "Ausgabe #229: Hinzufügen zusätzlicher Parameter für Feuchtesensoren, bis 20 jetzt\nAusgabe #277: Anzeige Konvertierung Problem beheben (dank ManuelBu96)\nnpm updates\nAdapter Checker Updates",
+        "ru": "Проблема No229: Добавление дополнительных параметров для датчиков влажности, до 20 сейчас\nПроблема No277: исправление проблемы конверсии дисплея (благодаря ManuelBu96)\nобновления npm\nОбновления Adapter Checker",
+        "pt": "Problema #229: Adicionando parâmetros adicionais para sensores de umidade, até 20 agora\nEdição #277: correção de problema de conversão de exibição (graças ao ManuelBu96)\natualizações do npm\nAtualizações do verificador de adaptadores",
+        "nl": "Nummer #229: Extra parameters voor vochtigheidssensoren toevoegen, tot 20 nu\nUitgave #277: Display conversie probleem fix (met dank aan ManuelBu96)\nnpm-updates\nAdaptercontrole-updates",
+        "fr": "Numéro #229: Ajout de paramètres supplémentaires pour les capteurs d'humidité, jusqu'à 20 maintenant\nNuméro 277: Correction du problème de conversion de l'affichage (grâce à ManuelBu96)\nnpm mises à jour\nMises à jour de l'adaptateur Checker",
+        "it": "Numero #229: Aggiungere parametri aggiuntivi per sensori di umidità, fino a 20 ora\nNumero #277: Risolto il problema di conversione dell'esposizione (grazie a ManuelBu96)\nnpm aggiornamenti\nAggiornamenti del Checker dell'adattatore",
+        "es": "Número #229: Añadiendo parámetros adicionales para sensores de humedad, hasta 20 ahora\nNúmero #277: Visualización de la solución de problemas de conversión (gracias a ManuelBu96)\nactualizaciones de npm\nActualizaciones del Checker de Adaptador",
+        "pl": "Wydanie # 229: Dodawanie dodatkowych parametrów czujników wilgotności do 20\nIssue # 277: Display conversion issue fix (dzięki ManuelBu96)\naktualizacje npm\nAktualizacja kontrolera adaptera",
+        "uk": "Випуск #229: Додавання додаткових параметрів для датчиків вологості, до 20 тепер\nВипуск #277: Виправлення проблеми перетворення (завдяки до ManuelBu96)\nnpm оновлення\nОновлення адаптера",
+        "zh-cn": "问题229:增加湿度传感器的参数,最多20个\n第277期:显示转换问题修正(感谢ManuelBu96)\nnpm 更新\n适配器检查器更新"
+      },
       "1.2.0": {
         "en": "npm dependency updates\nautomatic dependency updates added",
         "de": "npm abhängigkeitsaktualisierung\nautomatische abhängigkeitsaktualisierungen hinzugefügt",
