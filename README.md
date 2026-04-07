@@ -107,6 +107,13 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+Issue #229: Adding additional parameters for humidity sensors, up to 20 now
+Issue #277: Display conversion issue fix (thanks to ManuelBu96)
+npm updates
+Adapter Checker updates
+
 ### 1.2.0 (2026-03-22)
 
 npm dependency updates
