@@ -132,6 +132,8 @@ Changed max values for distance sensore (#262)
 Added deploy job for release script
 Changed to Admin UI to jsonConfig
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## Credits
 
 Credits go to:
