@@ -107,6 +107,12 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- [W5612] Updated labels
+- [E0036] Update release scripts to 5.2.1
+
+
 ### 1.2.2 (2026-06-04)
 - (copilot) Adapter requires node.js >= 22 now
 - [E0036] Update release scripts to 5.2.0
