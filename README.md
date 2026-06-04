@@ -107,6 +107,11 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- [S5601] translation format changed
+- [S5004] Change setInterval()
+- [S9508] CHANGELOG_OLD.md removed from package.json
+
 ### 1.2.3 (2026-06-04)
 - [W5612] Updated labels
 - [E0036] Update release scripts to 5.2.1

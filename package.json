@@ -57,6 +57,7 @@
     "!.DS_Store",
     "!.gitignore",
     "!.gitattributes",
+    "!CHANGELOG_OLD.md",
     "!node_modules",
     "!tasks",
     "!.idea",
