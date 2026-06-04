@@ -210,10 +210,10 @@
       "common": {
         "role": "value.time",
         "name": "Timestamp of last update received from weather station",
-        "type": "string",
+        "type": "number",
         "read": true,
         "write": false,
-        "def": ""
+        "def": 0
       },
       "native": {}
     },
@@ -221,7 +221,7 @@
       "_id": "info.softwaretype",
       "type": "state",
       "common": {
-        "role": "info.version",
+        "role": "info",
         "name": "Software type and version of weather station",
         "type": "string",
         "read": true,
