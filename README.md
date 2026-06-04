@@ -107,7 +107,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.2 (2026-06-04)
 - (copilot) Adapter requires node.js >= 22 now
 - [E0036] Update release scripts to 5.2.0
 - [E3022] Update test and release to node 24
@@ -116,7 +116,6 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 - [W5039] Removed admin/words.js
 - [W5612] Updated labels
 - #292 windheading changed to read only
-
 
 ### 1.2.1 (2026-04-07)
 Issue #229: Adding additional parameters for humidity sensors, up to 20 now
@@ -137,11 +136,6 @@ fix admin page: scheduler reported interval in minutes instead of seconds
 ### 1.1.1 (2025-12-29)
 
 Changed max values for distance sensore (#262)
-
-### 1.1.0 (2025-12-24)
-
-Added deploy job for release script
-Changed to Admin UI to jsonConfig
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 

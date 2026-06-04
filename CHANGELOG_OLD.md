@@ -96,6 +96,11 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.1.0 (2025-12-24)
+
+Added deploy job for release script
+Changed to Admin UI to jsonConfig
+
 ## 1.0.17 (2025-12-23)
 
 Updates for releasescript changelog logic

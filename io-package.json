@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "news": {
+      "1.2.2": {
+        "en": "Adapter requires node.js >= 22 now\n[E0036] Update release scripts to 5.2.0\n[E3022] Update test and release to node 24\n[W0066] Downgrade to node.js 22.x.x to avoid wrong typing is recommended.\n[W1126] common.role updated\n[W5039] Removed admin/words.js\n[W5612] Updated labels\n#292 windheading changed to read only",
+        "de": "Adapter benötigt node.js >= 22 jetzt\n[E0036] Release-Skripte auf 5.2.0 aktualisieren\n[E3022] Test und Release auf Knoten 24 aktualisieren\n[W0066] Downgrade auf node.js 22.x.x, um falsche Eingabe zu vermeiden, wird empfohlen.\n[W1126] common.role aktualisiert\n[W5039] Removed admin/words.js\n[W5612] Aktualisierte Etiketten\n#292 windhead geändert, um nur zu lesen",
+        "ru": "Адаптер требует node.js >= 22 сейчас\n[E0036] Обновление сценариев выпуска до 5.2.0\n[E3022] Тест обновления и выпуск в узел 24\n[W0066] Рекомендуется перейти на node.js 22.x.x, чтобы избежать неправильной типизации.\n[W1126] Common.role\n[W5039] Удаленный admin/words.js\n[W5612] Обновленные этикетки\n#292 ветровая головка изменена только для чтения",
+        "pt": "Adaptador requer nod.js >= 22 agora\n[E0036] Atualizar scripts de lançamento para 5.2.0\n[E3022] Atualizar teste e liberação para o nó 24\n[W0066] Recomenda-se o rebaixamento para node.js 22.x.x para evitar digitação errada.\n[W1126] comum. papel actualizado\n[W5039] Administração/palavras.js removidas\n[W5612] Etiquetas actualizadas\n#292 windhead alterado apenas para leitura",
+        "nl": "Voor de adapter zijn node.js < 22 nu nodig\n[E0036] Update release scripts naar 5.2.0\n[E3022] Update test and release to node 24\n[W0066] Downgrade naar node.js 22.x.x om verkeerde typen te voorkomen wordt aanbevolen.\n[W1126] gemeenschappelijke.rol bijgewerkt\n[W5039] Verwijderd admin/words.js\n[W5612] Bijgewerkte etiketten\n#292 windheading veranderd in alleen lezen",
+        "fr": "Adaptateur nécessite node.js >= 22 maintenant\n[E0036] Mettre à jour les scripts de publication au 5.2.0\n[E3022] Mettre à jour le test et le relâchement dans le nœud 24\n[W0066] Il est recommandé de descendre à node.js 22.x.x pour éviter de mal taper.\n[W1126] commun.role mis à jour\n[W5039] Supprimé admin/words.js\n[W5612] Étiquettes actualisées\nla tête de vent no 292 a été modifiée pour lire seulement",
+        "it": "Adattatore richiede node.js >= 22 ora\n[E0036] Aggiorna gli script di rilascio a 5.2.0\n[E3022] Test di aggiornamento e rilascio al nodo 24\n[W0066] Si raccomanda di effettuare il downgrade a node.js 22.x.x per evitare la digitazione sbagliata.\n[W1126] common.role aggiornato\n[W5039] Removed admin/words.js\n[W5612] Etichette aggiornate\n#292 parabrezza cambiata solo per leggere",
+        "es": "Adaptador requiere node.js ю= 22 ahora\n[E0036] Actualizar scripts de lanzamiento a 5.2.0\n[E3022] Prueba de actualización y liberación al nodo 24\n[W0066] Se recomienda reducir a node.js 22.x.x para evitar que se tipifique mal.\n[W1126] common.role updated\n[W5039] Eliminado admin/words.js\n[W5612] Etiquetas actualizadas\n#292 windheading changed to read only",
+        "pl": "Adapter wymaga node.js > = 22\n[E0036] Aktualizacja skryptów wydania do 5.2.0\n[E3022] Aktualizacja testu i zwolnienie do węzła 24\n[W0066] Zalecane jest obniżenie do node.js 22.x.x, aby uniknąć niewłaściwego pisania.\n[W1126] common\n[W5039] Usunięto admin / words.js\n[W5612] Aktualizacja etykiet\n# 292 windheading changed to read only",
+        "uk": "Адаптер вимагає node.js >= 22 тепер\n[E0036] Оновлення скриптів релізу до 5.2.0\n[E3022] Тестування та реліз до вузла 24\n[W0066] Downgrade to node.js 22.x.x, щоб уникнути неправильного друку рекомендується.\n[W1126] загальний.role оновлений\n[W5039] Вилучено admin/words.js\n[W5612] Оновлені етикетки\n#292 обмотки змінено лише для читання",
+        "zh-cn": "适配器需要节点.js 现在22\n[E0036] 更新发布脚本至5.2.0\n[E3022] 更新测试并发布至节点24\n[W0066] 建议降级为节点.js 22.x.x以避免打错字.\n[W1126] 共同作用更新\n[W5039] 取消管理员/词.js\n[W5612] 更新标签\n#292风头改为只读"
+      },
       "1.2.1": {
         "en": "Issue #229: Adding additional parameters for humidity sensors, up to 20 now\nIssue #277: Display conversion issue fix (thanks to ManuelBu96)\nnpm updates\nAdapter Checker updates",
         "de": "Ausgabe #229: Hinzufügen zusätzlicher Parameter für Feuchtesensoren, bis 20 jetzt\nAusgabe #277: Anzeige Konvertierung Problem beheben (dank ManuelBu96)\nnpm updates\nAdapter Checker Updates",
@@ -80,19 +93,6 @@
         "pl": "Poprawiono literówkę w io-package.json",
         "uk": "Виправлено опечатку в io-package.json",
         "zh-cn": "修正 io-package.json 中的拼写错误"
-      },
-      "1.0.15": {
-        "en": "Translations and Adapter checker fixes",
-        "de": "Übersetzungen und Adapter Checker Korrekturen",
-        "ru": "Переводы и исправления адаптера Checker",
-        "pt": "Traduções e correções do verificador de adaptadores",
-        "nl": "Vertalingen en Adapter Checker-fixes",
-        "fr": "Traductions et corrections du vérificateur d'adaptateur",
-        "it": "Traduzioni e correzioni di Adapter Checker",
-        "es": "Traducciones y correcciones del verificador de adaptadores",
-        "pl": "Tłumaczenia i poprawki Adapter Checker",
-        "uk": "Переклади та виправлення перевірки адаптера",
-        "zh-cn": "翻译和适配器检查程序修复"
       }
     },
     "tier": 3,
