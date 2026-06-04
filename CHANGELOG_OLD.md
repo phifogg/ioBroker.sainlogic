@@ -96,6 +96,10 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.1.1 (2025-12-29)
+
+Changed max values for distance sensore (#262)
+
 ## 1.1.0 (2025-12-24)
 
 Added deploy job for release script

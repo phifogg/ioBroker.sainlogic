@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "news": {
+      "1.2.3": {
+        "en": "[W5612] Updated labels\n[E0036] Update release scripts to 5.2.1",
+        "de": "[W5612] Aktualisierte Etiketten\n[E0036] Release-Skripte auf 5.2.1 aktualisieren",
+        "ru": "[W5612] Обновленные этикетки\n[E0036] Обновление сценариев выпуска до 5.2.1",
+        "pt": "[W5612] Etiquetas actualizadas\n[E0036] Atualizar scripts de lançamento para 5.2.1",
+        "nl": "[W5612] Bijgewerkte etiketten\n[E0036] Update release scripts to 5.2.1",
+        "fr": "[W5612] Étiquettes actualisées\n[E0036] Mettre à jour les scripts de publication au 5.2.1",
+        "it": "[W5612] Etichette aggiornate\n[E0036] Aggiornare gli script di rilascio a 5.2.1",
+        "es": "[W5612] Etiquetas actualizadas\n[E0036] Actualizar scripts de lanzamiento a 5.2.1",
+        "pl": "[W5612] Aktualizacja etykiet\n[E0036] Aktualizacja skryptów wydania do 5.2.1",
+        "uk": "[W5612] Оновлені етикетки\n[E0036] Оновлення скриптів релізу до 5.2.1",
+        "zh-cn": "[W5612] 更新标签\n[E0036] 更新发布脚本至5.2.1"
+      },
       "1.2.2": {
         "en": "Adapter requires node.js >= 22 now\n[E0036] Update release scripts to 5.2.0\n[E3022] Update test and release to node 24\n[W0066] Downgrade to node.js 22.x.x to avoid wrong typing is recommended.\n[W1126] common.role updated\n[W5039] Removed admin/words.js\n[W5612] Updated labels\n#292 windheading changed to read only",
         "de": "Adapter benötigt node.js >= 22 jetzt\n[E0036] Release-Skripte auf 5.2.0 aktualisieren\n[E3022] Test und Release auf Knoten 24 aktualisieren\n[W0066] Downgrade auf node.js 22.x.x, um falsche Eingabe zu vermeiden, wird empfohlen.\n[W1126] common.role aktualisiert\n[W5039] Removed admin/words.js\n[W5612] Aktualisierte Etiketten\n#292 windhead geändert, um nur zu lesen",
@@ -80,19 +93,6 @@
         "pl": "Dodano zadanie wdrożenia skryptu wydania\nZmieniono na Admin UI na jsonConfig",
         "uk": "Додано розгортання роботи для сценарію релізу\nЗмінено: Admin UI до jsonConfig",
         "zh-cn": "为发布脚本添加了部署任务\n已更改为管理员 UI 到 jsonConfig"
-      },
-      "1.0.16": {
-        "en": "Typo fixed in io-package.json",
-        "de": "Tippfehler in io-package.json behoben",
-        "ru": "Исправлена опечатка в io-package.json",
-        "pt": "Erro de digitação corrigido em io-package.json",
-        "nl": "Typfout in io-package.json gecorrigeerd",
-        "fr": "Fautes de frappe corrigées dans io-package.json",
-        "it": "Corretto errore di battitura in io-package.json",
-        "es": "Error tipográfico corregido en io-package.json",
-        "pl": "Poprawiono literówkę w io-package.json",
-        "uk": "Виправлено опечатку в io-package.json",
-        "zh-cn": "修正 io-package.json 中的拼写错误"
       }
     },
     "tier": 3,

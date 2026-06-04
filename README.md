@@ -107,11 +107,9 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.2.3 (2026-06-04)
 - [W5612] Updated labels
 - [E0036] Update release scripts to 5.2.1
-
 
 ### 1.2.2 (2026-06-04)
 - (copilot) Adapter requires node.js >= 22 now
@@ -138,10 +136,6 @@ automatic dependency updates added
 
 npm dependency updates
 fix admin page: scheduler reported interval in minutes instead of seconds
-
-### 1.1.1 (2025-12-29)
-
-Changed max values for distance sensore (#262)
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 
