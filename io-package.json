@@ -195,8 +195,8 @@
       "_id": "info.last_listener_update",
       "type": "state",
       "common": {
-        "role": "",
-        "name": "Content of last update recieved",
+        "role": "info",
+        "name": "Content of last update received",
         "type": "string",
         "read": true,
         "write": false,
@@ -208,7 +208,7 @@
       "_id": "info.last_update",
       "type": "state",
       "common": {
-        "role": "",
+        "role": "value.time",
         "name": "Timestamp of last update received from weather station",
         "type": "string",
         "read": true,
@@ -221,7 +221,7 @@
       "_id": "info.softwaretype",
       "type": "state",
       "common": {
-        "role": "",
+        "role": "info.version",
         "name": "Software type and version of weather station",
         "type": "string",
         "read": true,

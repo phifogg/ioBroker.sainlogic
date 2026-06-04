@@ -8,7 +8,7 @@
     "items": {
         "listener": {
             "type": "panel",
-            "label": "Listener Settings",
+            "label": "Listener settings",
             "items": {
                 "listener_active": {
                     "type": "checkbox",

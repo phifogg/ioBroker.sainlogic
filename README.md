@@ -109,6 +109,12 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 -->
 ### **WORK IN PROGRESS**
 - (copilot) Adapter requires node.js >= 22 now
+- [E0036] Update release scripts to 5.2.0
+- [E3022] Update test and release to node 24
+- [W0066] Downgrade to node.js 22.x.x to avoid wrong typing is recommended.
+- [W1126] common.role updated
+- [W5039] Removed admin/words.js
+- [W5612] Updated labels
 
 ### 1.2.1 (2026-04-07)
 Issue #229: Adding additional parameters for humidity sensors, up to 20 now
