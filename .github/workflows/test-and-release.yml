@@ -53,30 +53,3 @@ jobs:
                   os: ${{ matrix.os }}
                   # Uncomment the following line if your adapter cannot be installed using 'npm ci'
                   # install-command: 'npm install'
-
-    # Deploys the final package to NPM
-    deploy:
-        needs: [check-and-lint, adapter-tests]
-
-        # Permissions are required to create Github releases and npm trusted publishing
-        permissions:
-            contents: write
-            id-token: write
-
-        if: |
-            contains(github.event.head_commit.message, '[skip ci]') == false &&
-            github.event_name == 'push' &&
-            startsWith(github.ref, 'refs/tags/v')
-
-        runs-on: ubuntu-latest
-
-        steps:
-            - uses: ioBroker/testing-action-deploy@v1
-              with:
-                  node-version: '22.x'
-                  # npm-token: ${{ secrets.NPM_TOKEN }}
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-
-                  sentry-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
-                  sentry-project: 'iobroker-sainlogic'
-                  sentry-version-prefix: 'iobroker.sainlogic'
