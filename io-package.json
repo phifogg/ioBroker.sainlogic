@@ -179,7 +179,8 @@
     "unit_temperature": "°C",
     "unit_pressure": "hPa",
     "unit_windspeed": "km/h",
-    "unit_solar": "lx"
+    "unit_solar": "lx",
+    "unit_uv": ""
   },
   "objects": [],
   "instanceObjects": [

@@ -111,6 +111,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 - [S5601] translation format changed
 - [S5004] Change setInterval()
 - [S9508] CHANGELOG_OLD.md removed from package.json
+- [#277] Fix unit_config for UVRaw
 
 ### 1.2.3 (2026-06-04)
 - [W5612] Updated labels
