@@ -196,7 +196,7 @@
       "_id": "info.last_listener_update",
       "type": "state",
       "common": {
-        "role": "info",
+        "role": "json",
         "name": "Content of last update received",
         "type": "string",
         "read": true,
@@ -222,7 +222,7 @@
       "_id": "info.softwaretype",
       "type": "state",
       "common": {
-        "role": "info",
+        "role": "text",
         "name": "Software type and version of weather station",
         "type": "string",
         "read": true,
