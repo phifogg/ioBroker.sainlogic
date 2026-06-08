@@ -115,6 +115,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 - [#314] Reject out of bounds values based on min/max
 - [W1132] wrong roles fixed
 - [S9508] CHANGELOG_OLD.md removed from publishing
+- [S5004] Removed plain setInterval()
 
 ### 1.2.3 (2026-06-04)
 - [W5612] Updated labels
