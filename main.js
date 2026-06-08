@@ -214,6 +214,21 @@ class Sainlogic extends utils.Adapter {
                 value = 0;
                 default_value = 0;
             }
+
+            if (!Number.isFinite(value)) {
+                that.log.warn(`Rejected invalid numeric value for "${obj_id}": ${value} is not a finite number`);
+                return;
+            }
+
+            if (attrdef.min != null && value < attrdef.min) {
+                that.log.warn(`Rejected out-of-range value for "${obj_id}": ${value} less than min ${attrdef.min}`);
+                return;
+            }
+
+            if (attrdef.max != null && value > attrdef.max) {
+                that.log.warn(`Rejected out-of-range value for "${obj_id}": ${value} greater than max ${attrdef.max}`);
+                return;
+            }
         } else if (attrdef.type == 'string') {
             value = `${value}`;
         }
