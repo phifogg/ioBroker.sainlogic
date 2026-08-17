@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "news": {
+      "1.2.4": {
+        "en": "[S5601] translation format changed\n[S5004] Change setInterval()\n[S9508] CHANGELOG_OLD.md removed from package.json\n[#277] Fix unit_config for UVRaw\n[#314] Reject out of bounds values based on min/max\n[W1132] wrong roles fixed\n[S9508] CHANGELOG_OLD.md removed from publishing\n[S5004] Removed plain setInterval()",
+        "de": "[S5601] Übersetzungsformat geändert\n[S5004] Ändern Sie setInterval()\n[S9508] CHANGELOG_OLD.md wurde aus package.json entfernt.\n[#277] Korrektur der unit_config für UVRaw\n[#314] Werte außerhalb des zulässigen Bereichs basierend auf Min/Max ablehnen\n[W1132] Falsche Rollen korrigiert\n[S9508] CHANGELOG_OLD.md wurde aus der Veröffentlichung entfernt.\n[S5004] Entfernt einfache setInterval()",
+        "ru": "[S5601] формат перевода изменен\n[S5004] Изменить setInterval()\n[S9508] Файл CHANGELOG_OLD.md удален из package.json\n[#277] Исправлена ошибка в unit_config для UVRaw\n[#314] Отклонять значения, выходящие за пределы допустимого диапазона, на основе min/max\n[W1132] Исправлены неправильные роли\n[S9508] Файл CHANGELOG_OLD.md удален из публикации.\n[S5004] Удален простой setInterval()",
+        "pt": "[S5601] formato de tradução alterado\n[S5004] Alterar setInterval()\n[S9508] CHANGELOG_OLD.md removido do package.json\n[#277] Corrigir unit_config para UVRaw\n[#314] Rejeitar valores fora dos limites com base em mínimo/máximo\n[W1132] Funções incorretas corrigidas\n[S9508] CHANGELOG_OLD.md removido da publicação\n[S5004] Removido setInterval() simples",
+        "nl": "[S5601] vertaalformaat gewijzigd\n[S5004] Wijzig setInterval()\n[S9508] CHANGELOG_OLD.md verwijderd uit package.json\n[#277] Fix unit_config voor UVRaw\n[#314] Verwerp waarden buiten de grenzen op basis van min/max\n[W1132] verkeerde rollen gecorrigeerd\n[S9508] CHANGELOG_OLD.md verwijderd uit publicatie\n[S5004] De eenvoudige setInterval() functie is verwijderd.",
+        "fr": "[S5601] Le format de traduction a été modifié.\n[S5004] Modifier setInterval()\n[S9508] CHANGELOG_OLD.md supprimé du fichier package.json\n[#277] Correction de unit_config pour UVRaw\n[#314] Rejeter les valeurs hors limites en fonction des valeurs min/max\n[W1132] Correction des rôles incorrects\n[S9508] Le fichier CHANGELOG_OLD.md a été supprimé de la publication.\n[S5004] Suppression de la méthode setInterval() simple",
+        "it": "[S5601] formato di traduzione modificato\n[S5004] Modifica setInterval()\n[S9508] CHANGELOG_OLD.md rimosso da package.json\n[#277] Correzione di unit_config per UVRaw\n[#314] Rifiuta i valori fuori dai limiti in base a min/max\n[W1132] ruoli errati corretti\n[S9508] CHANGELOG_OLD.md rimosso dalla pubblicazione\n[S5004] Rimossa la funzione setInterval() semplice",
+        "es": "[S5601] Se cambió el formato de traducción\n[S5004] Cambiar setInterval()\n[S9508] Se eliminó CHANGELOG_OLD.md de package.json\n[#277] Corregir unit_config para UVRaw\n[#314] Rechazar valores fuera de rango según min/max\n[W1132] Se corrigieron los roles incorrectos\n[S9508] CHANGELOG_OLD.md eliminado de la publicación\n[S5004] Se eliminó setInterval() simple",
+        "pl": "[S5601] zmieniono format tłumaczenia\n[S5004] Zmień setInterval()\n[S9508] CHANGELOG_OLD.md usunięto z package.json\n[#277] Napraw unit_config dla UVRaw\n[#314] Odrzuć wartości poza zakresem na podstawie min/maks\n[W1132] naprawiono błędne role\n[S9508] CHANGELOG_OLD.md usunięto z publikacji\n[S5004] Usunięto prostą funkcję setInterval()",
+        "uk": "[S5601] формат перекладу змінено\n[S5004] Змінити setInterval()\n[S9508] Файл CHANGELOG_OLD.md видалено з package.json\n[#277] Виправлено unit_config для UVRaw\n[#314] Відхилити значення, що виходять за межі допустимих значень, на основі мінімуму/максимуму\n[W1132] виправлено неправильні ролі\n[S9508] Файл CHANGELOG_OLD.md видалено з публікації\n[S5004] Видалено просту функцію setInterval()",
+        "zh-cn": "[S5601] 翻译格式已更改\n[S5004] 更改 setInterval()\n[S9508] 从 package.json 中移除 CHANGELOG_OLD.md\n[#277] 修复 UVRaw 的 unit_config\n[#314] 根据最小值/最大值拒绝超出范围的值\n[W1132] 角色错误已修复\n[S9508] 已从发布列表中移除 CHANGELOG_OLD.md\n[S5004] 移除了普通的 setInterval() 函数"
+      },
       "1.2.3": {
         "en": "[W5612] Updated labels\n[E0036] Update release scripts to 5.2.1",
         "de": "[W5612] Aktualisierte Etiketten\n[E0036] Release-Skripte auf 5.2.1 aktualisieren",
@@ -80,19 +93,6 @@
         "pl": "Zmienione wartości maksymalne dla odległości sensore (# 262)",
         "uk": "Змінено максимальні значення для дистанційного керування (#262)",
         "zh-cn": "距离传感器的最大值变化(# 262)"
-      },
-      "1.1.0": {
-        "en": "Added deploy job for release script\nChanged to Admin UI to jsonConfig",
-        "de": "Stellenangebot für Release Skript hinzugefügt\nZu Admin UI zu jsonConfig geändert",
-        "ru": "Добавлена работа развертывания для сценария выпуска\nИзменить пользовательский интерфейс на jsonConfig",
-        "pt": "Adicionado trabalho de implantação para o script de lançamento\nAlterado para Administração de UI para jsonConfig",
-        "nl": "Inzettaak toegevoegd voor releasescript\nVeranderd naar Admin UI naar jsonConfig",
-        "fr": "Ajout de la tâche de déploiement pour le script de sortie\nChanged to Admin UI to jsonConfig",
-        "it": "Aggiunto lavoro di distribuzione per lo script di rilascio\nModificato su Admin UI a jsonConfig",
-        "es": "Añadido trabajo de despliegue para script de liberación\nCambiar a Admin UI a jsonConfig",
-        "pl": "Dodano zadanie wdrożenia skryptu wydania\nZmieniono na Admin UI na jsonConfig",
-        "uk": "Додано розгортання роботи для сценарію релізу\nЗмінено: Admin UI до jsonConfig",
-        "zh-cn": "为发布脚本添加了部署任务\n已更改为管理员 UI 到 jsonConfig"
       }
     },
     "tier": 3,

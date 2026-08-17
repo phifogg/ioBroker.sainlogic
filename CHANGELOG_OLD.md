@@ -96,6 +96,11 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.1.2 (2026-01-19)
+
+npm dependency updates
+fix admin page: scheduler reported interval in minutes instead of seconds
+
 ## 1.1.1 (2025-12-29)
 
 Changed max values for distance sensore (#262)

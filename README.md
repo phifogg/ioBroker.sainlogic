@@ -107,7 +107,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.4 (2026-08-17)
 - [S5601] translation format changed
 - [S5004] Change setInterval()
 - [S9508] CHANGELOG_OLD.md removed from package.json
@@ -141,11 +141,6 @@ Adapter Checker updates
 
 npm dependency updates
 automatic dependency updates added
-
-### 1.1.2 (2026-01-19)
-
-npm dependency updates
-fix admin page: scheduler reported interval in minutes instead of seconds
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 
