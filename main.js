@@ -88,7 +88,9 @@ class Sainlogic extends utils.Adapter {
 
         const target_unit = this.config[attrdef.unit_config];
         const my_target_unit = attrdef.units.filter(function (unit) {
-            return unit.display_name == target_unit;
+            // Use 'value' property for matching if available, otherwise fall back to 'display_name'
+            const unitValue = unit.value || unit.display_name;
+            return unitValue == target_unit;
         });
 
         if (!my_target_unit.length) {
