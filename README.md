@@ -107,7 +107,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.8 (2026-08-20)
 - Fix #317 last_update type to string (you might need to delete the state manually)
 
 ### 1.2.7 (2026-08-20)
@@ -130,10 +130,6 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 - [W1132] wrong roles fixed
 - [S9508] CHANGELOG_OLD.md removed from publishing
 - [S5004] Removed plain setInterval()
-
-### 1.2.3 (2026-06-04)
-- [W5612] Updated labels
-- [E0036] Update release scripts to 5.2.1
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 

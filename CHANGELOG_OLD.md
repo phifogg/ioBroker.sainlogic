@@ -96,6 +96,10 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.2.3 (2026-06-04)
+- [W5612] Updated labels
+- [E0036] Update release scripts to 5.2.1
+
 ## 1.2.2 (2026-06-04)
 - (copilot) Adapter requires node.js >= 22 now
 - [E0036] Update release scripts to 5.2.0
