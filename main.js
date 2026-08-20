@@ -166,7 +166,7 @@ class Sainlogic extends utils.Adapter {
      * Only called for user-initiated changes (ack === false).
      *
      * @param {string} id full state id
-     * @param {{val: any, ack: boolean}} state state object
+     * @param {{val: string | number | boolean, ack: boolean}} state state object
      */
     handleChoiceChange(id, state) {
         this.log.info(`User changed state (${id}) -> ${state.val}`);
@@ -182,7 +182,7 @@ class Sainlogic extends utils.Adapter {
      * Replace or extend the switch body with the desired behavior.
      *
      * @param {string|number} value selected choice value
-     * @param {{val: any, ack: boolean}} _state state object (unused)
+     * @param {{val: string | number | boolean, ack: boolean}} _state state object (unused)
      */
     executeChoiceAction(value, _state) {
         switch (String(value)) {

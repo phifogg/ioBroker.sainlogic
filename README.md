@@ -107,6 +107,12 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- Fix #337 Adapter disabled cased by bootloop
+- Fix #317 last_update type to string (you might need to delete the state manually)
+- Fixed some lint warinings
+
 ### 1.2.4 (2026-08-17)
 - [S5601] translation format changed
 - [S5004] Change setInterval()
