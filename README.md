@@ -107,6 +107,9 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Fix #337 Adapter disabled cased by bootloop - part 2
+
 ### 1.2.5 (2026-08-20)
 - Fix #337 Adapter disabled cased by bootloop
 - Fix #317 last_update type to string (you might need to delete the state manually)

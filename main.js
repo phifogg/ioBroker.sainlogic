@@ -91,7 +91,7 @@ class Sainlogic extends utils.Adapter {
             return unit.display_name == target_unit;
         });
 
-        if (!my_target_unit) {
+        if (!my_target_unit.length) {
             this.log.warn(
                 `No unit definition found for ${attrdef.id} and target unit '${target_unit}', using raw value`,
             );
