@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.6",
+    "version": "1.2.7",
     "news": {
+      "1.2.7": {
+        "en": "Fix superscript unit and degress for better display",
+        "de": "Korrigieren Sie die hochgestellten Einheiten und Gradwerte für eine bessere Darstellung.",
+        "ru": "Исправьте единицы измерения и градусы в верхнем индексе для лучшего отображения.",
+        "pt": "Corrigir unidade de sobrescrito e graus para melhor visualização",
+        "nl": "Corrigeer de superscript-eenheden en graden voor een betere weergave.",
+        "fr": "Corrigez les unités et les degrés en exposant pour un meilleur affichage.",
+        "it": "Correggere l'unità di misura e il grado in apice per una migliore visualizzazione.",
+        "es": "Corrija la unidad y los grados en superíndice para una mejor visualización.",
+        "pl": "Napraw jednostkę indeksu górnego i stopień, aby uzyskać lepszy wyświetlacz",
+        "uk": "Виправлено одиницю надрядкового значення та градус для кращого відображення",
+        "zh-cn": "修正上标单位和度数，以更好地显示"
+      },
       "1.2.6": {
         "en": "Fix #337 Adapter disabled cased by bootloop - part 2",
         "de": "Fehlerbehebung #337: Adapter aufgrund einer Boot-Schleife deaktiviert – Teil 2",
@@ -80,19 +93,6 @@
         "pl": "Wydanie # 229: Dodawanie dodatkowych parametrów czujników wilgotności do 20\nIssue # 277: Display conversion issue fix (dzięki ManuelBu96)\naktualizacje npm\nAktualizacja kontrolera adaptera",
         "uk": "Випуск #229: Додавання додаткових параметрів для датчиків вологості, до 20 тепер\nВипуск #277: Виправлення проблеми перетворення (завдяки до ManuelBu96)\nnpm оновлення\nОновлення адаптера",
         "zh-cn": "问题229:增加湿度传感器的参数,最多20个\n第277期:显示转换问题修正(感谢ManuelBu96)\nnpm 更新\n适配器检查器更新"
-      },
-      "1.2.0": {
-        "en": "npm dependency updates\nautomatic dependency updates added",
-        "de": "npm abhängigkeitsaktualisierung\nautomatische abhängigkeitsaktualisierungen hinzugefügt",
-        "ru": "обновления npm зависимостей\nдобавлены автоматические обновления зависимостей",
-        "pt": "atualizações de dependência do npm\natualizações de dependência automática adicionadas",
-        "nl": "npm afhankelijkheidsupdates\nautomatische afhankelijkheidsupdates toegevoegd",
-        "fr": "npm mises à jour de la dépendance\nmises à jour de dépendance automatique ajoutées",
-        "it": "npm aggiornamenti di dipendenza\naggiornamenti automatici di dipendenza aggiunti",
-        "es": "actualizaciones de dependencia\nactualizaciones automáticas de dependencia",
-        "pl": "aktualizacje zależności npm\nautomatyczne aktualizacje zależności",
-        "uk": "npm оновлення залежності\nдодано автоматичні оновлення залежності",
-        "zh-cn": "npm 依赖性更新\n添加了自动依赖性更新"
       }
     },
     "tier": 3,

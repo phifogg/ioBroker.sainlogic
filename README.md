@@ -107,7 +107,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.7 (2026-08-20)
 - Fix superscript unit and degress for better display
 
 ### 1.2.6 (2026-08-20)
@@ -131,16 +131,6 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 ### 1.2.3 (2026-06-04)
 - [W5612] Updated labels
 - [E0036] Update release scripts to 5.2.1
-
-### 1.2.2 (2026-06-04)
-- (copilot) Adapter requires node.js >= 22 now
-- [E0036] Update release scripts to 5.2.0
-- [E3022] Update test and release to node 24
-- [W0066] Downgrade to node.js 22.x.x to avoid wrong typing is recommended.
-- [W1126] common.role updated
-- [W5039] Removed admin/words.js
-- [W5612] Updated labels
-- #292 windheading changed to read only
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 
