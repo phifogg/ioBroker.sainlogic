@@ -107,8 +107,11 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Fix #317 last_update type to string (you might need to delete the state manually)
+
 ### 1.2.7 (2026-08-20)
-- Fix superscript unit and degress for better display
+- Fix superscript unit and degress for better display (you need to set the temperature unit again in the config screen)
 
 ### 1.2.6 (2026-08-20)
 - Fix #337 Adapter disabled cased by bootloop - part 2
