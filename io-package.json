@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.4",
+    "version": "1.2.5",
     "news": {
+      "1.2.5": {
+        "en": "Fix #337 Adapter disabled cased by bootloop\nFix #317 last_update type to string (you might need to delete the state manually)\nFixed some lint warinings",
+        "de": "Fehlerbehebung #337: Adapter aufgrund einer Boot-Schleife deaktiviert\nBehebung von Problem #317: Der Datentyp von last_update sollte in String geändert werden (möglicherweise müssen Sie den Status manuell löschen).\nEinige Lint-Warnungen wurden behoben.",
+        "ru": "Исправлена ошибка #337: Адаптер отключен из-за циклической перезагрузки.\nИсправлена ошибка #317: тип last_update теперь строковый (возможно, потребуется удалить состояние вручную).\nИсправлены некоторые предупреждения линтера.",
+        "pt": "Correção do problema #337: Adaptador desativado devido a loop de inicialização.\nCorrigido o problema #317: o tipo de last_update será alterado para string (talvez seja necessário excluir o estado manualmente).\nCorrigi alguns avisos de fiapos.",
+        "nl": "Oplossing #337 Adapter uitgeschakeld vanwege bootloop\nFix #317 last_update type naar string (mogelijk moet je de status handmatig verwijderen)\nEnkele lint-waarschuwingen opgelost.",
+        "fr": "Correction du problème n° 337 : Adaptateur désactivé suite à une boucle de démarrage\nCorrection du problème n° 317 : le type de last_update est désormais une chaîne de caractères (vous devrez peut-être supprimer l’état manuellement).\nCorrection de quelques avertissements concernant les peluches",
+        "it": "Correzione #337 Adattatore disabilitato a causa di un bootloop\nCorrezione del problema #317: il tipo di last_update deve essere impostato su stringa (potrebbe essere necessario eliminare lo stato manualmente).\nRisolti alcuni avvisi relativi alla lanugine",
+        "es": "Solución n.° 337: Adaptador deshabilitado debido a un bucle de arranque.\nCorrección #317: cambiar el tipo de last_update a cadena (es posible que deba eliminar el estado manualmente).\nSe corrigieron algunas advertencias de lint.",
+        "pl": "Napraw #337 Adapter wyłączony w przypadku bootloopu\nNapraw typ last_update #317 na ciąg (może być konieczne ręczne usunięcie stanu)\nNaprawiono niektóre ostrzeżenia dotyczące kłaczków",
+        "uk": "Виправлення №337: Адаптер вимкнено через цикл завантаження\nВиправлено #317 зміну типу last_update на рядок (можливо, вам доведеться видалити стан вручну)\nВиправлено деякі попередження про ворсинки",
+        "zh-cn": "修复 #337 适配器因启动循环而禁用\n修复 #317 问题，将 last_update 类型改为字符串（可能需要手动删除状态）。\n修复了一些文件清理警告"
+      },
       "1.2.4": {
         "en": "[S5601] translation format changed\n[S5004] Change setInterval()\n[S9508] CHANGELOG_OLD.md removed from package.json\n[#277] Fix unit_config for UVRaw\n[#314] Reject out of bounds values based on min/max\n[W1132] wrong roles fixed\n[S9508] CHANGELOG_OLD.md removed from publishing\n[S5004] Removed plain setInterval()",
         "de": "[S5601] Übersetzungsformat geändert\n[S5004] Ändern Sie setInterval()\n[S9508] CHANGELOG_OLD.md wurde aus package.json entfernt.\n[#277] Korrektur der unit_config für UVRaw\n[#314] Werte außerhalb des zulässigen Bereichs basierend auf Min/Max ablehnen\n[W1132] Falsche Rollen korrigiert\n[S9508] CHANGELOG_OLD.md wurde aus der Veröffentlichung entfernt.\n[S5004] Entfernt einfache setInterval()",
@@ -80,19 +93,6 @@
         "pl": "aktualizacje zależności npm\nfix strona admin: terminarz zgłoszonych przerw w minutach zamiast sekund",
         "uk": "npm оновлення залежності\nвиправлено сторінку адміністратора: розкладний звіт за хвилину замість секунд",
         "zh-cn": "npm 依赖性更新\n固定管理页面:调度器报告间隔为分钟而不是秒"
-      },
-      "1.1.1": {
-        "en": "Changed max values for distance sensore (#262)",
-        "de": "Geänderte Maximalwerte für Entfernungssensor (#262)",
-        "ru": "Измененные максимальные значения для датчика расстояния (#262)",
-        "pt": "Valores máximos alterados para o sensor de distância (# 262)",
-        "nl": "Gewijzigde maximumwaarden voor afstandssensore (#262)",
-        "fr": "Valeurs maximales modifiées pour le capteur de distance (#262)",
-        "it": "Valori max cambiati per sensore di distanza (#262)",
-        "es": "Valores máximos cambiados para sensor de distancia (#262)",
-        "pl": "Zmienione wartości maksymalne dla odległości sensore (# 262)",
-        "uk": "Змінено максимальні значення для дистанційного керування (#262)",
-        "zh-cn": "距离传感器的最大值变化(# 262)"
       }
     },
     "tier": 3,

@@ -96,6 +96,11 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.2.0 (2026-03-22)
+
+npm dependency updates
+automatic dependency updates added
+
 ## 1.1.2 (2026-01-19)
 
 npm dependency updates
