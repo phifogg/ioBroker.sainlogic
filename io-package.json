@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.5",
+    "version": "1.2.6",
     "news": {
+      "1.2.6": {
+        "en": "Fix #337 Adapter disabled cased by bootloop - part 2",
+        "de": "Fehlerbehebung #337: Adapter aufgrund einer Boot-Schleife deaktiviert – Teil 2",
+        "ru": "Исправление ошибки #337: Адаптер отключен из-за циклической перезагрузки - часть 2",
+        "pt": "Correção do problema #337: Adaptador desativado devido a loop de inicialização - parte 2",
+        "nl": "Oplossing #337 Adapter uitgeschakeld vanwege bootloop - deel 2",
+        "fr": "Correction du problème n° 337 : Adaptateur désactivé suite à une boucle de démarrage – partie 2",
+        "it": "Correzione del problema #337: Adattatore disabilitato a causa di un ciclo di avvio infinito - parte 2",
+        "es": "Solución n.° 337: Adaptador deshabilitado debido a un bucle de arranque - parte 2",
+        "pl": "Naprawa adaptera #337 wyłączonego z powodu pętli rozruchowej – część 2",
+        "uk": "Виправлення №337: Адаптер вимкнено через bootloop - частина 2",
+        "zh-cn": "修复 #337 适配器因启动循环而禁用 - 第 2 部分"
+      },
       "1.2.5": {
         "en": "Fix #337 Adapter disabled cased by bootloop\nFix #317 last_update type to string (you might need to delete the state manually)\nFixed some lint warinings",
         "de": "Fehlerbehebung #337: Adapter aufgrund einer Boot-Schleife deaktiviert\nBehebung von Problem #317: Der Datentyp von last_update sollte in String geändert werden (möglicherweise müssen Sie den Status manuell löschen).\nEinige Lint-Warnungen wurden behoben.",
@@ -80,19 +93,6 @@
         "pl": "aktualizacje zależności npm\nautomatyczne aktualizacje zależności",
         "uk": "npm оновлення залежності\nдодано автоматичні оновлення залежності",
         "zh-cn": "npm 依赖性更新\n添加了自动依赖性更新"
-      },
-      "1.1.2": {
-        "en": "npm dependency updates\nfix admin page: scheduler reported interval in minutes instead of seconds",
-        "de": "npm abhängigkeitsaktualisierung\nadmin-seite reparieren: scheduler berichtet intervall in minuten anstelle von sekunden",
-        "ru": "обновления npm зависимостей\nисправить страницу администратора: планировщик сообщил интервал в минутах вместо секунд",
-        "pt": "atualizações de dependência do npm\ncorrigir página de administrador: agendador relatou intervalo em minutos em vez de segundos",
-        "nl": "npm afhankelijkheidsupdates\nfix admin pagina: scheduler gemeld interval in minuten in plaats van seconden",
-        "fr": "npm mises à jour de la dépendance\ncorriger la page d'administration: l'intervalle de temps signalé en minutes au lieu de secondes",
-        "it": "npm aggiornamenti di dipendenza\ncorrezione pagina admin: scheduler intervallo segnalato in minuti invece di secondi",
-        "es": "actualizaciones de dependencia\nfijar página de administración: programador reportó intervalo en minutos en lugar de segundos",
-        "pl": "aktualizacje zależności npm\nfix strona admin: terminarz zgłoszonych przerw w minutach zamiast sekund",
-        "uk": "npm оновлення залежності\nвиправлено сторінку адміністратора: розкладний звіт за хвилину замість секунд",
-        "zh-cn": "npm 依赖性更新\n固定管理页面:调度器报告间隔为分钟而不是秒"
       }
     },
     "tier": 3,

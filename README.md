@@ -107,7 +107,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.6 (2026-08-20)
 - Fix #337 Adapter disabled cased by bootloop - part 2
 
 ### 1.2.5 (2026-08-20)
@@ -138,12 +138,6 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 - [W5039] Removed admin/words.js
 - [W5612] Updated labels
 - #292 windheading changed to read only
-
-### 1.2.1 (2026-04-07)
-Issue #229: Adding additional parameters for humidity sensors, up to 20 now
-Issue #277: Display conversion issue fix (thanks to ManuelBu96)
-npm updates
-Adapter Checker updates
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 

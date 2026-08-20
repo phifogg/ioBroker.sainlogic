@@ -96,6 +96,12 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.2.1 (2026-04-07)
+Issue #229: Adding additional parameters for humidity sensors, up to 20 now
+Issue #277: Display conversion issue fix (thanks to ManuelBu96)
+npm updates
+Adapter Checker updates
+
 ## 1.2.0 (2026-03-22)
 
 npm dependency updates
