@@ -211,7 +211,7 @@
       "common": {
         "role": "value.time",
         "name": "Timestamp of last update received from weather station",
-        "type": "number",
+        "type": "string",
         "read": true,
         "write": false,
         "def": 0
