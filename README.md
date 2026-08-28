@@ -107,6 +107,9 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- #341: Fix No unit definition found on target 
+
 ### 1.2.9 (2026-08-28)
 - #338 Added logic to convert temperature units to new proper display units like °C/°F
 - #327 Regexp fix for humidity sensors
