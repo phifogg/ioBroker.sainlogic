@@ -107,8 +107,8 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
-- #341: Fix No unit definition found on target 
+### 1.2.10 (2026-08-28)
+- #341: Fix No unit definition found on target
 
 ### 1.2.9 (2026-08-28)
 - #338 Added logic to convert temperature units to new proper display units like °C/°F
@@ -125,11 +125,6 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 ### 1.2.6 (2026-08-20)
 - Fix #337 Adapter disabled cased by bootloop - part 2
-
-### 1.2.5 (2026-08-20)
-- Fix #337 Adapter disabled cased by bootloop
-- Fix #317 last_update type to string (you might need to delete the state manually)
-- Fixed some lint warinings
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 

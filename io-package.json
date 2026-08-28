@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.9",
+    "version": "1.2.10",
     "news": {
+      "1.2.10": {
+        "en": "#341: Fix No unit definition found on target",
+        "de": "#341: Behebung des Problems, dass auf dem Ziel keine Einheitendefinition gefunden wurde",
+        "ru": "#341: Исправлена ошибка \"Определение юнита не найдено на целевом устройстве\"",
+        "pt": "#341: Corrigir \"Nenhuma definição de unidade encontrada no destino\"",
+        "nl": "#341: Oplossing voor 'Geen eenheidsdefinitie gevonden op doel'",
+        "fr": "#341 : Correction : Aucune définition d’unité trouvée sur la cible",
+        "it": "#341: Correzione Nessuna definizione di unità trovata sul target",
+        "es": "#341: Corrección: No se encontró ninguna definición de unidad en el destino.",
+        "pl": "#341: Naprawiono błąd „Nie znaleziono definicji jednostki na celu”",
+        "uk": "#341: Виправлення: Не знайдено визначення одиниці у цілі",
+        "zh-cn": "#341：修复目标上未找到单位定义的问题"
+      },
       "1.2.9": {
         "en": "#338 Added logic to convert temperature units to new proper display units like °C/°F\n#327 Regexp fix for humidity sensors\n#326 Remove .vscode from git\n#326 update adapter-core dependency\n#326 change last_update type to number",
         "de": "#338 Logik hinzugefügt, um Temperatureinheiten in die neuen, korrekten Anzeigeeinheiten wie °C/°F umzurechnen.\n#327 Regexp-Korrektur für Feuchtigkeitssensoren\n#326 .vscode aus Git entfernen\n#326 Aktualisierung der adapter-core-Abhängigkeit\n#326 Ändere den Typ von last_update in Zahl",
@@ -80,19 +93,6 @@
         "pl": "[S5601] zmieniono format tłumaczenia\n[S5004] Zmień setInterval()\n[S9508] CHANGELOG_OLD.md usunięto z package.json\n[#277] Napraw unit_config dla UVRaw\n[#314] Odrzuć wartości poza zakresem na podstawie min/maks\n[W1132] naprawiono błędne role\n[S9508] CHANGELOG_OLD.md usunięto z publikacji\n[S5004] Usunięto prostą funkcję setInterval()",
         "uk": "[S5601] формат перекладу змінено\n[S5004] Змінити setInterval()\n[S9508] Файл CHANGELOG_OLD.md видалено з package.json\n[#277] Виправлено unit_config для UVRaw\n[#314] Відхилити значення, що виходять за межі допустимих значень, на основі мінімуму/максимуму\n[W1132] виправлено неправильні ролі\n[S9508] Файл CHANGELOG_OLD.md видалено з публікації\n[S5004] Видалено просту функцію setInterval()",
         "zh-cn": "[S5601] 翻译格式已更改\n[S5004] 更改 setInterval()\n[S9508] 从 package.json 中移除 CHANGELOG_OLD.md\n[#277] 修复 UVRaw 的 unit_config\n[#314] 根据最小值/最大值拒绝超出范围的值\n[W1132] 角色错误已修复\n[S9508] 已从发布列表中移除 CHANGELOG_OLD.md\n[S5004] 移除了普通的 setInterval() 函数"
-      },
-      "1.2.3": {
-        "en": "[W5612] Updated labels\n[E0036] Update release scripts to 5.2.1",
-        "de": "[W5612] Aktualisierte Etiketten\n[E0036] Release-Skripte auf 5.2.1 aktualisieren",
-        "ru": "[W5612] Обновленные этикетки\n[E0036] Обновление сценариев выпуска до 5.2.1",
-        "pt": "[W5612] Etiquetas actualizadas\n[E0036] Atualizar scripts de lançamento para 5.2.1",
-        "nl": "[W5612] Bijgewerkte etiketten\n[E0036] Update release scripts to 5.2.1",
-        "fr": "[W5612] Étiquettes actualisées\n[E0036] Mettre à jour les scripts de publication au 5.2.1",
-        "it": "[W5612] Etichette aggiornate\n[E0036] Aggiornare gli script di rilascio a 5.2.1",
-        "es": "[W5612] Etiquetas actualizadas\n[E0036] Actualizar scripts de lanzamiento a 5.2.1",
-        "pl": "[W5612] Aktualizacja etykiet\n[E0036] Aktualizacja skryptów wydania do 5.2.1",
-        "uk": "[W5612] Оновлені етикетки\n[E0036] Оновлення скриптів релізу до 5.2.1",
-        "zh-cn": "[W5612] 更新标签\n[E0036] 更新发布脚本至5.2.1"
       }
     },
     "tier": 3,
