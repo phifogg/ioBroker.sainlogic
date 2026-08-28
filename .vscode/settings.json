@@ -18,5 +18,8 @@
             ],
             "url": "https://raw.githubusercontent.com/ioBroker/ioBroker.admin/master/packages/jsonConfig/schemas/jsonConfig.json"
         }
-    ]
+    ],
+    "chat.tools.terminal.autoApprove": {
+        "npx eslint": true
+    }
 }

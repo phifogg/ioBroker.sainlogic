@@ -36,26 +36,32 @@ class Sainlogic extends utils.Adapter {
     checkUnit(attrdef, obj) {
         const c_id = obj._id;
         const target_unit = this.config[attrdef.unit_config];
+        const target_unit_definition = attrdef.units.find(function (unit) {
+            return unit.display_name == target_unit || unit.value == target_unit;
+        });
+        const target_display_unit = target_unit_definition?.display_name || target_unit;
 
-        if (target_unit != obj.common.unit) {
+        if (target_display_unit != obj.common.unit) {
             // change and convert unit
-            this.log.info(`Unit changed for ${c_id} from ${obj.common.unit} to ${target_unit}, updating data point`);
+            this.log.info(
+                `Unit changed for ${c_id} from ${obj.common.unit} to ${target_display_unit}, updating data point`,
+            );
             this.extendObject(c_id, {
                 type: obj.type,
                 common: {
                     name: attrdef.display_name,
                     type: attrdef.type,
                     role: attrdef.role,
-                    unit: target_unit,
+                    unit: target_display_unit,
                 },
                 native: {},
             });
 
             const my_source_unit = attrdef.units.filter(function (unit) {
-                return unit.display_name == obj.common.unit;
+                return unit.display_name == obj.common.unit || unit.value == obj.common.unit;
             });
 
-            const conversion_rule_back = my_source_unit[0].main_unit_conversion;
+            const conversion_rule_back = my_source_unit[0]?.main_unit_conversion;
 
             this.getState(c_id, (err, st) => {
                 const parser = new Parser();
@@ -116,6 +122,47 @@ class Sainlogic extends utils.Adapter {
         return new_value;
     }
 
+    async migrateTemperatureUnit() {
+        const migratedUnit = {
+            C: '°C',
+            F: '°F',
+        }[this.config.unit_temperature];
+
+        if (!migratedUnit) {
+            return;
+        }
+
+        const previousUnit = this.config.unit_temperature;
+        this.config.unit_temperature = migratedUnit;
+        try {
+            await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
+                native: {
+                    unit_temperature: migratedUnit,
+                },
+            });
+            this.log.info(`Migrated temperature unit configuration from ${previousUnit} to ${migratedUnit}`);
+        } catch (error) {
+            this.log.error(`Could not persist temperature unit migration: ${error}`);
+        }
+    }
+
+    async migrateTemperatureDatapoints() {
+        const temperatureFields = DATAFIELDS.filter(attrdef => attrdef.unit_config === 'unit_temperature');
+
+        for (const attrdef of temperatureFields) {
+            for (const channel of attrdef.channels) {
+                const datapointId = `${channel.channel}.${attrdef.id}`;
+                const obj = await new Promise(resolve => {
+                    this.getObject(datapointId, (_error, object) => resolve(object));
+                });
+
+                if (obj) {
+                    this.checkUnit(attrdef, obj);
+                }
+            }
+        }
+    }
+
     async onStateChange(id, state) {
         if (state) {
             // The state was changed
@@ -143,6 +190,9 @@ class Sainlogic extends utils.Adapter {
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
+
+        await this.migrateTemperatureUnit();
+        await this.migrateTemperatureDatapoints();
 
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');

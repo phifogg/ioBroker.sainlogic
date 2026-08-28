@@ -107,6 +107,10 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- #338 Added logic to convert temperature units to new proper display units like °C/°F
+- #327 Regexp fix for humidity sensors
+
 ### 1.2.8 (2026-08-20)
 - Fix #317 last_update type to string (you might need to delete the state manually)
 

@@ -220,10 +220,10 @@
                     "newLine": true,
                     "type": "select",
                     "options": [
-                        { "label": "°C", "value": "C" },
-                        { "label": "°F", "value": "F" }
+                        { "label": "°C", "value": "°C" },
+                        { "label": "°F", "value": "°F" }
                     ],
-                    "default": "C",
+                    "default": "°C",
                     "label": "Temperature Unit",
                     "xs": 12,
                     "sm": 12,
