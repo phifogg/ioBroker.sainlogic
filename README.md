@@ -107,7 +107,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.9 (2026-08-28)
 - #338 Added logic to convert temperature units to new proper display units like °C/°F
 - #327 Regexp fix for humidity sensors
 - #326 Remove .vscode from git
@@ -127,16 +127,6 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 - Fix #337 Adapter disabled cased by bootloop
 - Fix #317 last_update type to string (you might need to delete the state manually)
 - Fixed some lint warinings
-
-### 1.2.4 (2026-08-17)
-- [S5601] translation format changed
-- [S5004] Change setInterval()
-- [S9508] CHANGELOG_OLD.md removed from package.json
-- [#277] Fix unit_config for UVRaw
-- [#314] Reject out of bounds values based on min/max
-- [W1132] wrong roles fixed
-- [S9508] CHANGELOG_OLD.md removed from publishing
-- [S5004] Removed plain setInterval()
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 

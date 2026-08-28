@@ -96,6 +96,16 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.2.4 (2026-08-17)
+- [S5601] translation format changed
+- [S5004] Change setInterval()
+- [S9508] CHANGELOG_OLD.md removed from package.json
+- [#277] Fix unit_config for UVRaw
+- [#314] Reject out of bounds values based on min/max
+- [W1132] wrong roles fixed
+- [S9508] CHANGELOG_OLD.md removed from publishing
+- [S5004] Removed plain setInterval()
+
 ## 1.2.3 (2026-06-04)
 - [W5612] Updated labels
 - [E0036] Update release scripts to 5.2.1
