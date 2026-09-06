@@ -209,7 +209,7 @@
       "_id": "info.last_update",
       "type": "state",
       "common": {
-        "role": "value.time",
+        "role": "date",
         "name": "Timestamp of last update received from weather station",
         "type": "number",
         "read": true,

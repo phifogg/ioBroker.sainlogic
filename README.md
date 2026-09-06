@@ -109,7 +109,8 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 -->
 
 ### **WORK IN PROGRESS**
-- #343: Fix humidity mapping
+- #343 Fix humidity mapping
+- #339 update role for last_update
 
 ### 1.2.10 (2026-08-28)
 - #341: Fix No unit definition found on target
