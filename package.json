@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@esm2cjs/got": "^13.0.0",
-    "@iobroker/adapter-core": "^3.4.1",
+    "@iobroker/adapter-core": "^3.4.3",
     "binary-parser": "^2.3.0",
     "expr-eval": "^2.0.2"
   },

@@ -113,6 +113,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 - #339 update role for last_update
 - S4036 add .vscode to repo
 - S5004 change setInterval
+- W1130 default value changed for last_udpate
 
 ### 1.2.10 (2026-08-28)
 - #341: Fix No unit definition found on target
