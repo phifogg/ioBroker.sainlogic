@@ -96,6 +96,9 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.2.6 (2026-08-20)
+- Fix #337 Adapter disabled cased by bootloop - part 2
+
 ## 1.2.5 (2026-08-20)
 - Fix #337 Adapter disabled cased by bootloop
 - Fix #317 last_update type to string (you might need to delete the state manually)

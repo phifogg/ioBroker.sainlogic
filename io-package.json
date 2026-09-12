@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.10",
+    "version": "1.2.11",
     "news": {
+      "1.2.11": {
+        "en": "#343 Fix humidity mapping\n#339 update role for last_update\nS4036 add .vscode to repo\nS5004 change setInterval\nW1130 default value changed for last_udpate",
+        "de": "#343 Feuchtemapping korrigieren\n#339 Rolle für Last_Update\nS4036. vscode zum Repo\nS5004 SetInterval ändern\nW1130 Vorgabewert für Last_Update geändert",
+        "ru": "#343 Исправьте картографирование влажности\n#339 роль обновления для last_update\nS4036 добавить код vscode в репозиторий\nS5004 Изменить установленный интервал\nЗначение по умолчанию W1130 изменено для last_update",
+        "pt": "#343 Fixar mapa de umidade\n#339 update role para last_update\nS4036 adiciona .vscode ao repo\nIntervalo de troca S5004\nW1130 mudou o valor padrão de last_update",
+        "nl": "#343 Repareer de vochtigheidstoewijzing\n#339 updaterol voor last_update\nS4036 Voeg .vscode toe aan de repo\nS5004: setInterval wijzigen\nDe standaardwaarde van de W1130 is gewijzigd voor last_update",
+        "fr": "Cartographie #343 Fix Humidité\nRôle #339 pour last_update\nS4036 ajoute .vscode au dépôt\nInterval de changement S5004\nW1130 a modifié la valeur par défaut de last_update",
+        "it": "#343 Fix umidmapping\nruolo #339 per last_update\nS4036 aggiungere .vscode\nS5004 modifica SetInterval\nW1130 predefinito cambiato per last_update",
+        "es": "#343 Fix mapa de humedad\n#339 update rol para last_update\nS4036 añada .vscode al repo\nS5004 cambia setInterval\nEl valor por defecto del W1130 cambió para last_update",
+        "pl": "#343 Napraw mapowanie wilgotności\n#339 aktualizuj rolę dla last_update\nS4036 dodaj .vscode do repozytorium\nS5004 zmień setInterval\nZmieniono domyślną wartość W1130 dla last_udpate",
+        "uk": "#343 Виправлено відображення вологості\nРоль оновлення #339 для останнього оновлення\nS4036 додайте .vscode до репозиторію\nS5004 зміна набору Інтервал\nЗначення за замовчуванням W1130 змінено для last_udpate",
+        "zh-cn": "#343 修复湿度映射\n#339 更新last_update的角色\nS4036 将 .vscode 添加到存储库\nS5004 更改 setInterval\nlast_udpate 的 W1130 默认值已更改"
+      },
       "1.2.10": {
         "en": "#341: Fix No unit definition found on target",
         "de": "#341: Behebung des Problems, dass auf dem Ziel keine Einheitendefinition gefunden wurde",
@@ -80,19 +93,6 @@
         "pl": "Napraw #337 Adapter wyłączony w przypadku bootloopu\nNapraw typ last_update #317 na ciąg (może być konieczne ręczne usunięcie stanu)\nNaprawiono niektóre ostrzeżenia dotyczące kłaczków",
         "uk": "Виправлення №337: Адаптер вимкнено через цикл завантаження\nВиправлено #317 зміну типу last_update на рядок (можливо, вам доведеться видалити стан вручну)\nВиправлено деякі попередження про ворсинки",
         "zh-cn": "修复 #337 适配器因启动循环而禁用\n修复 #317 问题，将 last_update 类型改为字符串（可能需要手动删除状态）。\n修复了一些文件清理警告"
-      },
-      "1.2.4": {
-        "en": "[S5601] translation format changed\n[S5004] Change setInterval()\n[S9508] CHANGELOG_OLD.md removed from package.json\n[#277] Fix unit_config for UVRaw\n[#314] Reject out of bounds values based on min/max\n[W1132] wrong roles fixed\n[S9508] CHANGELOG_OLD.md removed from publishing\n[S5004] Removed plain setInterval()",
-        "de": "[S5601] Übersetzungsformat geändert\n[S5004] Ändern Sie setInterval()\n[S9508] CHANGELOG_OLD.md wurde aus package.json entfernt.\n[#277] Korrektur der unit_config für UVRaw\n[#314] Werte außerhalb des zulässigen Bereichs basierend auf Min/Max ablehnen\n[W1132] Falsche Rollen korrigiert\n[S9508] CHANGELOG_OLD.md wurde aus der Veröffentlichung entfernt.\n[S5004] Entfernt einfache setInterval()",
-        "ru": "[S5601] формат перевода изменен\n[S5004] Изменить setInterval()\n[S9508] Файл CHANGELOG_OLD.md удален из package.json\n[#277] Исправлена ошибка в unit_config для UVRaw\n[#314] Отклонять значения, выходящие за пределы допустимого диапазона, на основе min/max\n[W1132] Исправлены неправильные роли\n[S9508] Файл CHANGELOG_OLD.md удален из публикации.\n[S5004] Удален простой setInterval()",
-        "pt": "[S5601] formato de tradução alterado\n[S5004] Alterar setInterval()\n[S9508] CHANGELOG_OLD.md removido do package.json\n[#277] Corrigir unit_config para UVRaw\n[#314] Rejeitar valores fora dos limites com base em mínimo/máximo\n[W1132] Funções incorretas corrigidas\n[S9508] CHANGELOG_OLD.md removido da publicação\n[S5004] Removido setInterval() simples",
-        "nl": "[S5601] vertaalformaat gewijzigd\n[S5004] Wijzig setInterval()\n[S9508] CHANGELOG_OLD.md verwijderd uit package.json\n[#277] Fix unit_config voor UVRaw\n[#314] Verwerp waarden buiten de grenzen op basis van min/max\n[W1132] verkeerde rollen gecorrigeerd\n[S9508] CHANGELOG_OLD.md verwijderd uit publicatie\n[S5004] De eenvoudige setInterval() functie is verwijderd.",
-        "fr": "[S5601] Le format de traduction a été modifié.\n[S5004] Modifier setInterval()\n[S9508] CHANGELOG_OLD.md supprimé du fichier package.json\n[#277] Correction de unit_config pour UVRaw\n[#314] Rejeter les valeurs hors limites en fonction des valeurs min/max\n[W1132] Correction des rôles incorrects\n[S9508] Le fichier CHANGELOG_OLD.md a été supprimé de la publication.\n[S5004] Suppression de la méthode setInterval() simple",
-        "it": "[S5601] formato di traduzione modificato\n[S5004] Modifica setInterval()\n[S9508] CHANGELOG_OLD.md rimosso da package.json\n[#277] Correzione di unit_config per UVRaw\n[#314] Rifiuta i valori fuori dai limiti in base a min/max\n[W1132] ruoli errati corretti\n[S9508] CHANGELOG_OLD.md rimosso dalla pubblicazione\n[S5004] Rimossa la funzione setInterval() semplice",
-        "es": "[S5601] Se cambió el formato de traducción\n[S5004] Cambiar setInterval()\n[S9508] Se eliminó CHANGELOG_OLD.md de package.json\n[#277] Corregir unit_config para UVRaw\n[#314] Rechazar valores fuera de rango según min/max\n[W1132] Se corrigieron los roles incorrectos\n[S9508] CHANGELOG_OLD.md eliminado de la publicación\n[S5004] Se eliminó setInterval() simple",
-        "pl": "[S5601] zmieniono format tłumaczenia\n[S5004] Zmień setInterval()\n[S9508] CHANGELOG_OLD.md usunięto z package.json\n[#277] Napraw unit_config dla UVRaw\n[#314] Odrzuć wartości poza zakresem na podstawie min/maks\n[W1132] naprawiono błędne role\n[S9508] CHANGELOG_OLD.md usunięto z publikacji\n[S5004] Usunięto prostą funkcję setInterval()",
-        "uk": "[S5601] формат перекладу змінено\n[S5004] Змінити setInterval()\n[S9508] Файл CHANGELOG_OLD.md видалено з package.json\n[#277] Виправлено unit_config для UVRaw\n[#314] Відхилити значення, що виходять за межі допустимих значень, на основі мінімуму/максимуму\n[W1132] виправлено неправильні ролі\n[S9508] Файл CHANGELOG_OLD.md видалено з публікації\n[S5004] Видалено просту функцію setInterval()",
-        "zh-cn": "[S5601] 翻译格式已更改\n[S5004] 更改 setInterval()\n[S9508] 从 package.json 中移除 CHANGELOG_OLD.md\n[#277] 修复 UVRaw 的 unit_config\n[#314] 根据最小值/最大值拒绝超出范围的值\n[W1132] 角色错误已修复\n[S9508] 已从发布列表中移除 CHANGELOG_OLD.md\n[S5004] 移除了普通的 setInterval() 函数"
       }
     },
     "tier": 3,
