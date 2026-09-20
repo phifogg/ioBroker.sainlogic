@@ -1,0 +1,162 @@
+# Older changes
+
+### 1.0.15 (2025-12-22)
+
+Translated and adapter checker updates
+
+### 1.0.14
+
+Updates for Repository checker
+
+### 1.0.13
+
+Updates for repositrory checker
+
+### 1.0.0
+
+Support for WFC01 - Smart Water Timer
+
+### 0.11.6
+
+Adapater checker related updates
+
+### 0.11.5
+
+ECOWITT forwarding fixed
+
+### 0.11.4
+
+Fix yearlyrain max value and mapping for CO2 sensors
+
+### 0.10.5
+
+Bugfix for state initialization, removed log messages for forwarding
+
+### 0.10.4
+
+Bugfix for lightning count
+new battery states for additional sensors
+
+### 0.10.3
+
+Bugfixes
+
+### 0.10.2
+
+Bugfixes
+
+### 0.10.0
+
+Added new sensors for Lightning, Piezo elements, DP250 and minor fixes
+
+### 0.8.2
+
+Updated UVRaw to maxvalue 4000
+
+### 0.8.1
+
+Bugfix for timestamp and listener
+
+### 0.8.0
+
+Added time stamps for daily min and max values
+
+### 0.7.3
+
+Dependency updates and Travis testing updates
+
+### 0.7.2
+
+Dependency updates for security vulnerabilities
+
+### 0.7.1
+
+Fix Soilbatt mapping
+
+### 0.7.0
+
+Support for Soil Moisture devices like attached to DP1500
+
+### 0.6.6
+
+Adressed github issue #53 - warning on non existing object
+
+### 0.6.5
+
+Removed unneeded events
+
+### 0.6.4
+
+For WH2650: Adding model name and weather station communication frequency datapoint
+
+### 0.6.3
+
+Fixed outdoor humidity
+
+### 0.6.2
+
+Added additional sensor support
+## 1.2.6 (2026-08-20)
+- Fix #337 Adapter disabled cased by bootloop - part 2
+
+## 1.2.5 (2026-08-20)
+- Fix #337 Adapter disabled cased by bootloop
+- Fix #317 last_update type to string (you might need to delete the state manually)
+- Fixed some lint warinings
+
+## 1.2.4 (2026-08-17)
+- [S5601] translation format changed
+- [S5004] Change setInterval()
+- [S9508] CHANGELOG_OLD.md removed from package.json
+- [#277] Fix unit_config for UVRaw
+- [#314] Reject out of bounds values based on min/max
+- [W1132] wrong roles fixed
+- [S9508] CHANGELOG_OLD.md removed from publishing
+- [S5004] Removed plain setInterval()
+
+## 1.2.3 (2026-06-04)
+- [W5612] Updated labels
+- [E0036] Update release scripts to 5.2.1
+
+## 1.2.2 (2026-06-04)
+- (copilot) Adapter requires node.js >= 22 now
+- [E0036] Update release scripts to 5.2.0
+- [E3022] Update test and release to node 24
+- [W0066] Downgrade to node.js 22.x.x to avoid wrong typing is recommended.
+- [W1126] common.role updated
+- [W5039] Removed admin/words.js
+- [W5612] Updated labels
+- #292 windheading changed to read only
+
+## 1.2.1 (2026-04-07)
+Issue #229: Adding additional parameters for humidity sensors, up to 20 now
+Issue #277: Display conversion issue fix (thanks to ManuelBu96)
+npm updates
+Adapter Checker updates
+
+## 1.2.0 (2026-03-22)
+
+npm dependency updates
+automatic dependency updates added
+
+## 1.1.2 (2026-01-19)
+
+npm dependency updates
+fix admin page: scheduler reported interval in minutes instead of seconds
+
+## 1.1.1 (2025-12-29)
+
+Changed max values for distance sensore (#262)
+
+## 1.1.0 (2025-12-24)
+
+Added deploy job for release script
+Changed to Admin UI to jsonConfig
+
+## 1.0.17 (2025-12-23)
+
+Updates for releasescript changelog logic
+
+## 1.0.16
+
+Typo in io-package.json

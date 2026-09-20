@@ -1,5 +1,4 @@
 /* jshint node: true */
-// @ts-nocheck
 'use strict';
 
 /*
@@ -9,7 +8,7 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
-//const util = require('util');
+//const util = require('node:util');
 const Parser = require('expr-eval').Parser;
 
 // Load your modules here, e.g.:
@@ -18,83 +17,97 @@ const Scheduler = require('./lib/scheduler');
 const { DATAFIELDS } = require('./lib/constants');
 //const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function');
 
-
 class Sainlogic extends utils.Adapter {
-
     /**
-     * @param {Partial<ioBroker.AdapterOptions>} [options={}]
+     * @param  [options] Adapter options
      */
-    // eslint-disable-next-line no-unused-vars
     constructor(options) {
         super({
+            ...options,
             name: 'sainlogic',
         });
         this.on('ready', this.onReady.bind(this));
-        // this.on('objectChange', this.onObjectChange.bind(this));
-        //this.on('stateChange', this.onStateChange.bind(this));
+        //this.on('objectChange', this.onObjectChange.bind(this));
+        this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
-
     }
 
-
     checkUnit(attrdef, obj) {
-
         const c_id = obj._id;
         const target_unit = this.config[attrdef.unit_config];
+        const target_unit_definition = attrdef.units.find(function (unit) {
+            return unit.display_name == target_unit || unit.value == target_unit;
+        });
+        const target_display_unit = target_unit_definition?.display_name || target_unit;
 
-        if (target_unit != obj.common.unit) {
+        if (target_display_unit != obj.common.unit) {
             // change and convert unit
-            this.log.info(`Unit changed for ${c_id} from ${obj.common.unit} to ${target_unit}, updating data point`);
+            this.log.info(
+                `Unit changed for ${c_id} from ${obj.common.unit} to ${target_display_unit}, updating data point`,
+            );
             this.extendObject(c_id, {
                 type: obj.type,
                 common: {
                     name: attrdef.display_name,
                     type: attrdef.type,
                     role: attrdef.role,
-                    unit: target_unit,
+                    unit: target_display_unit,
                 },
                 native: {},
             });
 
-
             const my_source_unit = attrdef.units.filter(function (unit) {
-                return unit.display_name == obj.common.unit;
+                return unit.display_name == obj.common.unit || unit.value == obj.common.unit;
             });
 
-            const conversion_rule_back = my_source_unit[0].main_unit_conversion;
+            const conversion_rule_back = my_source_unit[0]?.main_unit_conversion;
 
-            const that = this;
-            this.getState(c_id, function (err, st) {
-
+            this.getState(c_id, (err, st) => {
                 const parser = new Parser();
 
-                let new_value = st.val;
+                if (st) {
+                    let new_value = st.val;
 
-                // convert back if required
-                if (conversion_rule_back != null) {
-                    const exp = parser.parse(conversion_rule_back);
-                    new_value = exp.evaluate({ x: new_value });
+                    // convert back if required
+                    if (conversion_rule_back != null) {
+                        const exp = parser.parse(conversion_rule_back);
+                        new_value = exp.evaluate({ x: new_value });
+                    }
+
+                    new_value = this.toDisplayUnit(attrdef, new_value);
+                    this.setState(c_id, { val: new_value, ack: true });
                 }
-
-                new_value = that.toDisplayUnit(attrdef, new_value);
-                that.setState(c_id, { val: new_value, ack: true });
-
-            }.bind(that));
+            });
         }
     }
 
-    /** Converts the given value to the target unit for given attribute definition */
+    /**
+     * Converts the given value to the target unit for given attribute definition
+     *
+     * @param attrdef Attribute definition
+     * @param value Value to convert
+     * @returns converted value
+     */
     toDisplayUnit(attrdef, value) {
         const parser = new Parser();
 
         const target_unit = this.config[attrdef.unit_config];
         const my_target_unit = attrdef.units.filter(function (unit) {
-            return unit.display_name == target_unit;
+            return unit.display_name == target_unit || unit.value == target_unit;
         });
 
+        if (!my_target_unit.length) {
+            this.log.warn(
+                `No unit definition found for ${attrdef.id} and target unit '${target_unit}', using raw value`,
+            );
+            return value;
+        }
+
         const conversion_rule_forward = my_target_unit[0].display_conversion;
-        this.log.debug('Target for ' + attrdef.id + ' unit is set: ' + target_unit + ', using conversion: ' + conversion_rule_forward);
+        this.log.debug(
+            `Target for ${attrdef.id} unit is set: ${target_unit}, using conversion: ${conversion_rule_forward}`,
+        );
 
         let new_value = value;
 
@@ -107,6 +120,66 @@ class Sainlogic extends utils.Adapter {
         return new_value;
     }
 
+    async migrateTemperatureUnit() {
+        const migratedUnit = {
+            C: '°C',
+            F: '°F',
+        }[this.config.unit_temperature];
+
+        if (!migratedUnit) {
+            return;
+        }
+
+        const previousUnit = this.config.unit_temperature;
+        this.config.unit_temperature = migratedUnit;
+        try {
+            await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
+                native: {
+                    unit_temperature: migratedUnit,
+                },
+            });
+            this.log.info(`Migrated temperature unit configuration from ${previousUnit} to ${migratedUnit}`);
+        } catch (error) {
+            this.log.error(`Could not persist temperature unit migration: ${error}`);
+        }
+    }
+
+    async migrateTemperatureDatapoints() {
+        const temperatureFields = DATAFIELDS.filter(attrdef => attrdef.unit_config === 'unit_temperature');
+
+        for (const attrdef of temperatureFields) {
+            for (const channel of attrdef.channels) {
+                const datapointId = `${channel.channel}.${attrdef.id}`;
+                const obj = await new Promise(resolve => {
+                    this.getObject(datapointId, (_error, object) => resolve(object));
+                });
+
+                if (obj) {
+                    this.checkUnit(attrdef, obj);
+                }
+            }
+        }
+    }
+
+    async onStateChange(id, state) {
+        if (state) {
+            // The state was changed
+            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+
+            // react to user changes (ack === false) on our choicelist
+            if (id && state.ack === false) {
+                try {
+                    this.handleChoiceChange(id, state);
+                } catch (e) {
+                    this.log.error(`Error handling choicelist change: ${e}`);
+                }
+            }
+        } else {
+            // The state was deleted
+            this.log.info(`state ${id} deleted`);
+        }
+    }
+
     /**
      * Is called when databases are connected and adapter received configuration.
      */
@@ -116,6 +189,9 @@ class Sainlogic extends utils.Adapter {
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
 
+        await this.migrateTemperatureUnit();
+        await this.migrateTemperatureDatapoints();
+
         if (this.config.scheduler_active == true) {
             this.log.info('Starting Scheduler');
             this.scheduler = new Scheduler(this.config, this);
@@ -123,17 +199,64 @@ class Sainlogic extends utils.Adapter {
         }
 
         if (this.config.listener_active == true) {
-            this.listener = new Listener(this.config.bind, this.config.port, this.config.path, this.config.listener_protocol, this.config.listener_forward_url, this);
+            this.listener = new Listener(
+                this.config.listener_ip,
+                this.config.listener_port,
+                this.config.path,
+                this.config.listener_protocol,
+                this.config.listener_forward_url,
+                this,
+            );
             this.listener.start();
         }
     }
 
+    /**
+     * Handle user changes to the choicelist state.
+     * Only called for user-initiated changes (ack === false).
+     *
+     * @param {string} id full state id
+     * @param {{val: string | number | boolean, ack: boolean}} state state object
+     */
+    handleChoiceChange(id, state) {
+        this.log.info(`User changed state (${id}) -> ${state.val}`);
+        // Execute the action associated with this choice
+        // TODO add flexible action handling here
+        //   this.executeChoiceAction(state.val, state);
+        // Acknowledge the state so the adapter shows the value as processed
+        this.setState(id, { val: state.val, ack: true });
+    }
+
+    /**
+     * Perform the action for a given choice value.
+     * Replace or extend the switch body with the desired behavior.
+     *
+     * @param {string|number} value selected choice value
+     * @param {{val: string | number | boolean, ack: boolean}} _state state object (unused)
+     */
+    executeChoiceAction(value, _state) {
+        switch (String(value)) {
+            case '0':
+                this.log.info('Choice action: Off selected');
+                // TODO: implement Off behavior
+                break;
+            case '1':
+                this.log.info('Choice action: On selected');
+                // TODO: implement On behavior
+                break;
+            case '2':
+                this.log.info('Choice action: Auto selected');
+                // TODO: implement Auto behavior
+                break;
+            default:
+                this.log.warn(`Unknown choice value: ${value}`);
+        }
+    }
 
     verify_datapoint(obj_id, that, attrdef, attrname, value) {
-
         // check target type and type-cast if needed
         let default_value = '';
-        if (attrdef.type == 'number'){
+        if (attrdef.type == 'number') {
             if (value != null) {
                 default_value = 0;
                 value = parseFloat(value);
@@ -141,58 +264,83 @@ class Sainlogic extends utils.Adapter {
                 value = 0;
                 default_value = 0;
             }
-        } else if (attrdef.type == 'string') {
-            value = value + '';
-        }
-        
-        this.getObject(obj_id, function (err, obj) {
-            if (err || obj == null) {
 
-                that.log.info('Creating new data point: ' + obj_id);
-                that.setObjectNotExists(obj_id, {
-                    type: 'state',
-                    common: {
-                        name: attrname,
-                        type: attrdef.type,
-                        unit: attrdef.unit,
-                        role: attrdef.role,
-                        min: attrdef.min,
-                        max: attrdef.max,
-                        states: attrdef.states,
-                        def: default_value,
-                        read: true,
-                        write: false,
-                        mobile: {
-                            admin: {
-                                visible: true
+            if (!Number.isFinite(value)) {
+                that.log.warn(`Rejected invalid numeric value for "${obj_id}": ${value} is not a finite number`);
+                return;
+            }
+
+            if (attrdef.min != null && value < attrdef.min) {
+                that.log.warn(`Rejected out-of-range value for "${obj_id}": ${value} less than min ${attrdef.min}`);
+                return;
+            }
+
+            if (attrdef.max != null && value > attrdef.max) {
+                that.log.warn(`Rejected out-of-range value for "${obj_id}": ${value} greater than max ${attrdef.max}`);
+                return;
+            }
+        } else if (attrdef.type == 'string') {
+            value = `${value}`;
+        }
+
+        this.getObject(
+            obj_id,
+            function (err, obj) {
+                if (err || obj == null) {
+                    that.log.info(`Creating new data point: ${obj_id}`);
+                    that.setObjectNotExists(
+                        obj_id,
+                        {
+                            type: 'state',
+                            common: {
+                                name: attrname,
+                                type: attrdef.type,
+                                unit: attrdef.unit,
+                                role: attrdef.role,
+                                min: attrdef.min,
+                                max: attrdef.max,
+                                states: attrdef.states,
+                                def: default_value,
+                                read: true,
+                                write: attrdef.writeable ? true : false,
+                                mobile: {
+                                    admin: {
+                                        visible: true,
+                                    },
+                                },
+                            },
+                            native: {},
+                        },
+                        function (err, obj) {
+                            // now update the value
+                            if (err || obj == null) {
+                                that.log.error(`Error creating object ${obj_id}: ${err}`);
+                            } else {
+                                that.setStateAsync(obj_id, { val: value, ack: true });
                             }
                         },
-                    },
-                    native: {},
-                // eslint-disable-next-line no-unused-vars
-                }, function (err, obj) {
+                    );
+
+                    // add listener for relevant state changes
+                    if (attrdef.subscribe) {
+                        that.subscribeStates(obj_id);
+                    }
+                } else {
+                    if (attrdef.unit_config != null) {
+                        that.checkUnit(attrdef, obj);
+                    }
                     // now update the value
                     that.setStateAsync(obj_id, { val: value, ack: true });
-                });
-            }
-            else {
-                if (attrdef.unit_config != null) {
-                    that.checkUnit(attrdef, obj);
                 }
-                // now update the value
-                that.setStateAsync(obj_id, { val: value, ack: true });
-            }
-
-
-        }.bind(that));
+            }.bind(that),
+        );
     }
 
     /**
-     * @param {Date} date
-     * @param {{ softwaretype: any; indoortempf: any; tempf: any; dewptf: any; windchillf: any; indoorhumidity: any; humidity: any; windspeedmph: any; windgustmph: any; winddir: any; baromin: any; absbaromin: any; ... 6 more ...; UV: any; }} json_response
+     * @param {Date} date Date of the update
+     * @param obj_values JSON response with values
      */
     setStates(date, obj_values) {
-
         this.setStateAsync('info.last_update', { val: date.toString(), ack: true });
 
         for (const attr in obj_values) {
@@ -210,22 +358,27 @@ class Sainlogic extends utils.Adapter {
                 display_val = this.toDisplayUnit(my_attr_def[0], display_val);
             }
 
-            this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name, display_val ); // allways channel 0 as primary attribute name
+            this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name, display_val); // allways channel 0 as primary attribute name
 
             if (c_id == 'winddir') {
                 const winddir_attrdef = DATAFIELDS.filter(function (def) {
                     return def.id == 'windheading';
                 });
 
-                this.verify_datapoint('weather.current.windheading', this, winddir_attrdef[0], winddir_attrdef[0].channels[0].name, this.getHeading(display_val, 16) );
+                this.verify_datapoint(
+                    'weather.current.windheading',
+                    this,
+                    winddir_attrdef[0],
+                    winddir_attrdef[0].channels[0].name,
+                    this.getHeading(display_val, 16),
+                );
             }
         }
-
     }
 
     // taken from https://www.programmieraufgaben.ch/aufgabe/windrichtung-bestimmen/ibbn2e7d
     getHeading(degrees, precision) {
-        this.log.debug('Determining wind heading for ' + degrees + ' and precision ' + precision);
+        this.log.debug(`Determining wind heading for ${degrees} and precision ${precision}`);
         precision = precision || 16;
         let directions = [],
             direction = 0;
@@ -233,16 +386,23 @@ class Sainlogic extends utils.Adapter {
         let i = step / 2;
 
         switch (precision) {
-            case 4: directions = 'N O S W'.split(' '); break;
-            case 8: directions = 'N NO O SO S SW W NW'.split(' '); break;
-            case 16: directions = ('N NNO NO ONO O OSO SO ' +
-                'SSO S SSW SW WSW W WNW NW NNW').split(' ');
+            case 4:
+                directions = 'N O S W'.split(' ');
                 break;
-            case 32: directions = ('N NzO NNO NOzN NO NOzO ONO OzN O OzS OSO ' +
-                'SOzO SO SOzS SSO SzO S SzW SSW SWzS SW SWzW WSW WzS W WzN ' +
-                'WNW NWzW NW NWzN NNW NzW').split(' ');
+            case 8:
+                directions = 'N NO O SO S SW W NW'.split(' ');
                 break;
-            default: 
+            case 16:
+                directions = ('N NNO NO ONO O OSO SO ' + 'SSO S SSW SW WSW W WNW NW NNW').split(' ');
+                break;
+            case 32:
+                directions = (
+                    'N NzO NNO NOzN NO NOzO ONO OzN O OzS OSO ' +
+                    'SOzO SO SOzS SSO SzO S SzW SSW SWzS SW SWzW WSW WzS W WzN ' +
+                    'WNW NWzW NW NWzN NNW NzW'
+                ).split(' ');
+                break;
+            default:
                 this.log.error('Wind heading could not be determined: invalid precision');
                 return '';
         }
@@ -251,43 +411,46 @@ class Sainlogic extends utils.Adapter {
             this.log.error('Wind heading could not be determined: wind direction outside boundary');
             return '';
         }
-        if (degrees <= i || degrees >= 360 - i) return 'N';
+        if (degrees <= i || degrees >= 360 - i) {
+            return 'N';
+        }
         while (i <= degrees) {
             direction++;
             i += step;
         }
 
-        this.log.debug('GetHeading returning: ' + directions[direction]);
+        this.log.debug(`GetHeading returning: ${directions[direction]}`);
         return directions[direction];
-
     }
     /**
      * Is called when adapter shuts down - callback has to be called under any circumstances!
-     * @param {() => void} callback
+     *
+     * @param {() => void} callback Callback function
      */
     onUnload(callback) {
         try {
-            if (this.listener)
+            if (this.listener) {
                 this.listener.stop();
-            if (this.scheduler)
+            }
+            if (this.scheduler) {
                 this.scheduler.stop();
+            }
             this.log.info('Sainlogic Adapter gracefully shut down...');
             callback();
         } catch (e) {
+            this.log.error(`Error during shutdown of Sainlogic Adapter: ${e}`);
             callback();
         }
     }
-
-
 }
 
-// @ts-ignore parent is a valid property on module
+// @ts-expect-error parent is a valid property on module
 if (module.parent) {
     // Export the constructor in compact mode
     /**
-     * @param {Partial<ioBroker.AdapterOptions>} [options={}]
+     * @param {Partial<ioBroker.AdapterOptions>} [options] Adapter options
      */
-    module.exports = (options) => new Sainlogic(options);
+    module.exports = options => new Sainlogic(options);
 } else {
     // otherwise start the instance directly
     new Sainlogic();

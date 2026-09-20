@@ -1,209 +1,291 @@
 {
-    "common": {
-        "name": "sainlogic",
-        "version": "1.0.13",
-        "news": {
-            "1.0.13": {
-                "en": "Repository checker updates",
-                "de": "Aktualisierungen basierend auf dem Repository Checker"
-            },
-            "1.0.12": {
-                "en": "Added support for WFC01",
-                "de": "Unterstützung für WFC01"
-            },
-            "0.12.1": {
-                "en": "Added Laser Distance sensor (LDS) Objects",
-                "de": "Attribute für Laser Distance Sensor (LDS) hinzugefügt"
-            },
-          "0.11.6": {
-                "en": "Responsinve design checked, added translations, dependencies updated",
-                "de": "Responsinve design überprüft, Übersetzungen, Abhängigkeiten"
-            },
-            "0.11.5": {
-              "en": "Fix forwarding ECOWITT protocoll",
-              "de": "Ecowitt Forwarding korrigiert"
-          },
-          "0.11.4": {
-            "en": "Fix yearlyrain max value and mapping for CO2 sensors",
-            "de": "Max. Wert für Yearlyrain korrigiert, CO2 Sensorenmapping korrigiert"
-          },
-          "0.11.3": {
-            "en": "Bump libraries, add new sensors, remove node.js 16",
-            "de": "Update von Abhängigkeiten, neue Sensoren und node.js 16 entfernt"
-          }
-        },
-        "tier": 3,
-        "titleLang": {
-            "en": "Sainlogic Weatherstation",
-            "de": "Sainlogic Weatherstation"
-        },
-        "desc": {
-            "en": "Read data from a sainlogic based weather station",
-            "de": "Read data from a sainlogic based weather station"
-        },
-        "authors": [
-            "Fogg <foggch@gmail.com>"
-        ],
-        "keywords": [
-            "weather",
-            "sainlogic"
-        ],
-        "licenseInformation": {
-          "type": "free",
-          "license": "MIT"
-        },
-        "platform": "Javascript/Node.js",
-        "icon": "sainlogic.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/phifogg/ioBroker.sainlogic/master/admin/sainlogic.png",
-        "readme": "https://github.com/phifogg/ioBroker.sainlogic/blob/master/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "weather",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "push",
-        "adminUI": {
-            "config": "materialize"
-        },
-        "globalDependencies": [                
-            {
-                "admin": ">=7.6.17"
-            }
-        ],
-        "dependencies": [
-            {
-                "js-controller": ">=6.0.11"
-            }
-        ]
-    },
-    "native": {
-        "bind": "",
-        "port": 45000,
-        "path": "/weatherstation/updateweatherstation.php",
-        "listener_active": false,
-        "listener_protocol": "wunderground",
-        "listener_forward_url": "",
-        "scheduler_active": false,
-        "ws_address": "",
-        "ws_port": 45000,
-        "ws_freq": 15,
-        "ws_getfirmware": true,
-        "ws_getcurrent": true,
-        "ws_getmax": false,
-        "ws_getmin": false,
-        "ws_getmaxdaily": false,
-        "ws_getmindaily": false,
-        "unit_rain": "mm",
-        "unit_temperature": "°C",
-        "unit_pressure": "hPa",
-        "unit_windspeed": "km/h",
-        "unit_solar": "lx"
-    },
-    "objects": [],
-    "instanceObjects": [ 
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-          "_id": "info.last_listener_update",
-          "type": "state",
-          "common": {
-              "role": "",
-              "name": "Content of last update recieved",
-              "type": "string",
-              "read": true,
-              "write": false,
-              "def": ""
-          },
-          "native": {}
+  "common": {
+    "name": "sainlogic",
+    "version": "1.2.11",
+    "news": {
+      "1.2.11": {
+        "en": "#343 Fix humidity mapping\n#339 update role for last_update\nS4036 add .vscode to repo\nS5004 change setInterval\nW1130 default value changed for last_udpate",
+        "de": "#343 Feuchtemapping korrigieren\n#339 Rolle für Last_Update\nS4036. vscode zum Repo\nS5004 SetInterval ändern\nW1130 Vorgabewert für Last_Update geändert",
+        "ru": "#343 Исправьте картографирование влажности\n#339 роль обновления для last_update\nS4036 добавить код vscode в репозиторий\nS5004 Изменить установленный интервал\nЗначение по умолчанию W1130 изменено для last_update",
+        "pt": "#343 Fixar mapa de umidade\n#339 update role para last_update\nS4036 adiciona .vscode ao repo\nIntervalo de troca S5004\nW1130 mudou o valor padrão de last_update",
+        "nl": "#343 Repareer de vochtigheidstoewijzing\n#339 updaterol voor last_update\nS4036 Voeg .vscode toe aan de repo\nS5004: setInterval wijzigen\nDe standaardwaarde van de W1130 is gewijzigd voor last_update",
+        "fr": "Cartographie #343 Fix Humidité\nRôle #339 pour last_update\nS4036 ajoute .vscode au dépôt\nInterval de changement S5004\nW1130 a modifié la valeur par défaut de last_update",
+        "it": "#343 Fix umidmapping\nruolo #339 per last_update\nS4036 aggiungere .vscode\nS5004 modifica SetInterval\nW1130 predefinito cambiato per last_update",
+        "es": "#343 Fix mapa de humedad\n#339 update rol para last_update\nS4036 añada .vscode al repo\nS5004 cambia setInterval\nEl valor por defecto del W1130 cambió para last_update",
+        "pl": "#343 Napraw mapowanie wilgotności\n#339 aktualizuj rolę dla last_update\nS4036 dodaj .vscode do repozytorium\nS5004 zmień setInterval\nZmieniono domyślną wartość W1130 dla last_udpate",
+        "uk": "#343 Виправлено відображення вологості\nРоль оновлення #339 для останнього оновлення\nS4036 додайте .vscode до репозиторію\nS5004 зміна набору Інтервал\nЗначення за замовчуванням W1130 змінено для last_udpate",
+        "zh-cn": "#343 修复湿度映射\n#339 更新last_update的角色\nS4036 将 .vscode 添加到存储库\nS5004 更改 setInterval\nlast_udpate 的 W1130 默认值已更改"
       },
+      "1.2.10": {
+        "en": "#341: Fix No unit definition found on target",
+        "de": "#341: Behebung des Problems, dass auf dem Ziel keine Einheitendefinition gefunden wurde",
+        "ru": "#341: Исправлена ошибка \"Определение юнита не найдено на целевом устройстве\"",
+        "pt": "#341: Corrigir \"Nenhuma definição de unidade encontrada no destino\"",
+        "nl": "#341: Oplossing voor 'Geen eenheidsdefinitie gevonden op doel'",
+        "fr": "#341 : Correction : Aucune définition d’unité trouvée sur la cible",
+        "it": "#341: Correzione Nessuna definizione di unità trovata sul target",
+        "es": "#341: Corrección: No se encontró ninguna definición de unidad en el destino.",
+        "pl": "#341: Naprawiono błąd „Nie znaleziono definicji jednostki na celu”",
+        "uk": "#341: Виправлення: Не знайдено визначення одиниці у цілі",
+        "zh-cn": "#341：修复目标上未找到单位定义的问题"
+      },
+      "1.2.9": {
+        "en": "#338 Added logic to convert temperature units to new proper display units like °C/°F\n#327 Regexp fix for humidity sensors\n#326 Remove .vscode from git\n#326 update adapter-core dependency\n#326 change last_update type to number",
+        "de": "#338 Logik hinzugefügt, um Temperatureinheiten in die neuen, korrekten Anzeigeeinheiten wie °C/°F umzurechnen.\n#327 Regexp-Korrektur für Feuchtigkeitssensoren\n#326 .vscode aus Git entfernen\n#326 Aktualisierung der adapter-core-Abhängigkeit\n#326 Ändere den Typ von last_update in Zahl",
+        "ru": "#338 Добавлена логика преобразования единиц измерения температуры в новые корректные единицы отображения, такие как °C/°F\n#327 Исправление регулярных выражений для датчиков влажности\n#326 Удалить .vscode из git\n#326 обновление зависимости adapter-core\n#326 изменить тип last_update на число",
+        "pt": "#338 Adicionada lógica para converter unidades de temperatura em novas unidades de exibição adequadas, como °C/°F\n#327 Correção de expressão regular para sensores de umidade\n#326 Remover .vscode do git\n#326 Atualizar dependência adapter-core\n#326 Alterar o tipo last_update para número",
+        "nl": "#338 Logica toegevoegd om temperatuureenheden om te zetten naar nieuwe, correcte weergave-eenheden zoals °C/°F\n#327 Regexp-correctie voor vochtigheidssensoren\n#326 Verwijder .vscode uit git\n#326 update adapter-core afhankelijkheid\n#326 wijzig het type van last_update naar nummer",
+        "fr": "#338 Ajout d'une logique de conversion des unités de température vers les nouvelles unités d'affichage appropriées, telles que °C/°F.\n#327 Correction de l'expression régulière pour les capteurs d'humidité\n#326 Supprimer .vscode de git\n#326 Mise à jour de la dépendance adapter-core\n#326 Modifier le type de last_update en nombre",
+        "it": "#338 Aggiunta la logica per convertire le unità di temperatura in nuove unità di visualizzazione corrette come °C/°F\n#327 Correzione Regex per i sensori di umidità\n#326 Rimuovere .vscode da git\n#326 aggiorna la dipendenza adapter-core\n#326 cambia il tipo di ultimo_aggiornamento in numero",
+        "es": "#338 Se agregó lógica para convertir las unidades de temperatura a nuevas unidades de visualización adecuadas como °C/°F.\n#327 Corrección de expresiones regulares para sensores de humedad\n#326 Eliminar .vscode de git\n#326 actualizar la dependencia adapter-core\n#326 Cambiar el tipo de last_update a número",
+        "pl": "#338 Dodano logikę konwersji jednostek temperatury na nowe, właściwe jednostki wyświetlania, takie jak °C/°F\n#327 Poprawka wyrażeń regularnych dla czujników wilgotności\n#326 Usuń .vscode z git\n#326 aktualizacja zależności rdzenia adaptera\n#326 zmień typ ostatniej aktualizacji na numer",
+        "uk": "#338 Додано логіку для перетворення одиниць температури в нові правильні одиниці відображення, такі як °C/°F\n#327 Виправлення регулярного виразу для датчиків вологості\n#326 Видалити .vscode з git\n#326 оновлення залежності адаптер-ядро\n#326 змінити тип last_update на число",
+        "zh-cn": "#338 添加了将温度单位转换为新的正确显示单位（例如摄氏度/华氏度）的逻辑\n#327 湿度传感器的正则表达式修复\n#326 从 Git 中移除 .vscode\n#326 更新 adapter-core 依赖项\n#326 将 last_update 类型更改为数字"
+      },
+      "1.2.8": {
+        "en": "Fix #317 last_update type to string (you might need to delete the state manually)",
+        "de": "Behebung von Problem #317: Der Datentyp von last_update sollte in String geändert werden (möglicherweise müssen Sie den Status manuell löschen).",
+        "ru": "Исправлена ошибка #317: тип last_update теперь строковый (возможно, потребуется удалить состояние вручную).",
+        "pt": "Corrigido o problema #317: o tipo de last_update será alterado para string (talvez seja necessário excluir o estado manualmente).",
+        "nl": "Fix #317 last_update type naar string (mogelijk moet je de status handmatig verwijderen)",
+        "fr": "Correction du problème n° 317 : le type de last_update est désormais une chaîne de caractères (vous devrez peut-être supprimer l’état manuellement).",
+        "it": "Correzione del problema #317: il tipo di last_update deve essere impostato su stringa (potrebbe essere necessario eliminare lo stato manualmente).",
+        "es": "Corrección #317: cambiar el tipo de last_update a cadena (es posible que deba eliminar el estado manualmente).",
+        "pl": "Napraw typ last_update #317 na ciąg (może być konieczne ręczne usunięcie stanu)",
+        "uk": "Виправлено #317 зміну типу last_update на рядок (можливо, вам доведеться видалити стан вручну)",
+        "zh-cn": "修复 #317 问题，将 last_update 类型改为字符串（可能需要手动删除状态）。"
+      },
+      "1.2.7": {
+        "en": "Fix superscript unit and degress for better display",
+        "de": "Korrigieren Sie die hochgestellten Einheiten und Gradwerte für eine bessere Darstellung.",
+        "ru": "Исправьте единицы измерения и градусы в верхнем индексе для лучшего отображения.",
+        "pt": "Corrigir unidade de sobrescrito e graus para melhor visualização",
+        "nl": "Corrigeer de superscript-eenheden en graden voor een betere weergave.",
+        "fr": "Corrigez les unités et les degrés en exposant pour un meilleur affichage.",
+        "it": "Correggere l'unità di misura e il grado in apice per una migliore visualizzazione.",
+        "es": "Corrija la unidad y los grados en superíndice para una mejor visualización.",
+        "pl": "Napraw jednostkę indeksu górnego i stopień, aby uzyskać lepszy wyświetlacz",
+        "uk": "Виправлено одиницю надрядкового значення та градус для кращого відображення",
+        "zh-cn": "修正上标单位和度数，以更好地显示"
+      },
+      "1.2.6": {
+        "en": "Fix #337 Adapter disabled cased by bootloop - part 2",
+        "de": "Fehlerbehebung #337: Adapter aufgrund einer Boot-Schleife deaktiviert – Teil 2",
+        "ru": "Исправление ошибки #337: Адаптер отключен из-за циклической перезагрузки - часть 2",
+        "pt": "Correção do problema #337: Adaptador desativado devido a loop de inicialização - parte 2",
+        "nl": "Oplossing #337 Adapter uitgeschakeld vanwege bootloop - deel 2",
+        "fr": "Correction du problème n° 337 : Adaptateur désactivé suite à une boucle de démarrage – partie 2",
+        "it": "Correzione del problema #337: Adattatore disabilitato a causa di un ciclo di avvio infinito - parte 2",
+        "es": "Solución n.° 337: Adaptador deshabilitado debido a un bucle de arranque - parte 2",
+        "pl": "Naprawa adaptera #337 wyłączonego z powodu pętli rozruchowej – część 2",
+        "uk": "Виправлення №337: Адаптер вимкнено через bootloop - частина 2",
+        "zh-cn": "修复 #337 适配器因启动循环而禁用 - 第 2 部分"
+      },
+      "1.2.5": {
+        "en": "Fix #337 Adapter disabled cased by bootloop\nFix #317 last_update type to string (you might need to delete the state manually)\nFixed some lint warinings",
+        "de": "Fehlerbehebung #337: Adapter aufgrund einer Boot-Schleife deaktiviert\nBehebung von Problem #317: Der Datentyp von last_update sollte in String geändert werden (möglicherweise müssen Sie den Status manuell löschen).\nEinige Lint-Warnungen wurden behoben.",
+        "ru": "Исправлена ошибка #337: Адаптер отключен из-за циклической перезагрузки.\nИсправлена ошибка #317: тип last_update теперь строковый (возможно, потребуется удалить состояние вручную).\nИсправлены некоторые предупреждения линтера.",
+        "pt": "Correção do problema #337: Adaptador desativado devido a loop de inicialização.\nCorrigido o problema #317: o tipo de last_update será alterado para string (talvez seja necessário excluir o estado manualmente).\nCorrigi alguns avisos de fiapos.",
+        "nl": "Oplossing #337 Adapter uitgeschakeld vanwege bootloop\nFix #317 last_update type naar string (mogelijk moet je de status handmatig verwijderen)\nEnkele lint-waarschuwingen opgelost.",
+        "fr": "Correction du problème n° 337 : Adaptateur désactivé suite à une boucle de démarrage\nCorrection du problème n° 317 : le type de last_update est désormais une chaîne de caractères (vous devrez peut-être supprimer l’état manuellement).\nCorrection de quelques avertissements concernant les peluches",
+        "it": "Correzione #337 Adattatore disabilitato a causa di un bootloop\nCorrezione del problema #317: il tipo di last_update deve essere impostato su stringa (potrebbe essere necessario eliminare lo stato manualmente).\nRisolti alcuni avvisi relativi alla lanugine",
+        "es": "Solución n.° 337: Adaptador deshabilitado debido a un bucle de arranque.\nCorrección #317: cambiar el tipo de last_update a cadena (es posible que deba eliminar el estado manualmente).\nSe corrigieron algunas advertencias de lint.",
+        "pl": "Napraw #337 Adapter wyłączony w przypadku bootloopu\nNapraw typ last_update #317 na ciąg (może być konieczne ręczne usunięcie stanu)\nNaprawiono niektóre ostrzeżenia dotyczące kłaczków",
+        "uk": "Виправлення №337: Адаптер вимкнено через цикл завантаження\nВиправлено #317 зміну типу last_update на рядок (можливо, вам доведеться видалити стан вручну)\nВиправлено деякі попередження про ворсинки",
+        "zh-cn": "修复 #337 适配器因启动循环而禁用\n修复 #317 问题，将 last_update 类型改为字符串（可能需要手动删除状态）。\n修复了一些文件清理警告"
+      }
+    },
+    "tier": 3,
+    "titleLang": {
+      "en": "Sainlogic Weatherstation",
+      "de": "Sainlogic Wetterstation",
+      "ru": "Метеостанция Sainlogic",
+      "pt": "Estação Meteorológica Sainlogic",
+      "nl": "Sainlogic Weerstation",
+      "fr": "Station Météo Sainlogic",
+      "it": "Stazione Meteorologica Sainlogic",
+      "es": "Estación Meteorológica Sainlogic",
+      "pl": "Stacja Pogodowa Sainlogic",
+      "uk": "Метеостанція Sainlogic",
+      "zh-cn": "Sainlogic 气象站"
+    },
+    "desc": {
+      "en": "Read data from a sainlogic based weather station",
+      "de": "Liest Daten von einer Sainlogic basierten Wetterstation",
+      "ru": "Чтение данных с погодной станции Sainlogic",
+      "pt": "Ler dados de uma estação meteorológica Sainlogic",
+      "nl": "Gegevens lezen van een Sainlogic-weerstation",
+      "fr": "Lire les données d'une station météo Sainlogic",
+      "it": "Legge i dati da una stazione meteorologica Sainlogic",
+      "es": "Leer datos de una estación meteorológica Sainlogic",
+      "pl": "Odczyt danych ze stacji pogodowej Sainlogic",
+      "uk": "Читання даних з метеостанції Sainlogic",
+      "zh-cn": "从 Sainlogic 气象站读取数据"
+    },
+    "authors": [
+      "Fogg <foggch@gmail.com>"
+    ],
+    "keywords": [
+      "weather",
+      "sainlogic"
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "icon": "sainlogic.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/phifogg/ioBroker.sainlogic/master/admin/sainlogic.png",
+    "readme": "https://github.com/phifogg/ioBroker.sainlogic/blob/master/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "weather",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "json"
+    },
+    "globalDependencies": [
       {
-            "_id": "info.last_update",
-            "type": "state",
-            "common": {
-                "role": "",
-                "name": "Timestamp of last update received from weather station",
-                "type": "string",
-                "read": true,
-                "write": false,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.softwaretype",
-            "type": "state",
-            "common": {
-                "role": "",
-                "name": "Software type and version of weather station",
-                "type": "string",
-                "read": true,
-                "write": false,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather",
-            "type": "channel",
-            "common": {
-                "name": "Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.current",
-            "type": "channel",
-            "common": {
-                "name": "Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.maxvalues",
-            "type": "channel",
-            "common": {
-                "name": "Max values of Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.maxvalues.absolut",
-            "type": "channel",
-            "common": {
-                "name": "Max values of Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.minvalues.absolut",
-            "type": "channel",
-            "common": {
-                "name": "Min values of Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.maxvalues.daily",
-            "type": "channel",
-            "common": {
-                "name": "Daily Min values of Weather data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "weather.minvalues.daily",
-            "type": "channel",
-            "common": {
-                "name": "Min daily values of Weather data"
-            },
-            "native": {}
-        } 
+        "admin": ">=7.6.20"
+      }
+    ],
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
     ]
+  },
+  "native": {
+    "listener_ip": "",
+    "listener_port": 45000,
+    "path": "/weatherstation/updateweatherstation.php",
+    "listener_active": false,
+    "listener_protocol": "wunderground",
+    "listener_forward_url": "",
+    "scheduler_active": false,
+    "ws_address": "",
+    "ws_port": 45000,
+    "ws_freq": 15,
+    "ws_getfirmware": true,
+    "ws_getcurrent": true,
+    "ws_getmax": false,
+    "ws_getmin": false,
+    "ws_getmaxdaily": false,
+    "ws_getmindaily": false,
+    "unit_rain": "mm",
+    "unit_temperature": "°C",
+    "unit_pressure": "hPa",
+    "unit_windspeed": "km/h",
+    "unit_solar": "lx",
+    "unit_uv": ""
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.last_listener_update",
+      "type": "state",
+      "common": {
+        "role": "json",
+        "name": "Content of last update received",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.last_update",
+      "type": "state",
+      "common": {
+        "role": "date",
+        "name": "Timestamp of last update received from weather station",
+        "type": "number",
+        "read": true,
+        "write": false,
+        "def": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.softwaretype",
+      "type": "state",
+      "common": {
+        "role": "text",
+        "name": "Software type and version of weather station",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather",
+      "type": "channel",
+      "common": {
+        "name": "Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.current",
+      "type": "channel",
+      "common": {
+        "name": "Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.maxvalues",
+      "type": "channel",
+      "common": {
+        "name": "Max values of Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.maxvalues.absolut",
+      "type": "channel",
+      "common": {
+        "name": "Max values of Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.minvalues.absolut",
+      "type": "channel",
+      "common": {
+        "name": "Min values of Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.maxvalues.daily",
+      "type": "channel",
+      "common": {
+        "name": "Daily Min values of Weather data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "weather.minvalues.daily",
+      "type": "channel",
+      "common": {
+        "name": "Min daily values of Weather data"
+      },
+      "native": {}
+    }
+  ]
 }
