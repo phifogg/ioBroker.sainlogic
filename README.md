@@ -107,6 +107,11 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- #374 Change type if info
+- Dependabot updates
+ 
 ### 1.2.11 (2026-09-12)
 - #343 Fix humidity mapping
 - #339 update role for last_update
