@@ -107,6 +107,10 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Restored automated npm deploy via trusted publishing
+- Updated @iobroker/testing to 6.3.1
+
 ### 1.2.12 (2026-11-02)
 - #374 Change type if info
 - Dependabot updates

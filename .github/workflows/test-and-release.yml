@@ -53,3 +53,25 @@ jobs:
                   os: ${{ matrix.os }}
                   # Uncomment the following line if your adapter cannot be installed using 'npm ci'
                   # install-command: 'npm install'
+
+    # Deploys the final package to NPM
+    deploy:
+        needs: [check-and-lint, adapter-tests]
+
+        # Needed to create GitHub releases and for npm trusted publishing
+        permissions:
+            contents: write
+            id-token: write
+
+        if: |
+            contains(github.event.head_commit.message, '[skip ci]') == false &&
+            github.event_name == 'push' &&
+            startsWith(github.ref, 'refs/tags/v')
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: ioBroker/testing-action-deploy@v1
+              with:
+                  node-version: '24.x'
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
