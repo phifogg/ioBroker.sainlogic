@@ -109,6 +109,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 -->
 ### **WORK IN PROGRESS**
 - #331 Added WH51 raw soil moisture AD values (soilad1 - soilad16)
+- #319 Added WH52 / DP110 soil sensor (moisture, temperature, EC, AD values, battery)
 - Fixed channel numbers 10 and higher being mapped to the wrong channel (e.g. soilmoisture12 overwrote channel 2)
 - Restored automated npm deploy via trusted publishing
 - Updated @iobroker/testing to 6.3.1
