@@ -96,6 +96,9 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.2.7 (2026-08-20)
+- Fix superscript unit and degress for better display (you need to set the temperature unit again in the config screen)
+
 ## 1.2.6 (2026-08-20)
 - Fix #337 Adapter disabled cased by bootloop - part 2
 
