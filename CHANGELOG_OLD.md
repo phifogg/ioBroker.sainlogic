@@ -96,6 +96,9 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.2.8 (2026-08-20)
+- Fix #317 last_update type to string (you might need to delete the state manually)
+
 ## 1.2.7 (2026-08-20)
 - Fix superscript unit and degress for better display (you need to set the temperature unit again in the config screen)
 

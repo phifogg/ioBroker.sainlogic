@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sainlogic",
-    "version": "1.2.12",
+    "version": "1.3.0",
     "news": {
+      "1.3.0": {
+        "en": "#331 Added WH51 raw soil moisture AD values (soilad1 - soilad16)\n#319 Added WH52 / DP110 soil sensor (moisture, temperature, EC, AD values, battery)\nAdded WN20 rain gauge battery voltage (wn20batt)\nFixed channel numbers 10 and higher being mapped to the wrong channel (e.g. soilmoisture12 overwrote channel 2)\nRestored automated npm deploy via trusted publishing\nUpdated @iobroker/testing to 6.3.1",
+        "de": "#331 AD-Werte für WH51 Rohfeuchte hinzugefügt (soilad1 — soilad16)\n#319 Bodensensor WH52/DP110 hinzugefügt (Nässe, Temperatur, EC, AD, Batterie)\nWN20 Regenmesser (WN20batt) hinzugefügt\nKanal 10 und höher wurden falsch zugeordnet (z. B. hat soilmoisture12 Kanal 2 überschrieben)\nAutomatisches NPM-Deploy über Trusted Publishing wiederhergestellt\n@iobroker /testing auf 6.3.1 aktualisiert",
+        "ru": "#331 Добавлены значения влажности сырой почвы WH51 AD (soilad1 — soilad16)\n#319 Добавлен датчик почвы WH52/DP110 (влажность, температура, значения EC, AD, аккумулятор)\nДобавлено напряжение батареи дождемера WN20 (wn20batt)\nИсправлено сопоставление каналов с номерами 10 и выше на неправильный канал (например, soilmoisture12 перезаписал канал 2)\nВосстановлено автоматическое развертывание npm с помощью доверенной публикации\nОбновлено @iobroker /testing до версии 6.3.1",
+        "pt": "#331 Valores AD de umidade bruta do solo WH51 (soilad1 - soilad16)\n#319 Adicionado sensor de solo WH52/DP110 (umidade, temperatura, EC, AD, bateria)\nAdição da tensão do pluviômetro WN20 (wn20batt)\nCanal fixo 10 e superior mapeado para o canal errado (por exemplo, soilmoisture12 substituiu o canal 2)\nImplantação automática de npm via publicação confiável\nAtualizou @iobroker /testing à 6.3.1",
+        "nl": "#331 WH51 AD-waarden voor ruwe bodemvochtigheid toegevoegd (soilad1 - soilad16)\n#319 WH52/DP110 bodemsensor toegevoegd (vochtigheid, temperatuur, EC-, AD-waarden, batterij)\nDe accuspanning van de WN20-regenmeter toegevoegd (wn20batt)\nVaste kanaalnummers 10 en hoger die aan het verkeerde kanaal zijn toegewezen (bijvoorbeeld soilmoisture 12 heeft kanaal 2 overschreven)\nHerstelde geautomatiseerde npm-implementatie via Trusted Publishing\n@iobroker /testing bijgewerkt naar 6.3.1",
+        "fr": "#331 Ajout des valeurs WH51 pour l'humidité du sol brut (soilad1 - soilad16)\n#319 Ajout d'une sonde de sol WH52/DP110 (humidité, température, EC, AD, batterie)\nAjout de la tension de la pile du pluviomètre WN20 (WN20batt)\nLes chaînes 10 et plus ont été mappées sur la mauvaise chaîne (par exemple, soilmoisture12 a remplacé la chaîne 2)\nDéploiement automatique de NPM restauré via Trusted Publishing\n@iobroker /testing a été mis à jour en 6.3.1",
+        "it": "#331 Aggiunti i valori AD WH51 (soilad1 - soilad16)\n#319 Aggiunto sensore suolo WH52/DP110 (umidità, temperatura, EC, AD, batteria)\nAggiunto il pluviometro WN20 (wn20batt)\nRisolto il problema con i canali 10 e più mappati sul canale sbagliato (es. soilmoisture12 ha sovrascritto il canale 2)\nNPM automatico ripristinato tramite Trusted Publishing\n@iobroker /testing aggiornato a 6.3.1",
+        "es": "#331 Añadió valores AD de humedad bruta del suelo WH51 (soilad1 - soilad16)\n#319 Se añadió sensor de suelo WH52/DP110 (humedad, temperatura, valores EC, AD, batería)\nTensión añadida de la pila del pluviómetro WN20 (wn20)\nSe corrigió el mapeo de los números de canal 10 o más al canal incorrecto (por ejemplo, soilmoisture 12 sobrescribió el canal 2)\nSe restauró el despliegue automático de npm mediante edición fiable\nActuó @iobroker /testing a 6.3.1",
+        "pl": "#331 Dodano wartości wilgotności gleby surowej WH51 AD (soilad1 - soilad16)\n#319 Dodano czujnik gleby WH52/DP110 (wilgotność, temperatura, EC, wartości AD, bateria)\nDodano napięcie akumulatora miernika deszczowego WN20 (wn20batt)\nNaprawiono mapowanie numerów kanałów 10 i wyższych na niewłaściwy kanał (np. soilhumidiure12 nadpisał kanał 2)\nPrzywrócono automatyczne wdrażanie npm za pomocą zaufanego publikowania\nZaktualizowano @iobroker /testing do wersji 6.3.1",
+        "uk": "#331 Додані значення АД вологості сирого ґрунту WH51 (ґрунт1 - ґрунт16)\n#319 Додано датчик ґрунту WH52/DP110 (вологість, температура, EC, значення AD, акумулятор)\nДодана напруга акумулятора дощовика WN20 (wn20batt)\nВиправлено, що номери каналів 10 і вище відображаються на неправильному каналі (наприклад, soilmoasture12 перезаписано канал 2)\nВідновлено автоматичне розгортання npm за допомогою довіреної публікації\nОновлено @iobroker /тестування до 6.3.1",
+        "zh-cn": "#331 添加了 WH51 原始土壤湿度 AD 值 (soilad1-soilad16)\n#319 添加了 WH52/DP110 土壤传感器（湿度、温度、EC、AD 值、电池）\n增加了 WN20 雨量计电池电压 (wn20batt)\n修复了信道编号 10 及更高版本被映射到错误信道的问题（例如 soilmoisture12 覆盖了频道 2）\n通过可信发布恢复了自动 npm 部署\n将 @iobroker /testing 更新到 6.3.1"
+      },
       "1.2.12": {
         "en": "#374 Change type if info\nDependabot updates",
         "de": "#374 Art der Info ändern\nAbhängig von Updates",
@@ -80,19 +93,6 @@
         "pl": "Napraw jednostkę indeksu górnego i stopień, aby uzyskać lepszy wyświetlacz",
         "uk": "Виправлено одиницю надрядкового значення та градус для кращого відображення",
         "zh-cn": "修正上标单位和度数，以更好地显示"
-      },
-      "1.2.6": {
-        "en": "Fix #337 Adapter disabled cased by bootloop - part 2",
-        "de": "Fehlerbehebung #337: Adapter aufgrund einer Boot-Schleife deaktiviert – Teil 2",
-        "ru": "Исправление ошибки #337: Адаптер отключен из-за циклической перезагрузки - часть 2",
-        "pt": "Correção do problema #337: Adaptador desativado devido a loop de inicialização - parte 2",
-        "nl": "Oplossing #337 Adapter uitgeschakeld vanwege bootloop - deel 2",
-        "fr": "Correction du problème n° 337 : Adaptateur désactivé suite à une boucle de démarrage – partie 2",
-        "it": "Correzione del problema #337: Adattatore disabilitato a causa di un ciclo di avvio infinito - parte 2",
-        "es": "Solución n.° 337: Adaptador deshabilitado debido a un bucle de arranque - parte 2",
-        "pl": "Naprawa adaptera #337 wyłączonego z powodu pętli rozruchowej – część 2",
-        "uk": "Виправлення №337: Адаптер вимкнено через bootloop - частина 2",
-        "zh-cn": "修复 #337 适配器因启动循环而禁用 - 第 2 部分"
       }
     },
     "tier": 3,
