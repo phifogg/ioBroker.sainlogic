@@ -1,7 +1,8 @@
 const { expect } = require('chai');
 const { DATAFIELDS } = require('./lib/constants');
 
-describe('Ecowitt listener fields', () => {
+// Payload fields observed with a WS3900A running firmware V1.4.7.
+describe('WS3900A V1.4.7 Ecowitt listener fields', () => {
     const expectedFields = [
         ['heap', 'heap'],
         ['interval', 'interval'],
