@@ -40,4 +40,3 @@ describe('Ecowitt listener fields', () => {
         expect(definition.role).to.equal('value.voltage');
     });
 });
-
