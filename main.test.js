@@ -313,6 +313,36 @@ describe('ioBroker.sainlogic', () => {
             });
         });
 
+        it('corrects fixed units of existing datapoints (depth_ch V -> mm)', async () => {
+            const adapter = createSainlogicInstance();
+            adapter.getObjectAsync = sinon
+                .stub()
+                .resolves({ _id: 'weather.current.1.depth_ch', type: 'state', common: { unit: 'V', write: false } });
+            adapter.extendObjectAsync = sinon.stub().resolves();
+            adapter.setStateAsync = sinon.stub().resolves();
+
+            const depthDef = DATAFIELDS.find(df => df.id === 'depth_ch');
+            await adapter.verify_datapoint('weather.current.1.depth_ch', adapter, depthDef, 'Distance', 1200);
+
+            expect(adapter.extendObjectAsync).to.have.been.calledOnceWith('weather.current.1.depth_ch', {
+                common: { unit: 'mm' },
+            });
+        });
+
+        it('leaves matching metadata of existing datapoints untouched', async () => {
+            const adapter = createSainlogicInstance();
+            adapter.getObjectAsync = sinon
+                .stub()
+                .resolves({ _id: 'weather.current.1.ldsbatt', type: 'state', common: { unit: 'V', write: false } });
+            adapter.extendObjectAsync = sinon.stub().resolves();
+            adapter.setStateAsync = sinon.stub().resolves();
+
+            const battDef = DATAFIELDS.find(df => df.id === 'ldsbatt');
+            await adapter.verify_datapoint('weather.current.1.ldsbatt', adapter, battDef, 'Battery', 1.5);
+
+            expect(adapter.extendObjectAsync).to.not.have.been.called;
+        });
+
         it('migrates temperature units on indexed channels', async () => {
             const adapter = createSainlogicInstance({ unit_temperature: '°F' });
             adapter.getAdapterObjectsAsync = sinon.stub().resolves({

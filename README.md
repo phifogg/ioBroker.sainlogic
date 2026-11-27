@@ -107,6 +107,19 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- #379 Added WS3900A Ecowitt listener fields: rain of the last 24h (last24hrain), VPD, console battery voltage, heap and interval
+- Added heat index (heatindex) to current and max values in scheduler mode
+- Fixed missing scheduler values: time of daily max UV index (uvi_time) and daily min relative pressure
+- Fixed rain display in inches: values are now shown with 2 decimals; small amounts were previously rounded to 0
+- Fixed swapped units of the water leak distance (depth_ch, now mm) and the leak sensor battery (ldsbatt, now V). Existing datapoints are corrected automatically
+- water_action (WFC01 gateway) is now read-only: writing was never implemented and had no effect. Existing datapoints are switched to read-only automatically
+- Temperature unit changes are now also applied to numbered channels (e.g. temp1 - temp8)
+- Listener: ignores invalid forward URLs instead of failing, no longer forwards internal fields, limits request size to 1 MB and shuts down cleanly
+- Scheduler: handles responses split over several TCP packets, adds a 10 s connection timeout and no longer queries a gateway when no gateway address is set
+- Improved stability: fewer database lookups per update, no more errors for unknown fields, failed gateway requests are logged instead of crashing
+- Updated dependencies
+
 ### 1.3.0 (2026-11-10)
 - #331 Added WH51 raw soil moisture AD values (soilad1 - soilad16)
 - #319 Added WH52 / DP110 soil sensor (moisture, temperature, EC, AD values, battery)
