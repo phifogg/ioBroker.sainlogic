@@ -261,11 +261,20 @@ class Sainlogic extends utils.Adapter {
                     native: {},
                 });
             } else {
+                // align metadata of objects created by earlier versions
+                const commonUpdate = {};
                 const writeable = !!attrdef.writeable;
                 if (!!obj.common?.write !== writeable) {
-                    // e.g. water_action was writable in earlier versions; align existing objects
-                    this.log.info(`Updating write flag of ${obj_id} to ${writeable}`);
-                    await this.extendObjectAsync(obj_id, { common: { write: writeable } });
+                    // e.g. water_action was writable in earlier versions
+                    commonUpdate.write = writeable;
+                }
+                if (attrdef.unit_config == null && (obj.common?.unit ?? '') !== (attrdef.unit ?? '')) {
+                    // fixed units without a configurable display unit, e.g. depth_ch (mm) / ldsbatt (V)
+                    commonUpdate.unit = attrdef.unit ?? '';
+                }
+                if (Object.keys(commonUpdate).length) {
+                    this.log.info(`Updating metadata of ${obj_id}: ${JSON.stringify(commonUpdate)}`);
+                    await this.extendObjectAsync(obj_id, { common: commonUpdate });
                 }
                 if (attrdef.unit_config != null) {
                     await this.checkUnit(attrdef, obj, false);
