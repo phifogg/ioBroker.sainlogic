@@ -67,7 +67,7 @@
     "main.js"
   ],
   "scripts": {
-    "test:js": "mocha --opts test/mocha.custom.opts",
+    "test:js": "mocha --config .mocharc.json",
     "test:package": "mocha test/package --exit",
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package",

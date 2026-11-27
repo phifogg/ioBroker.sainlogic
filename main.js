@@ -8,14 +8,12 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
-//const util = require('node:util');
-const Parser = require('expr-eval').Parser;
 
 // Load your modules here, e.g.:
 const Listener = require('./lib/listener');
 const Scheduler = require('./lib/scheduler');
 const { DATAFIELDS } = require('./lib/constants');
-//const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function');
+const { evaluateExpression } = require('./lib/expressions');
 
 class Sainlogic extends utils.Adapter {
     /**
@@ -26,14 +24,21 @@ class Sainlogic extends utils.Adapter {
             ...options,
             name: 'sainlogic',
         });
+        this.knownDatapoints = new Set();
         this.on('ready', this.onReady.bind(this));
         //this.on('objectChange', this.onObjectChange.bind(this));
-        this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
 
-    checkUnit(attrdef, obj) {
+    /**
+     * Checks and updates the unit of an existing datapoint if the configured display unit changed.
+     *
+     * @param {object} attrdef Attribute definition from DATAFIELDS
+     * @param {ioBroker.Object} obj Existing ioBroker object
+     * @param {boolean} [convertExistingState] Whether to convert and re-write the currently stored state value
+     */
+    async checkUnit(attrdef, obj, convertExistingState = true) {
         const c_id = obj._id;
         const target_unit = this.config[attrdef.unit_config];
         const target_unit_definition = attrdef.units.find(function (unit) {
@@ -46,7 +51,7 @@ class Sainlogic extends utils.Adapter {
             this.log.info(
                 `Unit changed for ${c_id} from ${obj.common.unit} to ${target_display_unit}, updating data point`,
             );
-            this.extendObject(c_id, {
+            await this.extendObjectAsync(c_id, {
                 type: obj.type,
                 common: {
                     name: attrdef.display_name,
@@ -57,28 +62,26 @@ class Sainlogic extends utils.Adapter {
                 native: {},
             });
 
-            const my_source_unit = attrdef.units.filter(function (unit) {
-                return unit.display_name == obj.common.unit || unit.value == obj.common.unit;
-            });
+            if (convertExistingState) {
+                const my_source_unit = attrdef.units.filter(function (unit) {
+                    return unit.display_name == obj.common.unit || unit.value == obj.common.unit;
+                });
 
-            const conversion_rule_back = my_source_unit[0]?.main_unit_conversion;
-
-            this.getState(c_id, (err, st) => {
-                const parser = new Parser();
+                const conversion_rule_back = my_source_unit[0]?.main_unit_conversion;
+                const st = await this.getStateAsync(c_id);
 
                 if (st) {
                     let new_value = st.val;
 
                     // convert back if required
-                    if (conversion_rule_back != null) {
-                        const exp = parser.parse(conversion_rule_back);
-                        new_value = exp.evaluate({ x: new_value });
+                    if (conversion_rule_back != null && new_value != null) {
+                        new_value = evaluateExpression(conversion_rule_back, { x: new_value });
                     }
 
                     new_value = this.toDisplayUnit(attrdef, new_value);
-                    this.setState(c_id, { val: new_value, ack: true });
+                    await this.setStateAsync(c_id, { val: new_value, ack: true });
                 }
-            });
+            }
         }
     }
 
@@ -90,8 +93,6 @@ class Sainlogic extends utils.Adapter {
      * @returns converted value
      */
     toDisplayUnit(attrdef, value) {
-        const parser = new Parser();
-
         const target_unit = this.config[attrdef.unit_config];
         const my_target_unit = attrdef.units.filter(function (unit) {
             return unit.display_name == target_unit || unit.value == target_unit;
@@ -113,8 +114,7 @@ class Sainlogic extends utils.Adapter {
 
         // convert forward if required
         if (conversion_rule_forward != null) {
-            const exp = parser.parse(conversion_rule_forward);
-            new_value = exp.evaluate({ x: value });
+            new_value = evaluateExpression(conversion_rule_forward, { x: value });
         }
 
         return new_value;
@@ -145,38 +145,23 @@ class Sainlogic extends utils.Adapter {
     }
 
     async migrateTemperatureDatapoints() {
-        const temperatureFields = DATAFIELDS.filter(attrdef => attrdef.unit_config === 'unit_temperature');
+        const temperatureFields = new Map(
+            DATAFIELDS.filter(attrdef => attrdef.unit_config === 'unit_temperature').map(attrdef => [
+                attrdef.id,
+                attrdef,
+            ]),
+        );
 
-        for (const attrdef of temperatureFields) {
-            for (const channel of attrdef.channels) {
-                const datapointId = `${channel.channel}.${attrdef.id}`;
-                const obj = await new Promise(resolve => {
-                    this.getObject(datapointId, (_error, object) => resolve(object));
-                });
-
-                if (obj) {
-                    this.checkUnit(attrdef, obj);
-                }
+        // scan all existing objects once, so indexed channels (e.g. weather.current.1.temp) are covered too
+        const objects = await this.getAdapterObjectsAsync();
+        for (const obj of Object.values(objects)) {
+            if (obj.type !== 'state') {
+                continue;
             }
-        }
-    }
-
-    async onStateChange(id, state) {
-        if (state) {
-            // The state was changed
-            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-
-            // react to user changes (ack === false) on our choicelist
-            if (id && state.ack === false) {
-                try {
-                    this.handleChoiceChange(id, state);
-                } catch (e) {
-                    this.log.error(`Error handling choicelist change: ${e}`);
-                }
+            const attrdef = temperatureFields.get(obj._id.split('.').pop());
+            if (attrdef) {
+                await this.checkUnit(attrdef, obj, true);
             }
-        } else {
-            // The state was deleted
-            this.log.info(`state ${id} deleted`);
         }
     }
 
@@ -212,128 +197,85 @@ class Sainlogic extends utils.Adapter {
     }
 
     /**
-     * Handle user changes to the choicelist state.
-     * Only called for user-initiated changes (ack === false).
+     * Ensures the datapoint exists with up-to-date unit metadata and writes its state value.
      *
-     * @param {string} id full state id
-     * @param {{val: string | number | boolean, ack: boolean}} state state object
+     * @param {string} obj_id Target state object ID
+     * @param {object} _that Adapter reference (kept for backwards compatibility)
+     * @param {object} attrdef Attribute definition from DATAFIELDS
+     * @param {string} attrname Human-readable attribute name
+     * @param {string | number} value Value to write
      */
-    handleChoiceChange(id, state) {
-        this.log.info(`User changed state (${id}) -> ${state.val}`);
-        // Execute the action associated with this choice
-        // TODO add flexible action handling here
-        //   this.executeChoiceAction(state.val, state);
-        // Acknowledge the state so the adapter shows the value as processed
-        this.setState(id, { val: state.val, ack: true });
-    }
-
-    /**
-     * Perform the action for a given choice value.
-     * Replace or extend the switch body with the desired behavior.
-     *
-     * @param {string|number} value selected choice value
-     * @param {{val: string | number | boolean, ack: boolean}} _state state object (unused)
-     */
-    executeChoiceAction(value, _state) {
-        switch (String(value)) {
-            case '0':
-                this.log.info('Choice action: Off selected');
-                // TODO: implement Off behavior
-                break;
-            case '1':
-                this.log.info('Choice action: On selected');
-                // TODO: implement On behavior
-                break;
-            case '2':
-                this.log.info('Choice action: Auto selected');
-                // TODO: implement Auto behavior
-                break;
-            default:
-                this.log.warn(`Unknown choice value: ${value}`);
-        }
-    }
-
-    verify_datapoint(obj_id, that, attrdef, attrname, value) {
+    async verify_datapoint(obj_id, _that, attrdef, attrname, value) {
         // check target type and type-cast if needed
         let default_value = '';
         if (attrdef.type == 'number') {
             if (value != null) {
                 default_value = 0;
-                value = parseFloat(value);
+                value = parseFloat(String(value));
             } else {
                 value = 0;
                 default_value = 0;
             }
 
             if (!Number.isFinite(value)) {
-                that.log.warn(`Rejected invalid numeric value for "${obj_id}": ${value} is not a finite number`);
+                this.log.warn(`Rejected invalid numeric value for "${obj_id}": ${value} is not a finite number`);
                 return;
             }
 
             if (attrdef.min != null && value < attrdef.min) {
-                that.log.warn(`Rejected out-of-range value for "${obj_id}": ${value} less than min ${attrdef.min}`);
+                this.log.warn(`Rejected out-of-range value for "${obj_id}": ${value} less than min ${attrdef.min}`);
                 return;
             }
 
             if (attrdef.max != null && value > attrdef.max) {
-                that.log.warn(`Rejected out-of-range value for "${obj_id}": ${value} greater than max ${attrdef.max}`);
+                this.log.warn(`Rejected out-of-range value for "${obj_id}": ${value} greater than max ${attrdef.max}`);
                 return;
             }
         } else if (attrdef.type == 'string') {
             value = `${value}`;
         }
 
-        this.getObject(
-            obj_id,
-            function (err, obj) {
-                if (err || obj == null) {
-                    that.log.info(`Creating new data point: ${obj_id}`);
-                    that.setObjectNotExists(
-                        obj_id,
-                        {
-                            type: 'state',
-                            common: {
-                                name: attrname,
-                                type: attrdef.type,
-                                unit: attrdef.unit,
-                                role: attrdef.role,
-                                min: attrdef.min,
-                                max: attrdef.max,
-                                states: attrdef.states,
-                                def: default_value,
-                                read: true,
-                                write: attrdef.writeable ? true : false,
-                                mobile: {
-                                    admin: {
-                                        visible: true,
-                                    },
-                                },
+        if (!this.knownDatapoints.has(obj_id)) {
+            const obj = await this.getObjectAsync(obj_id);
+            if (!obj) {
+                this.log.info(`Creating new data point: ${obj_id}`);
+                await this.setObjectNotExistsAsync(obj_id, {
+                    type: 'state',
+                    common: {
+                        name: attrname,
+                        type: attrdef.type,
+                        unit: attrdef.unit,
+                        role: attrdef.role,
+                        min: attrdef.min,
+                        max: attrdef.max,
+                        states: attrdef.states,
+                        def: default_value,
+                        read: true,
+                        write: attrdef.writeable ? true : false,
+                        mobile: {
+                            admin: {
+                                visible: true,
                             },
-                            native: {},
                         },
-                        function (err, obj) {
-                            // now update the value
-                            if (err || obj == null) {
-                                that.log.error(`Error creating object ${obj_id}: ${err}`);
-                            } else {
-                                that.setStateAsync(obj_id, { val: value, ack: true });
-                            }
-                        },
-                    );
-
-                    // add listener for relevant state changes
-                    if (attrdef.subscribe) {
-                        that.subscribeStates(obj_id);
-                    }
-                } else {
-                    if (attrdef.unit_config != null) {
-                        that.checkUnit(attrdef, obj);
-                    }
-                    // now update the value
-                    that.setStateAsync(obj_id, { val: value, ack: true });
+                    },
+                    native: {},
+                });
+            } else {
+                const writeable = !!attrdef.writeable;
+                if (!!obj.common?.write !== writeable) {
+                    // e.g. water_action was writable in earlier versions; align existing objects
+                    this.log.info(`Updating write flag of ${obj_id} to ${writeable}`);
+                    await this.extendObjectAsync(obj_id, { common: { write: writeable } });
                 }
-            }.bind(that),
-        );
+                if (attrdef.unit_config != null) {
+                    await this.checkUnit(attrdef, obj, false);
+                }
+            }
+
+            this.knownDatapoints.add(obj_id);
+        }
+
+        await this.setStateAsync(obj_id, { val: value, ack: true });
     }
 
     /**
@@ -349,29 +291,36 @@ class Sainlogic extends utils.Adapter {
 
             // check if this has a mapping to the current protocol
             this.log.debug(`Setting value from data for ${attr} to ${obj_values[attr]}`);
-            const my_attr_def = DATAFIELDS.filter(function (def) {
-                return def.id == c_id;
-            });
-
-            let display_val = obj_values[attr];
-            if (my_attr_def[0].unit_config) {
-                display_val = this.toDisplayUnit(my_attr_def[0], display_val);
+            const my_attr_def = DATAFIELDS.find(def => def.id == c_id);
+            if (!my_attr_def) {
+                this.log.warn(`No datafield definition found for "${attr}" (${c_id}), skipping`);
+                continue;
             }
 
-            this.verify_datapoint(attr, this, my_attr_def[0], my_attr_def[0].channels[0].name, display_val); // allways channel 0 as primary attribute name
+            let display_val = obj_values[attr];
+            if (my_attr_def.unit_config) {
+                display_val = this.toDisplayUnit(my_attr_def, display_val);
+            }
+
+            const attrName = my_attr_def.channels?.[0]?.name || my_attr_def.id;
+            this.verify_datapoint(attr, this, my_attr_def, attrName, display_val).catch(err => {
+                this.log.error(`Error updating datapoint ${attr}: ${err}`);
+            });
 
             if (c_id == 'winddir') {
-                const winddir_attrdef = DATAFIELDS.filter(function (def) {
-                    return def.id == 'windheading';
-                });
-
-                this.verify_datapoint(
-                    'weather.current.windheading',
-                    this,
-                    winddir_attrdef[0],
-                    winddir_attrdef[0].channels[0].name,
-                    this.getHeading(display_val, 16),
-                );
+                const winddir_attrdef = DATAFIELDS.find(def => def.id == 'windheading');
+                if (winddir_attrdef) {
+                    const winddirName = winddir_attrdef.channels?.[0]?.name || winddir_attrdef.id;
+                    this.verify_datapoint(
+                        'weather.current.windheading',
+                        this,
+                        winddir_attrdef,
+                        winddirName,
+                        this.getHeading(display_val, 16),
+                    ).catch(err => {
+                        this.log.error(`Error updating windheading: ${err}`);
+                    });
+                }
             }
         }
     }
@@ -427,13 +376,13 @@ class Sainlogic extends utils.Adapter {
      *
      * @param {() => void} callback Callback function
      */
-    onUnload(callback) {
+    async onUnload(callback) {
         try {
-            if (this.listener) {
-                this.listener.stop();
-            }
             if (this.scheduler) {
                 this.scheduler.stop();
+            }
+            if (this.listener) {
+                await this.listener.stop();
             }
             this.log.info('Sainlogic Adapter gracefully shut down...');
             callback();

@@ -24,7 +24,7 @@
                     "type": "ip",
                     "listenOnAllPorts": true,
                     "label": "Listener IP Address",
-                    "default": "listenOnAllPorts",
+                    "default": "0.0.0.0",
                     "xs": 12,
                     "sm": 12,
                     "md": 8,
