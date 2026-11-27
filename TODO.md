@@ -66,6 +66,14 @@ Assessment baseline: `v1.3.0` (`npm run lint` passes; `npx tsc --noEmit` fails w
 - [ ] **Fix TypeScript (`checkJs`) errors & enforce in CI**
   - Resolve all 13 `npx tsc --noEmit` errors across `lib/gateway.js`, `lib/listener.js`, `lib/scheduler.js`, `main.js`, and `main.test.js`.
   - Add a `check:ts` script to `package.json` and run it in `.github/workflows/test-and-release.yml`.
+- [ ] **Tighten `min`/`max` limits & reject station sentinel values (`lib/constants.js`)**
+  - Live test against an EasyWeatherV1.7.6 station (2026-11-27) stored placeholder values because they lie within the current limits:
+    - `weather.maxvalues.absolut.UVraw` = `65535` (`0xffff`, limit `max: 100000`)
+    - `weather.maxvalues.absolut.solarradiation` = `300000` lx (raw `0x002dc6c0`, limit `max: 300000`)
+    - `weather.current.totalrainin` = `6000` mm (raw `0x0000ea60` = 60000, no `max` defined)
+  - Set realistic limits (e.g. `UVraw` ≤ 20000, `solarradiation` < 200000 lx) or explicitly treat `0xffff` / `0xffffffff` as "no value".
+  - Check whether `totalrainin` = 60000 is a station counter cap or a real value; add a `max` if needed.
+  - Review all `DATAFIELDS` without `min`/`max`.
 - [ ] **Deduplicate `lib/constants.js`**
   - Extract shared unit-definition presets (`TEMP_UNITS`, `RAIN_UNITS`, `PRESSURE_UNITS`, `WIND_UNITS`, `SOLAR_UNITS`) to reduce file size (~2,872 lines) and prevent copy-paste drift (e.g., `"Rainrate (Daily)"` reused for `eventrain`/`hourlyrain`/`dailyrain`, `weather.info` vs `info` channels).
   - Align unit options across `io-package.json`, `admin/jsonConfig.json`, and `lib/constants.js` (`mmHg` in `constants.js` vs `jsonConfig.json`; unused `unit_uv` in `io-package.json`).
