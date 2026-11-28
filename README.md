@@ -107,7 +107,7 @@ Station does not answer to scheduler commands, so only listener mode is supporte
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.4.0 (2026-11-28)
 - #379 Added WS3900A Ecowitt listener fields: rain of the last 24h (last24hrain), VPD, console battery voltage, heap and interval
 - Added heat index (heatindex) to current and max values in scheduler mode
 - Fixed missing scheduler values: time of daily max UV index (uvi_time) and daily min relative pressure
@@ -141,13 +141,6 @@ Station does not answer to scheduler commands, so only listener mode is supporte
 
 ### 1.2.10 (2026-08-28)
 - #341: Fix No unit definition found on target
-
-### 1.2.9 (2026-08-28)
-- #338 Added logic to convert temperature units to new proper display units like °C/°F
-- #327 Regexp fix for humidity sensors
-- #326 Remove .vscode from git
-- #326 update adapter-core dependency
-- #326 change last_update type to number
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 

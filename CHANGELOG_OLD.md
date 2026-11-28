@@ -96,6 +96,13 @@ Fixed outdoor humidity
 ### 0.6.2
 
 Added additional sensor support
+## 1.2.9 (2026-08-28)
+- #338 Added logic to convert temperature units to new proper display units like °C/°F
+- #327 Regexp fix for humidity sensors
+- #326 Remove .vscode from git
+- #326 update adapter-core dependency
+- #326 change last_update type to number
+
 ## 1.2.8 (2026-08-20)
 - Fix #317 last_update type to string (you might need to delete the state manually)
 
